@@ -14,16 +14,16 @@ export default function Home() {
     const [selected, setSelected] = useState<number>()
 
     const sections =[ 
-    {
-      name: 'Bacenta Rep',
-      icon: MdOutlineDirectionsBus,
-      id: 1
-    },
     // {
-    //   name: 'Usher',
-    //   icon: AiOutlineUser,
-    //   id: 2
+    //   name: 'Bacenta Rep',
+    //   icon: MdOutlineDirectionsBus,
+    //   id: 1
     // },
+    {
+      name: 'Usher',
+      icon: AiOutlineUser,
+      id: 2
+    },
     // {
     //   name: 'Shepherd',
     //   icon: TbCrossFilled,
@@ -62,9 +62,9 @@ export default function Home() {
               })}
             </Flex>
 
-           <BacentaRep />
-            {/* {selected === 2 && <Usher />}
-            {selected === 3 && <Shepherd />} */}
+           {/* <BacentaRep /> */}
+            <Usher />
+            {/* {selected === 3 && <Shepherd />} */}
           </Box>
         </Flex>
 
