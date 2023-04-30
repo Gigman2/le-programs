@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import {
   Box,
   Grid,
@@ -13,19 +13,29 @@ import {
 import moment from "moment";
 import _ from 'lodash';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { IBusRound } from "@/interface/bus";
+import { IHeadcount } from "@/interface/headcount";
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [loading, setLoading] = useState(false);
 
-  const [allBus, setAllBus] = useState<Record<string, any>>({});
-  const [allGroups, setAllGroups] = useState<Record<string, any>>({});
-  const [groups, setGroups] = useState<[]>([]);
+  const [latestDate, setLatestDate] = useState('');
+  const [previousDate, setPreviousDate] = useState('');
 
-  const [data, setData] = useState([]);
+  const [busRounds, setBusRounds] = useState<IBusRound[]>([]);
+  const [headcount, setHeadcounts] = useState<IHeadcount[]>([]);
+
+  const [latestData, setLatestData] = useState({
+    busRound: 0,
+    headCount: 0,
+    lowestHeadcount: 0,
+    busingPercent: 0,
+    walkinPercent: 0
+  })
 
 
-  const getBus = async () => {
+  const getBusRound = async () => {
     try {
       if(!loading){
         setLoading(true)
@@ -37,8 +47,7 @@ export default function OverView() {
           body: JSON.stringify(apiPayload)
         })
         const response = await res.json()
-
-        setData(response.data || [])
+        setBusRounds(response.data || [])
       }
     } catch (error) {
       console.log(error)
@@ -47,22 +56,17 @@ export default function OverView() {
     }
   }
 
-  const getGroups = async () => {
-     try {
+  const getHeadCount = async () => {
+    try {
       if(!loading){
         setLoading(true)
         const apiPayload = {}
-        const res = await fetch(`${baseUrl}/api/bus_groups/getBusGroups`, {
-          method: 'post',
+        const res = await fetch(`${baseUrl}/api/head_count/getHeadcount`, {
+          method: 'post', 
           body: JSON.stringify(apiPayload)
         })
         const response = await res.json()
-        let total = (response.data || [])
-        setAllGroups({})
-
-        await Promise.all(total.map((item:any) => {
-          setAllGroups(prev =>( {...prev, [item._id] : item.groupName}))
-        }))
+        setHeadcounts(response.data || [])
       }
     } catch (error) {
       console.log(error)
@@ -71,43 +75,54 @@ export default function OverView() {
     }
   }
 
-  const groupBusGroups = (data: any) => {
-    const grouped = _.groupBy(data, (item: any) => {
-        return moment(item.created_on).format('DD MMM,YY')
-    })
+  const getLatestDate = () => {
+    if(busRounds.length){
+      const lastRow = busRounds.sort((a,b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime())[0]
+      setLatestDate(lastRow.created_on)
+      const previousRow = busRounds.sort((a,b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime())[1]
+      setPreviousDate(previousRow.created_on)
+    }
+  }
 
-    // Group by Bus-Group
-    Object.keys(grouped).map(item => {
-      const groupedGroupName = _.groupBy(grouped[item], (item: any) =>  item.busGroup)
-      grouped[item] = groupedGroupName as any
-    }) 
+  const groupByDate = (date: string, data: any[]) => {
+    const allData = data.filter(item => moment(item.created_on).format('DD-MM-YYYY') === moment(date).format('DD-MM-YYYY'))
+    if(allData.length && allData[0].totalPeople){
+      const total = allData.reduce((sum, curr) => {
+        sum = sum + curr.totalPeople
+        return sum
+      },0)
 
-    Object.keys(grouped).map((item) => {
-      const groupByDate: any[] | any[][] = grouped[item]
-      Object.keys(groupByDate).map(groupId => {
-        const total = groupByDate[groupId as any].reduce((sum: any, curr: any) => {
-          if(curr.totalPeople)
-            sum = sum + curr.totalPeople
+      setLatestData(prev => ({...prev, busRound: total}))
+    }
 
-          return sum
-        }, 0)
-
-        groupByDate[groupId as any] = total
-      })
-    })
-
-    setAllBus(grouped)
+    if(allData.length && allData[0].total){
+      const highest = allData.sort((a, b) => Number(b.total) - Number(a.total))
+      setLatestData(prev => ({...prev, headCount: highest[0].total, lowestHeadcount: highest[highest.length-1].total}))
+    }
   }
 
   useEffect(() => {
-    if(data.length){
-      groupBusGroups(data)
+    if(latestData.busRound && latestData.headCount){
+      const busingPercent = (latestData.busRound/latestData.headCount) * 100
+      const walkinPercent = ((latestData.headCount - latestData.busRound)/latestData.headCount) * 100
+      setLatestData(prev => ({...prev, busingPercent: Number(busingPercent.toFixed(2)), walkinPercent: Number(walkinPercent.toFixed(2))}))
     }
-  }, [data])
+  }, [latestData])
 
   useEffect(() => {
-    getGroups()
-    getBus()
+    if(latestDate.length){
+      groupByDate(latestDate, busRounds)
+      groupByDate(latestDate, headcount)
+    }
+  },[latestDate, busRounds, headcount] )
+
+  useEffect(() => {
+    getLatestDate()
+  },[busRounds])
+
+  useEffect(() => {
+    getBusRound()
+    getHeadCount()
   }, [])
 
 
@@ -133,12 +148,12 @@ export default function OverView() {
                         borderBottomWidth={1}
                   >
                     <Text>Latest Service</Text>
-                    <Text fontWeight={500}>Sun, 20th Feb 2023</Text>
+                    <Text fontWeight={500}>{moment(latestDate).format('ddd, Do MMM YYYY')}</Text>
                   </Flex>
                   <Flex justify={"space-between"}>
                     <Box>
                       <Flex align={"center"} gap={1}>
-                        <Text fontSize={40} my={1} h={12} color="gray.500">456</Text>
+                        <Text fontSize={40} my={1} h={12} color="gray.500">{latestData.headCount}</Text>
                         <Flex bg="red.100" rounded={"sm"}>
                           <Text fontSize={14} color="red.500">12%</Text>
                           <Box>
@@ -150,7 +165,7 @@ export default function OverView() {
                     </Box>
                     <Box>
                       <Flex align={"center"} gap={1}>
-                        <Text fontSize={40} my={1} h={12} color="gray.500">23</Text>
+                        <Text fontSize={40} my={1} h={12} color="gray.500">{latestData.busRound}</Text>
                         <Flex bg="green.100" rounded={"sm"}>
                           <Text fontSize={14} color="green.500">12%</Text>
                           <Box>
@@ -158,29 +173,29 @@ export default function OverView() {
                           </Box>
                         </Flex>
                       </Flex>
-                      <Text color="gray.500">Buses</Text>
+                      <Text color="gray.500">Came by bus</Text>
                     </Box>
                   </Flex>
                   <Grid templateColumns="repeat(2,1fr)" columnGap={12} mt={3}>
                     <Flex my={1} gap={3} justify={"space-between"}>
                       <Text fontSize={15} color="gray.500">Highest Headcount</Text> 
-                      <Text fontWeight={600}>20</Text>
+                      <Text fontWeight={600}>{latestData.headCount}</Text>
                     </Flex>
                     <Flex my={1} gap={3} justify={"space-between"}>
                       <Text fontSize={15} color="gray.500">Lowest Headcount</Text> 
-                      <Text fontWeight={600}>20</Text>
+                      <Text fontWeight={600}>{latestData.lowestHeadcount}</Text>
                     </Flex>
                     <Flex my={1} gap={3} justify={"space-between"}>
                       <Text fontSize={15} color="gray.500">Percentage from busing</Text> 
-                      <Text fontWeight={600}>20</Text>
+                      <Text fontWeight={600}>{latestData.busingPercent}</Text>
                     </Flex>
                     <Flex my={1} gap={3} justify={"space-between"}>
                       <Text fontSize={15} color="gray.500">Walk-in percentage</Text> 
-                      <Text fontWeight={600}>20</Text>
+                      <Text fontWeight={600}>{latestData.walkinPercent}</Text>
                     </Flex>
                   </Grid>
                 </Box>
-                <Grid templateColumns="repeat(2,1fr)" columnGap={6} >
+                {/* <Grid templateColumns="repeat(2,1fr)" columnGap={6} mb={3}>
                   <Box p={4} rounded={"md"} borderColor={"gray.200"} borderWidth={1} >
                       <Text fontSize={15} color="gray.500">Highest Headcount</Text>
                       <Text fontSize={32} fontWeight={600}>219</Text>
@@ -192,6 +207,19 @@ export default function OverView() {
                       <Text fontSize={15} color="gray.500">Sun, 21st Aug 2021</Text>
                   </Box>
                 </Grid>
+
+                <Grid templateColumns="repeat(2,1fr)" columnGap={6} mb={3}>
+                  <Box p={4} rounded={"md"} borderColor={"gray.200"} borderWidth={1} >
+                      <Text fontSize={15} color="gray.500">Highest bus members</Text>
+                      <Text fontSize={32} fontWeight={600}>219</Text>
+                      <Text fontSize={15} color="gray.500">Sun, 21st Aug 2021</Text>
+                  </Box>
+                  <Box p={4} rounded={"md"} borderColor={"gray.200"} borderWidth={1} >
+                      <Text fontSize={15} color="gray.500">Lowest bus members</Text>
+                      <Text fontSize={32} fontWeight={600}>31</Text>
+                      <Text fontSize={15} color="gray.500">Sun, 21st Aug 2021</Text>
+                  </Box>
+                </Grid> */}
             </Box>
         </Flex>
       </main>
