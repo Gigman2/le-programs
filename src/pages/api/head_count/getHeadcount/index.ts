@@ -12,7 +12,8 @@ const handler: NextApiHandler = async function handler(
 ) {
   try {
     await connectMongo();
-    const payload = await HeadCount.find();
+    const data = JSON.parse(req.body)
+    const payload = await HeadCount.find(data);
     return res.status(200).json({ message: 'Successful', data: payload })
   } catch (error) {
     return res.status(400).json({ error: error })
