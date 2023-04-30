@@ -18,8 +18,6 @@ export default function Home() {
           if(!loading){
             setLoading(true)
             const recorderPage = {
-              busRep: user.name, 
-              nonBus: true, 
               created_on: {
                 $gt: moment().startOf('day').toDate(),
                 $lt: moment().endOf('day').toDate(),

@@ -143,7 +143,7 @@ export default function OverView() {
               >
                 Refresh
               </Box>
-              <Link href="oversee-admin/statistics">
+              <Link href="busing-admin/statistics">
                 <Text color="gray.600">Statistics</Text>
               </Link>
             </Flex>
