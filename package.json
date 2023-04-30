@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node" : ">=14.18.0"
+    "node" : ">=16"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.6.0",
