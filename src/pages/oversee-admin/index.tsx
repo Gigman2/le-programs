@@ -5,14 +5,16 @@ import {
   Box,
   Grid,
   Flex,
-  Skeleton,
-  GridItem,
   Text,
   Icon,
 } from "@chakra-ui/react";
 import moment from "moment";
-import _ from 'lodash';
+import _,{ 
+  groupBy
+
+ } from 'lodash';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import {FaMinus} from 'react-icons/fa'
 import { IBusRound } from "@/interface/bus";
 import { IHeadcount } from "@/interface/headcount";
 
@@ -31,7 +33,11 @@ export default function OverView() {
     headCount: 0,
     lowestHeadcount: 0,
     busingPercent: 0,
-    walkinPercent: 0
+    walkinPercent: 0,
+    previousHeadcount: 0,
+    previousBusRound:  0,
+    busPercentChange: 0,
+    headcountPercentChange: 0
   })
 
 
@@ -77,44 +83,66 @@ export default function OverView() {
 
   const getLatestDate = () => {
     if(busRounds.length){
-      const lastRow = busRounds.sort((a,b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime())[0]
-      setLatestDate(lastRow.created_on)
-      const previousRow = busRounds.sort((a,b) => new Date(b.created_on).getTime() - new Date(a.created_on).getTime())[1]
-      setPreviousDate(previousRow.created_on)
+      const groupByDate = groupBy(busRounds, (o: any) => {return moment(o.created_on).format('DD-MM-YYYY')})
+      const dates = Object.keys(groupByDate);
+      
+      const orderedRows = dates.sort((a,b) => moment(a).toDate().getTime() - moment(b).toDate().getTime())
+      setLatestDate(orderedRows[orderedRows.length - 1])
+      setPreviousDate(orderedRows[orderedRows.length - 2])
     }
   }
 
-  const groupByDate = (date: string, data: any[]) => {
-    const allData = data.filter(item => moment(item.created_on).format('DD-MM-YYYY') === moment(date).format('DD-MM-YYYY'))
+  const groupByDate = (date: string, data: any[], isLatest: boolean) => {
+    const allData = data.filter(item => moment(item.created_on).format('DD-MM-YYYY') === moment(date,'DD-MM-YYYY').format('DD-MM-YYYY'))
     if(allData.length && allData[0].totalPeople){
       const total = allData.reduce((sum, curr) => {
         sum = sum + curr.totalPeople
         return sum
       },0)
-
-      setLatestData(prev => ({...prev, busRound: total}))
+      if(isLatest){
+        setLatestData(prev => ({...prev, busRound: total}))
+      }else {
+        setLatestData(prev => ({...prev, previousBusRound: total}))
+      }
     }
 
     if(allData.length && allData[0].total){
       const highest = allData.sort((a, b) => Number(b.total) - Number(a.total))
-      setLatestData(prev => ({...prev, headCount: highest[0].total, lowestHeadcount: highest[highest.length-1].total}))
+      if(isLatest){
+        setLatestData(prev => ({...prev, headCount: highest[0].total, lowestHeadcount: highest[highest.length-1].total}))
+      }else {
+        setLatestData(prev => ({...prev, previousHeadcount: highest[0].total}))
+      }
     }
+
   }
 
   useEffect(() => {
     if(latestData.busRound && latestData.headCount){
       const busingPercent = (latestData.busRound/latestData.headCount) * 100
       const walkinPercent = ((latestData.headCount - latestData.busRound)/latestData.headCount) * 100
-      setLatestData(prev => ({...prev, busingPercent: Number(busingPercent.toFixed(2)), walkinPercent: Number(walkinPercent.toFixed(2))}))
+      setLatestData(prev => ({
+        ...prev, 
+        busingPercent: Number(busingPercent.toFixed(2)), 
+        walkinPercent: Number(walkinPercent.toFixed(2)),
+        busPercentChange: Number((((latestData.busRound - latestData.previousBusRound) / latestData.previousBusRound) * 100).toFixed(1)),
+        headcountPercentChange:  Number((((latestData.headCount - latestData.previousHeadcount) / latestData.previousHeadcount) * 100).toFixed(1))
+      }))
     }
-  }, [latestData])
+  }, [latestData.busRound && latestData.headCount])
 
   useEffect(() => {
     if(latestDate.length){
-      groupByDate(latestDate, busRounds)
-      groupByDate(latestDate, headcount)
+      groupByDate(latestDate, busRounds, true)
+      groupByDate(latestDate, headcount, true)
     }
-  },[latestDate, busRounds, headcount] )
+
+    if(previousDate.length){
+      groupByDate(previousDate, busRounds, false)
+      groupByDate(previousDate, headcount, false)
+    }
+
+  },[latestDate, previousDate, busRounds, headcount] )
 
   useEffect(() => {
     getLatestDate()
@@ -148,29 +176,35 @@ export default function OverView() {
                         borderBottomWidth={1}
                   >
                     <Text>Latest Service</Text>
-                    <Text fontWeight={500}>{moment(latestDate).format('ddd, Do MMM YYYY')}</Text>
+                    <Text fontWeight={500}>{moment(latestDate, 'DD-MM-YYYY').format('ddd, Do MMM YYYY')}</Text>
                   </Flex>
                   <Flex justify={"space-between"}>
                     <Box>
-                      <Flex align={"center"} gap={1}>
-                        <Text fontSize={40} my={1} h={12} color="gray.500">{latestData.headCount}</Text>
-                        <Flex bg="red.100" rounded={"sm"}>
-                          <Text fontSize={14} color="red.500">12%</Text>
-                          <Box>
-                            <Icon as={AiFillCaretDown} fontSize={20} color="red.400" />
-                          </Box>
+                      <Flex align={"center"} gap={2}>
+                        <Text fontSize={48} my={1} lineHeight={1.2} color="gray.500">{latestData.headCount}</Text>
+                        <Flex direction={"column"}>
+                          <Flex  rounded={"sm"} h={4}>
+                            <Text fontSize={14} color={latestData.headcountPercentChange > 0 ? "green.400" : latestData.headcountPercentChange < 0 ? "red.400" : "gray.400"}>{latestData.headcountPercentChange}%</Text>
+                            <Box>
+                              {latestData.headcountPercentChange > 0 ? <Icon as={AiFillCaretUp} color="green.400" fontSize={20} /> : latestData.headcountPercentChange < 0 ? <Icon as={AiFillCaretDown} color="red.400" fontSize={20} /> : <Icon as={FaMinus} color="gray.400" fontSize={20} />}
+                            </Box>
+                          </Flex>
+                          <Text color={"gray.500"} fontSize={20}>{latestData.previousHeadcount}</Text>
                         </Flex>
                       </Flex>
                       <Text color="gray.500">Headcount</Text>
                     </Box>
                     <Box>
-                      <Flex align={"center"} gap={1}>
-                        <Text fontSize={40} my={1} h={12} color="gray.500">{latestData.busRound}</Text>
-                        <Flex bg="green.100" rounded={"sm"}>
-                          <Text fontSize={14} color="green.500">12%</Text>
-                          <Box>
-                            <Icon as={AiFillCaretUp} fontSize={20} color="green.400" />
-                          </Box>
+                      <Flex align={"center"} gap={2}>
+                        <Text fontSize={48} my={1} lineHeight={1.2} color="gray.500">{latestData.busRound}</Text>
+                        <Flex direction={"column"}>
+                          <Flex rounded={"sm"} h={4}>
+                            <Text fontSize={14} color={latestData.busPercentChange > 0 ? "green.400" : latestData.busPercentChange < 0 ? "red.400" : "gray.400"}>{latestData.busPercentChange}%</Text>
+                            <Box>
+                              {latestData.busPercentChange > 0 ? <Icon as={AiFillCaretUp} color="green.400" fontSize={20} /> : latestData.busPercentChange < 0 ? <Icon as={AiFillCaretDown} color="red.400" fontSize={20} /> : <Icon as={FaMinus} color="gray.400" fontSize={20} />}
+                            </Box>
+                          </Flex>
+                           <Text color={"gray.500"} fontSize={20}>{latestData.previousBusRound}</Text>
                         </Flex>
                       </Flex>
                       <Text color="gray.500">Came by bus</Text>
@@ -186,12 +220,12 @@ export default function OverView() {
                       <Text fontWeight={600}>{latestData.lowestHeadcount}</Text>
                     </Flex>
                     <Flex my={1} gap={3} justify={"space-between"}>
-                      <Text fontSize={15} color="gray.500">Percentage from busing</Text> 
-                      <Text fontWeight={600}>{latestData.busingPercent}</Text>
+                      <Text fontSize={15} color="gray.500">Bused percentage</Text> 
+                      <Text fontWeight={600}>{latestData.busingPercent}%</Text>
                     </Flex>
                     <Flex my={1} gap={3} justify={"space-between"}>
                       <Text fontSize={15} color="gray.500">Walk-in percentage</Text> 
-                      <Text fontWeight={600}>{latestData.walkinPercent}</Text>
+                      <Text fontWeight={600}>{latestData.walkinPercent}%</Text>
                     </Flex>
                   </Grid>
                 </Box>
