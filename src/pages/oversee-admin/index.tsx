@@ -184,7 +184,7 @@ export default function OverView() {
                         <Text fontSize={48} my={1} lineHeight={1.2} color="gray.500">{latestData.headCount}</Text>
                         <Flex direction={"column"}>
                           <Flex  rounded={"sm"} h={4}>
-                            <Text fontSize={14} color={latestData.headcountPercentChange > 0 ? "green.400" : latestData.headcountPercentChange < 0 ? "red.400" : "gray.400"}>{latestData.headcountPercentChange}%</Text>
+                            <Text fontSize={14} color={latestData.headcountPercentChange > 0 ? "green.400" : latestData.headcountPercentChange < 0 ? "red.400" : "gray.400"}>{Math.abs(latestData.headcountPercentChange)}%</Text>
                             <Box>
                               {latestData.headcountPercentChange > 0 ? <Icon as={AiFillCaretUp} color="green.400" fontSize={20} /> : latestData.headcountPercentChange < 0 ? <Icon as={AiFillCaretDown} color="red.400" fontSize={20} /> : <Icon as={FaMinus} color="gray.400" fontSize={20} />}
                             </Box>
@@ -199,7 +199,7 @@ export default function OverView() {
                         <Text fontSize={48} my={1} lineHeight={1.2} color="gray.500">{latestData.busRound}</Text>
                         <Flex direction={"column"}>
                           <Flex rounded={"sm"} h={4}>
-                            <Text fontSize={14} color={latestData.busPercentChange > 0 ? "green.400" : latestData.busPercentChange < 0 ? "red.400" : "gray.400"}>{latestData.busPercentChange}%</Text>
+                            <Text fontSize={14} color={latestData.busPercentChange > 0 ? "green.400" : latestData.busPercentChange < 0 ? "red.400" : "gray.400"}>{Math.abs(latestData.busPercentChange)}%</Text>
                             <Box>
                               {latestData.busPercentChange > 0 ? <Icon as={AiFillCaretUp} color="green.400" fontSize={20} /> : latestData.busPercentChange < 0 ? <Icon as={AiFillCaretDown} color="red.400" fontSize={20} /> : <Icon as={FaMinus} color="gray.400" fontSize={20} />}
                             </Box>
