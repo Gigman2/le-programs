@@ -171,7 +171,7 @@ export default function OverView() {
                     <Text fontSize={14} color="gray.400">Bus groups</Text>
                   </Flex>
                   <Flex p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} gap={2}  align={"center"}>
-                    <Text fontSize={20} color="gray.600" fontWeight={600}>{Object.keys(allBus).length}</Text>
+                    <Text fontSize={20} color="gray.600" fontWeight={600}>9</Text>
                     <Text fontSize={14} color="gray.400">Events</Text>
                   </Flex>
                 </Grid>
