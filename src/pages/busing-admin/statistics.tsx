@@ -99,7 +99,8 @@ export default function OverView() {
         if(grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]) {
           let sum = grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]
           sum.people = Number((sum.people || 0) + group.totalPeople)
-          sum.bus = Number(sum.bus|| 0 + (group.busState === 'ARRIVED' ? 1 :0))
+          sum.bus = Number(sum.bus|| 0) +  (group.busState === 'ARRIVED' ? 1 :0)
+          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup] = sum
         }
       })
     }) 
