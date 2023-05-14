@@ -156,6 +156,7 @@ export default function OverView() {
                 as={Button}
                 bg={"green.500"}
                 color="white"
+                onClick={() => refreshData()}
               >
                 Refresh
               </Box>
@@ -254,8 +255,12 @@ export default function OverView() {
                   {allBus
                   .filter((bus: Record<string, string>) => bus.busGroup === item._id)
                   .map((l: Record<string, string>, i: number) =>                   
-                  <Box key={l._id } bg="blue.200" p={2} borderBottomWidth={1} borderBottomColor="blue.400" pb={3}>
-                    <Flex justify={"space-between"}>
+                  <Box key={l._id } bg="blue.200" p={2} 
+                    borderBottomWidth={1} borderBottomColor="blue.400" 
+                    pb={3} pos="relative"
+                  >
+                    <Box w="100%" h="100%" zIndex={3} pos="absolute" cursor={"pointer"}></Box>
+                    <Flex justify={"space-between"} zIndex={2}>
                       <Text fontWeight={600} fontSize={14} textTransform="capitalize">Bus #{i+1} {l.busRep}</Text>
                       <Text fontSize={13} fontWeight={600} color="gray.600">
                         {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}
