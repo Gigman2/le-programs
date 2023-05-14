@@ -122,7 +122,7 @@ export default function Home() {
                       <Flex justify={"space-between"}>
                         <Text fontWeight={400} fontSize={14} color="white">People: {item.totalPeople || 0}</Text>
                         <Text fontWeight={400} fontSize={14} color="white">
-                          {item.busState === 'ARRIVED' ? `Ghc ${item.busFare}` : item.currentStation }
+                          {item.busState === 'ARRIVED' ? `Ghc ${item.busFare} ${item.totalFare ? 'out of '+ item.totalFare : ''}` : item.currentStation }
                         </Text>
                       </Flex>
                   </Box>

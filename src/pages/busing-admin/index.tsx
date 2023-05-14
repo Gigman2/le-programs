@@ -22,14 +22,18 @@ export default function OverView() {
   const [busInfo, setBusInfo] = useState<Record<string, string | number>>({
     'Total Buses': 200,
     'Arrived': 200,
-    'On Route': 200,
-    'Total Fare': 200,
+    'On Route': 200
   });
 
   const [peopleInfo, setPeopleInfo] = useState<Record<string, string | number>>({
     'People': 200,
     'Arrived': 200,
     'On Route': 200,
+  });
+
+  const [finance, setFinance] = useState<Record<string, string | number>>({
+    'Fare Collected': 200,
+    'Total Bus Fare': 200,
   });
 
   const getBus = async () => {
@@ -84,16 +88,28 @@ export default function OverView() {
             acc['Total Buses'] += 1
             if(obj['busState']  === 'ARRIVED') acc['Arrived'] += 1
             if(obj['busState']  === 'EN_ROUTE') acc['On Route'] += 1
-            if(obj['busFare']) acc['Total Fare'] += Number(obj['busFare'])
+            if(obj['busFare']) acc['Collected'] += Number(obj['busFare'])
+            if(obj['totalFare']) acc['Fare'] += Number(obj['totalFare'])
+
           } 
           return acc         
         }, {
           'Total Buses': 0,
           'Arrived': 0,
           'On Route': 0,
-          'Total Fare': 0,
+          'Collected': 0,
+          'Fare': 0
       })
-    setBusInfo(updateBusCard)
+    setBusInfo({
+      'Total Buses': updateBusCard['Total Buses'],
+      'Arrived': updateBusCard['Arrived'],
+      'On Route': updateBusCard['On Route']
+    })
+
+    setFinance({
+      'Fare Collected': updateBusCard['Collected'],
+      'Total Bus Fare': updateBusCard['Fare']
+    })
 
     const updatePeopleCard = allBus.reduce((acc:Record<string, number>, obj:Record<string, string>) => {
           if(acc){
@@ -184,6 +200,23 @@ export default function OverView() {
               </Box>
             </Flex>
 
+            <Box flex={1}  bg="gray.100" rounded={"md"} p={4} mt={3}>
+                <Text fontWeight={600} color="gray.500" fontSize={15} mb={2}>Finance Summary</Text>
+                {loading ?<Flex w="100%" h="100%" justify={"center"} align="center">
+                  <Spinner />
+                </Flex> : Object.keys(finance).map(item => (
+                  <Flex align="center" justify={"space-between"} key={item}>
+                    <Text fontSize={14}>
+                      {item}
+                    </Text>
+                    <Box fontWeight={600} p={1} fontSize={14} rounded={"md"}>
+                      Ghc {finance[item]}
+                    </Box>
+                  </Flex>))
+                }
+              </Box>
+
+
             <Box mt={4}>
             <Flex justify={"space-between"} flexDirection="row">
               <Text fontSize={15} fontWeight={700}>
@@ -245,7 +278,7 @@ export default function OverView() {
                       </Flex>
                       <Flex flex={1} justify={"space-between"}>
                         <Text fontWeight={600}>Fare</Text>
-                        <Text>Ghc {l.busFare}</Text>
+                        <Text>Ghc {`${l.busFare} ${l.totalFare ? '/ '+l.totalFare: ''}`}</Text>
                       </Flex>
                     </Flex>
                   </Box>)}
