@@ -17,6 +17,10 @@ const BusRoundsSchema = new Schema({
         type: Number,
         default: 0
     },
+    totalFare: {
+        type: Number,
+        default: 0
+    },
     busFare: {
         type: Number,
         default: 0

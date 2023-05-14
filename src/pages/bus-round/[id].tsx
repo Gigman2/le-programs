@@ -27,12 +27,14 @@ export default function BusMembers() {
 
   const toast = useToast()
   const [fields, setFields] = useState({
+    totalFare: '',
     totalPeople: '',
     busFare: '',
     currentStation: ''
   })
 
   const [errors, setErrors] = useState<Record<string, string | undefined>>({
+    totalFare: undefined,
     totalPeople: undefined,
     busFare: undefined,
     currentStation: undefined
@@ -117,6 +119,7 @@ export default function BusMembers() {
     if(userBus){
       addBus(userBus?._id)
       setFields({
+        totalFare: userBus.totalFare,
         totalPeople: userBus.totalPeople,
         busFare: userBus.busFare,
         currentStation: userBus.currentStation
@@ -186,6 +189,17 @@ export default function BusMembers() {
               </Flex>
               <Box mt={4}>
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2}>
+                  <FormLabel fontSize={14}>How much are you to pay for the bus</FormLabel>
+                  <Input 
+                      type={"text"}
+                      name="totalFare"
+                      placeholder='Enter here ...' 
+                      value={fields.totalFare} 
+                      onChange={(v) => handleChange(v?.currentTarget?.value, 'totalFare', fields, setFields)} 
+                  />
+                </Box>
+
+                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2}>
                   <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
                   <Input 
                       type={"text"}
@@ -197,7 +211,7 @@ export default function BusMembers() {
                 </Box>
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                  <FormLabel fontSize={14}>How much fare where you able to collect</FormLabel>
+                  <FormLabel fontSize={14}>How much fare were you able to collect</FormLabel>
                   <Input 
                       type={"text"}
                       name="busFare"
