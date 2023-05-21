@@ -108,7 +108,7 @@ export default function OverView() {
 
     setFinance({
       'Fare Collected': updateBusCard['Collected'],
-      'Total Bus Fare': updateBusCard['Fare']
+      'Actual Fare': updateBusCard['Fare']
     })
 
     const updatePeopleCard = allBus.reduce((acc:Record<string, number>, obj:Record<string, string>) => {

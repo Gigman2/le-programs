@@ -211,7 +211,7 @@ export default function BusMembers() {
                 </Box>
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                  <FormLabel fontSize={14}>How much fare were you able to collect</FormLabel>
+                  <FormLabel fontSize={14}>How much offering were you able to collect</FormLabel>
                   <Input 
                       type={"text"}
                       name="busFare"
