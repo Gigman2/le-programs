@@ -1,6 +1,6 @@
 import BusRound from '@/models/bus_round';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
-import { connectMongo } from '../../../../utils/connectMongo';
+import { connectMongo } from '../../../utils/connectMongo';
 
 const handler: NextApiHandler = async function handler(
   req: NextApiRequest,

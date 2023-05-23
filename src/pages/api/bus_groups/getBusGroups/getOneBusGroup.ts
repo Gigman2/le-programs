@@ -14,7 +14,6 @@ const handler: NextApiHandler = async function handler(
 
   try {
     await connectMongo();
-    console.log(req.body);
     const { id } = req.body
     const busGroup = await BusGroup.findById(id);
     return res.status(200).json({ message: 'Successful', data: busGroup, })

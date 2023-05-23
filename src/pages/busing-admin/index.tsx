@@ -5,11 +5,17 @@ import {
   Box,
   Button,
   Flex,
+  Icon,
   Spinner,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import moment from "moment";
 import Link from "next/link";
+import { BsPencilSquare } from "react-icons/bs";
+import { MdDeleteOutline } from "react-icons/md";
+import { IBusRound } from "@/interface/bus";
+import DeleteBusRound from "@/components/Modals/deleteBusRound";
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -17,6 +23,8 @@ export default function OverView() {
   const [loading, setLoading] = useState(false);
   const [allBus, setAllBus] = useState([]);
   const [allGroups, setAllGroups] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [ selectedBus, setSelectedBus ] = useState<IBusRound>()
 
 
   const [busInfo, setBusInfo] = useState<Record<string, string | number>>({
@@ -47,7 +55,7 @@ export default function OverView() {
               $lt: moment().endOf('day').toDate(),
             }
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds/getBusRounds`, {
+        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
           method: 'post',
           body: JSON.stringify(apiPayload)
         })
@@ -149,6 +157,7 @@ export default function OverView() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound} />
         <Flex w="100%" justify={"center"}>
           <Box maxW={"500px"} w="350px">
             <Flex align={"right"} direction={"row"} alignItems={"flex-end"} mt={6} mb={3} justify="space-between">
@@ -254,17 +263,24 @@ export default function OverView() {
                 {selected === item._id && <Box>
                   {allBus
                   .filter((bus: Record<string, string>) => bus.busGroup === item._id)
-                  .map((l: Record<string, string>, i: number) =>                   
+                  .map((l: IBusRound, i: number) =>                   
                   <Box key={l._id } bg="blue.200" p={2} 
                     borderBottomWidth={1} borderBottomColor="blue.400" 
                     pb={3} pos="relative"
                   >
-                    <Box w="100%" h="100%" zIndex={3} pos="absolute" cursor={"pointer"}></Box>
                     <Flex justify={"space-between"} zIndex={2}>
-                      <Text fontWeight={600} fontSize={14} textTransform="capitalize">Bus #{i+1} {l.busRep}</Text>
-                      <Text fontSize={13} fontWeight={600} color="gray.600">
-                        {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}
-                      </Text>
+                      <Text fontWeight={600} fontSize={13} textTransform="capitalize">{l.busRep} | {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}</Text>
+                      <Flex gap={4} align={"center"}>
+                        <Flex>
+                          <Icon as={BsPencilSquare} />
+                        </Flex>
+                        <Flex cursor={"pointer"} onClick={() => {
+                          setSelectedBus(l)
+                          onOpen()
+                        }}>
+                          <Icon as={MdDeleteOutline} fontSize={20} color="red.500" />
+                        </Flex>
+                      </Flex>
                     </Flex>
                     <Flex fontWeight={500} fontSize={13} justify={"space-between"} gap={6} mt={2}>
                       <Flex flex={1} justify={"space-between"}>

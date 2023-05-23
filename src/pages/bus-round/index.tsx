@@ -26,7 +26,7 @@ export default function Home() {
               $lt: moment().endOf('day').toDate(),
             }
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds/getBusRounds`, {
+        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
           method: 'post',
           body: JSON.stringify(recorderPage)
         })

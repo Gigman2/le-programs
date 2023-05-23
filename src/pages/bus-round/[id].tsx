@@ -43,9 +43,9 @@ export default function BusMembers() {
   const { id } = router.query
   const fetchData = async (busId: string) => {
     try {
-      if(!loading){
+      if(!loading && id ){
         setLoading(true)
-        const res = await fetch(`${baseUrl}/api/bus_rounds/getBusRounds/${busId}`, {
+        const res = await fetch(`${baseUrl}/api/bus_rounds/${busId}`, {
           method: 'get',
         })
         const response = await res.json()
@@ -62,13 +62,16 @@ export default function BusMembers() {
   const endRound = async () => {
     try {
       setLoading(true)
-      const res = await fetch(`${baseUrl}/api/bus_rounds/updateBusRounds/${id}`, {
-        method: 'post',
-        body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
-      })
-      const response = await res.json()
-      let recorderRound = response.data
-      setUserBus(recorderRound)
+      console.log('Id is ', id)
+      if(id){
+        const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
+          method: 'patch',
+          body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
+        })
+        const response = await res.json()
+        let recorderRound = response.data
+        setUserBus(recorderRound)
+      }
     } catch (error) {
       console.log(error)
     } finally{
@@ -94,8 +97,8 @@ export default function BusMembers() {
     try {
       const payload = {...fields}
       setLoading(true)
-      const res = await fetch(`${baseUrl}/api/bus_rounds/updateBusRounds/${id}`, {
-        method: 'post',
+      const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
+        method: 'patch',
         body: JSON.stringify(payload)
       })
       const response = await res.json()
@@ -141,7 +144,6 @@ export default function BusMembers() {
 
   useEffect(() => {
     const user = getUser()
-    console.log(user)
     setCurrentUser(user)
   },[])
 

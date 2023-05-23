@@ -48,7 +48,7 @@ export default function OverView() {
         const apiPayload = { 
           busGroup : { $exists: true, $ne: null } 
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds/getBusRounds`, {
+        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
           method: 'post', 
           body: JSON.stringify(apiPayload)
         })
