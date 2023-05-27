@@ -62,16 +62,13 @@ export default function BusMembers() {
   const endRound = async () => {
     try {
       setLoading(true)
-      console.log('Id is ', id)
-      if(id){
-        const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-          method: 'patch',
-          body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
-        })
-        const response = await res.json()
-        let recorderRound = response.data
-        setUserBus(recorderRound)
-      }
+      const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
+        method: 'post',
+        body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
+      })
+      const response = await res.json()
+      let recorderRound = response.data
+      setUserBus(recorderRound)
     } catch (error) {
       console.log(error)
     } finally{
@@ -98,7 +95,7 @@ export default function BusMembers() {
       const payload = {...fields}
       setLoading(true)
       const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-        method: 'patch',
+        method: 'post',
         body: JSON.stringify(payload)
       })
       const response = await res.json()

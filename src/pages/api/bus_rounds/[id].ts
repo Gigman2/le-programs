@@ -32,7 +32,7 @@ const handler: NextApiHandler = async function handler(
                 return getHandler(id as string, res)
             } else if (req.method === 'DELETE') {
                 return deleteHandler(id as string, res)
-            } else if (req.method === 'PATCH') {
+            } else if (req.method === 'POST') {
                 return updateHandler(id as string, req, res)
             }
         }
