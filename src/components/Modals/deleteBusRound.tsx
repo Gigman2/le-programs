@@ -12,19 +12,27 @@ import {
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
 
-export default function DeleteBusRound({isOpen, onClose, bus}: {isOpen: boolean, onClose: () => void; bus: IBusRound}) {
+export default function DeleteBusRound(
+    {isOpen, onClose, bus, getBus}: 
+    {isOpen: boolean, onClose: () => void; bus: IBusRound; getBus: () => void}
+    )  {
     const cancelRef = React.useRef(null)
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL
     const [loading, setLoading] = useState(false)
 
-    const deleteBus = async () => {
+    const deleteBusRound = async () => {
+        try {
         setLoading(true)
-         await fetch(`${baseUrl}/api/bus_rounds`, {
-            method: 'delete'
+        await fetch(`${baseUrl}/api/bus_rounds/${bus?._id}`, {
+            method: 'DELETE'
         })
-        .then(() => deleteBus())
-        .catch(err => console.log(err))
-        .finally(() => setLoading(false))
+        await getBus()
+        onClose()
+        } catch (error) {
+            console.log(error)
+        } finally{
+            setLoading(false)
+        }
     }
 
 
@@ -50,7 +58,7 @@ export default function DeleteBusRound({isOpen, onClose, bus}: {isOpen: boolean,
                     Cancel
                 </Button>
                 <Button colorScheme='red' onClick={() => {
-                   deleteBus()
+                   deleteBusRound()
                 }} ml={3} 
                 isLoading={loading}>
                     Delete

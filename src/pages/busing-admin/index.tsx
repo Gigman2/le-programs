@@ -6,6 +6,7 @@ import {
   Button,
   Flex,
   Icon,
+  Skeleton,
   Spinner,
   Text,
   useDisclosure,
@@ -157,7 +158,7 @@ export default function OverView() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound} />
+        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}  getBus={getBus}/>
         <Flex w="100%" justify={"center"}>
           <Box maxW={"500px"} w="350px">
             <Flex align={"right"} direction={"row"} alignItems={"flex-end"} mt={6} mb={3} justify="space-between">
@@ -234,8 +235,9 @@ export default function OverView() {
               </Text>
               <Text fontWeight={700}>{allGroups.length}</Text>
             </Flex>
-
-              {allGroups.map((item : Record<string, string>) => <Box
+              {loading && <Skeleton w="100%" h={24} rounded="md" colorScheme="blue"/>}
+              
+              {!loading && allGroups.map((item : Record<string, string>) => <Box
                 key={item._id as string}
                 borderWidth={1}
                 borderColor={"gray.200"}
