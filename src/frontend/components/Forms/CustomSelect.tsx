@@ -47,6 +47,7 @@ export default function Autocomplete(
                         _hover={{bg: 'gray.100'}}
                         onClick={() => {
                             handleChange(item, name, fields, setFields)
+                            setOpen(false)
                         }}
                         >{item}
                     </Box>

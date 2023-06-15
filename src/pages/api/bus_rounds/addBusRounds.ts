@@ -1,8 +1,8 @@
-import BusRound from '@/models/bus_round';
+import BusRound from '@/backend/models/busRound';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 
-import { connectMongo } from '../../../utils/connectMongo';
+import { connectMongo } from '../../../backend/utils/connectMongo';
 
 
 

@@ -35,7 +35,24 @@ export default function Home() {
     const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 
     const handleSubmit = async () => {
-        
+        try {
+            setLoading(true)
+            let res = await fetch(`${baseUrl}/api/attendee/addAttendee`, {
+                method: 'post',
+                body: JSON.stringify(fields)
+            })
+            let resData = await res.json()
+            if(res.status !== 200) throw new Error(resData.message)
+            toast(toastMessage)
+            resetData()
+            router.push('/oversee-admin')
+        } catch (error) {
+            toastMessage.title = 'An error occurred'
+            toastMessage.status = 'error'
+            toast(toastMessage)
+        } finally{
+             setLoading(false)
+        }
     }
 
     

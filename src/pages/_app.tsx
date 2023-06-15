@@ -1,11 +1,11 @@
-import Navbar from '@/components/layouts/navbar'
+import Navbar from '@/frontend/components/layouts/navbar'
 import '@/styles/globals.css'
 import { Box, ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 
-import { theme } from '../theme/theme'
+import { theme } from '../frontend/theme/theme'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

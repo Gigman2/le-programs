@@ -1,11 +1,6 @@
-import Attendee from '@/models/attendee';
+import Attendee from '@/backend/models/attendee';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
-import { connectMongo } from '../../../utils/connectMongo';
-import cloudinary from '@/utils/cloudinary';
-import multer from 'multer';
-import path from 'path';
-import DatauriParser from 'datauri/parser';
-
+import { connectMongo } from '../../../backend/utils/connectMongo';
 
 const handler: NextApiHandler = async function handler(
   req: NextApiRequest,

@@ -4,8 +4,8 @@ import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange, validate } from '@/utils/form';
 import { clearUser, saveUser } from '@/utils/auth';
-import Autocomplete from '@/components/Forms/Autocomplete';
-import { IBusGroups } from '@/utils/interfaces';
+import Autocomplete from '@/frontend/components/Forms/Autocomplete';
+import { IBusGroups } from '@/interface/bus';
 
 interface IModifiedBusGroup {
     label?: string,

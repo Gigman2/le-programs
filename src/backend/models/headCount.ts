@@ -1,7 +1,8 @@
-import { Schema, model, models } from "mongoose";
+import { IHeadcount } from "@/interface/ushers";
+import { Schema, model } from "mongoose";
 const Mixed = Schema.Types.Mixed
 
-const ModelSchema = new Schema({
+const schema = new Schema<IHeadcount>({
 
   recorder: {
     type: String,
@@ -15,6 +16,6 @@ const ModelSchema = new Schema({
 }, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
 
 
-const HeadCount = models.headCount || model('headCount', ModelSchema);
+const HeadCount = model<IHeadcount>('headCount', schema);
 
 export default HeadCount;

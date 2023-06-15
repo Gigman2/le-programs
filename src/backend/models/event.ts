@@ -1,9 +1,10 @@
 import { Schema, model, models, Types } from "mongoose";
 import { MeetingTypes } from "@/helpers/misc";
+import { IEvent } from "@/interface/events";
 
 const Mixed = Schema.Types.Mixed
 
-const EventSchema = new Schema({
+const schema = new Schema<IEvent>({
     name: {
         type: String,
     },
@@ -22,11 +23,21 @@ const EventSchema = new Schema({
         type: String
     },
     meetingType: {
+        type: String,
         enum: [...MeetingTypes],
+    },
+    status: {
+        type: String,
+        enum: ['ACTIVE', 'INACTIVE']
     }
-}, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
+}, {
+    timestamps: {
+        createdAt: 'created_on',
+        updatedAt: 'updated_on'
+    },
+})
 
 
-const Event = models.Event || model('Attendee', EventSchema);
+const Event = model<IEvent>('Attendee', schema);
 
 export default Event;

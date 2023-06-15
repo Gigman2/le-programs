@@ -1,13 +1,10 @@
+import { IBusGroups } from "@/interface/bus";
 import { Schema, model, models } from "mongoose";
 
-const BusGroupSchema = new Schema({
+const schema = new Schema<IBusGroups>({
     busReps: {
         type: [String],
         required: true
-    },
-    busRound: {
-        type: Boolean,
-        default: true
     },
     groupName: {
         type: String,
@@ -21,9 +18,14 @@ const BusGroupSchema = new Schema({
         type: Number,
         required: true
     }
-},)
+}, {
+    timestamps: {
+        createdAt: 'created_on',
+        updatedAt: 'updated_on'
+    },
+})
 
 
-const BusGroup = models.BusGroup || model('BusGroup', BusGroupSchema);
+const BusGroup = model<IBusGroups>('BusGroup', schema);
 
 export default BusGroup;
