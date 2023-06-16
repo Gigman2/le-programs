@@ -49,8 +49,9 @@ export default class BaseService<M> implements IBaseService<M> {
     async get(...query: any[]) {
         try {
             return await this.model.find(query[0], query[1] || null, query[2] || null);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return [];
         }
     }
 
@@ -58,34 +59,33 @@ export default class BaseService<M> implements IBaseService<M> {
    * @description Insert a new record to a collection (model)
    */
     async insert(payload: M) {
-        try {
-            return await this.model.create(payload);
-        } catch (error) {
-            return Promise.reject(error);
-        }
+        return await this.model.create(payload);
     }
 
     async getOne(query: any) {
         try {
             return await this.model.findOne(query);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return null
         }
     }
 
     async update(id: string | string[] | ObjectId, payload: mongoose.UpdateWithAggregationPipeline | mongoose.UpdateQuery<M>) {
         try {
             return await this.model.findByIdAndUpdate(id, payload, { new: true });
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return null
         }
     }
 
     async delete(id: string | string[] | ObjectId) {
         try {
             return await this.model.findByIdAndRemove(id);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return null;
         }
     }
 
@@ -96,24 +96,27 @@ export default class BaseService<M> implements IBaseService<M> {
     async getById(id: string | string[] | ObjectId) {
         try {
             return await this.model.findById(id);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return null;
         }
     }
 
     async deleteOne(...query: any[]) {
         try {
             return await this.model.findOneAndRemove(...query);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return null;
         }
     }
 
     async aggregate(query: any[]) {
         try {
             return await this.model.aggregate(query);
-        } catch (error) {
-            return Promise.reject(error);
+        } catch (error: any) {
+            this.log(error.message)
+            return [];
         }
     }
 }

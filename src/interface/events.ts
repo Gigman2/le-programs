@@ -12,4 +12,6 @@ export interface IEvent {
     venue: string
     meetingType: 'TTHLA' | 'Mega Gathering' | 'CAMP' | 'Special Meeting' | 'Shepherd Meeting' | 'Prayer Meeting' | 'Zonal Meeting';
     status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
+    created_on: Date;
+    updated_on: Date;
 }

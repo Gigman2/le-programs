@@ -1,5 +1,4 @@
 import { Model } from 'mongoose';
-
 import BaseService from '../Base';
 import { IEvent } from '@/interface/events';
 import IEventService from './interface';
