@@ -1,11 +1,9 @@
 import response from '../../lib/response'
-import mongoose from 'mongoose';
+import mongoose, { ObjectId } from 'mongoose';
 import { getLogger } from '@/backend/utils/logger';
 import { NextApiRequest, NextApiResponse } from 'next';
 import IBaseController, { IBaseParams, IBaseQuery } from './interface';
-import BaseService from '@/backend/services/Base';
 import IBaseService from '@/backend/services/Base/interface';
-import { ObjectId } from 'mongodb';
 // import EventEmitter from 'eventemitter3';
 
 class BaseController<S extends IBaseService<any>> implements IBaseController<S> {
@@ -85,12 +83,12 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
     /**
    * @summary Handle http request to fetch a record by it identifier
    *
-   * @param { { params: { id: string } } } req The express request object
+   * @param { { query: { id: string } } } req The express request object
    * @param { object }                      res The express response object
    */
-    async getById(req: { params: IBaseParams }, res: NextApiResponse) {
+    async getById(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const doc = await this.service.getById(req.params.id)
+            const doc = await this.service.getById((req.query as { id: string | string[] | ObjectId }).id)
             response.successWithData(res, doc)
         } catch (error: any) {
             response.error(res, error.message || error)
@@ -116,7 +114,7 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
     /**
    * @summary Handle http request to update a record
    *
-   * @param { { params: { id: string }, body: {} } } req The express request object
+   * @param { { query: { id: string }, body: {} } } req The express request object
    * @param { object }                                res The express response object
    * @fires BaseController#update This method
    * fires an event when the controller is listening for
@@ -124,10 +122,10 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
    * after a record has been updated
    * @return {Promise<Function>}
    */
-    async update(req: { params: IBaseParams, body: any }, res: NextApiResponse) {
+    async update(req: NextApiRequest, res: NextApiResponse) {
         try {
             // if(hasAccess !== 200)
-            const doc = await this.service.update(req.params.id, req.body)
+            const doc = await this.service.update((req.query as { id: string | string[] | ObjectId }).id, req.body)
             response.successWithData(res, doc, `${this.name} updated successfully!`)
         } catch (error: any) {
             response.error(res, error.message || error)
@@ -141,9 +139,9 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
    * @emits event:delete
    * @return {Promise<Function>}
    */
-    async delete(req: { params: { id: string } }, res: NextApiResponse) {
+    async delete(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const doc = await this.service.delete(req.params.id)
+            const doc = await this.service.delete((req.query as { id: string | string[] | ObjectId }).id)
             response.successWithData(res, doc, `${this.name} deleted successfully!`)
         } catch (error: any) {
             response.error(res, error.message || error)

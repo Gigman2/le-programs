@@ -5,7 +5,7 @@ import IBaseService from '@/backend/services/Base/interface';
 
 
 export interface IBaseParams {
-    id: ObjectId | string;
+    [key: string]: string | string[];
 }
 
 export interface IBaseQuery {
@@ -21,8 +21,8 @@ export default interface IBaseController<S> {
     objectId(id: string): mongoose.Types.ObjectId;
     insert(req: NextApiRequest, res: NextApiResponse): Promise<void>;
     get(req: NextApiRequest, res: NextApiResponse): Promise<void>;
-    getById(req: { params: IBaseParams }, res: NextApiResponse): Promise<void>;
+    getById(req: NextApiRequest, res: NextApiResponse): Promise<void>;
     getOne(req: { query: IBaseQuery }, res: NextApiResponse): Promise<void>;
-    update(req: { params: IBaseParams, body: any }, res: NextApiResponse): Promise<void>;
-    delete(req: { params: IBaseParams }, res: NextApiResponse): Promise<void>;
+    update(req: NextApiRequest, res: NextApiResponse): Promise<void>;
+    delete(req: NextApiRequest, res: NextApiResponse): Promise<void>;
 }
