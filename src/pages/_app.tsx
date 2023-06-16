@@ -1,5 +1,5 @@
 import Navbar from '@/frontend/components/layouts/navbar'
-import '@/styles/globals.css'
+import '@/frontend/styles/globals.css'
 import { Box, ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { AppProps } from 'next/app'

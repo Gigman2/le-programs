@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 import moment from 'moment'
 import { addBus, getUser } from '@/utils/auth'
 import { handleChange, validate } from '@/utils/form'
-import Autocomplete from '@/components/Forms/Autocomplete'
+import Autocomplete from '@/frontend/components/Forms/Autocomplete'
 
 export default function BusMembers() {
   const router = useRouter()
