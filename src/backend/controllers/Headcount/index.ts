@@ -1,16 +1,18 @@
-import { Event } from '@/backend/models';
+import { Event, HeadCount } from '@/backend/models';
 import BaseController from '../Base';
 import IEventController from './interface';
 import EventService from '@/backend/services/Event';
+import HeadCountService from '@/backend/services/HeadCount';
+import IHeadCountController from './interface';
 
-class EventController extends BaseController<EventService> implements IEventController {
+class HeadCountController extends BaseController<HeadCountService> implements IHeadCountController {
     protected name = 'BusGroup';
-    constructor(service: EventService) {
+    constructor(service: HeadCountService) {
         super(service)
     }
 }
 
-const ChurchEvent = new EventController(
-    new EventService(Event)
+const ChurchHeadCount = new HeadCountController(
+    new HeadCountService(HeadCount)
 );
-export default ChurchEvent
+export default ChurchHeadCount
