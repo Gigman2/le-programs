@@ -6,6 +6,7 @@ export interface IMemberDetail {
     otherNumber: string,
     maritalStatus: 'single' | 'married',
     position: 'member' | 'shepherd' | 'cell-shepherd' | 'pastor' | 'reverend'
+    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
 }
 export interface IMember {
     _id?: string
@@ -13,4 +14,5 @@ export interface IMember {
     group: string
     addedBy: string,
     created_on: string
+    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
 }

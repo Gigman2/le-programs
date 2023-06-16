@@ -73,7 +73,7 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
    */
     async get(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const doc = await this.service.get(req.query)
+            const doc = await this.service.get({ ...req.query, status: { "$ne": "ARCHIVED" } })
             return response.successWithData(res, doc)
         } catch (error: any) {
             response.error(res, error.message || error)
@@ -141,7 +141,7 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
    */
     async delete(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const doc = await this.service.delete((req.query as { id: string | string[] | ObjectId }).id)
+            const doc = await this.service.update((req.query as { id: string | string[] | ObjectId }).id, { status: 'ARCHIVED' })
             response.successWithData(res, doc, `${this.name} deleted successfully!`)
         } catch (error: any) {
             response.error(res, error.message || error)

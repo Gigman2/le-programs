@@ -12,6 +12,9 @@ const handler: NextApiHandler = async function handler(
             case 'POST':
                 return BusGroup.update(req, res);
 
+            case 'POST':
+                return BusGroup.delete(req, res);
+
             default:
                 break;
         }

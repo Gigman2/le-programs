@@ -11,6 +11,7 @@ export interface IBusRound {
     currentStation: string;
     totalFare: number
     arrivalTime: string;
+    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
     created_on: Date;
     updated_on: Date;
 }
@@ -22,6 +23,7 @@ export interface IBusGroups {
     groupName: string
     stations: string[],
     totalBuses: number,
+    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
     created_on: Date;
     updated_on: Date;
 }

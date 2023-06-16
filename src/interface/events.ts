@@ -11,5 +11,5 @@ export interface IEvent {
     speaker: string[]
     venue: string
     meetingType: 'TTHLA' | 'Mega Gathering' | 'CAMP' | 'Special Meeting' | 'Shepherd Meeting' | 'Prayer Meeting' | 'Zonal Meeting';
-    status: 'ACTIVE' | 'INACTIVE'
+    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
 }

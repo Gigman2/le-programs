@@ -17,6 +17,10 @@ const schema = new Schema<IBusGroups>({
     totalBuses: {
         type: Number,
         required: true
+    },
+    status: {
+        type: String,
+        enum: ['ACTIVE', 'INACTIVE', 'ARCHIVED']
     }
 }, {
     timestamps: {
