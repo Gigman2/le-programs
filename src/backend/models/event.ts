@@ -38,6 +38,6 @@ const schema = new Schema<IEvent>({
 })
 
 
-const Event = model<IEvent>('Attendee', schema);
+const Event = model<IEvent>('Event', schema);
 
 export default Event;
