@@ -6,29 +6,18 @@ import { useRouter } from 'next/router'
 import {MdOutlineDirectionsBus} from 'react-icons/md'
 import {AiOutlineUser} from 'react-icons/ai'
 import {TbCrossFilled} from 'react-icons/tb'
-import BacentaRep from '@/components/Accounts/bacentaRep';
-import Shepherd from '@/components/Accounts/shepherd';
-import Usher from '@/components/Accounts/ushers';
+import Usher from '@/frontend/components/Accounts/ushers';
 
 export default function Home() {
     const [selected, setSelected] = useState<number>()
 
     const sections =[ 
-    // {
-    //   name: 'Bacenta Rep',
-    //   icon: MdOutlineDirectionsBus,
-    //   id: 1
-    // },
     {
       name: 'Usher',
       icon: AiOutlineUser,
       id: 2
     },
-    // {
-    //   name: 'Shepherd',
-    //   icon: TbCrossFilled,
-    //   id: 3
-    // }
+
   ]
 
     return (
@@ -61,10 +50,7 @@ export default function Home() {
               </Flex>
               })}
             </Flex>
-
-           {/* <BacentaRep /> */}
             <Usher />
-            {/* {selected === 3 && <Shepherd />} */}
           </Box>
         </Flex>
 

@@ -46,7 +46,7 @@ export default function BusMembers() {
       if(!loading && id ){
         setLoading(true)
         const res = await fetch(`${baseUrl}/api/bus_rounds/${busId}`, {
-          method: 'get',
+          method: 'GET',
         })
         const response = await res.json()
         let recorderRound = response.data
@@ -63,7 +63,7 @@ export default function BusMembers() {
     try {
       setLoading(true)
       const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
       })
       const response = await res.json()
@@ -95,7 +95,7 @@ export default function BusMembers() {
       const payload = {...fields}
       setLoading(true)
       const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify(payload)
       })
       const response = await res.json()

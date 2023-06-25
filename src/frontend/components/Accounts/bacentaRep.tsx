@@ -61,8 +61,8 @@ export default function BacentaRep() {
     const fetchGroup = async () => {
       try {
           setLoading(true)
-          const res = await fetch(`${baseUrl}/api/bus_groups/getBusGroups`, {
-            method: 'get',
+          const res = await fetch(`${baseUrl}/api/bus_groups`, {
+            method: 'GET',
           })
           const groups = await res.json()
           let groupData = groups.data as IBusGroups[]

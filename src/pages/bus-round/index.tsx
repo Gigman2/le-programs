@@ -18,17 +18,8 @@ export default function Home() {
     try {
       if(!loading){
         setLoading(true)
-        const recorderPage = {
-            busRep: user.name, 
-            busGroup: user.group, 
-            created_on: {
-              $gt: moment().startOf('day').toDate(),
-              $lt: moment().endOf('day').toDate(),
-            }
-        }
-        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
-          method: 'post',
-          body: JSON.stringify(recorderPage)
+        const res = await fetch(`${baseUrl}/api/bus_rounds?busRep=${user.name}&busGroup=${user.group}`, {
+          method: 'GET',
         })
         const response = await res.json()
         let recorderRound = (response.data || [])
@@ -46,9 +37,14 @@ export default function Home() {
   const addBusRound = async () => {
     try {
       setLoading(true)
-      const recorderPayload = {busRep: currentUser.name, nonBus: false, busState: 'EN_ROUTE', busGroup: currentUser.group}
-      const createReq = await fetch(`${baseUrl}/api/bus_rounds/addBusRounds`, {
-        method: 'post',
+      const recorderPayload = {
+        busRep: currentUser.name, 
+        nonBus: false, 
+        busState: 'EN_ROUTE', 
+        busGroup: currentUser.group
+      }
+      const createReq = await fetch(`${baseUrl}/api/bus_rounds`, {
+        method: 'POST',
         body: JSON.stringify(recorderPayload)
       })
       const createRes = await createReq.json()
