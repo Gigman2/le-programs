@@ -7,12 +7,12 @@
 import { getLogger } from '@/backend/config/logger';
 import mongoose, { Model, ObjectId } from 'mongoose';
 import IBaseService from './interface';
-import { connectMongo } from '@/backend/utils/connectMongo';
+// import { connectMongo } from '@/backend/utils/connectMongo';
 
 
 export default class BaseService<M> implements IBaseService<M> {
     constructor(protected readonly model: Model<M>) {
-        this.initialize();
+        // this.initialize();
         this.model = model;
         this.get = this.get.bind(this);
         this.log = this.log.bind(this);
@@ -25,9 +25,9 @@ export default class BaseService<M> implements IBaseService<M> {
         this.aggregate = this.aggregate.bind(this);
     }
 
-    async initialize() {
-        await connectMongo();
-    }
+    // async initialize() {
+    //     await connectMongo();
+    // }
 
     /**
    * @description { string } method Unknown method called

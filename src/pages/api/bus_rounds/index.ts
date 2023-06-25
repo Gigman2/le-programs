@@ -12,7 +12,6 @@ const handler: NextApiHandler = async function handler(
 
       case 'POST':
         return BusRound.insert(req, res);
-
       default:
         break;
     }

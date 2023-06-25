@@ -1,5 +1,5 @@
 import { IBusGroups } from "@/interface/bus";
-import { Schema, model, models } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const schema = new Schema<IBusGroups>({
     busReps: {

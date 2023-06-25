@@ -1,5 +1,3 @@
-import Attendee from '@/backend/models/attendee';
-import { connectMongo } from '@/backend/utils/connectMongo';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
@@ -12,10 +10,8 @@ const handler: NextApiHandler = async function handler(
     res: NextApiResponse<any>
 ) {
     try {
-        await connectMongo();
         const data = JSON.parse(req.body)
-        const attendee = await Attendee.find(data);
-        return res.status(200).json({ message: 'created Successfully', data: attendee, })
+        return res.status(200).json({ message: 'created Successfully', data })
     } catch (error) {
         return res.status(400).json({ error: error })
     }
