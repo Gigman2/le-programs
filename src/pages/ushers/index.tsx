@@ -70,7 +70,7 @@ export default function Home() {
             </Flex>
 
            <Box mt={4}>
-              {headCounts.map(item =>  <Box key={item._id as string} p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4}>
+              {/* {headCounts.map(item =>  <Box key={item._id as string} p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4}>
                     <Flex align="center" justify={"space-between"}>
                         <Text fontSize={15} fontWeight={700} color="gray.600">Total <Text as="span">{item.total as string}</Text></Text>
                         <Text fontSize={15} fontWeight={700} color="gray.600">{moment(item.created_on as string).format('h: mm A')}</Text>
@@ -87,7 +87,66 @@ export default function Home() {
                       </Flex>
                       ))}
                     </Grid>
-                </Box>)}
+                </Box>)} */}
+
+                {headCounts.map(item =>  (<Box 
+                  key={item._id as string} textAlign={'center'} fontWeight={600} color='gray.600' p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4}>
+                    <Flex align="center" justify={"space-between"}>
+                        <Text fontSize={15} fontWeight={700} color="gray.600">Total <Text as="span">{item.total as string}</Text></Text>
+                        <Text fontSize={15} fontWeight={700} color="gray.600">{moment(item.created_on as string).format('h: mm A')}</Text>
+                    </Flex>
+                    <Flex  mt={2} align={"center"} borderBottomWidth={1} borderColor="gray.200" my={1}>
+                      <Text fontSize={14} mr={2}>Recorded by </Text>
+                      <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
+                    </Flex>
+                    <Box mt={2}>
+                      <Flex mb={3} justifyContent={'space-between'}>
+                        <Flex gap={2}>
+                          <Box w={20} px={2} py={0.5} borderColor={'gray.200'}  bg='green.100' borderWidth={1} rounded={'md'}>
+                            {item.section['behind choir']}
+                          </Box>
+                          <Box w={20} px={2} py={0.5} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
+                             {item.section['choir']}
+                          </Box>
+                        </Flex>
+                        <Flex gap={2}>
+                          <Box w={20} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
+                            {item.section['mc Heads']}
+                          </Box>
+                          <Box w={20} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
+                             {item.section['behind mc']}
+                          </Box>
+                        </Flex>
+                      </Flex>
+                      <Flex gap={2}>
+                        <Box flex={1} px={2} py={1} borderColor={'gray.200'} bg='orange.100' borderWidth={1} rounded={'md'}>
+                          {item.section['extreme main left']}
+                        </Box>
+                        <Box flex={3} px={2} py={1} borderColor={'gray.200'} bg='orange.100' borderWidth={1} rounded={'md'}>
+                          {item.section['main left']}
+                        </Box>
+                        <Box flex={5} px={2} py={1} borderColor={'gray.200'} bg='orange.100' borderWidth={1} rounded={'md'}>
+                          {item.section['main center']}
+                        </Box>
+                        <Box flex={3} px={2} py={1} borderColor={'gray.200'} bg='orange.100' borderWidth={1} rounded={'md'}>
+                          {item.section['main right']}
+                        </Box>
+                        <Box flex={1} px={2} py={1} borderColor={'gray.200'} bg='orange.100' borderWidth={1} rounded={'md'}>
+                           {item.section['extreme main right']}
+                        </Box>
+                      </Flex>
+                      <Flex justify={'center'}>
+                        <Box>
+                          <Box w={20} my={2} px={2} py={1} bg='blackAlpha.100' borderColor={'gray.200'} borderWidth={1} rounded={'md'}>
+                             {item.section['media down']}
+                          </Box>
+                          <Box w={20} my={2} px={2} py={1} borderColor={'gray.200'} borderWidth={3} rounded={'md'}>
+                            {item.section['media top']}
+                          </Box>
+                        </Box>
+                      </Flex>
+                    </Box>
+                </Box>))}
                
             </Box>
           </Box>
