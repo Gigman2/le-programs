@@ -5,9 +5,9 @@ import { getUser } from '@/utils/auth'
 import moment from 'moment'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useRouter } from 'next/router'
-import CustomInput from '@/components/Forms/CustomInput'
-import CustomDateTime from '@/components/Forms/CustomDateTime'
-import CustomSelect from '@/components/Forms/CustomSelect'
+import CustomInput from '@/frontend/components/Forms/CustomInput'
+import CustomDateTime from '@/frontend/components/Forms/CustomDateTime'
+import CustomSelect from '@/frontend/components/Forms/CustomSelect'
 import { MeetingTypes } from '@/helpers/misc';
 
 export default function Home() {

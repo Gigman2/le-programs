@@ -6,6 +6,7 @@ const handler: NextApiHandler = async function handler(
   res: NextApiResponse<any>
 ) {
   try {
+    console.log(req.query, req.method)
     switch (req.method) {
       case 'GET':
         return BusRound.get(req, res);

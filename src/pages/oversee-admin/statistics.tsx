@@ -16,7 +16,8 @@ import _,{
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import {FaMinus} from 'react-icons/fa'
 import { IBusRound } from "@/interface/bus";
-import { IHeadcount } from "@/interface/ushers";
+import { IHeadCount } from "@/interface/ushers";
+
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -26,7 +27,7 @@ export default function OverView() {
   const [previousDate, setPreviousDate] = useState('');
 
   const [busRounds, setBusRounds] = useState<IBusRound[]>([]);
-  const [headcount, setHeadcounts] = useState<IHeadcount[]>([]);
+  const [headcount, setHeadcounts] = useState<IHeadCount[]>([]);
 
   const [latestData, setLatestData] = useState({
     busRound: 0,
