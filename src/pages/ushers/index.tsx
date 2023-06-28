@@ -23,7 +23,7 @@ export default function Home() {
                 $lt: moment().endOf('day').toDate(),
               },
             }
-            const res = await fetch(`${baseUrl}/api/head_count/getHeadcount`, {
+            const res = await fetch(`${baseUrl}/api/head_count`, {
               method: 'post',
               body: JSON.stringify(recorderPage)
             })

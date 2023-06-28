@@ -1,4 +1,4 @@
-import { Schema, model, models, Types } from "mongoose";
+import { Schema, model, models } from "mongoose";
 import { MeetingTypes } from "@/helpers/misc";
 import { IEvent } from "@/interface/events";
 
@@ -31,13 +31,20 @@ const schema = new Schema<IEvent>({
         enum: ['ACTIVE', 'INACTIVE']
     }
 }, {
+
+    versionKey: false,
     timestamps: {
         createdAt: 'created_on',
         updatedAt: 'updated_on'
     },
+    writeConcern: {
+        w: 'majority',
+        j: true,
+        wtimeout: 1000,
+    },
 })
 
 
-const Event = model<IEvent>('Event', schema);
+const Event = models.Event || model<IEvent>('Event', schema);
 
 export default Event;

@@ -68,7 +68,7 @@ export default function OverView() {
       if(!loading){
         setLoading(true)
         const apiPayload = {}
-        const res = await fetch(`${baseUrl}/api/head_count/getHeadcount`, {
+        const res = await fetch(`${baseUrl}/api/head_count`, {
           method: 'post', 
           body: JSON.stringify(apiPayload)
         })
