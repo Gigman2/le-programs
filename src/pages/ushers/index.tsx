@@ -5,13 +5,16 @@ import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { getUser } from '@/utils/auth'
 import moment from 'moment'
+import { IHeadcount } from '@/interface/headcount'
 
 export default function Home() {
   const router = useRouter()
   const [currentUser, setCurrentUser] = useState<{name?: string}>({})
   const [loading, setLoading] = useState(false)
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
-  const [headCounts, setHeadCounts] = useState<Record<string, string | number | Record<string, string>>[]>([])
+  const [headCounts, setHeadCounts] = useState<IHeadcount[]>([])
+
+  const defaultSections = ['behind choir', 'choir', 'mc Heads', 'behind mc', 'extreme main left', 'main left', 'main center', 'main right', 'extreme main right', 'media down', 'media top']
 
     const fetchData = async (user: {name: string}) => {
       try {
@@ -70,29 +73,10 @@ export default function Home() {
             </Flex>
 
            <Box mt={4}>
-              {/* {headCounts.map(item =>  <Box key={item._id as string} p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4}>
-                    <Flex align="center" justify={"space-between"}>
-                        <Text fontSize={15} fontWeight={700} color="gray.600">Total <Text as="span">{item.total as string}</Text></Text>
-                        <Text fontSize={15} fontWeight={700} color="gray.600">{moment(item.created_on as string).format('h: mm A')}</Text>
-                    </Flex>
-                    <Flex  mt={2} align={"center"} borderBottomWidth={1} borderColor="gray.200" my={1}>
-                      <Text fontSize={14} mr={2}>Recorded by </Text>
-                      <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
-                    </Flex>
-                    <Grid templateColumns="repeat(3,1fr)" columnGap={12} rowGap={3}>
-                      {Object.keys(item.section).map((s: string) => (
-                        <Flex key={s} mr={3} align="center" justify={"space-between"}>
-                          <Text fontSize={13} mr={2} textTransform={'capitalize'}>{s}</Text> 
-                          <Text fontWeight={600}>{(item.section as Record<string, string>)?.[s]}</Text>
-                      </Flex>
-                      ))}
-                    </Grid>
-                </Box>)} */}
-
                 {headCounts.map(item =>  (<Box 
-                  key={item._id as string} textAlign={'center'} fontWeight={600} color='gray.600' p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4}>
+                  key={item._id as string} textAlign={'center'} fontWeight={600} color='gray.600' p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={8}>
                     <Flex align="center" justify={"space-between"}>
-                        <Text fontSize={15} fontWeight={700} color="gray.600">Total <Text as="span">{item.total as string}</Text></Text>
+                        <Text fontSize={15} fontWeight={700} color="gray.600">Total <Text as="span" fontSize={20} ml={2}>{item.total as string}</Text></Text>
                         <Text fontSize={15} fontWeight={700} color="gray.600">{moment(item.created_on as string).format('h: mm A')}</Text>
                     </Flex>
                     <Flex  mt={2} align={"center"} borderBottomWidth={1} borderColor="gray.200" my={1}>
@@ -146,6 +130,14 @@ export default function Home() {
                         </Box>
                       </Flex>
                     </Box>
+                    <Grid templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
+                      {Object.keys(item.section).filter(key => !defaultSections.includes(key)).map((s: string) => (
+                        <Flex key={s} mr={3} align="center" justify={"space-between"}>
+                          <Text fontSize={13} mr={2} textTransform={'capitalize'}>{s}</Text> 
+                          <Text fontWeight={600}>{(item.section as unknown as Record<string, string>)?.[s]}</Text>
+                      </Flex>
+                      ))}
+                    </Grid>
                 </Box>))}
                
             </Box>
