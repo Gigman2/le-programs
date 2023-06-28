@@ -32,7 +32,7 @@ export default function Home() {
             })
             const response = await res.json()
             let data = (response.data || [])
-            setHeadCounts(data)
+            setHeadCounts(data.reverse())
           }
         } catch (error) {
           console.log(error)
