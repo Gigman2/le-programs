@@ -27,7 +27,8 @@ export default function Home() {
     'media down': 0,
     'mothers lounge': 0,
     'miscellaneous': 0,
-    'kids': 0
+    'kids': 0,
+    'guest': 0
   })
 
     const toastMessage: { 
