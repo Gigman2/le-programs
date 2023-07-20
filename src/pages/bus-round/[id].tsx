@@ -10,6 +10,8 @@ import { addBus, getUser } from '@/utils/auth'
 import { handleChange, validate } from '@/utils/form'
 import Autocomplete from '@/frontend/components/Forms/Autocomplete'
 
+// Hello world
+
 export default function BusMembers() {
   const router = useRouter()
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
