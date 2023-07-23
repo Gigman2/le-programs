@@ -24,10 +24,10 @@ export default function Home() {
     'behind mc': 0,
     'mc Heads': 0,
     'media top': 0,
-    'mothers lounge': 0,
+    'audio room': 0,
     'miscellaneous': 0,
-    'kids': 0,
-    'audio room': 0
+    'mothers lounge': 0,
+    'kids': 0
   })
 
     const toastMessage: { 
