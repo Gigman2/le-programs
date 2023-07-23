@@ -24,7 +24,6 @@ export default function Home() {
     'behind mc': 0,
     'mc Heads': 0,
     'media top': 0,
-    'media down': 0,
     'mothers lounge': 0,
     'miscellaneous': 0,
     'kids': 0,
