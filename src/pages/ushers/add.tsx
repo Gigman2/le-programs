@@ -28,7 +28,7 @@ export default function Home() {
     'mothers lounge': 0,
     'miscellaneous': 0,
     'kids': 0,
-    'guest': 0
+    'audio room': 0
   })
 
     const toastMessage: { 
