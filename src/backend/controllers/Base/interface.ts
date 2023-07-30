@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import mongoose, { ObjectId } from 'mongoose';
-import BaseService from '@/backend/services/Base';
-import IBaseService from '@/backend/services/Base/interface';
+import mongoose from 'mongoose';
+
 
 
 export interface IBaseParams {
