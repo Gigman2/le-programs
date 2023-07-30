@@ -2,13 +2,8 @@
 import Head from 'next/head'
 import { Box, Flex, Text, useToast, Icon } from '@chakra-ui/react'
 import { useState } from 'react';
-import { useRouter } from 'next/router'
-import {MdOutlineDirectionsBus} from 'react-icons/md'
-import {AiOutlineUser} from 'react-icons/ai'
 import {TbCrossFilled} from 'react-icons/tb'
-import BacentaRep from '@/components/Accounts/bacentaRep';
-import Shepherd from '@/components/Accounts/shepherd';
-import Usher from '@/components/Accounts/ushers';
+import Shepherd from '@frontend/Accounts/shepherd';
 
 export default function Home() {
     const [selected, setSelected] = useState<number>()
