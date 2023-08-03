@@ -48,6 +48,5 @@ const schema = new Schema<IBusRound>(
   }
 );
 
-const BusRound = model<IBusRound>("BusRound", schema);
+export default model<IBusRound>("BusRounds", schema);
 
-export default BusRound;

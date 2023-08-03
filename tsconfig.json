@@ -16,7 +16,7 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@frontend/*": ["./src/frontend/components/*"],
+      "@frontend/*": ["./src/frontend/*"],
       "@backend/*": ["./src/backend/*"],
     }
   },

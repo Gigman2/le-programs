@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Box, Flex, Text, Icon } from '@chakra-ui/react'
 import { useState } from 'react';
 import {MdOutlineDirectionsBus} from 'react-icons/md'
-import BacentaRep from '@frontend/Accounts/bacentaRep';
+import BacentaRep from '@frontend/components/Accounts/bacentaRep';
 
 
 export default function Home() {

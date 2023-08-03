@@ -32,6 +32,5 @@ const schema = new Schema<IBusGroups>(
   }
 );
 
-const BusGroup = model<IBusGroups>("BusGroup", schema);
+export default model<IBusGroups>("BusGroup", schema);
 
-export default BusGroup;
