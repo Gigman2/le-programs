@@ -55,7 +55,7 @@ export default function OverView() {
     try {
       if(!loading){
         setLoading(true)
-        const res = await getBusGroupsPostApi()
+        const res = await getBusGroupsPostApi({})
         const response = await res.json()
         let total = (response.data || [])
         setAllGroups({})
@@ -86,14 +86,14 @@ export default function OverView() {
         if(!grouped[month][moment(group.created_on).format('ddd, DD')])
           grouped[month][moment(group.created_on).format('ddd, DD')] = {}
 
-        if(!grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup])
-          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup] = {}
+        if(!grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup.toString()])
+          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup.toString()] = {}
 
-        if(grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]) {
-          let sum = grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]
+        if(grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup.toString()]) {
+          let sum = grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup.toString()]
           sum.people = Number((sum.people || 0) + group.totalPeople)
           sum.bus = Number(sum.bus|| 0) +  (group.busState === 'ARRIVED' ? 1 :0)
-          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup] = sum
+          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup.toString()] = sum
         }
       })
     }) 

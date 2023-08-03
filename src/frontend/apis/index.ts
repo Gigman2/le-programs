@@ -56,7 +56,7 @@ export const getBusRoundsByBusIdApi =  async (busId: string) => {
     })
 }
 
-export const endBusRoundApi = async (id: string) => {
+export const endBusRoundApi = async (id: any) => {
    return await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
         method: 'post',
         body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })

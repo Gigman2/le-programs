@@ -23,7 +23,7 @@ export default function DeleteBusRound(
     const deleteBusRound = async () => {
         try {
         setLoading(true)
-        await removeBusRoundApi();
+        await removeBusRoundApi(bus);
         await getBus()
         onClose()
         } catch (error) {

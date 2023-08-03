@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Box, Flex, Text, useToast, Icon } from '@chakra-ui/react'
 import { useState } from 'react';
 import {TbCrossFilled} from 'react-icons/tb'
-import Shepherd from '@frontend/Accounts/shepherd';
+import Shepherd from '@frontend/components/Accounts/shepherd';
 
 export default function Home() {
     const [selected, setSelected] = useState<number>()

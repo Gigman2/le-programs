@@ -24,4 +24,4 @@ const schema = new Schema<IUshersReport>({
 }, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
 
 
-export default model<IUshersReport>('headCounts', schema);
+export default model<IUshersReport>('HeadCount', schema);

@@ -16,7 +16,7 @@ import Link from "next/link";
 import { BsPencilSquare } from "react-icons/bs";
 import { MdDeleteOutline } from "react-icons/md";
 import { IBusRound } from "@/interface/bus";
-import DeleteBusRound from "@/components/Modals/deleteBusRound";
+import DeleteBusRound from "@frontend/components/Modals/deleteBusRound";
 import {addBusRoundsApi, getBusGroupsPostApi} from "@/frontend/apis";
 
 export default function OverView() {

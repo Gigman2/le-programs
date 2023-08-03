@@ -1,9 +1,8 @@
 import { Event } from '@/backend/models';
 import BaseController from '../Base';
-import IEventController from './interface';
-import EventService from '@/backend/services/Event';
+import EventService from '@backend/services/Event';
 
-class EventController extends BaseController<EventService> implements IEventController {
+class EventController extends BaseController<EventService> {
     protected name = 'BusGroup';
     constructor(service: EventService) {
         super(service)

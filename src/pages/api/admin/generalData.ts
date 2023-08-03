@@ -1,6 +1,6 @@
 import Attendee from '@backend/models/attendee';
-import BusGroup from '@/backend/models/busGroups';
-import BusRound from '@/backend/models/busRound';
+import BusGroup from '@backend/models/busGroups';
+import BusRound from '@backend/models/busRound';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
