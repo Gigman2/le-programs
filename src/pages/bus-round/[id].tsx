@@ -9,10 +9,10 @@ import moment from 'moment'
 import { addBus, getUser } from '@/utils/auth'
 import { handleChange, validate } from '@/utils/form'
 import Autocomplete from '@/frontend/components/Forms/Autocomplete'
+import {endBusRoundApi, getBusRoundsByBusIdApi, updateBusRoundsApi} from "@frontend/apis";
 
 export default function BusMembers() {
   const router = useRouter()
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(false)
   const [hasError, setHasError] = useState(false)
@@ -45,9 +45,7 @@ export default function BusMembers() {
     try {
       if(!loading && id ){
         setLoading(true)
-        const res = await fetch(`${baseUrl}/api/bus_rounds/${busId}`, {
-          method: 'get',
-        })
+        const res =  await getBusRoundsByBusIdApi(busId)
         const response = await res.json()
         let recorderRound = response.data
         setUserBus(recorderRound)
@@ -62,10 +60,7 @@ export default function BusMembers() {
   const endRound = async () => {
     try {
       setLoading(true)
-      const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-        method: 'post',
-        body: JSON.stringify({busState: "ARRIVED", arrivalTime: new Date() })
-      })
+      const res = await endBusRoundApi(id)
       const response = await res.json()
       let recorderRound = response.data
       setUserBus(recorderRound)
@@ -92,12 +87,8 @@ export default function BusMembers() {
   
   const updateBus = async () => {
     try {
-      const payload = {...fields}
       setLoading(true)
-      const res = await fetch(`${baseUrl}/api/bus_rounds/${id}`, {
-        method: 'post',
-        body: JSON.stringify(payload)
-      })
+      const res = await updateBusRoundsApi(id, {...fields})
       const response = await res.json()
       let recorderRound = response.data
       setUserBus(recorderRound)

@@ -5,9 +5,9 @@ import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
 import { addBus, getUser } from '@/utils/auth'
 import { IMember } from '@/utils/interfaces'
 import { useRouter } from 'next/router'
+import {getAttendeePostApi} from "@frontend/apis";
 
 export default function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const router = useRouter()
   const [data, setData] = useState<IMember[]>([])
   const [currentUser, setCurrentUser] = useState<{name?: string; group?: string; groupName?: string}>({})
@@ -16,10 +16,7 @@ export default function Home() {
     const fetchAttendees = async () => {
       try {
           const reqData = {group: currentUser.group}
-          const res = await fetch(`${baseUrl}/api/attendee/getAttendee`, {
-            method: 'post',
-            body: JSON.stringify(reqData)
-          })
+          const res = await getAttendeePostApi(reqData)
           const groups = await res.json()
           let groupData = (groups.data || []) as IMember[]
           setData(groupData)

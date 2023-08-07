@@ -16,6 +16,5 @@ const schema = new Schema<IHeadCount>({
 }, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
 
 
-const HeadCount = model<IHeadCount>('headCount', schema);
+export default model<IHeadCount>('HeadCount', schema);
 
-export default HeadCount;

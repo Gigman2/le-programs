@@ -6,6 +6,7 @@ import { handleChange, validate } from '@/utils/form';
 import { clearUser, saveUser } from '@/utils/auth';
 import Autocomplete from '@/frontend/components/Forms/Autocomplete';
 import { IBusGroups } from '@/interface/bus';
+import { getBusGroupsApi } from "@/frontend/apis";
 
 interface IModifiedBusGroup {
     label?: string,
@@ -41,7 +42,7 @@ export default function Shepherd() {
         groupName: undefined
     })
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL
+
 
     const toastMessage: { 
     title: string; 
@@ -60,9 +61,7 @@ export default function Shepherd() {
     const fetchGroup = async () => {
       try {
         setLoading(true)
-        const res = await fetch(`${baseUrl}/api/bus_groups/getBusGroups`, {
-            method: 'get',
-        })
+        const res = await getBusGroupsApi()
         const groups = await res.json()
         let groupData = groups.data as IBusGroups[]
         const modifiedData = groupData.map(item => ({
