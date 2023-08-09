@@ -41,10 +41,15 @@ const schema = new Schema<IBusRound>(
         }
     },
     {
-        timestamps:
-        {
+        versionKey: false,
+        timestamps: {
             createdAt: 'created_on',
             updatedAt: 'updated_on'
+        },
+        writeConcern: {
+            w: 'majority',
+            j: true,
+            wtimeout: 1000
         }
     })
 

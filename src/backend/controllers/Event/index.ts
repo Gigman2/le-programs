@@ -4,7 +4,7 @@ import IEventController from './interface';
 import EventService from '@/backend/services/Event';
 
 class EventController extends BaseController<EventService> implements IEventController {
-    protected name = 'BusGroup';
+    protected name = 'Event';
     constructor(service: EventService) {
         super(service)
     }

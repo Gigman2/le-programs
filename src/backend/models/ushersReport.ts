@@ -1,5 +1,5 @@
 import { IUshersReport } from "@/interface/ushers";
-import { Schema, Types, model } from "mongoose";
+import { Schema, Types, model, models } from "mongoose";
 const Mixed = Schema.Types.Mixed
 
 const schema = new Schema<IUshersReport>({
@@ -21,9 +21,21 @@ const schema = new Schema<IUshersReport>({
   countBreakdown: {
     type: Mixed
   }
-}, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
+}, {
+
+  versionKey: false,
+  timestamps: {
+    createdAt: 'created_on',
+    updatedAt: 'updated_on'
+  },
+  writeConcern: {
+    w: 'majority',
+    j: true,
+    wtimeout: 1000,
+  },
+})
 
 
-const HeadCount = model<IUshersReport>('headCount', schema);
+const UshersReport = models.ushersReport || model<IUshersReport>('ushersReport', schema);
 
-export default HeadCount;
+export default UshersReport;
