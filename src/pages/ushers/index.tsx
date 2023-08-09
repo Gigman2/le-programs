@@ -5,27 +5,23 @@ import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { getUser } from '@/utils/auth'
 import moment from 'moment'
+import {getHeadCountPostApi} from "@frontend/apis";
 
 export default function Home() {
   const router = useRouter()
   const [currentUser, setCurrentUser] = useState<{name?: string}>({})
   const [loading, setLoading] = useState(false)
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [headCounts, setHeadCounts] = useState<Record<string, string | number | Record<string, string>>[]>([])
 
     const fetchData = async (user: {name: string}) => {
       try {
           if(!loading){
             setLoading(true)
-            const recorderPage = {
-              created_on: {
-                $gt: moment().startOf('day').toDate(),
-                $lt: moment().endOf('day').toDate(),
-              },
-            }
-            const res = await fetch(`${baseUrl}/api/head_count/getHeadcount`, {
-              method: 'post',
-              body: JSON.stringify(recorderPage)
+            const res = await getHeadCountPostApi({
+                created_on: {
+                    $gt: moment().startOf('day').toDate(),
+                    $lt: moment().endOf('day').toDate(),
+                },
             })
             const response = await res.json()
             let data = (response.data || [])

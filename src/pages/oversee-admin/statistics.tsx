@@ -16,17 +16,17 @@ import _,{
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import {FaMinus} from 'react-icons/fa'
 import { IBusRound } from "@/interface/bus";
-import { IHeadcount } from "@/interface/ushers";
+import {IHeadCount } from "@/interface/ushers";
+import {addBusRoundsApi, getHeadCountPostApi} from "@frontend/apis";
 
 export default function OverView() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [loading, setLoading] = useState(false);
 
   const [latestDate, setLatestDate] = useState('');
   const [previousDate, setPreviousDate] = useState('');
 
   const [busRounds, setBusRounds] = useState<IBusRound[]>([]);
-  const [headcount, setHeadcounts] = useState<IHeadcount[]>([]);
+  const [headcount, setHeadcounts] = useState<IHeadCount[]>([]);
 
   const [latestData, setLatestData] = useState({
     busRound: 0,
@@ -48,10 +48,7 @@ export default function OverView() {
         const apiPayload = { 
           busGroup : { $exists: true, $ne: null } 
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
-          method: 'post', 
-          body: JSON.stringify(apiPayload)
-        })
+        const res = await addBusRoundsApi(apiPayload)
         const response = await res.json()
         setBusRounds(response.data || [])
       }
@@ -66,11 +63,7 @@ export default function OverView() {
     try {
       if(!loading){
         setLoading(true)
-        const apiPayload = {}
-        const res = await fetch(`${baseUrl}/api/head_count/getHeadcount`, {
-          method: 'post', 
-          body: JSON.stringify(apiPayload)
-        })
+        const res = await getHeadCountPostApi({})
         const response = await res.json()
         setHeadcounts(response.data || [])
       }

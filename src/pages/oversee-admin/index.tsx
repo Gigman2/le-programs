@@ -14,10 +14,10 @@ import _,{
  } from 'lodash';
 import { getUser } from "@/utils/auth";
 import { useRouter } from "next/router";
+import {addBusRoundsApi} from "@frontend/apis";
 
 
 export default function OverView() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [loading, setLoading] = useState(false);
   const [currentUser, setCurrentUser] = useState<{name?: string}>({})
   const router = useRouter()
@@ -30,10 +30,7 @@ export default function OverView() {
         const apiPayload = { 
           busGroup : { $exists: true, $ne: null } 
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
-          method: 'post', 
-          body: JSON.stringify(apiPayload)
-        })
+        const res = await addBusRoundsApi(apiPayload)
         const response = await res.json()
       }
     } catch (error) {

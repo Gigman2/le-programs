@@ -1,9 +1,8 @@
-import { Bus } from '@/backend/models';
 import BaseController from '../Base';
-import IBusRoundController from './interface';
 import BusRoundService from '@/backend/services/BusRound';
+import {Bus} from "@backend/models";
 
-class BusRoundController extends BaseController<BusRoundService> implements IBusRoundController {
+class BusRoundController extends BaseController<BusRoundService> {
     protected name = 'BusGroup';
     constructor(service: BusRoundService) {
         super(service)

@@ -29,4 +29,3 @@ const schema = new Schema<IHeadCount>({
 
 const HeadCount = models.headCount || model<IHeadCount>('headCount', schema);
 
-export default HeadCount;
