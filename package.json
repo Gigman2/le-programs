@@ -30,7 +30,7 @@
     "mongoose": "^7.1.0",
     "mongoose-autopopulate": "^1.0.1",
     "multer": "^1.4.5-lts.1",
-    "next": "^13.2.4",
+    "next": "^13.4.13",
     "node-fetch": "^2.6.1",
     "react": "18.2.0",
     "react-device-detect": "^2.2.3",
