@@ -5,24 +5,21 @@ import {
   Box,
   Grid,
   Flex,
-  Skeleton,
-  GridItem,
   Text,
   Icon,
 } from "@chakra-ui/react";
-import moment from "moment";
 import _ from 'lodash';
-import {IoPeopleOutline} from 'react-icons/io5'
-import { TbBus } from "react-icons/tb";
+import { TbChevronDown } from "react-icons/tb";
 import { IBusRound } from "@/interface/bus";
-import { group } from "console";
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [loading, setLoading] = useState(false);
 
-  const [allBus, setAllBus] = useState<Record<string, any>>({});
   const [allGroups, setAllGroups] = useState<Record<string, any>>({});
+  const [busSummary, setBusSummary] = useState<Record<string, any>>({});
+  const [collapse, setCollapse] = useState<number>(0);
+
   const [summary, setSummary] = useState<Record<string, number>>({
     buses: 0,
     people: 0,
@@ -31,6 +28,24 @@ export default function OverView() {
 
   const [data, setData] = useState([]);
 
+  const loadSummary = async () => {
+    try {
+      if(!loading){
+        setLoading(true)
+        const res = await fetch(`${baseUrl}/api/bus_rounds/bus-round-summary`, {
+          method: 'get', 
+        })
+        const response = await res.json()
+
+        console.log(response)
+        setBusSummary(response.data || [])
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const getBus = async () => {
     try {
@@ -78,36 +93,6 @@ export default function OverView() {
     }
   }
 
-  const groupBusGroups = (data: any) => {
-    const grouped: Record<string, Record<string, Record<string, {bus? : number, people?: number}>>> = {}
-
-    const dateGrouped = _.groupBy(data, (item: any) => {
-        return moment(item.created_on).format('DD-MM-YYYY')
-    })
-
-    Object.keys(dateGrouped).map(item =>{
-      dateGrouped[item].map((group: IBusRound) => {
-        const month = moment(group.created_on).format('MMMM YY')
-        if(!grouped[month]) grouped[month] = {}
-
-        if(!grouped[month][moment(group.created_on).format('ddd, DD')])
-          grouped[month][moment(group.created_on).format('ddd, DD')] = {}
-
-        if(!grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup])
-          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup] = {}
-
-        if(grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]) {
-          let sum = grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup]
-          sum.people = Number((sum.people || 0) + group.totalPeople)
-          sum.bus = Number(sum.bus|| 0) +  (group.busState === 'ARRIVED' ? 1 :0)
-          grouped[month][moment(group.created_on).format('ddd, DD')][group.busGroup] = sum
-        }
-      })
-    }) 
-
-    setAllBus(grouped)
-  }
-
   const getSummary = (data: IBusRound[]) => {
     const busSummary = data.reduce((sum, curr) => {
       sum.buses = sum.buses  + (curr.busState === 'ARRIVED' ? 1 :0)
@@ -125,7 +110,6 @@ export default function OverView() {
 
   useEffect(() => {
     if(data.length){
-      groupBusGroups(data)
       getSummary(data)
     }
   }, [data])
@@ -133,6 +117,7 @@ export default function OverView() {
   useEffect(() => {
     getGroups()
     getBus()
+    loadSummary()
   }, [])
 
 
@@ -148,104 +133,82 @@ export default function OverView() {
         <Flex w="100%" justify={"center"}>
             <Box minW={"500px"} w="350px" mt={5}>
                 <Box fontSize={15} color="gray.500" textAlign={"center"} mb={2}>
-                  <Text fontWeight={600} color="gray.500" fontSize={15} mb={1}>Busing Summary</Text>
+                  <Text fontWeight={800} color="gray.500" fontSize={18} mb={1}>Busing Summary</Text>
                   <Text as="span" fontWeight={600}>26th March</Text> - <Text as="span" fontWeight={600}>07th May 2023</Text>
                 </Box>
                 <Grid templateColumns={'repeat(3, 1fr)'} gap={3}>
-                  <Box p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} position={"relative"} h={24}>
-                    <Text fontSize={14} color="gray.400">Total Buses</Text>
+                  <Box p={3} bg={"gray.100"} rounded={"md"} position={"relative"} h={24}>
+                    <Text fontSize={14} color="gray.500">Total Buses</Text>
                     <Text fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>{summary.buses}</Text>
                   </Box>
-                  <Box p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} position={"relative"}>
-                    <Text fontSize={14} color="gray.400">People Transported</Text>
+                  <Box p={3} bg={"gray.100"} rounded={"md"} position={"relative"}>
+                    <Text fontSize={14} color="gray.500">People Transported</Text>
                     <Text fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>{summary.people}</Text>
                   </Box>
-                  <Box p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"}  position={"relative"}>
-                    <Text fontSize={14} color="gray.400">Total Bus Fare</Text>
-                    <Flex align={"center"} gap={2} fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}><Text fontSize={13}>Ghc</Text> {summary.fare}</Flex>
+                  <Box p={3} bg={"gray.100"} rounded={"md"}  position={"relative"}>
+                    <Text fontSize={14} color="gray.500">Total Bus Fare</Text>
+                    <Flex align={"center"} gap={2} fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>
+                      <Text fontSize={13}>Ghc</Text> {summary.fare.toFixed(2)}
+                    </Flex>
                   </Box>
                 </Grid>
 
                 <Grid templateColumns={'repeat(2, 1fr)'} gap={3} my={3}>
-                  <Flex p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} gap={2} align={"center"}>
+                  <Flex p={3} bg={"gray.100"} rounded={"md"} gap={2} align={"center"}>
                     <Text fontSize={20} color="gray.600" fontWeight={600}>{Object.keys(allGroups).length}</Text>
-                    <Text fontSize={14} color="gray.400">Bus groups</Text>
+                    <Text fontSize={14} color="gray.500">Bus groups</Text>
                   </Flex>
-                  <Flex p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} gap={2}  align={"center"}>
+                  <Flex p={3}  bg={"gray.100"} rounded={"md"} gap={2}  align={"center"}>
                     <Text fontSize={20} color="gray.600" fontWeight={600}>9</Text>
-                    <Text fontSize={14} color="gray.400">Events</Text>
+                    <Text fontSize={14} color="gray.500">Events</Text>
                   </Flex>
                 </Grid>
 
-                {Object.keys(allBus).map(item => (
-                <Box key={item} my={3} p={3} borderWidth={1} borderColor={"gray.300"} rounded={"md"} >
-                  <Flex justifyContent={"space-between"} fontWeight={500} color="gray.600" fontSize={15}  borderBottomWidth={1} borderColor={"gray.300"}>
-                    <Text fontWeight={600} >{item}</Text>
-                    {/* <Text>Buses: <Text as="span" fontWeight={600}>20</Text></Text> */}
-                  </Flex>
+                <Box my={8}>
+                    {Object.keys(busSummary).map((item, i) =>  <Box key={item} mt={6}>
+                        <Flex 
+                          align={"center"} 
+                          cursor={"pointer"}
+                          justifyContent={"space-between"} 
+                          onClick={() => setCollapse(i)}>
+                          <Text fontWeight={600} color={"gray.600"}>{item}</Text>
+                          <Box mr={2}>
+                            <Icon as={TbChevronDown} fontSize={20}/>
+                          </Box>
+                        </Flex>
+                        {Object.keys(busSummary[item]).map(c => 
+                          <Box key={item+'-'+c} rounded={'md'} bg="gray.100" p={4} mb={3} display={collapse !== i ? 'none' : 'block'}>
+                            <Flex justifyContent={'space-between'} fontSize={15} color={"gray.500"} mb={1} fontWeight={600}>
+                                <Text>{c}</Text>
+                                <Text>Mega Gathering</Text>
+                            </Flex>
+                            <hr />
+                            <Flex  mt={1} justifyContent={'space-between'} color={"gray.500"}>
+                              <Flex gap={2}>
+                                <Text fontSize={15}>Total Buses</Text>
+                                <Text fontWeight={700} color={"gray.500"}>{busSummary[item][c].totalBuses}</Text>
+                              </Flex>
 
-                  <Box>
-                      <Grid
-                        my={2} 
-                        py={1}
-                        columnGap={6} 
-                        fontSize={14} 
-                        fontWeight={600} 
-                        color="gray.600"
-                        borderBottomWidth={1} 
-                        borderColor={"gray.200"} 
-                        templateColumns="repeat(12,1fr)"  
-                      >
-                        <Box as={GridItem} colSpan={2}>Day</Box>
-                       {Object.keys(allGroups).map(item => <Box key={item} mt={1} as={GridItem} colSpan={2} fontWeight={600}>{allGroups[item] as string}</Box>)}
-                        <Box as={GridItem} colSpan={1}>Total</Box>
-                      </Grid>
+                              <Flex gap={2}>
+                                <Text fontSize={15}>People Bused</Text>
+                                <Text fontWeight={700} color={"gray.500"}>{busSummary[item][c].peopleBused}</Text>
+                              </Flex>
+                            </Flex>
+                            <Flex  mt={1} justifyContent={'space-between'} color={"gray.500"}>
+                              <Flex gap={2}>
+                                <Text fontSize={15}>Total offering received</Text>
+                                <Text fontWeight={700} color={"gray.500"}>Ghc {busSummary[item][c].offering}</Text>
+                              </Flex>
 
-                      {Object.keys(allBus[item]).map(date => (
-                        <Grid
-                        key={date}
-                        py={2}
-                        columnGap={6} 
-                        fontSize={13} 
-                        color="gray.600"
-                        borderBottomWidth={1} 
-                        borderColor={"gray.200"} 
-                        templateColumns="repeat(12,1fr)"  
-                      >
-                        <Box as={GridItem} colSpan={2} fontWeight={600} mt={2} ml={2}>{date}</Box>
-                        {Object.keys(allGroups).map(group => <Box key={date+"-"+group} as={GridItem} colSpan={2} >
-                          <Flex  align={"center"} gap={1}>
-                            <Icon as={TbBus} fontSize={15} color={"gray.500"} /> 
-                            {(allBus[item][date] && allBus[item][date][group] && allBus[item][date][group].bus) || '--'}
-                          </Flex>
-                          <Flex align={"center"} gap={1}>
-                            <Icon as={IoPeopleOutline} fontSize={15} color={"gray.500"} /> 
-                            {(allBus[item][date] && allBus[item][date][group] && allBus[item][date][group].people) || '--'}
-                          </Flex>
-                        </Box>)}
-
-                        <Box as={GridItem} colSpan={2} >
-                          <Flex  align={"center"} gap={1}>
-                            <Icon as={TbBus} fontSize={15} color={"gray.500"} /> 
-                            {Object.keys(allBus[item][date]).reduce((sum, curr) => {
-                              if(allBus[item][date][curr]) 
-                                sum = allBus[item][date][curr].bus + sum
-                              return sum
-                            }, 0)}
-                          </Flex>
-                          <Flex align={"center"} gap={1}>
-                            <Icon as={IoPeopleOutline} fontSize={15} color={"gray.500"} /> 
-                          {Object.keys(allBus[item][date]).reduce((sum, curr) => {
-                              if(allBus[item][date][curr]) 
-                                sum = allBus[item][date][curr].people + sum
-                              return sum
-                            }, 0)}
-                          </Flex>
-                        </Box>
-                      </Grid>
-                      ))}
-                  </Box>
-                </Box>))}
+                              <Flex gap={2}>
+                                <Text fontSize={15}>Actual Busing Cost</Text>
+                                <Text fontWeight={700} color={"gray.500"}>Ghc {busSummary[item][c].cost}</Text>
+                              </Flex>
+                            </Flex>
+                          </Box>)
+                        }
+                    </Box>)}
+                </Box>
             </Box>
         </Flex>
       </main>
