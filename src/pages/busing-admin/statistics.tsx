@@ -19,6 +19,7 @@ export default function OverView() {
   const [allGroups, setAllGroups] = useState<Record<string, any>>({});
   const [busSummary, setBusSummary] = useState<Record<string, any>>({});
   const [collapse, setCollapse] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
 
   const [summary, setSummary] = useState<Record<string, number>>({
     buses: 0,
@@ -38,7 +39,8 @@ export default function OverView() {
         const response = await res.json()
 
         console.log(response)
-        setBusSummary(response.data || [])
+        setBusSummary(response.data.data || [])
+        setTotal(response.data.total)
       }
     } catch (error) {
       console.log(error)
@@ -110,7 +112,7 @@ export default function OverView() {
 
   useEffect(() => {
     if(data.length){
-      getSummary(data)
+      getSummary(data) 
     }
   }, [data])
 
@@ -159,7 +161,7 @@ export default function OverView() {
                     <Text fontSize={14} color="gray.500">Bus groups</Text>
                   </Flex>
                   <Flex p={3}  bg={"gray.100"} rounded={"md"} gap={2}  align={"center"}>
-                    <Text fontSize={20} color="gray.600" fontWeight={600}>9</Text>
+                    <Text fontSize={20} color="gray.600" fontWeight={600}>{total}</Text>
                     <Text fontSize={14} color="gray.500">Events</Text>
                   </Flex>
                 </Grid>
@@ -180,7 +182,7 @@ export default function OverView() {
                           <Box key={item+'-'+c} rounded={'md'} bg="gray.100" p={4} mb={3} display={collapse !== i ? 'none' : 'block'}>
                             <Flex justifyContent={'space-between'} fontSize={15} color={"gray.500"} mb={1} fontWeight={600}>
                                 <Text>{c}</Text>
-                                <Text>Mega Gathering</Text>
+                                <Text>{busSummary[item][c].eventName}</Text>
                             </Flex>
                             <hr />
                             <Flex  mt={1} justifyContent={'space-between'} color={"gray.500"}>

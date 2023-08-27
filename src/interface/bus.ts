@@ -10,4 +10,5 @@ export interface IBusRound {
     arrivalTime: string;
     created_on: string;
     updated_on: string;
+    eventName: string
 }

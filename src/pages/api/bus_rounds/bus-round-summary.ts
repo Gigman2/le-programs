@@ -4,6 +4,7 @@ import moment from 'moment';
 
 
 import { connectMongo } from '../../../utils/connectMongo';
+import { IBusRound } from '@/interface/bus';
 
 
 
@@ -20,10 +21,19 @@ const handler: NextApiHandler = async function handler(
         data = (typeof data === 'string' && data.length > 2) ? JSON.parse(data) : {}
         busRound = (await BusRound.find(data)).reverse();
         let response = {}
+        let totalEvents = 0
+        let currentDate = moment().format('DD MM YYYY')
+
         if (busRound) {
-            const groupByMonthAndYear = busRound.reduce((acc, cValue) => {
+            const document = JSON.parse(JSON.stringify(busRound))
+            const groupByMonthAndYear = document.reduce((acc: Record<string, any>, cValue: IBusRound) => {
+                const fullDate = moment(cValue.created_on).format('DD MM YYYY')
+                if (fullDate !== currentDate) {
+                    currentDate = fullDate
+                    totalEvents += 1
+                }
                 const item = {
-                    eventName: "",
+                    eventName: "Mega Gathering",
                     totalBuses: 0,
                     peopleBused: 0,
                     offering: 0,
@@ -33,8 +43,9 @@ const handler: NextApiHandler = async function handler(
                 if (!acc[monthYear]) acc[monthYear] = {}
 
                 const daysInMonth = moment(cValue.created_on).format("dddd DD")
-                if (!acc[monthYear][daysInMonth]) acc[monthYear][daysInMonth] = {}
+                if (!acc[monthYear][daysInMonth]) acc[monthYear][daysInMonth] = item
 
+                item.eventName = cValue.eventName || acc[monthYear][daysInMonth].eventName
                 item.totalBuses = (acc[monthYear][daysInMonth].totalBuses || 1) + 1
                 item.cost = (acc[monthYear][daysInMonth].cost || 0) + cValue.totalFare || 0
                 item.offering = (acc[monthYear][daysInMonth].offering || 0) + cValue.busFare || 0
@@ -47,7 +58,7 @@ const handler: NextApiHandler = async function handler(
             response = groupByMonthAndYear
         }
 
-        return res.status(200).json({ message: 'created Successfully', data: response, })
+        return res.status(200).json({ message: 'created Successfully', data: { total: totalEvents, data: response }, })
     } catch (error) {
         console.log(error);
         return res.status(400).json({ error: error })

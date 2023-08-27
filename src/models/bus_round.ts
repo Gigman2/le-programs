@@ -6,17 +6,9 @@ const BusRoundsSchema = new Schema({
         type: Types.ObjectId,
         ref: 'Event'
     },
-    busRep: {
-        type: String,
-    },
-    busGroup: {
-        type: Types.ObjectId,
-        ref: 'BusGroup'
-    },
-    busState: {
-        type: String,
-        enum: ['EN_ROUTE', 'ARRIVED',]
-    },
+    busRep: { type: String },
+    busGroup: { type: Types.ObjectId, ref: 'BusGroup' },
+    busState: { type: String, enum: ['EN_ROUTE', 'ARRIVED'] },
     totalPeople: {
         type: Number,
         default: 0
@@ -26,7 +18,6 @@ const BusRoundsSchema = new Schema({
         type: Number,
         default: 0
     },
-    // offering collected for bus fare
     busFare: {
         type: Number,
         default: 0
@@ -35,18 +26,9 @@ const BusRoundsSchema = new Schema({
         type: String,
         default: ''
     },
-    members: [
-        {
-            type: Types.ObjectId,
-            ref: 'Attendee'
-        },
-    ],
-    arrivalTime: {
-        type: String
-    },
-    nonBus: {
-        type: Boolean,
-    }
+    arrivalTime: { type: String },
+    nonBus: { type: Boolean },
+    eventName: { type: String }
 }, { timestamps: { createdAt: 'created_on', updatedAt: 'updated_on' }, },)
 
 
