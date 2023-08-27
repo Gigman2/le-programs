@@ -7,10 +7,12 @@ import {
   Flex,
   Text,
   Icon,
+  Skeleton,
 } from "@chakra-ui/react";
 import _ from 'lodash';
 import { TbChevronDown } from "react-icons/tb";
 import { IBusRound } from "@/interface/bus";
+import MonthlyCard from "@/components/Busing/statistics/monthlyCard";
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -38,7 +40,6 @@ export default function OverView() {
         })
         const response = await res.json()
 
-        console.log(response)
         setBusSummary(response.data.data || [])
         setTotal(response.data.total)
       }
@@ -167,49 +168,13 @@ export default function OverView() {
                 </Grid>
 
                 <Box my={8}>
-                    {Object.keys(busSummary).map((item, i) =>  <Box key={item} mt={6}>
-                        <Flex 
-                          align={"center"} 
-                          cursor={"pointer"}
-                          justifyContent={"space-between"} 
-                          onClick={() => setCollapse(i)}>
-                          <Text fontWeight={600} color={"gray.600"}>{item}</Text>
-                          <Box mr={2}>
-                            <Icon as={TbChevronDown} fontSize={20}/>
-                          </Box>
-                        </Flex>
-                        {Object.keys(busSummary[item]).map(c => 
-                          <Box key={item+'-'+c} rounded={'md'} bg="gray.100" p={4} mb={3} display={collapse !== i ? 'none' : 'block'}>
-                            <Flex justifyContent={'space-between'} fontSize={15} color={"gray.500"} mb={1} fontWeight={600}>
-                                <Text>{c}</Text>
-                                <Text>{busSummary[item][c].eventName}</Text>
-                            </Flex>
-                            <hr />
-                            <Flex  mt={1} justifyContent={'space-between'} color={"gray.500"}>
-                              <Flex gap={2}>
-                                <Text fontSize={15}>Total Buses</Text>
-                                <Text fontWeight={700} color={"gray.500"}>{busSummary[item][c].totalBuses}</Text>
-                              </Flex>
-
-                              <Flex gap={2}>
-                                <Text fontSize={15}>People Bused</Text>
-                                <Text fontWeight={700} color={"gray.500"}>{busSummary[item][c].peopleBused}</Text>
-                              </Flex>
-                            </Flex>
-                            <Flex  mt={1} justifyContent={'space-between'} color={"gray.500"}>
-                              <Flex gap={2}>
-                                <Text fontSize={15}>Total offering received</Text>
-                                <Text fontWeight={700} color={"gray.500"}>Ghc {busSummary[item][c].offering}</Text>
-                              </Flex>
-
-                              <Flex gap={2}>
-                                <Text fontSize={15}>Actual Busing Cost</Text>
-                                <Text fontWeight={700} color={"gray.500"}>Ghc {busSummary[item][c].cost}</Text>
-                              </Flex>
-                            </Flex>
-                          </Box>)
-                        }
+                  <Text fontSize={14} color={"gray.400"}>Click or tap on the arrow to expand</Text>
+                    {loading ? <Box>
+                      <Skeleton h={32} w="100%" rounded={"md"}/>
+                    </Box> : Object.keys(busSummary).map((item, i) =>  <Box key={item} mt={6}>
+                        <MonthlyCard key={item} data={busSummary[item]} title={item} />
                     </Box>)}
+                    {}
                 </Box>
             </Box>
         </Flex>

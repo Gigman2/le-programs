@@ -33,6 +33,7 @@ const handler: NextApiHandler = async function handler(
                     totalEvents += 1
                 }
                 const item = {
+                    date: moment().format('YYYY-MM-DD'),
                     eventName: "Mega Gathering",
                     totalBuses: 0,
                     peopleBused: 0,
@@ -45,6 +46,7 @@ const handler: NextApiHandler = async function handler(
                 const daysInMonth = moment(cValue.created_on).format("dddd DD")
                 if (!acc[monthYear][daysInMonth]) acc[monthYear][daysInMonth] = item
 
+                item.date = moment(cValue.created_on).format("YYYY-MM-DD")
                 item.eventName = cValue.eventName || acc[monthYear][daysInMonth].eventName
                 item.totalBuses = (acc[monthYear][daysInMonth].totalBuses || 1) + 1
                 item.cost = (acc[monthYear][daysInMonth].cost || 0) + cValue.totalFare || 0

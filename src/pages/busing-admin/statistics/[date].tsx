@@ -6,19 +6,13 @@ import {
   Button,
   Flex,
   Icon,
-  Skeleton,
-  Spinner,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import moment from "moment";
-import Link from "next/link";
-import { BsPencilSquare } from "react-icons/bs";
-import { MdDeleteOutline } from "react-icons/md";
 import { IBusRound } from "@/interface/bus";
-import DeleteBusRound from "@/components/Modals/deleteBusRound";
-import { useRouter } from "next/router";
 import BusingAdmin from "@/components/Busing/Admin";
+import { useRouter } from "next/router";
+import { BsArrowLeft } from "react-icons/bs";
 
 export default function OverView() {
   const [ data, setData ] = useState<any>({})
@@ -26,13 +20,19 @@ export default function OverView() {
   const {isOpen, onOpen, onClose} = useDisclosure()
   const [selectedBus, setSelectedBus] = useState<IBusRound>()
   const [loading, setLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
+  const { date } = router.query;
+
 
    const getSummary = async () => {
     try {
       if(!loading){
         setLoading(true)
-        const res = await fetch(`${baseUrl}/api/bus_rounds/bus-round-event`, {
+        let url = `${baseUrl}/api/bus_rounds/bus-round-event`
+        if(date) url = url + `?date=${date}`
+
+        console.log(url)
+        const res = await fetch(`${url}`, {
           method: 'get',
         })
         const response = await res.json()
@@ -59,24 +59,31 @@ export default function OverView() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}  getBus={getSummary}/>
-        <Flex w="100%" justify={"center"}>
-          <Box minW={"500px"} w="350px">
-            <Flex align={"right"} direction={"row"} alignItems={"flex-end"} mt={6} mb={3} justify="space-between">
-              <Box
-                as={Button}
-                bg={"green.500"}
-                color="white"
-                onClick={() => getSummary()}
-              >
-                Refresh
-              </Box>
-             <Box colorScheme="green" as={Button} variant={"outline"} onClick={() => router.push("busing-admin/statistics")}>
-                <Text>Statistics</Text>
-             </Box>
-            </Flex>
-            <BusingAdmin loading={loading} onOpen={onOpen} setSelectedBus={setSelectedBus} data={data}/>
-          </Box>
+        <Flex w="100%" justify={"center"}> 
+          <Box minW={"500px"} w="350px" mt={4}>
+            <Flex 
+                    onClick={() => router.push('/busing-admin/statistics')}
+                    textAlign="center" 
+                    cursor="pointer"
+                    color="gray.600" 
+                    bg={'gray.200'} 
+                    rounded={"md"} 
+                    align="center"
+                    fontSize={14} 
+                    w={24} 
+                    mb={6} 
+                    py={1}
+                    px={2}>
+                    <Icon as={BsArrowLeft} fontSize={16} mr={1}/> 
+                    Go Back
+                </Flex>
+            <BusingAdmin 
+                loading={loading} 
+                onOpen={onOpen} 
+                setSelectedBus={setSelectedBus} 
+                data={data}
+            />
+          </Box> 
         </Flex>
       </main>
     </>
