@@ -35,7 +35,6 @@ export default function MonthyCard({data, title}: {title: string, data: Record<s
                     display={!collapse ? 'none' : 'block'} cursor={"pointer"}
                     onClick={() => router.push('statistics/'+data[c].date)}
                 >
-                    <Text fontWeight={700}>{data[c].date}</Text>
                     <Flex justifyContent={'space-between'} fontSize={15} color={"gray.500"} mb={1} fontWeight={600}>
                         <Text>{c}</Text>
                         <Text>{data[c].eventName}</Text>
