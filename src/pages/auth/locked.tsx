@@ -18,26 +18,10 @@ export default function Home() {
     };
   
     const handleLogin = () => {
-      // Perform login logic here with the username/email and password
       console.log('Username/Email:', username);
       console.log('Password:', password);
     };
   
-  
-
-  // const handleUsernameChange = (event) => {
-  //   setUsername(event.target.value);
-  // };
-
-
-  // const handlePasswordChange = (event) => {
-  //   setPassword(event.target.value);
-  // };
-// gave type to event
-
-
-
- 
 
   return (
     <>
@@ -55,17 +39,16 @@ export default function Home() {
           align="center"
           justify="center"
           direction="column"
-          maxHeight="100vh" // Set the height of the container to 100% of the viewport height
+          maxHeight="100vh" 
           
         >
           <Box
-               maxW="500px" w="150%"
-            // width="30vw" // Set the width of the content
-            p="2rem" // Add padding
+            maxW="500px" w="150%"
+            p="2rem"
             // bg="#C5C6D0" 
             bg="black"
-            rounded="md" // Apply rounded corners
-            shadow="lg" // Add a shadow
+            rounded="md" 
+            shadow="lg" 
             margin="30px 20px"
             
           >
@@ -76,10 +59,7 @@ export default function Home() {
               <Text fontSize="3xl" fontWeight="bold" padding="50px 180px 0px 0px" color="white" mb={10}>
                 Locked
               </Text>
-              {/* <Text color="white" paddingRight="180px">Access Denied</Text> */}
-              {/* <p>It appears you do not have access to this <br></br>application. Kindly contact support for<br></br> further assistance. </p> */}
-
-
+          
               <Input
             type="text"
             fontSize="13px"
@@ -89,11 +69,14 @@ export default function Home() {
             marginTop="1px"
             border="none"
             borderBottom="1px solid white"
-            bg="black" // Set the background color of the input field
+            bg="black" 
             width="300px"
             mb={4}
           />
+            
 
+            {/* make future changes to display user's username and email after 
+            locked for some minutes of inactiveness */}
               <Input
                 type="password"
                 placeholder="Password"
@@ -102,7 +85,7 @@ export default function Home() {
                 // onChange={handlePasswordChange}
                 border="none"
                 borderBottom="1px solid white"
-                bg="black" // Set the background color of the input field
+                bg="black" 
                 width="300px"
                 mb={4}
               />
@@ -120,7 +103,7 @@ export default function Home() {
               textDecoration="none"
               paddingLeft="180px"
               fontSize="13px"
-              _hover={{ textDecoration: "underline" }} // Add underline on hover
+              _hover={{ textDecoration: "underline" }}
             >
               Back to Login
             </Link>
