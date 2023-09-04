@@ -60,7 +60,7 @@ export default function OverView() {
       </Head>
       <main>
         <Flex w="100%" justify={"center"}> 
-          <Box minW={"500px"} w="350px" mt={4}>
+          <Box maxW={"500px"} w="350px" mt={4}>
             <Flex 
                     onClick={() => router.push('/busing-admin/statistics')}
                     textAlign="center" 

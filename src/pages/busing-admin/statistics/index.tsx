@@ -134,7 +134,7 @@ export default function OverView() {
       </Head>
       <main>
         <Flex w="100%" justify={"center"}>
-            <Box minW={"500px"} w="350px" mt={5}>
+            <Box maxW={"500px"} w="350px" mt={5}>
                 <Box fontSize={15} color="gray.500" textAlign={"center"} mb={2}>
                   <Text fontWeight={800} color="gray.500" fontSize={18} mb={1}>Busing Summary</Text>
                   <Text as="span" fontWeight={600}>26th March</Text> - <Text as="span" fontWeight={600}>07th May 2023</Text>
