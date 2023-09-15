@@ -10,7 +10,6 @@ const handler: NextApiHandler = async function handler(
                 return BusGroup.get(req, res);
             case 'POST':
                 return BusGroup.insert(req, res);
-
             default:
                 break;
 
