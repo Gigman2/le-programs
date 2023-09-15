@@ -1,29 +1,26 @@
-import { Schema } from 'mongoose';
-const ObjectId = Schema.Types.ObjectId
-export interface IBusRound {
-    _id: string
-    busRep: string;
-    busGroup: typeof ObjectId | string;
-    event: typeof ObjectId | string;
+import { Types } from 'mongoose';
+import { IDocument } from './misc';
+
+export interface IBusRound extends IDocument {
+    event: string | Types.ObjectId;
+    recordedBy: string | Types.ObjectId;
+    busZone: string | Types.ObjectId
     busState: 'EN_ROUTE' | 'ARRIVED';
-    totalPeople: number;
-    busFare: number;
-    currentStation: string;
-    totalFare: number
+    people: number;
+    busOffering: number;
+    busCost: number;
+    stopPoints: string[];
     arrivalTime: string;
-    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
-    created_on: Date;
-    updated_on: Date;
 }
 
+export interface IBusGroups extends IDocument {
+    name: string,
+    type: 'ZONE' | 'BRANCH' | 'SECTOR'
+    parent: string | Types.ObjectId,
+    station: string[],
+}
 
-export interface IBusGroups {
-    _id?: string
-    busReps: string[],
-    groupName: string
-    stations: string[],
-    totalBuses: number,
-    status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
-    created_on: Date;
-    updated_on: Date;
+export interface IBusAccount extends IDocument {
+    name: string,
+    accountType: 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD'
 }

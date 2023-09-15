@@ -2,6 +2,7 @@ import { Schema, model, models } from "mongoose";
 import { MeetingTypes } from "@/helpers/misc";
 import { IEvent } from "@/interface/events";
 
+const ObjectId = Schema.Types.ObjectId
 
 const schema = new Schema<IEvent>(
     {
@@ -16,15 +17,19 @@ const schema = new Schema<IEvent>(
                 type: Date,
             },
         },
-        speaker: {
-            type: [String],
-        },
         venue: {
             type: String,
         },
         meetingType: {
             type: String,
             enum: [...MeetingTypes],
+        },
+        scope: {
+            id: { type: ObjectId },
+            type: {
+                type: String,
+                enum: ["BRANCH", "SECTOR"]
+            }
         },
         status: {
             type: String,
@@ -46,5 +51,4 @@ const schema = new Schema<IEvent>(
 
 
 const Event = models.Event || model<IEvent>('Event', schema);
-
-export default model<IEvent>("Event", schema);
+export default Event

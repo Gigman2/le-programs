@@ -1,40 +1,39 @@
 import { IBusRound } from "@/interface/bus";
-import { Schema, model, models, Types } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
+const ObjectId = Schema.Types.ObjectId
 const schema = new Schema<IBusRound>(
   {
     event: {
-      type: Types.ObjectId,
+      type: ObjectId,
       ref: 'Event'
     },
-    busRep: {
+    recordedBy: {
       type: String,
     },
-    busGroup: {
-      type: Types.ObjectId,
+    busZone: {
+      type: ObjectId,
       ref: 'BusGroup'
     },
     busState: {
       type: String,
       enum: ['EN_ROUTE', 'ARRIVED',]
     },
-    totalPeople: {
+    people: {
       type: Number,
       default: 0
     },
-    // actual busing cost
-    totalFare: {
+    busCost: {
       type: Number,
       default: 0
     },
-    // offering collected for bus fare
-    busFare: {
+    busOffering: {
       type: Number,
       default: 0
     },
-    currentStation: {
-      type: String,
-      default: ''
+    stopPoints: {
+      type: [String],
+      default: []
     },
     arrivalTime: {
       type: String
@@ -53,6 +52,5 @@ const schema = new Schema<IBusRound>(
     }
   })
 
-
-export default model<IBusRound>("BusRound", schema);
-
+const BusRound = models.BusRound || model<IBusRound>('BusRound', schema);
+export default BusRound;

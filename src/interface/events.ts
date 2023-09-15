@@ -1,8 +1,7 @@
-import { Schema } from 'mongoose';
-const ObjectId = Schema.Types.ObjectId
+import { Types } from 'mongoose';
+import { IDocument } from './misc';
 
-export interface IEvent {
-    _id?: string
+export interface IEvent extends IDocument {
     name: string
     duration: {
         start: Date
@@ -10,8 +9,10 @@ export interface IEvent {
     };
     speaker: string[]
     venue: string
+    scope: {
+        id: Types.ObjectId,
+        type: "BRANCH" | "SECTOR"
+    }
     meetingType: 'TTHLA' | 'Mega Gathering' | 'CAMP' | 'Special Meeting' | 'Shepherd Meeting' | 'Prayer Meeting' | 'Zonal Meeting';
     status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'
-    created_on: Date;
-    updated_on: Date;
 }
