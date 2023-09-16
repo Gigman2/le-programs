@@ -1,15 +1,15 @@
 import BusAccountService from '@/backend/services/BusAccount';
 import BaseController from '../Base';
-import { Bus } from "@backend/models";
+import { BusAccount as Account } from "@backend/models";
 
 class BusAccountController extends BaseController<BusAccountService> {
-    protected name = 'BusGroup';
+    protected name = 'Bus account';
     constructor(service: BusAccountService) {
         super(service)
     }
 }
 
 const BusAccount = new BusAccountController(
-    new BusAccountService(Bus)
+    new BusAccountService(Account)
 );
 export default BusAccount
