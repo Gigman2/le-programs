@@ -9,6 +9,9 @@ const schema = new Schema<IBusAccount>(
     accountType: {
       type: String,
       enum: ["BUS_REP", "BRANCH_HEAD", "SECTOR_HEAD", "OVERALL_HEAD"]
+    },
+    group: {
+      type: String
     }
   },
   {
