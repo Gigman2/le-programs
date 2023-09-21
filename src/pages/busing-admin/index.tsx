@@ -61,7 +61,7 @@ export default function OverView() {
       <main>
         <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}  getBus={getSummary}/>
         <Flex w="100%" justify={"center"}>
-          <Box minW={"500px"} w="350px">
+          <Box minW={"600px"} w="400px">
             <Flex align={"right"} direction={"row"} alignItems={"flex-end"} mt={6} mb={3} justify="space-between">
               <Box
                 as={Button}
