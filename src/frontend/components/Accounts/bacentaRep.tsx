@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Flex, FormLabel, Input, Skeleton, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, FormLabel, Icon, Input, Skeleton, Text } from '@chakra-ui/react'
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/router'
-import { handleChange, validate } from '@/utils/form';
+import { handleChange } from '@/utils/form';
 
 import Autocomplete from '@/frontend/components/Forms/Autocomplete';
-import { useBusAccount, useBusGroups } from '@/frontend/apis';
-import { IBusAccount, IBusGroups } from '@/interface/bus';
+import { useBusAccount, useBusGroupTree, useBusGroups } from '@/frontend/apis';
+import { IBusAccount } from '@/interface/bus';
+import { TbBuildingArch, TbLockAccess } from 'react-icons/tb';
+import { saveBusUser } from '@/utils/auth';
 
 export default function BacentaRep() {
     const router = useRouter()
-    const [disabled, setDisabled] = useState(false)
     const [accountType, setAccountType] = useState('')
-    const [userAccount, setUserAccount] = useState('')
+    const [userAccount, setUserAccount] = useState<IBusAccount>()
     const [fields, setFIelds] = useState< Record<string, string | null | Record<string, string>>>({
       id: '',
       group:  null
@@ -37,57 +38,41 @@ export default function BacentaRep() {
         {name: fields.id as string, group: (fields?.group as {value: string})?.value},
         Boolean(fields.id && (fields?.group as {value: string})?.value)
     )
+
     const userAccountData = account?.data as IBusAccount[]
-    const required = ['id', 'group']
-    useEffect(() => {
-        const hasError = validate(required, errors, fields, setErrors)
-        setDisabled(hasError)
-    }, [fields])
+
+     const { data: tree, isLoading: treeLoading } = useBusGroupTree(userAccount?.group as string, !!userAccount?.group);
+
+    const treeData = tree?.data || []
 
     useEffect(() => {
         setFIelds(prev => ({...prev, group: null}))
     }, [groups])
 
+    useEffect(() => {
+        if(userAccountData?.length){
+            setUserAccount(userAccountData[0])
+        }
+    },[userAccountData])
   
-    // const handleClick = () => {
-    //     clearUser()
-    //     const user: ILocalUser = {name: fields.id.toLowerCase(), group: fields.group, isRep: false, groupName: selected.groupName as string}
+    const handleContinue = () => {
+        const user = {
+            name:userAccount?.name, 
+            accountId: userAccount?._id,
+            group: (fields.group as {value: string}).value, 
+            groupName: (fields.group as {label: string}).label,
+            roles: userAccount?.accountType
+        }
+        saveBusUser(user)
 
-    //     const item = groups.filter((item: IBusAccount) => {
-    //         return item.label === user.group
-    //     })
-    //     if(item.length){
-    //         const itemPart = item[0]
-    //         const isARep = itemPart.busReps.includes(user.name)
-    //         if(isARep){
-    //             user.isRep = true
-    //             user.groupStations = itemPart.stations
-    //             router.push(`/bus-round`)
-    //         }
-    //     }
-    //     saveUser(
-    //         user.name, 
-    //         user.group, 
-    //         user.isRep, 
-    //         user.groupName, 
-    //         user.groupStations
-    //     )
-    // }
-
-    // useEffect(() => {
-    //     if(fields.id && fields.group && data){
-    //         const item = groups.filter(item => {
-    //             return item.label === fields.group
-    //         })
-    //         if(item.length){
-    //             const itemPart = item[0]
-    //             const isARep = itemPart.busReps.includes(fields.id.toLowerCase())
-    //             setShowIsRep(isARep)
-    //         }
-    //     }
-
-    // }, [fields, groups])
-    
+        if(user.roles?.includes('BUS_REP')){
+            router.push('/bus/busing-logs')
+        } else if(user.roles?.includes('BRANCH_HEAD')){
+            router.push('/bus/branch-head')
+        } else if(user.roles?.includes('SECTOR_HEAD')){
+            router.push('/bus/sector-head')
+        }
+    }
 
     return (
     <>
@@ -105,7 +90,7 @@ export default function BacentaRep() {
         }
         <Box mb={6} fontSize={14}>
             <FormLabel color="gray.700">Enter Account ID</FormLabel>
-            <Input placeholder='Enter ID Here ' value={fields.id as string } 
+            <Input fontSize={14} placeholder='Enter ID Here ' value={fields.id as string } 
             onChange={v =>   handleChange(v.currentTarget?.value, 'id', fields, setFIelds)}
             />
         </Box>
@@ -161,32 +146,6 @@ export default function BacentaRep() {
         ) : <Skeleton w="100%" h={48} rounded={'md'}/>}
         </Box>}
 
-        {userAccount && <Box my={4}>
-            <Text fontWeight={500} fontSize={17}>Account Info</Text>
-            <Flex gap={4}>
-                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
-                    <Flex justify={"space-between"}>
-                        <Text>Role</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                </Box>
-                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
-                    <Flex justify={"space-between"}>
-                        <Text>Sector</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                    <Flex justify={"space-between"}>
-                        <Text>Branch</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                    <Flex justify={"space-between"}>
-                        <Text>Zone</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                </Box>
-            </Flex>
-        </Box>}
-
         {(fields['id']?.length && fields['group']) && !userAccountData?.length && !accountIsLoading ? <Box 
                 mb={4} 
                 bg="orange.400" 
@@ -203,28 +162,57 @@ export default function BacentaRep() {
 
         {(fields['id']?.length && fields['group']) && userAccountData?.length && !accountIsLoading ?
             (
-                <Flex gap={4} mt={4}>
-                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
-                    <Flex justify={"space-between"}>
-                        <Text>Role</Text>
-                        <Text>Zone Head</Text>
+                <>
+                    <Box mt={4} p={4} bg={'blue.100'} rounded="md" fontSize={15}>
+                        <Flex justify={"space-between"} pb={2}>
+                            <Flex gap={1} align={"center"}>
+                                <Icon as={TbLockAccess} fontSize={24}/>
+                                <Text>role(s)</Text>
+                            </Flex>
+                            <Flex>
+                                    {userAccount?.accountType?.map(item => (
+                                        <Box key={item} 
+                                            py={1}
+                                            px={4}
+                                            color={"white"}
+                                            rounded={"full"} 
+                                            bg="blue.400" 
+                                            fontSize={14}
+                                            textTransform={"capitalize"}>{item.replace("_", " ").toLowerCase()}</Box>
+                                    ))}
+                            </Flex>
+                        </Flex>
+                        <hr style={{borderColor: "#57b2e6"}} />
+                        {treeLoading ? null : <Box>
+                            {treeData.map(item => (
+                                <Flex key={item._id} justify={"space-between"} pb={2} mt={2}>
+                                    <Flex gap={1} align={"center"}>
+                                        <Icon as={TbBuildingArch} fontSize={20}/>
+                                        <Text fontWeight={500}>{item?.type?.toLowerCase()}</Text>
+                                    </Flex>
+                                    <Flex>
+                                        {item.name}
+                                    </Flex>
+                                </Flex>)
+                                )
+                            }
+                        </Box>}
+                    </Box>
+                    <Flex gap={4} mt={4}>
+                        
                     </Flex>
-                </Box>
-                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
-                    <Flex justify={"space-between"}>
-                        <Text>Sector</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                    <Flex justify={"space-between"}>
-                        <Text>Branch</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                    <Flex justify={"space-between"}>
-                        <Text>Zone</Text>
-                        <Text>Zone Head</Text>
-                    </Flex>
-                </Box>
-            </Flex>
+                    <Box as={Button} 
+                        colorScheme="black"
+                        px={5}
+                        py={2}
+                        mt={8}
+                        w={"100%"}
+                        color="white" 
+                        onClick={() => handleContinue()}
+                        bg={ "base.blue" }
+                        _hover={{bg:  "base.blue" }}
+                    >Continue</Box>
+                </>
             ) 
             : null
         }

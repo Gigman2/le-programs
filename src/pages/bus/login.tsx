@@ -29,7 +29,7 @@ export default function Home() {
                 p={5}
             >
                 <Flex align={"center"} justify={"center"}>
-                    <Icon as={MdOutlineDirectionsBus} color={"gray.600"} fontSize={52} />
+                    <Icon as={MdOutlineDirectionsBus} color={"gray.500"} fontSize={52} />
                 </Flex>
                 <Flex 
                 flex={1}

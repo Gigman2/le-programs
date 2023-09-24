@@ -1,3 +1,9 @@
+export const saveBusUser = (data: Record<string, string | undefined | string[]>) => {
+    if (typeof window !== undefined) {
+        localStorage.setItem('le_auth', JSON.stringify(data))
+    }
+}
+
 export const saveUser = (name?: string, group?: string, isRep?: boolean, groupName?: string, groupStations?: string[]) => {
     if (typeof window !== undefined) {
         localStorage.setItem('le_auth', JSON.stringify({ name, group, isRep, groupName, groupStations }))

@@ -51,7 +51,7 @@ class BaseController<S extends IBaseService<any>> {
             const doc = await this.service.insert(req.body)
             return response.successWithData(res, doc, `${this.name} created successfully!`, 201)
         } catch (error: any) {
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 
@@ -68,7 +68,7 @@ class BaseController<S extends IBaseService<any>> {
             return response.successWithData(res, doc)
         } catch (error: any) {
             console.log(error)
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 
@@ -81,9 +81,9 @@ class BaseController<S extends IBaseService<any>> {
     async getById(req: NextApiRequest, res: NextApiResponse) {
         try {
             const doc = await this.service.getById((req.query as { id: string | string[] | ObjectId }).id)
-            response.successWithData(res, doc)
+            return response.successWithData(res, doc)
         } catch (error: any) {
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 
@@ -97,9 +97,9 @@ class BaseController<S extends IBaseService<any>> {
     async getOne(req: { query: IBaseQuery }, res: NextApiResponse) {
         try {
             const doc = await this.service.getOne(req.query)
-            response.successWithData(res, doc)
+            return response.successWithData(res, doc)
         } catch (error: any) {
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 
@@ -118,9 +118,9 @@ class BaseController<S extends IBaseService<any>> {
         try {
             // if(hasAccess !== 200)
             const doc = await this.service.update((req.query as { id: string | string[] | ObjectId }).id, req.body)
-            response.successWithData(res, doc, `${this.name} updated successfully!`)
+            return response.successWithData(res, doc, `${this.name} updated successfully!`)
         } catch (error: any) {
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 
@@ -134,9 +134,9 @@ class BaseController<S extends IBaseService<any>> {
     async delete(req: NextApiRequest, res: NextApiResponse) {
         try {
             const doc = await this.service.update((req.query as { id: string | string[] | ObjectId }).id, { status: 'ARCHIVED' })
-            response.successWithData(res, doc, `${this.name} deleted successfully!`)
+            return response.successWithData(res, doc, `${this.name} deleted successfully!`)
         } catch (error: any) {
-            response.error(res, error.message || error)
+            return response.error(res, error.message || error)
         }
     }
 }

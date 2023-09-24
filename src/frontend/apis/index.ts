@@ -55,6 +55,23 @@ export function useBusAccount({ name, group }: { name: string, group: string }, 
     return { error, ...rest }
 }
 
+export function useBusGroupTree(key: string, enabled: boolean) {
+    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-group-tree", { group: key }], async () => {
+        const { data } = await axios.get(
+            `${baseUrl}/api/bus-groups/tree?_id=${key}`
+        );
+        return data;
+    }, { enabled });
+
+    if (error) {
+        toastMessage.title = (error as any).message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
 export const getBusGroupsApi = async () => {
     return await fetch(`${baseUrl}/api/bus_groups`, {
         method: 'get',
