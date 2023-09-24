@@ -1,2 +1,11 @@
 [2023-08-07T19:33:18.653] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-08-07T19:33:18.657] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-23T15:30:19.622] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-09-23T20:29:36.949] [ERROR] default - connection <monitor> to 34.225.241.19:27017 timed out
+[2023-09-23T20:29:36.966] [ERROR] default - connection <monitor> to 34.225.241.19:27017 timed out
+[2023-09-23T20:29:40.145] [ERROR] default - connection timed out
+[2023-09-23T20:29:42.772] [ERROR] default - connection timed out
+[2023-09-23T20:29:43.034] [ERROR] default - connection timed out
+[2023-09-23T20:29:43.136] [ERROR] default - connection timed out
+[2023-09-23T20:29:43.352] [ERROR] default - connection timed out
+[2023-09-23T20:29:45.135] [ERROR] default - connection timed out

@@ -1,40 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Flex, FormLabel, Input, Text, useToast } from '@chakra-ui/react'
+import { Box, Flex, FormLabel, Input, Skeleton, Text } from '@chakra-ui/react'
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange, validate } from '@/utils/form';
-import { clearUser, saveUser } from '@/utils/auth';
+
 import Autocomplete from '@/frontend/components/Forms/Autocomplete';
-import { IBusGroups } from '@/interface/bus';
-import { getBusGroupsApi }  from '@/frontend/apis'
-
-interface IModifiedBusGroup {
-    label?: string,
-    stations: string[],
-    busReps: string[],
-    value: string
-}
-
-interface ILocalUser {
-    name: string, 
-    group: string, 
-    isRep: boolean, 
-    groupName: string,
-    groupStations?: string[]
-}
+import { useBusAccount, useBusGroups } from '@/frontend/apis';
+import { IBusAccount, IBusGroups } from '@/interface/bus';
 
 export default function BacentaRep() {
-    const toast = useToast()
     const router = useRouter()
-    const [loading, setLoading] = useState(false)
-    const [data, setData] = useState<IModifiedBusGroup[]>([])
     const [disabled, setDisabled] = useState(false)
-    const [search, setSearch] = useState('')
-    const [selected, setSelected] = useState<Record<string, string | string[]>>({})
-    const [showIsRep, setShowIsRep] = useState(false)
-    const [fields, setFIelds] = useState< Record<string, string>>({
+    const [accountType, setAccountType] = useState('')
+    const [userAccount, setUserAccount] = useState('')
+    const [fields, setFIelds] = useState< Record<string, string | null | Record<string, string>>>({
       id: '',
-      group: ''
+      group:  null
     })
 
     const [errors, setErrors] = useState<Record<string, string | undefined>>({
@@ -43,137 +24,210 @@ export default function BacentaRep() {
         groupName: undefined
     })
 
-
-    const toastMessage: { 
-    title: string; 
-    status: "success" | "loading" | "error" | "info" | "warning" | undefined; 
-    duration: number; 
-    isClosable: boolean; 
-    position: 'top' | 'top-right' | 'top-left' | 'bottom' | 'bottom-right' |'bottom-left'
-  } = {
-      title: "Bus updated successfully",
-      status: "success",
-      position: 'top-right',
-      duration: 9000,
-      isClosable: true,
-  }
-
-    const fetchGroup = async () => {
-      try {
-          setLoading(true)
-          const res = await getBusGroupsApi()
-          const groups = await res.json()
-          let groupData = groups.data as IBusGroups[]
-          const modifiedData = groupData.map(item => ({label: item._id, value: item.groupName, busReps: item.busReps, stations: item.stations}))
-          setData(modifiedData)
-          setLoading(false)
-        } catch (error) {
-          setLoading(false)
-          toastMessage.title = 'An error occurred'
-          toastMessage.status = 'error'
-          toast(toastMessage)
-        }
+    const accountTypes = {
+        "Bus Rep": "ZONE",
+        "Branch Head": "BRANCH",
+        "Sector Head": "SECTOR"
     }
-    
-    useEffect(() => {
-      fetchGroup()
-    }, [])
 
-    const required = ['id']
+    const { data: groups, isLoading } = useBusGroups(accountType, !!accountType);
+    const groupData = groups?.data?.map(item => ({label: item.name, value: item._id as string}))
+
+    const {data: account, isLoading: accountIsLoading} = useBusAccount(
+        {name: fields.id as string, group: (fields?.group as {value: string})?.value},
+        Boolean(fields.id && (fields?.group as {value: string})?.value)
+    )
+    const userAccountData = account?.data as IBusAccount[]
+    const required = ['id', 'group']
     useEffect(() => {
         const hasError = validate(required, errors, fields, setErrors)
         setDisabled(hasError)
     }, [fields])
-  
-    const handleClick = () => {
-        clearUser()
-        const user: ILocalUser = {name: fields.id.toLowerCase(), group: fields.group, isRep: false, groupName: selected.groupName as string}
-
-        const item = data.filter(item => {
-            return item.label === user.group
-        })
-        if(item.length){
-            const itemPart = item[0]
-            const isARep = itemPart.busReps.includes(user.name)
-            if(isARep){
-                user.isRep = true
-                user.groupStations = itemPart.stations
-                router.push(`/bus-round`)
-            }
-        }
-        saveUser(
-            user.name, 
-            user.group, 
-            user.isRep, 
-            user.groupName, 
-            user.groupStations
-        )
-    }
 
     useEffect(() => {
-        if(fields.id && fields.group && data){
-            const item = data.filter(item => {
-                return item.label === fields.group
-            })
-            if(item.length){
-                const itemPart = item[0]
-                const isARep = itemPart.busReps.includes(fields.id.toLowerCase())
-                setShowIsRep(isARep)
-            }
-        }
+        setFIelds(prev => ({...prev, group: null}))
+    }, [groups])
 
-    }, [fields, data])
+  
+    // const handleClick = () => {
+    //     clearUser()
+    //     const user: ILocalUser = {name: fields.id.toLowerCase(), group: fields.group, isRep: false, groupName: selected.groupName as string}
+
+    //     const item = groups.filter((item: IBusAccount) => {
+    //         return item.label === user.group
+    //     })
+    //     if(item.length){
+    //         const itemPart = item[0]
+    //         const isARep = itemPart.busReps.includes(user.name)
+    //         if(isARep){
+    //             user.isRep = true
+    //             user.groupStations = itemPart.stations
+    //             router.push(`/bus-round`)
+    //         }
+    //     }
+    //     saveUser(
+    //         user.name, 
+    //         user.group, 
+    //         user.isRep, 
+    //         user.groupName, 
+    //         user.groupStations
+    //     )
+    // }
+
+    // useEffect(() => {
+    //     if(fields.id && fields.group && data){
+    //         const item = groups.filter(item => {
+    //             return item.label === fields.group
+    //         })
+    //         if(item.length){
+    //             const itemPart = item[0]
+    //             const isARep = itemPart.busReps.includes(fields.id.toLowerCase())
+    //             setShowIsRep(isARep)
+    //         }
+    //     }
+
+    // }, [fields, groups])
+    
 
     return (
     <>
-        <Box mb={6}>
-            <FormLabel fontSize={14} color="gray.700">Enter registered ID</FormLabel>
-            <Input placeholder='ID here' value={fields.id } 
+        { (!fields['id']?.length || !fields['group']) &&  !(!fields['id']?.length && !fields['group']) ? 
+            <Box 
+                mb={4} 
+                bg="red.400" 
+                rounded={"sm"} 
+                color="white" 
+                px={4} py={3} 
+                w="100%"
+            >
+                You&lsquo;ve either not selected an ID or a Bus Unit</Box>
+                : null
+        }
+        <Box mb={6} fontSize={14}>
+            <FormLabel color="gray.700">Enter Account ID</FormLabel>
+            <Input placeholder='Enter ID Here ' value={fields.id as string } 
             onChange={v =>   handleChange(v.currentTarget?.value, 'id', fields, setFIelds)}
             />
         </Box>
-        <Box my={4}>
-            <Text fontWeight={600} fontSize={14} color="gray.600">Stations in Zone</Text>
-            <Box p={2} bg={'gray.100'} rounded="md">
-                {(selected?.stations as string[])?.map((item: string) => <Text key={item} fontSize={14} color={"gray.600"} my={1}>{item}</Text>)}
-            </Box>
-        </Box>
-        {!loading ? <Box>
-            <Box>
-            <FormLabel fontSize={14} color="gray.700">Type and select zone</FormLabel>
-            <Autocomplete 
-                name='group'
-                noMatch={item => null}
-                data={data as unknown as Record<string, string>[]}
-                fields={fields}
-                setFields={setFIelds as unknown as Dispatch<SetStateAction<Record<string, string | boolean | undefined>>>}
-                placeholder='Enter zone name here ...'
-                queryValue={(query) => null}
-                search={search}
-                setSearch={setSearch}
-                onSelected={(item: Record<string, string>) => 
-                    setSelected(item) 
-                }
-            />
-            {(!showIsRep && search !== '') && <Text fontSize={12} color="red.400">You are not a bus rep here</Text>}
-            </Box>
-            <Box as={Button} 
-                colorScheme="black"
-                px={5}
-                py={2}
-                mt={24}
-                w={"100%"}
+        {!accountType.length ? 
+            <Box 
+                mb={4} 
+                bg="blue.400" 
+                rounded={"sm"} 
                 color="white" 
-                onClick={() => handleClick()}
-                bg={ "base.blue" }
-                _hover={{bg:  "base.blue" }}
-                isDisabled={disabled || search === '' || !showIsRep}
-            >{search === '' ? 'Select a zone to continue' : 'Next'}
+                px={4} py={3} 
+                w="100%"
+            >
+                Select an account type to continue</Box>
+            : null
+        }
+        <Box mb={6} fontSize={14}>
+            <FormLabel color="gray.700" fontSize={17}>Select account type</FormLabel>
+            <Flex justifyContent={"space-between"}>
+                {Object.keys(accountTypes)?.map(item => (
+                    <Flex align={"center"} gap={2} key={item}>
+                        <Flex 
+                            p={1} 
+                            rounded={"sm"} 
+                            borderWidth={1} 
+                            borderColor={accountType === accountTypes[item as "Bus Rep" | "Branch Head" | "Sector Head"] ? "blue.400" :"gray.200"} 
+                            w={7} h={7}
+                            cursor={"pointer"}
+                            onClick={() => 
+                                setAccountType(accountTypes[item as "Bus Rep" | "Branch Head" | "Sector Head"])
+                            }
+                        >
+                            <Box w={"100%"} h="100%" bg={accountType === accountTypes[item as "Bus Rep" | "Branch Head" | "Sector Head"] ? "blue.400" :"gray.300"} ></Box>
+                        </Flex>
+                        <Text>{item}</Text>
+                    </Flex>
+                ))}
+            </Flex>
+        </Box>
+        {accountType && <Box>
+            { !isLoading ?
+        (
+            <Box fontSize={14}>
+                <FormLabel color="gray.700">Select {accountType.toLowerCase()}</FormLabel>
+                <Autocomplete 
+                    value={fields['group'] as string}
+                    name='group'
+                    options={groupData || []}
+                    fields={fields as Record<string, string>}
+                    setFields={setFIelds as unknown as Dispatch<SetStateAction<Record<string, string | boolean | undefined>>>}
+                    placeholder='Enter zone name here ...'
+                />
             </Box>
-        </Box> : 
-        <Flex w="100%" h={48} align="center" justify={"center"}>
-            <Text fontWeight={600}>Loading please wait ...</Text>
-        </Flex>}
+        ) : <Skeleton w="100%" h={48} rounded={'md'}/>}
+        </Box>}
+
+        {userAccount && <Box my={4}>
+            <Text fontWeight={500} fontSize={17}>Account Info</Text>
+            <Flex gap={4}>
+                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
+                    <Flex justify={"space-between"}>
+                        <Text>Role</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                </Box>
+                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
+                    <Flex justify={"space-between"}>
+                        <Text>Sector</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                    <Flex justify={"space-between"}>
+                        <Text>Branch</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                    <Flex justify={"space-between"}>
+                        <Text>Zone</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                </Box>
+            </Flex>
+        </Box>}
+
+        {(fields['id']?.length && fields['group']) && !userAccountData?.length && !accountIsLoading ? <Box 
+                mb={4} 
+                bg="orange.400" 
+                rounded={"sm"} 
+                color="white" 
+                px={4} py={3} 
+                w="100%"
+                mt={4}
+            >
+                It appears the selected account does not have access to the busing system kindly reach out to your branch head
+            </Box> : null
+            
+        }
+
+        {(fields['id']?.length && fields['group']) && userAccountData?.length && !accountIsLoading ?
+            (
+                <Flex gap={4} mt={4}>
+                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
+                    <Flex justify={"space-between"}>
+                        <Text>Role</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                </Box>
+                <Box flex={1} p={2} bg={'gray.100'} rounded="md" fontSize={15}>
+                    <Flex justify={"space-between"}>
+                        <Text>Sector</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                    <Flex justify={"space-between"}>
+                        <Text>Branch</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                    <Flex justify={"space-between"}>
+                        <Text>Zone</Text>
+                        <Text>Zone Head</Text>
+                    </Flex>
+                </Box>
+            </Flex>
+            ) 
+            : null
+        }
     </>
   )
 }

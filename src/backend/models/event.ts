@@ -28,7 +28,7 @@ const schema = new Schema<IEvent>(
             id: { type: ObjectId },
             type: {
                 type: String,
-                enum: ["BRANCH", "SECTOR"]
+                enum: ["BRANCH", "SECTOR", "CHURCH"]
             }
         },
         status: {

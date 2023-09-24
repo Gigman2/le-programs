@@ -14,13 +14,3 @@ export interface IMember {
     addedBy: string,
     created_on: string
 }
-
-
-
-export interface IBusGroups {
-    _id?: string
-    busReps: string[],
-    groupName: string
-    stations: string[],
-    totalBuses: number,
-}

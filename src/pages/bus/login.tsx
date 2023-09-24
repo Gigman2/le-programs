@@ -8,14 +8,6 @@ import BacentaRep from '@/frontend/components/Accounts/bacentaRep';
 export default function Home() {
     const [selected, setSelected] = useState<number>()
 
-    const sections =[ 
-    {
-      name: 'Bacenta Rep',
-      icon: MdOutlineDirectionsBus,
-      id: 1
-    }
-  ]
-
     return (
     <>
       <Head>
@@ -26,25 +18,28 @@ export default function Home() {
       </Head>
       <main>
         <Flex w="100%" justify={"center"} mt={12}>
-          <Box maxW={"500px"} w="100%" p={2}>
-            <Flex mb={4} gap={4}>
-              {sections.map(item => {
-                return <Flex 
+          <Box maxW={"500px"} w="100%" p={2} minH="100vh">
+            <Flex 
+                mb={4} 
+                gap={4}
+                borderWidth={1}
+                borderColor={"gray.200"}
+                rounded="md"
+                align={"center"}
+                p={5}
+            >
+                <Flex align={"center"} justify={"center"}>
+                    <Icon as={MdOutlineDirectionsBus} color={"gray.600"} fontSize={52} />
+                </Flex>
+                <Flex 
                 flex={1}
-                key={item.id} 
                 direction={"column"} 
-                cursor={'pointer'}
-                align="center" 
-                borderWidth={item.id === selected ? 2 :1}
-                borderColor={item.id === selected ? "black" :"gray.200"}
-                rounded="md" p={5} 
+                align="left" 
                 color="gray.500"
-                onClick={() => setSelected(item.id)}
                 >
-                  <Icon as={item.icon} fontSize={36} mb={4} />
-                  <Text>{item.name}</Text>
+                  <Text fontSize={18} fontWeight={600} textTransform={"uppercase"}>Love Economy Busing App</Text>
+                  <Text>Login</Text>
               </Flex>
-              })}
             </Flex>
 
            <BacentaRep />
