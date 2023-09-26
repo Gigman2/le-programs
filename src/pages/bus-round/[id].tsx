@@ -213,16 +213,12 @@ export default function BusMembers() {
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
                   <FormLabel fontSize={14}>What is your current / last station</FormLabel>
-                  <Autocomplete 
-                      name='currentStation'
-                      noMatch={item => null}
-                      data={stations}
-                      fields={fields as unknown as Record<string, string>}
-                      setFields={setFields as unknown as React.Dispatch<React.SetStateAction<Record<string, string | boolean | undefined >>>}
-                      placeholder='Enter group name here ...'
-                      queryValue={(query) => null }
-                      search={search}
-                      setSearch={setSearch}
+                  <Input 
+                      type={"text"}
+                      name="currentStation"
+                      placeholder='Enter here ...' 
+                      value={fields.currentStation} 
+                      onChange={(v) => handleChange(v?.currentTarget?.value, 'currentStation', fields, setFields)} 
                   />
                 </Box>
 
