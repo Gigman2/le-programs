@@ -13,13 +13,19 @@ import _,{
   groupBy
 
  } from 'lodash';
+<<<<<<< HEAD
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import {FaMinus} from 'react-icons/fa'
 import { IBusRound } from "@/interface/bus";
 import { IHeadcount } from "@/interface/headcount";
+=======
+import { getUser } from "@/utils/auth";
+import { useRouter } from "next/router";
+import {addBusRoundsApi} from "@frontend/apis";
+
+>>>>>>> origin/restructuring
 
 export default function OverView() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [loading, setLoading] = useState(false);
 
   const [latestDate, setLatestDate] = useState('');
@@ -48,10 +54,7 @@ export default function OverView() {
         const apiPayload = { 
           busGroup : { $exists: true, $ne: null } 
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
-          method: 'post', 
-          body: JSON.stringify(apiPayload)
-        })
+        const res = await addBusRoundsApi(apiPayload)
         const response = await res.json()
         setBusRounds(response.data || [])
       }

@@ -11,21 +11,19 @@ import {
     Text
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
+import {removeBusRoundApi} from "@/frontend/apis";
 
 export default function DeleteBusRound(
     {isOpen, onClose, bus, getBus}: 
     {isOpen: boolean, onClose: () => void; bus: IBusRound; getBus: () => void}
     )  {
     const cancelRef = React.useRef(null)
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL
     const [loading, setLoading] = useState(false)
 
     const deleteBusRound = async () => {
         try {
         setLoading(true)
-        await fetch(`${baseUrl}/api/bus_rounds/${bus?._id}`, {
-            method: 'DELETE'
-        })
+        await removeBusRoundApi(bus);
         await getBus()
         onClose()
         } catch (error) {

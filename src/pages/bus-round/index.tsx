@@ -5,9 +5,9 @@ import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
 import { getUser } from '@/utils/auth'
 import Link from 'next/link'
 import moment from 'moment'
+import {createBusRoundsApi, recordBusRoundsApi} from "@frontend/apis";
 
 export default function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [userBus, setUserBus] = useState<Record<string, string>[]>([])
   const [nonActive, setNonActive] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -26,10 +26,7 @@ export default function Home() {
               $lt: moment().endOf('day').toDate(),
             }
         }
-        const res = await fetch(`${baseUrl}/api/bus_rounds`, {
-          method: 'post',
-          body: JSON.stringify(recorderPage)
-        })
+        const res = await recordBusRoundsApi(recorderPage)
         const response = await res.json()
         let recorderRound = (response.data || [])
         if(recorderRound.length){
@@ -47,10 +44,7 @@ export default function Home() {
     try {
       setLoading(true)
       const recorderPayload = {busRep: currentUser.name, nonBus: false, busState: 'EN_ROUTE', busGroup: currentUser.group}
-      const createReq = await fetch(`${baseUrl}/api/bus_rounds/addBusRounds`, {
-        method: 'post',
-        body: JSON.stringify(recorderPayload)
-      })
+      const createReq = await createBusRoundsApi(recorderPayload)
       const createRes = await createReq.json()
       let recorderRound = createRes.data
       setUserBus(prev => [...prev, recorderRound])

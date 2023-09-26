@@ -2,24 +2,15 @@ import response from '../../lib/response'
 import mongoose, { ObjectId } from 'mongoose';
 import { getLogger } from '@/backend/utils/logger';
 import { NextApiRequest, NextApiResponse } from 'next';
-import IBaseController, { IBaseParams, IBaseQuery } from './interface';
+import { IBaseQuery } from './interface';
 import IBaseService from '@/backend/services/Base/interface';
 // import EventEmitter from 'eventemitter3';
 
-class BaseController<S extends IBaseService<any>> implements IBaseController<S> {
+class BaseController<S extends IBaseService<any>> {
     protected name: string = 'Base';
     service: S;
     constructor(service: S) {
-        // super()
         this.service = service
-        this.objectId = this.objectId.bind(this)
-        this.log = this.log.bind(this)
-        this.get = this.get.bind(this)
-        this.insert = this.insert.bind(this)
-        this.getOne = this.getOne.bind(this)
-        this.update = this.update.bind(this)
-        this.delete = this.delete.bind(this)
-        this.getById = this.getById.bind(this)
     }
 
     /**
@@ -76,6 +67,7 @@ class BaseController<S extends IBaseService<any>> implements IBaseController<S> 
             const doc = await this.service.get({ ...req.query, status: { "$ne": "ARCHIVED" } })
             return response.successWithData(res, doc)
         } catch (error: any) {
+            console.log(error)
             response.error(res, error.message || error)
         }
     }

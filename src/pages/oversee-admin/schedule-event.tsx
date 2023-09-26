@@ -5,14 +5,15 @@ import { getUser } from '@/utils/auth'
 import moment from 'moment'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useRouter } from 'next/router'
-import CustomInput from '@/components/Forms/CustomInput'
-import CustomDateTime from '@/components/Forms/CustomDateTime'
-import CustomSelect from '@/components/Forms/CustomSelect'
+import CustomInput from '@frontend/components/Forms/CustomInput'
+import CustomDateTime from '@frontend/components/Forms/CustomDateTime'
+import CustomSelect from '@frontend/components/Forms/CustomSelect'
 import { MeetingTypes } from '@/helpers/misc';
+import addAttendee from "@/pages/api/attendee/addAttendee";
+import {addAttendeeApi} from "@frontend/apis";
 
 export default function Home() {
     const router = useRouter()
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL
     const toast = useToast()
     const [loading, setLoading] = useState(false)
     const [currentUser, setCurrentUser] = useState<{name?: string;}>({})
@@ -37,10 +38,7 @@ export default function Home() {
     const handleSubmit = async () => {
         try {
             setLoading(true)
-            let res = await fetch(`${baseUrl}/api/attendee/addAttendee`, {
-                method: 'post',
-                body: JSON.stringify(fields)
-            })
+            let res = await addAttendeeApi(fields)
             let resData = await res.json()
             if(res.status !== 200) throw new Error(resData.message)
             toast(toastMessage)

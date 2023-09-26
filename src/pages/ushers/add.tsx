@@ -6,10 +6,10 @@ import { getUser } from '@/utils/auth'
 import moment from 'moment'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useRouter } from 'next/router'
+import {addHeadCountApi} from "@frontend/apis";
 
 export default function Home() {
   const router = useRouter()
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const toast = useToast()
   const [loading, setLoading] = useState(false)
   const [currentUser, setCurrentUser] = useState<{name?: string;}>({})
@@ -52,10 +52,7 @@ export default function Home() {
         return acc
       }, 0)
       const payload = {section: sections, total, recorder: currentUser.name}
-      const res = await fetch(`${baseUrl}/api/head_count/addHeadcount`, {
-          method: 'post',
-          body: JSON.stringify(payload)
-      })
+      const res = await addHeadCountApi(payload)
       let resData = await res.json()
       if(res.status !== 200) throw new Error(resData.message)
       resetData()

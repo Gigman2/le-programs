@@ -1,7 +1,7 @@
+import IHeadCountService from "@/backend/services/HeadCount/interface";
 import IBaseController from "../Base/interface";
-import IEventService from "@/backend/services/Event/interface";
 
-interface IEventController extends IBaseController<IEventService> {
+interface IHeadCountController extends IBaseController<IHeadCountService> {
 }
 
-export default IEventController
+export default IHeadCountController

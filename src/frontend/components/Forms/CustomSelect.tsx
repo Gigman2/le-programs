@@ -31,7 +31,6 @@ export default function Autocomplete(
                 onClick={() => setOpen(!isOpen)}
             >
                 {fields[name] ? <Text>{fields[name]}</Text> : <Text color="gray.500">Select a meeting type...</Text> }
-                
                 <Icon as={RxCaretDown} fontSize={24} />
             </Flex>
             {isOpen && data.length > 0 &&  <Box mt={4} borderWidth={1} borderColor={"gray.300"} rounded="sm" 

@@ -6,17 +6,17 @@ import { Box, Button, Flex, FormLabel, Icon, Input, Text, useToast } from '@chak
 import {BsArrowLeft} from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import { getUser } from '@/utils/auth'
-import PersonalInfo from '@/components/AddMember/Personalnfo'
-import OtherInfo from '@/components/AddMember/OtherInfo'
-import Professional from '@/components/AddMember/Professional'
-import NextOfKin from '@/components/AddMember/NextOfKin'
-import Church from '@/components/AddMember/ChurchInfo'
+import PersonalInfo from '@frontend/components/AddMember/Personalnfo'
+import OtherInfo from '@frontend/components/AddMember/OtherInfo'
+import Professional from '@frontend/components/AddMember/Professional'
+import NextOfKin from '@frontend/components/AddMember/NextOfKin'
+import Church from '@frontend/components/AddMember/ChurchInfo'
 import { validate } from '@/utils/form'
 import { IMember } from '@/utils/interfaces'
+import {addAttendeeInfoApi, getAttendeeInfoApi} from "@frontend/apis";
 
 
 export default function BusMembers() {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL
     const [loading, setLoading] = useState(false)
     const [step, setStep] = useState<number>(1)
     const [disabled, setDisabled] = useState(false)
@@ -59,11 +59,7 @@ export default function BusMembers() {
             payload.addedBy = currentUser.name as string
             payload.group = currentUser.group as string
             payload.details = {...fields} as Record<string, string | boolean>
-
-            let res = await fetch(`${baseUrl}/api/attendee/addAttendee`, {
-                method: 'post',
-                body: JSON.stringify(payload)
-            })
+            let res = await addAttendeeInfoApi(payload)
             let resData = await res.json()
             if(res.status !== 200) throw new Error(resData.message)
             toast(toastMessage)
@@ -79,9 +75,7 @@ export default function BusMembers() {
 
     const fetchAttendees = async () => {
         try {
-            const res = await fetch(`${baseUrl}/api/attendee/getAttendee`, {
-                method: 'get',
-            })
+            const res = await getAttendeeInfoApi()
             const groups = await res.json()
             let groupData = (groups.data || []) as IMember[]
             const parseData = groupData.map(item => ({label: item._id, value: item.details.surname+' '+ item.details.otherName})) as {label: string, value: string}[]

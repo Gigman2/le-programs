@@ -5,6 +5,7 @@ import { TagsInput } from "react-tag-input-component";
 import { handleChange } from '../utils/form'
 import {BsArrowLeft} from 'react-icons/bs'
 import { useRouter } from 'next/router';
+import {addBusGroupApi} from "@frontend/apis";
 
 
 export interface IGroup {
@@ -16,7 +17,6 @@ export interface IGroup {
 }
 
 export default function Home() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [fields, setFields] = useState<IGroup>({
@@ -54,10 +54,7 @@ export default function Home() {
       const payload = {...fields}
       payload.busReps = payload.busReps.map(item => item.toLowerCase())
       setLoading(true)
-      let res = await fetch(`${baseUrl}/api/bus_groups/addGroup`, {
-        method: 'post',
-        body: JSON.stringify(payload)
-      })
+      let res = await addBusGroupApi(payload)
       let resData = await res.json()
       if(res.status !== 200) throw new Error(resData.message)
       resetData()
