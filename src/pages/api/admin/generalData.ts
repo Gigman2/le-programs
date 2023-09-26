@@ -1,11 +1,11 @@
-import Attendee from '@/models/attendee';
-import BusGroup from '@/models/bus_groups';
-import BusRound from '@/models/bus_round';
+import Attendee from '@/backend/models/attendee';
+import BusGroup from '@/backend/models/busGroups';
+import BusRound from '@/backend/models/busRound';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 
-import { connectMongo } from '../../../utils/connectMongo';
+import { connectMongo } from '../../../backend/utils/connectMongo';
 
 
 

@@ -1,40 +1,23 @@
-import BusRound from '@/models/bus_round';
+import BusRound from '@/backend/controllers/BusRound';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
-import { connectMongo } from '../../../utils/connectMongo';
-import { Schema } from 'mongoose';
-
-const getHandler = async (id: string, res: NextApiResponse) => {
-    const busRound = await BusRound.findById(id);
-    return res.status(200).json({ message: 'Successful', data: busRound, })
-}
-
-const updateHandler = async (id: string, req: NextApiRequest, res: NextApiResponse) => {
-    const data = JSON.parse(req.body)
-    await BusRound.updateOne({ _id: id }, data);
-    const busRound = await BusRound.findById(id);
-    return res.status(200).json({ message: 'Update Successful', data: busRound, })
-}
-
-const deleteHandler = async (id: string, res: NextApiResponse) => {
-    const busRound = await BusRound.findByIdAndDelete(id)
-    return res.status(200).json({ message: 'Successfully deleted', data: busRound, })
-}
 
 const handler: NextApiHandler = async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
     try {
-        await connectMongo();
-        const { id } = req.query
-        if (id) {
-            if (req.method === 'GET') {
-                return getHandler(id as string, res)
-            } else if (req.method === 'DELETE') {
-                return deleteHandler(id as string, res)
-            } else if (req.method === 'POST') {
-                return updateHandler(id as string, req, res)
-            }
+        switch (req.method) {
+            case "GET":
+                return BusRound.getById(req, res);
+
+            case "POST":
+                return BusRound.update(req, res);
+
+            case "DELETE":
+                return BusRound.update(req, res);
+
+            default:
+                break;
         }
     } catch (error) {
         console.log(error);

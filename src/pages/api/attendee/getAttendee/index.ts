@@ -1,5 +1,5 @@
-import Attendee from '@/models/attendee';
-import { connectMongo } from '@/utils/connectMongo';
+import Attendee from '@/backend/models/attendee';
+import { connectMongo } from '@/backend/utils/connectMongo';
 
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 

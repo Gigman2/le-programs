@@ -1,8 +1,8 @@
-import HeadCount from '@/models/head_count';
+import HeadCount from '@/backend/models/headCount';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 
-import { connectMongo } from '../../../../utils/connectMongo';
+import { connectMongo } from '../../../../backend/utils/connectMongo';
 
 
 
