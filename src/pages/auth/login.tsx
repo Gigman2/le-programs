@@ -18,6 +18,9 @@ export default function Home() {
   // const handlePasswordChange = (event) => {
   //   setPassword(event.target.value);
   // };
+
+
+  
 // gave type to event
 
 
@@ -54,17 +57,17 @@ export default function Home() {
           align="center"
           justify="center"
           direction="column"
-          maxHeight="100vh" // Set the height of the container to 100% of the viewport height
+          maxHeight="100vh" 
           
         >
           <Box
                maxW="500px" w="150%"
-            // width="30vw" // Set the width of the content
-            p="2rem" // Add padding
+            
+            p="2rem"
             // bg="#C5C6D0" 
             bg="black"
-            rounded="md" // Apply rounded corners
-            shadow="lg" // Add a shadow
+            rounded="md"
+            shadow="lg" 
             margin="30px 20px"
             
           >
@@ -86,7 +89,7 @@ export default function Home() {
                 marginTop= "1px"
                 border="none"
                 borderBottom="1px solid white"
-                bg="black" // Set the background color of the input field
+                bg="black"
                 width="300px"
                 mb={4}
               />
@@ -108,7 +111,7 @@ export default function Home() {
               
 
 
-              {/* Login Button */}
+              {/* Login Button----Submit */}
               <Button colorScheme="blue" bg="#15215B" color="white" margin="2rem 5rem" padding="0.5rem 1rem" width="300px" borderRadius="5" onClick={handleLogin}>
                 Submit
               </Button>
