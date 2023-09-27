@@ -80,6 +80,7 @@ class BaseController<S extends IBaseService<any>> {
    */
     async getById(req: NextApiRequest, res: NextApiResponse) {
         try {
+            console.log(req.query.id)
             const doc = await this.service.getById((req.query as { id: string | string[] | ObjectId }).id)
             return response.successWithData(res, doc)
         } catch (error: any) {
