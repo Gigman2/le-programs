@@ -7,12 +7,14 @@ const schema = new Schema<IBusAccount>(
       type: String,
     },
     accountType: [{
-      type: String,
-      enum: ["BUS_REP", "BRANCH_HEAD", "SECTOR_HEAD", "OVERALL_HEAD"]
+      groupType: {
+        type: String,
+        enum: ["BUS_REP", "BRANCH_HEAD", "SECTOR_HEAD", "OVERALL_HEAD"]
+      },
+      groupId: {
+        type: String
+      }
     }],
-    group: {
-      type: String
-    }
   },
   {
     versionKey: false,

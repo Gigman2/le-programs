@@ -1,4 +1,14 @@
-export const saveBusUser = (data: Record<string, string | undefined | string[]>) => {
+import { GroupedUnits } from "@/frontend/components/Accounts/busingLogin";
+
+export interface IAccountUser {
+    name: string;
+    accountId: string;
+    bus: GroupedUnits
+    roles: any[];
+    currentApp: "BUSING" | "USHERING"
+}
+
+export const saveBusUser = (data: IAccountUser) => {
     if (typeof window !== undefined) {
         localStorage.setItem('le_auth', JSON.stringify(data))
     }
@@ -13,7 +23,7 @@ export const saveUser = (name?: string, group?: string, isRep?: boolean, groupNa
 export const getUser = () => {
     if (typeof window !== undefined) {
         const user = localStorage.getItem('le_auth')
-        return JSON.parse(user as string)
+        return JSON.parse(user as string) as IAccountUser
     }
 }
 
