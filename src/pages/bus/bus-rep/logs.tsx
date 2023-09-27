@@ -5,6 +5,7 @@ import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/utils/auth'
 import { useRouter } from 'next/router'
 import { TbPlus } from 'react-icons/tb'
+import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 
 const CardItem = ({name, value}: {name: string; value: string}) => {
   return (
@@ -81,48 +82,37 @@ export default function BusRepLogs() {
     useEffect(() => {
       const user = getUser() as IAccountUser
       if(!user) router.push('/bus/login')
-      console.log(user)
       setCurrentUser(user)
     },[])
 
   return (
-    <>
-      <Head>
-        <title>Swollen Sunday | Love Economy Church</title>
-        <meta name="description" content="An app to record how God has blessed us with great increase" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <Flex w="100%" justify={"center"}>
-          <Box maxW={"500px"} w="100%">
-            <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
-                <Box>
-                  <Flex fontWeight={600} color={"gray.500"}>
-                    <Text color={"gray.500"}>{`${currentUser?.bus['BRANCH']?.name} , ${currentUser?.bus['ZONE']?.name}`}</Text>
-                  </Flex>
-                  <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Account Name: {currentUser?.name}</Text>
-                </Box>
-            </Flex>
-
-            <Flex mt={4} align={"center"} justify={"space-between"}>
-              <Text fontWeight={600} color="gray.500"> Mega Gathering Service</Text>
-              <Flex align={"center"} bg="gray.600" gap={2} color={"white"} py={2} px={4} rounded={"md"}>
-                <Icon as={TbPlus} fontSize={20} />
-                Record Busing
+    <PageWrapper>
+      <Box maxW={"500px"} w="100%">
+        <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
+            <Box>
+              <Flex fontWeight={600} color={"gray.500"}>
+                <Text color={"gray.500"}>{`${currentUser?.bus['BRANCH']?.name} , ${currentUser?.bus['ZONE']?.name}`}</Text>
               </Flex>
-            </Flex>
-
-            <Box mt={4}>
-              <Box pos={"relative"} pl={4}>
-                <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
-                <BusCard time={"Sun 1, October 9:31 AM"} ended={true} />
-                <BusCard time={"Sun 14, October 10:01 AM"} ended={false} />
-              </Box>
+              <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Account Name: {currentUser?.name}</Text>
             </Box>
-          </Box>
         </Flex>
-      </main>
-    </>
+
+        <Flex mt={4} align={"center"} justify={"space-between"}>
+          <Text fontWeight={600} color="gray.500"> Mega Gathering Service</Text>
+          <Flex align={"center"} bg="gray.600" gap={2} color={"white"} py={2} px={4} rounded={"md"}>
+            <Icon as={TbPlus} fontSize={20} />
+            Record Busing
+          </Flex>
+        </Flex>
+
+        <Box mt={4}>
+          <Box pos={"relative"} pl={4}>
+            <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
+            <BusCard time={"Sun 1, October 9:31 AM"} ended={true} />
+            <BusCard time={"Sun 14, October 10:01 AM"} ended={false} />
+          </Box>
+        </Box>
+      </Box>
+    </PageWrapper>
   )
 }
