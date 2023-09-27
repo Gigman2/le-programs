@@ -7,8 +7,6 @@ import BacentaRep from '@/frontend/components/Accounts/busingLogin';
 import PageWrapper from '@/frontend/components/layouts/pageWrapper';
 
 export default function Home() {
-    const [selected, setSelected] = useState<number>()
-
     return (
       <PageWrapper>
         <Box maxW={"500px"} w="100%" p={2} minH="100vh">

@@ -7,11 +7,11 @@ import { useRouter } from 'next/router'
 import { TbPlus } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 
-const CardItem = ({name, value}: {name: string; value: string}) => {
+const CardItem = ({name, value, myLog}: {name: string; value: string, myLog: boolean}) => {
   return (
     <Flex align={"center"} gap={3}>
-      <Text fontSize={13} color={"gray.600"}>{name}</Text>
-      <Text fontSize={14} fontWeight={600} color={"blackAlpha.700"}>{value}</Text>
+      <Text fontSize={13} color={myLog ? "whiteAlpha.800" : "gray.600"}>{name}</Text>
+      <Text fontSize={14} fontWeight={600} color={myLog ? "white" : "blackAlpha.700"}>{value}</Text>
     </Flex>
   )
 }
@@ -25,39 +25,47 @@ const cardData = [
     {name: "No of people", value: "98"},
     {name: "Ended on", value: "11:00 am"}
   ],
-   [
+  [
     {name: "Offering Received", value: "Ghc 98"},
     {name: "Actual Cost", value: "Ghc 205"}
   ]
 ]
 
-const BusCard = ({time, ended}: {time: string; ended: boolean}) => {
+const BusCard = ({time, ended, myLog}: {time: string; ended: boolean; myLog?: boolean}) => {
   return (
     <Box mb={8}>
         <Text fontSize={13} color={"gray.600"}>{time}</Text>
-        <Box bg="gray.100" p={3} borderColor={"gray.200"} borderWidth={1} rounded={"md"}>
+        <Box bg={myLog ? "black" : "gray.100"} p={3} borderColor={myLog ? "black" :"gray.200"} borderWidth={1} rounded={"md"}>
           <Flex justify={"space-between"} mb={2}>
-            <Text color={"blackAlpha.700"} fontSize={13}>
+            <Text color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
               <Text as="span" fontWeight={600}>Bus 1</Text> | Currently at 
               <Text as="span" fontWeight={600} fontSize={14}> Oyarifa</Text>
             </Text>
 
-            <Box 
-              bg={ended ? "gray.500" : "white"} 
-              color={ended ? "white" : "gray.500"} 
+            {myLog ? <Box 
+              bg={ended ? "transparent" : "white"} 
+              color={ended ? "white" : "black"} 
               px={4} rounded={"md"}
-              borderWidth={ended ? 0 :1 }
+              {...(ended && myLog) ? {fontWeight: 600} : {}}
               borderColor={"gray.500"}
             >
+              {ended ? 'Arrived' : "Update Trip"}
+            </Box> : <Box 
+              bg={"transparent"} 
+              color={ended ? "gray.500" : "blue.500"} 
+              px={4} rounded={"md"}
+              borderColor={"gray.500"}
+              fontWeight={600}
+            >
               {ended ? 'Arrived' : "En-Route"}
-            </Box>
+            </Box>}
           </Flex>
           <Box w={"100%"} h={"1px"} bg="gray.300" />
           {cardData.map((item, i) => (
             <Flex key={`${i}`} mt={1} justify={"space-between"}>
               {item.map(
                 card => (
-                  <CardItem key={`${i}-${card.name}`} name={card.name} value={card.value} />
+                  <CardItem key={`${i}-${card.name}`} name={card.name} value={card.value} myLog={!!myLog} />
               ))}
             </Flex>
           ))}
@@ -109,7 +117,9 @@ export default function BusRepLogs() {
           <Box pos={"relative"} pl={4}>
             <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
             <BusCard time={"Sun 1, October 9:31 AM"} ended={true} />
+            <BusCard time={"Sun 14, October 10:01 AM"} ended={true}  myLog={true}/>
             <BusCard time={"Sun 14, October 10:01 AM"} ended={false} />
+            <BusCard time={"Sun 14, October 10:01 AM"} ended={false}  myLog={true}/>
           </Box>
         </Box>
       </Box>
