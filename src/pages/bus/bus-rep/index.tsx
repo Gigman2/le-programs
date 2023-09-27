@@ -6,6 +6,7 @@ import { IAccountUser, getUser } from '@/utils/auth'
 import { useRouter } from 'next/router'
 import { TbPlus } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
+import { useBusGroupTree } from '@/frontend/apis'
 
 const CardItem = ({name, value, myLog}: {name: string; value: string, myLog: boolean}) => {
   return (
@@ -52,7 +53,7 @@ const BusCard = ({time, ended, myLog}: {time: string; ended: boolean; myLog?: bo
               {ended ? 'Arrived' : "Update Trip"}
             </Box> : <Box 
               bg={"transparent"} 
-              color={ended ? "gray.500" : "blue.500"} 
+              color={ended ? "green.400" : "blue.500"} 
               px={4} rounded={"md"}
               borderColor={"gray.500"}
               fontWeight={600}
@@ -78,6 +79,9 @@ export default function BusRepLogs() {
   const [nonActive, setNonActive] = useState(false)
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
+  
+
+  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.bus?.['BUS_REP'].id+'1' as string, !!currentUser?.bus?.['BUS_REP'].id)
 
   useEffect(() => {
       setNonActive(true)
@@ -98,10 +102,10 @@ export default function BusRepLogs() {
       <Box maxW={"500px"} w="100%">
         <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
             <Box>
-              <Flex fontWeight={600} color={"gray.500"}>
+             {!isLoading &&  <Flex fontWeight={600} color={"gray.500"}>
                 <Text color={"gray.500"}>{`${currentUser?.bus['BRANCH']?.name} , ${currentUser?.bus['ZONE']?.name}`}</Text>
-              </Flex>
-              <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Account Name: {currentUser?.name}</Text>
+              </Flex>}
+              <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
             </Box>
         </Flex>
 
