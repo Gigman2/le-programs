@@ -64,7 +64,8 @@ export function useBusGroupTree(key: string, enabled: boolean) {
     }, { enabled });
     if (error) {
         const _error = error as any
-        toastMessage.title = _error.data.message || _error.message || 'An error occurred'
+        console.log(_error)
+        toastMessage.title = _error.response.data.message || _error.message || 'An error occurred'
         toastMessage.status = 'error'
         toast(toastMessage)
     }

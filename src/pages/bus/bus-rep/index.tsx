@@ -2,11 +2,12 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser } from '@/utils/auth'
+import { IAccountUser, getUser, saveBusUser, saveUser } from '@/utils/auth'
 import { useRouter } from 'next/router'
 import { TbPlus } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useBusGroupTree } from '@/frontend/apis'
+import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
 
 const CardItem = ({name, value, myLog}: {name: string; value: string, myLog: boolean}) => {
   return (
@@ -81,7 +82,23 @@ export default function BusRepLogs() {
   const router = useRouter()
   
 
-  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.bus?.['BUS_REP'].id+'1' as string, !!currentUser?.bus?.['BUS_REP'].id)
+  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.bus?.['ZONE'].id as string, !!currentUser?.bus?.['ZONE'].id)
+
+  useEffect(() => {
+    if(groupTree?.data.length){
+          const busTreeData = groupTree?.data
+          const bus = busTreeData.reduce((acc: GroupedUnits, cValue) => {
+              acc[cValue.type] = {
+                  id: cValue._id,
+                  name: cValue.name
+              }
+              return acc
+          }, {})
+          const account = currentUser as IAccountUser
+          saveBusUser({...account, bus})
+          setCurrentUser({...account, bus})
+    }
+  }, [groupTree])
 
   useEffect(() => {
       setNonActive(true)
@@ -103,7 +120,7 @@ export default function BusRepLogs() {
         <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
             <Box>
              {!isLoading &&  <Flex fontWeight={600} color={"gray.500"}>
-                <Text color={"gray.500"}>{`${currentUser?.bus['BRANCH']?.name} , ${currentUser?.bus['ZONE']?.name}`}</Text>
+                {/* <Text color={"gray.500"}>{`${currentUser?.bus?.['BRANCH']?.name} , ${currentUser?.bus?.['ZONE']?.name}`}</Text> */}
               </Flex>}
               <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
             </Box>

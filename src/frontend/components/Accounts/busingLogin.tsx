@@ -29,14 +29,6 @@ export default function BusingLogin() {
         }
     }, [])
 
-    const createUnitObj = (data: {groupType: string; group: string}[]) => {
-        return data.reduce((acc: GroupedUnits, cValue) => {
-            acc[cValue.groupType] = {
-                id: cValue.group
-            }
-            return acc
-        }, {})
-    }
 
     const handleContinue = () => {
         setUserAccount({
@@ -58,7 +50,7 @@ export default function BusingLogin() {
             setLoading(true)
                 const user: IAccountUser = {
                 name: userAccount?.name as string,
-                bus: createUnitObj( userAccount?.accountType as IBusAccount['accountType']),
+                bus: {},
                 accountId: userAccount?._id as string,
                 roles: userAccount?.accountType as any[],
                 currentApp: "BUSING"
