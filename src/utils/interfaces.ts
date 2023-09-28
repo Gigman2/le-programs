@@ -14,3 +14,28 @@ export interface IMember {
     addedBy: string,
     created_on: string
 }
+
+
+
+export interface IBusForm {
+    data: BusFormData;
+}
+
+export interface BusFormData {
+    statusCode: number;
+    data:       DataData;
+}
+
+export interface DataData {
+    user:      User;
+    authToken: string;
+}
+
+
+export interface User {
+    _id:       string;
+    firstName: string;
+    lastName:  string;
+    email:     string;
+    status:    string;
+}
