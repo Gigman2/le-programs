@@ -69,7 +69,7 @@ export default class BaseService<M> {
     payload: mongoose.UpdateWithAggregationPipeline | mongoose.UpdateQuery<M>
   ) {
     try {
-      return await this.model.findByIdAndUpdate(id, payload, { new: true });
+      return await this.model.findByIdAndUpdate(id, payload, {new: true});
     } catch (error: any) {
       this.log(error.message);
       return null;
