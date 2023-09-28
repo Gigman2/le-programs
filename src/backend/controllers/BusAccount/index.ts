@@ -3,7 +3,7 @@ import BaseController from '../Base';
 import { BusAccount as Account } from "@backend/models";
 
 class BusAccountController extends BaseController<BusAccountService> {
-    protected name = 'BusAccount';
+    protected name = 'Bus account';
     constructor(service: BusAccountService) {
         super(service)
     }
