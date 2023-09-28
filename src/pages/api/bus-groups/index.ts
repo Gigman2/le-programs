@@ -11,7 +11,7 @@ const handler: NextApiHandler = async function handler(
             case 'POST':
                 return BusGroup.insert(req, res);
             default:
-                break;
+                return res.status(405).json({ message: "Method not allowed" });
 
         }
     } catch (error) {
