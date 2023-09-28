@@ -55,7 +55,7 @@ function Dashboard() {
       <Container maxW="container.lg" py={5}>
         <Heading mb={4}>Dashboard</Heading>
 
-        <Box mb={4}>
+        <Box mb={4} display={"flex"} flexDirection={"column"} alignItems={"flex-end"}>
           <Input
             type="text"
             placeholder="New Item"
@@ -65,7 +65,7 @@ function Dashboard() {
           <Button
             colorScheme="teal"
             size="sm"
-            ml={2}
+            mt={3}
             onClick={handleCreateItem}
           >
             <AddIcon /> Add
