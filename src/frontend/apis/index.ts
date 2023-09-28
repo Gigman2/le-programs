@@ -1,7 +1,7 @@
 import { IBusAccount, IBusGroups, IBusRound } from "@/interface/bus";
 import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { useQuery } from "react-query";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -62,15 +62,19 @@ export function useBusGroupTree(key: string, enabled: boolean) {
         );
         return data;
     }, { enabled });
-
     if (error) {
-        toastMessage.title = (error as any).message || 'An error occurred'
+        const _error = error as any
+        toastMessage.title = _error.data.message || _error.message || 'An error occurred'
         toastMessage.status = 'error'
         toast(toastMessage)
     }
 
     return { error, ...rest }
 }
+
+
+
+// @kelvin you can ignore this part
 
 export const getBusGroupsApi = async () => {
     return await fetch(`${baseUrl}/api/bus_groups`, {
