@@ -97,13 +97,13 @@ const handler: NextApiHandler = async function handler(
 
         const busData = await busGroup.aggregate(busPipeline);
 
-        const busWaiting = await await BusRound.aggregate(waitingPipeline)
-        const busEnroute = await await BusRound.aggregate(enRoutePipeline)
-        const busArrived = await await BusRound.aggregate(arrivedPipeline)
+        // const busWaiting = await await BusRound.aggregate(waitingPipeline)
+        // const busEnroute = await await BusRound.aggregate(enRoutePipeline)
+        // const busArrived = await await BusRound.aggregate(arrivedPipeline)
 
         // const memberCount = await Attendee.find().count()
 
-
+ 
         const member = await BusRound;
 
         // const waitingMembers = member.aggregate(memberPipeline)
@@ -119,7 +119,7 @@ const handler: NextApiHandler = async function handler(
 
         return res.status(200).json({
             message: 'created Successfully',
-            busData: { busData, waiting: busWaiting, enRoute: busEnroute, arrived: busArrived },
+            // busData: { busData, waiting: busWaiting, enRoute: busEnroute, arrived: busArrived },
             // memberData: { totalMembers: memberCount }
         },)
 

@@ -1,5 +1,6 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import BusGroup from '@/backend/controllers/BusGroup';
+import { authenticateUser } from '@/backend/middlewares/authenticate';
 const handler: NextApiHandler = async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
@@ -22,4 +23,4 @@ const handler: NextApiHandler = async function handler(
 
 
 
-export default handler;
+export default authenticateUser(handler);
