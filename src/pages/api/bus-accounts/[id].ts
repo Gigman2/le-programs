@@ -1,4 +1,4 @@
-import BusAccount from '@/backend/controllers/BusAccount';
+import BusRound from '@/backend/controllers/BusRound';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const handler: NextApiHandler = async function handler(
@@ -8,13 +8,13 @@ const handler: NextApiHandler = async function handler(
     try {
         switch (req.method) {
             case "GET":
-                return BusAccount.getById(req, res);
+                return BusRound.getById(req, res);
 
             case "POST":
-                return BusAccount.update(req, res);
+                return BusRound.update(req, res);
 
             case "DELETE":
-                return BusAccount.update(req, res);
+                return BusRound.update(req, res);
 
             default:
                 return res.status(405).json({ message: "Method not allowed" })
@@ -27,3 +27,5 @@ const handler: NextApiHandler = async function handler(
 }
 
 export default handler;
+
+"bus-accouts/64e22be7e98f19ebd9c5fb06"

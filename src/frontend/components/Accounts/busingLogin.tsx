@@ -14,24 +14,18 @@ export default function BusingLogin() {
     const [userAccount, setUserAccount] = useState<IBusAccount>()
     const [loading, setLoading] = useState(false)
     const [fields, setFIelds] = useState< Record<string, string | null | Record<string, string>>>({
-      id: '',
-      group:  null
+      email: '',
+      password:  ''
     })
 
-      const gotoBusPage = (roles: ("BUS_REP" | "BRANCH_HEAD" | "SECTOR_HEAD" | "OVERALL_HEAD")[]) => {
-         if(roles?.includes('BUS_REP')){
-            router.push('/bus/bus-rep/logs')
-        } else if(roles?.includes('BRANCH_HEAD')){
-            router.push('/bus/branch-head')
-        } else if(roles?.includes('SECTOR_HEAD')){
-            router.push('/bus/sector-head')
-        }
+    const gotoBusPage = () => {
+        router.push('/bus')
     }
 
     useEffect(() => {
         const user = getUser()
         if(user?.currentApp === 'BUSING'){
-            gotoBusPage(user?.roles || [])
+            gotoBusPage()
         }
     }, [])
 
@@ -45,6 +39,21 @@ export default function BusingLogin() {
     }
 
     const handleContinue = () => {
+        setUserAccount({
+            _id: "65050026f7b7640d8d84d9d4",
+            name: 'Eric',
+            accountType: [
+                { 
+                    groupType :"BUS_REP", 
+                    group: "6504ff84f7b7640d8d84d9d0"
+                },
+                { 
+                    groupType :"BRANCH_HEAD", 
+                    group: "6504ff84f7b7640d8d84d9d0"
+                }
+            ],
+        })
+
         try {
             setLoading(true)
                 const user: IAccountUser = {
@@ -55,7 +64,7 @@ export default function BusingLogin() {
                 currentApp: "BUSING"
             }
             saveBusUser(user)
-            gotoBusPage(user?.roles || [])
+            gotoBusPage()
         } catch (error) {
             
         } finally {
@@ -66,7 +75,7 @@ export default function BusingLogin() {
 
     return (
     <>
-        { (!fields['id']?.length || !fields['group']) &&  !(!fields['id']?.length && !fields['group']) ? 
+        { (!fields['email']?.length || !fields['password']) &&  !(!fields['email']?.length && !fields['password']) ? 
             <Box 
                 mb={4} 
                 bg="red.400" 
@@ -87,7 +96,7 @@ export default function BusingLogin() {
 
          <Box mb={6} fontSize={14}>
             <FormLabel color="gray.700">Enter password</FormLabel>
-            <Input type='password' fontSize={14} placeholder='Enter ID Here ' value={fields.password as string } 
+            <Input type='password' fontSize={14} placeholder='Enter password Here ' value={fields.password as string } 
             onChange={v =>   handleChange(v.currentTarget?.value, 'password', fields, setFIelds)}
             />
         </Box>

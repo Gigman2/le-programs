@@ -10,7 +10,6 @@ import { authAPI } from '@/backend/config/env';
 
 class BusAccountController extends BaseController<BusAccountService> {
     protected name = 'BusAccount';
-
     constructor(service: BusAccountService, private busGroupService: BusGroupService) {
         super(service)
     }
