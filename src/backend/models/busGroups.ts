@@ -16,7 +16,7 @@ const schema = new Schema<IBusGroups>(
         },
         parent: {
             type: ObjectId,
-            required: true
+            default: null,
         },
         station: {
             type: [String],

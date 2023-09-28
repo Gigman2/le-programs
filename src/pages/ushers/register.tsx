@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import {MdOutlineDirectionsBus} from 'react-icons/md'
 import {AiOutlineUser} from 'react-icons/ai'
 import {TbCrossFilled} from 'react-icons/tb'
-import BacentaRep from '@frontend/components/Accounts/bacentaRep';
+import BacentaRep from '@/frontend/components/Accounts/busingLogin';
 import Shepherd from '@frontend/components/Accounts/shepherd';
 import Usher from '@frontend/components/Accounts/ushers';
 

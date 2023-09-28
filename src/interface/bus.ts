@@ -22,5 +22,5 @@ export interface IBusGroups extends IDocument {
 
 export interface IBusAccount extends IDocument {
     name: string,
-    accountType: 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD'
+    accountType: { groupType: ('BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD'), group: string }[]
 }

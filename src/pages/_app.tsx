@@ -4,12 +4,19 @@ import { Box, ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 
 import { theme } from '../frontend/theme/theme'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  return <ChakraProvider theme={theme} resetCSS>
+  const queryClient = new QueryClient()
+
+  return <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme} resetCSS>
       <AnimatePresence mode="wait">
         <motion.div
           key={router.pathname}
@@ -34,4 +41,5 @@ export default function App({ Component, pageProps }: AppProps) {
         </motion.div>
       </AnimatePresence>
     </ChakraProvider>
+  </QueryClientProvider>
 }

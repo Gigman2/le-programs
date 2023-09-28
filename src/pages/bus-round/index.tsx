@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
-import { getUser } from '@/utils/auth'
+import { IAccountUser, getUser } from '@/utils/auth'
 import Link from 'next/link'
 import moment from 'moment'
 import {createBusRoundsApi, recordBusRoundsApi} from "@frontend/apis";
@@ -11,16 +11,16 @@ export default function Home() {
   const [userBus, setUserBus] = useState<Record<string, string>[]>([])
   const [nonActive, setNonActive] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [currentUser, setCurrentUser] = useState<{name?: string; group?: string; groupName?: string}>({})
+  const [currentUser, setCurrentUser] = useState<IAccountUser>()
 
 
-  const fetchData = async (user: {name: string; group: string}) => {
+  const fetchData = async (user: IAccountUser) => {
     try {
       if(!loading){
         setLoading(true)
         const recorderPage = {
             busRep: user.name, 
-            busGroup: user.group, 
+            busGroup: user?.bus?.group, 
             created_on: {
               $gt: moment().startOf('day').toDate(),
               $lt: moment().endOf('day').toDate(),
@@ -43,7 +43,7 @@ export default function Home() {
   const addBusRound = async () => {
     try {
       setLoading(true)
-      const recorderPayload = {busRep: currentUser.name, nonBus: false, busState: 'EN_ROUTE', busGroup: currentUser.group}
+      const recorderPayload = {busRep: currentUser?.name, nonBus: false, busState: 'EN_ROUTE', busGroup: currentUser?.bus.group}
       const createReq = await createBusRoundsApi(recorderPayload)
       const createRes = await createReq.json()
       let recorderRound = createRes.data
@@ -63,7 +63,7 @@ export default function Home() {
     }, [userBus])
 
     useEffect(() => {
-      const user = getUser()
+      const user = getUser() as IAccountUser
       setCurrentUser(user)
       fetchData(user)
     },[])
@@ -81,8 +81,8 @@ export default function Home() {
           <Box maxW={"500px"} w="100%">
             <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2}>
                 <Box>
-                  <Text fontWeight={600}>{currentUser.groupName}</Text>
-                  <Text fontWeight={600} fontSize={13} color="gray.500">{currentUser.name}</Text>
+                  <Text fontWeight={600}>{currentUser?.bus['BRANCH']?.name}</Text>
+                  <Text fontWeight={600} fontSize={13} color="gray.500">{currentUser?.name}</Text>
                 </Box>
                 <Box 
                   as={Button} 
