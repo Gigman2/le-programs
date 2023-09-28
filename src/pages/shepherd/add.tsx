@@ -123,7 +123,7 @@ export default function BusMembers() {
                 return <NextOfKin {...componentProps}/>
         
             default:
-                break;
+                return res.status(405).json({ message: "Method not allowed" });
         }
     }
 
