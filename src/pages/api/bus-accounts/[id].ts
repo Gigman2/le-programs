@@ -1,4 +1,4 @@
-import BusRound from '@/backend/controllers/BusRound';
+import BusAccount from '@/backend/controllers/BusAccount';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const handler: NextApiHandler = async function handler(
@@ -8,13 +8,13 @@ const handler: NextApiHandler = async function handler(
     try {
         switch (req.method) {
             case "GET":
-                return BusRound.getById(req, res);
+                return BusAccount.getById(req, res);
 
             case "POST":
-                return BusRound.update(req, res);
+                return BusAccount.update(req, res);
 
             case "DELETE":
-                return BusRound.update(req, res);
+                return BusAccount.update(req, res);
 
             default:
                 break;
@@ -27,5 +27,3 @@ const handler: NextApiHandler = async function handler(
 }
 
 export default handler;
-
-"bus-accouts/64e22be7e98f19ebd9c5fb06"
