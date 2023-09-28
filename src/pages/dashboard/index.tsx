@@ -42,7 +42,8 @@ function Dashboard() {
       item.id === id ? { ...item, name: updatedName } : item
     );
     setItems(updatedItems);
-    setEditingItemId(null);
+    
+    // setEditingItemId(null);
   };
 
   const handleDeleteItem = (id) => {
@@ -102,7 +103,7 @@ function Dashboard() {
                     <Button
                       colorScheme="blue"
                       size="sm"
-                      onClick={() => handleUpdateItem(item.id, item.name)}
+                      onClick={() => setEditingItemId(null)}
                     >
                       Save
                     </Button>
