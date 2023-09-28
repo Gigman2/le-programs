@@ -27,10 +27,7 @@ export default function BusingLogin() {
         if(user?.currentApp === 'BUSING'){
             gotoBusPage()
         }
-    }, [])
 
-
-    const handleContinue = () => {
         setUserAccount({
             _id: "65050026f7b7640d8d84d9d4",
             name: 'Eric',
@@ -45,16 +42,20 @@ export default function BusingLogin() {
                 }
             ],
         })
+    }, [])
 
+
+    const handleContinue = () => {
         try {
             setLoading(true)
-                const user: IAccountUser = {
+            const user: IAccountUser = {
                 name: userAccount?.name as string,
                 bus: {},
                 accountId: userAccount?._id as string,
                 roles: userAccount?.accountType as any[],
                 currentApp: "BUSING"
             }
+            console.log('User ', user)
             saveBusUser(user)
             gotoBusPage()
         } catch (error) {

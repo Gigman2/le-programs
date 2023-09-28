@@ -10,8 +10,8 @@ export interface IEvent extends IDocument {
     speaker: string[]
     venue: string
     scope: {
-        id: Types.ObjectId,
-        type: "BRANCH" | "SECTOR"
+        id: Types.ObjectId | null,
+        type: "BRANCH" | "SECTOR" | "CHURCH"
     }
     meetingType: 'TTHLA' | 'Mega Gathering' | 'CAMP' | 'Special Meeting' | 'Shepherd Meeting' | 'Prayer Meeting' | 'Zonal Meeting';
     status: 'ACTIVE' | 'INACTIVE' | 'ARCHIVED'

@@ -5,6 +5,7 @@ export interface IAccountUser {
     accountId: string;
     bus: GroupedUnits
     roles: any[];
+    currentRole?: { groupType: string, group: string }
     currentApp: "BUSING" | "USHERING"
 }
 

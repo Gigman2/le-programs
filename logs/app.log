@@ -1,106 +1,134 @@
-[2023-08-07T19:33:18.653] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-08-07T19:33:18.657] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-23T15:30:19.622] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-23T20:29:36.949] [ERROR] default - connection <monitor> to 34.225.241.19:27017 timed out
-[2023-09-23T20:29:36.966] [ERROR] default - connection <monitor> to 34.225.241.19:27017 timed out
-[2023-09-23T20:29:40.145] [ERROR] default - connection timed out
-[2023-09-23T20:29:42.772] [ERROR] default - connection timed out
-[2023-09-23T20:29:43.034] [ERROR] default - connection timed out
-[2023-09-23T20:29:43.136] [ERROR] default - connection timed out
-[2023-09-23T20:29:43.352] [ERROR] default - connection timed out
-[2023-09-23T20:29:45.135] [ERROR] default - connection timed out
-[2023-09-26T21:56:10.855] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-26T22:04:51.291] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-26T22:05:05.317] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-26T22:05:18.139] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-26T22:05:38.134] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-09-27T10:13:58.235] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:14:25.438] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:14:55.233] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:07.932] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:10.499] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:11.719] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:14.009] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:18.050] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:15:50.498] [ERROR] default - Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T10:16:20.866] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:16:32.067] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:16:44.104] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:16:56.918] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:17:08.000] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:17:20.037] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:17:34.067] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:20:59.440] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:21:10.512] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:21:22.561] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:21:27.399] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:21:38.432] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:21:50.472] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:22:04.512] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:22:08.150] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:22:19.183] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:22:29.648] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:22:41.498] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:23:28.376] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:23:32.171] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:23:43.230] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:23:55.271] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:24:09.319] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:25:10.730] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:25:21.790] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:25:33.839] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:27:27.995] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:27:47.768] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:28:17.019] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:28:27.905] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:28:38.967] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:29:03.811] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:29:07.868] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:29:18.906] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:29:30.966] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-09-27T10:47:40.938] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:00.544] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:01.606] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:03.630] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:06.809] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:07.844] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:01:09.861] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T11:02:06.992] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T19:30:21.607] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T19:30:22.649] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T19:30:24.697] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T19:31:26.724] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:14:51.230] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:14:52.309] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:14:55.868] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:14:59.909] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:16:32.454] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:16:33.498] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:16:35.541] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:16:39.581] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:22.713] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:24.252] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:27.282] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:28.331] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:30.350] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-27T20:35:34.379] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:04:15.411] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:04:16.448] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:04:19.417] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:04:23.446] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:08:12.574] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:08:13.603] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:08:15.622] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:08:19.641] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:10:10.611] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:10:11.629] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:10:13.671] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:10:51.735] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:14:33.272] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:14:34.301] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T01:14:36.315] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T02:16:17.770] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T02:16:18.788] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T02:16:20.814] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T02:16:24.833] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
-[2023-09-28T02:16:54.100] [ERROR] default - Cast to ObjectId failed for value "6504ff84f7b7640d8d84d9d01" (type string) at path "_id" for model "BusGroup"
+[2023-09-28T18:05:16.241] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:05:18.232] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:06:47.634] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:07:44.316] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:09:17.530] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:11:14.146] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '650c6c7a17aea27e83a1ec19',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '650c6c7a17aea27e83a1ec19' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-09-28T18:12:13.709] [ERROR] default - TypeError: this.path.indexOf is not a function
+    at SchemaType.splitPath (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:200:34)
+    at ObjectId.SchemaType (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:53:8)
+    at new ObjectId (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schema\objectid.js:36:14)
+    at BaseService.objectId (webpack-internal:///(api)/./src/backend/services/Base/index.ts:24:24)
+    at BusGroupService.getTree (webpack-internal:///(api)/./src/backend/services/BusGroup/index.ts:20:27)
+    at EventController.activeEvent (webpack-internal:///(api)/./src/backend/controllers/Event/index.ts:24:53)
+    at handler (webpack-internal:///(api)/./src/pages/api/events/active.ts:11:91)
+    at Object.apiResolver (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\api-utils\node.js:372:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DevServer.runApi (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:514:9)
+    at async Object.fn (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:828:35)
+    at async Router.execute (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\router.js:243:32)
+    at async DevServer.runImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:432:29)
+    at async DevServer.run (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\dev\next-dev-server.js:831:20)
+    at async DevServer.handleRequestImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:375:20)
+    at async C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:157:99
+[2023-09-28T18:12:15.870] [ERROR] default - TypeError: this.path.indexOf is not a function
+    at SchemaType.splitPath (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:200:34)
+    at ObjectId.SchemaType (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:53:8)
+    at new ObjectId (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schema\objectid.js:36:14)
+    at BaseService.objectId (webpack-internal:///(api)/./src/backend/services/Base/index.ts:24:24)
+    at BusGroupService.getTree (webpack-internal:///(api)/./src/backend/services/BusGroup/index.ts:20:27)
+    at EventController.activeEvent (webpack-internal:///(api)/./src/backend/controllers/Event/index.ts:24:53)
+    at handler (webpack-internal:///(api)/./src/pages/api/events/active.ts:11:91)
+    at Object.apiResolver (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\api-utils\node.js:372:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DevServer.runApi (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:514:9)
+    at async Object.fn (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:828:35)
+    at async Router.execute (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\router.js:243:32)
+    at async DevServer.runImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:432:29)
+    at async DevServer.run (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\dev\next-dev-server.js:831:20)
+    at async DevServer.handleRequestImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:375:20)
+    at async C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:157:99
+[2023-09-28T18:12:21.123] [ERROR] default - TypeError: this.path.indexOf is not a function
+    at SchemaType.splitPath (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:200:34)
+    at ObjectId.SchemaType (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:53:8)
+    at new ObjectId (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schema\objectid.js:36:14)
+    at BaseService.objectId (webpack-internal:///(api)/./src/backend/services/Base/index.ts:24:24)
+    at BusGroupService.getTree (webpack-internal:///(api)/./src/backend/services/BusGroup/index.ts:20:27)
+    at EventController.activeEvent (webpack-internal:///(api)/./src/backend/controllers/Event/index.ts:24:53)
+    at handler (webpack-internal:///(api)/./src/pages/api/events/active.ts:11:91)
+    at Object.apiResolver (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\api-utils\node.js:372:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DevServer.runApi (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:514:9)
+    at async Object.fn (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:828:35)
+    at async Router.execute (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\router.js:243:32)
+    at async DevServer.runImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:432:29)
+    at async DevServer.run (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\dev\next-dev-server.js:831:20)
+    at async DevServer.handleRequestImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:375:20)
+    at async C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:157:99
+[2023-09-28T18:12:22.284] [ERROR] default - TypeError: this.path.indexOf is not a function
+    at SchemaType.splitPath (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:200:34)
+    at ObjectId.SchemaType (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schematype.js:53:8)
+    at new ObjectId (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\schema\objectid.js:36:14)
+    at BaseService.objectId (webpack-internal:///(api)/./src/backend/services/Base/index.ts:24:24)
+    at BusGroupService.getTree (webpack-internal:///(api)/./src/backend/services/BusGroup/index.ts:20:27)
+    at EventController.activeEvent (webpack-internal:///(api)/./src/backend/controllers/Event/index.ts:24:53)
+    at handler (webpack-internal:///(api)/./src/pages/api/events/active.ts:11:91)
+    at Object.apiResolver (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\api-utils\node.js:372:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async DevServer.runApi (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:514:9)
+    at async Object.fn (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:828:35)
+    at async Router.execute (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\router.js:243:32)
+    at async DevServer.runImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:432:29)
+    at async DevServer.run (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\dev\next-dev-server.js:831:20)
+    at async DevServer.handleRequestImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:375:20)
+    at async C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:157:99

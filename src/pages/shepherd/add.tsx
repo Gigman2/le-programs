@@ -122,8 +122,8 @@ export default function BusMembers() {
             case 5:
                 return <NextOfKin {...componentProps}/>
         
-            default:
-                break;
+             default:
+                return res.status(405).json({ message: "Method not allowed" });
         }
     }
 

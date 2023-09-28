@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser, saveBusUser, saveUser } from '@/utils/auth'
+import { IAccountUser, getUser, saveBusUser } from '@/utils/auth'
 import { useRouter } from 'next/router'
 import { TbPlus } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
@@ -77,12 +77,17 @@ const BusCard = ({time, ended, myLog}: {time: string; ended: boolean; myLog?: bo
 
 export default function BusRepLogs() {
   const [userBus, setUserBus] = useState<Record<string, string>[]>([])
-  const [nonActive, setNonActive] = useState(false)
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
   
 
-  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.bus?.['ZONE'].id as string, !!currentUser?.bus?.['ZONE'].id)
+  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.group as string, 
+    !!(currentUser?.currentRole?.groupType === "BUS_REP")
+  )
+
+  // const {isLoading, data: groupTree} = useActiveEvent(currentUser?.currentRole?.group as string, 
+  //   !!(currentUser?.currentRole?.groupType === "BUS_REP")
+  // )
 
   useEffect(() => {
     if(groupTree?.data.length){
@@ -95,24 +100,18 @@ export default function BusRepLogs() {
               return acc
           }, {})
           const account = currentUser as IAccountUser
+
           saveBusUser({...account, bus})
           setCurrentUser({...account, bus})
     }
   }, [groupTree])
 
-  useEffect(() => {
-      setNonActive(true)
-      if(userBus.length){
-        const en_route = userBus.filter(item => item.busState === 'EN_ROUTE')
-        if(en_route.length) setNonActive(false)
-      }
-    }, [userBus])
 
-    useEffect(() => {
-      const user = getUser() as IAccountUser
-      if(!user) router.push('/bus/login')
-      setCurrentUser(user)
-    },[])
+  useEffect(() => {
+    const user = getUser() as IAccountUser
+    if(!user) router.push('/bus/login')
+    setCurrentUser(user)
+  },[])
 
   return (
     <PageWrapper>
@@ -120,7 +119,7 @@ export default function BusRepLogs() {
         <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
             <Box>
              {!isLoading &&  <Flex fontWeight={600} color={"gray.500"}>
-                {/* <Text color={"gray.500"}>{`${currentUser?.bus?.['BRANCH']?.name} , ${currentUser?.bus?.['ZONE']?.name}`}</Text> */}
+                <Text color={"gray.500"}>{`${currentUser?.bus?.['BRANCH']?.name} , ${currentUser?.bus?.['ZONE']?.name}`}</Text>
               </Flex>}
               <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
             </Box>

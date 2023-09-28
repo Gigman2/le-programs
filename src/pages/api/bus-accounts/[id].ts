@@ -17,7 +17,7 @@ const handler: NextApiHandler = async function handler(
                 return BusRound.update(req, res);
 
             default:
-                break;
+                return res.status(405).json({ message: "Method not allowed" });
         }
     } catch (error) {
         console.log(error);
@@ -27,5 +27,3 @@ const handler: NextApiHandler = async function handler(
 }
 
 export default handler;
-
-"bus-accouts/64e22be7e98f19ebd9c5fb06"
