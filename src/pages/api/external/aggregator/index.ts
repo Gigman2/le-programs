@@ -11,7 +11,7 @@ const handler: NextApiHandler = async function handler(
                 switch (req.headers?.action) {
                     case 'user-to-group':
                         return External.addUserToGroup(req, res)
-                    // case 'user-bus-account':
+                    // case 'aggregator':
                     //     return External.createUser(req, res);
                     default:
                         return External.createUser(req, res);
