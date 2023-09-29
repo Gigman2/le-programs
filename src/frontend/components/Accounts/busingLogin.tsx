@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, FormLabel, Input } from '@chakra-ui/react'
+import { Box, Button, FormLabel, Input, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange } from '@/utils/form';
@@ -11,8 +11,8 @@ import { useLoginRequest } from '@/frontend/apis';
 export type GroupedUnits = Record<string, {name?: string, id?: string}>
 
 export default function BusingLogin() {
+    const toast = useToast()
     const router = useRouter()
-    const [userAccount, setUserAccount] = useState<IBusAccount>()
     const [loading, setLoading] = useState(false)
     const [fields, setFIelds] = useState< Record<string, string | null | Record<string, string>>>({
       email: '',
@@ -37,25 +37,41 @@ export default function BusingLogin() {
         try {
             setLoading(true)
             await authLogin.mutate({email: fields.email, password: fields.password})
-            const loginData = authLogin.data?.data.data as {account: IBusAccount, token: string; user: any}
-
-            const user: IAccountUser = {
-                name: loginData.account.name,
-                bus: {},
-                accountId: loginData?.account._id as string,
-                roles: loginData.account?.accountType as any[],
-                currentApp: "BUSING"
+            const {data: loginData, error} = authLogin
+            if(error){
+                const _error = error as any
+                toast({
+                    status: "error",
+                    duration: 2000,
+                    position: 'top-right',
+                    isClosable: true, 
+                    title: _error?.response?.data?.error || _error.message || 'Error occurred'
+                })
             }
-
-            saveBusUser(user)
-            saveUserToken(loginData.token)
-            gotoBusPage()
-        } catch (error) {
-            console.log(error)
+            if(loginData){
+                let  userData: {user: any; token: string; account: IBusAccount} = loginData.data.data as any
+                const user: IAccountUser = {
+                    name: userData?.account?.name,
+                    bus: {},
+                    accountId: userData?.account?._id as string,
+                    roles: userData?.account?.accountType as any[],
+                    currentApp: "BUSING"
+                }
+                saveBusUser(user)
+                saveUserToken(userData?.token)
+                gotoBusPage()
+            }
+        } catch (error: any) {
+             toast({
+                status: "error",
+                duration: 2000,
+                position: 'top-right',
+                isClosable: true, 
+                title: 'Error occurred'
+            })
         } finally {
             setLoading(false)
         }
-       
     }
 
     return (
@@ -97,7 +113,7 @@ export default function BusingLogin() {
             bg={ "base.blue" }
             _hover={{bg:  "base.blue" }}
             isLoading={loading}
-            isDisabled={loading}
+            isDisabled={!fields['email']?.length || !fields['password']?.length}
         >Continue</Box>
     </>
   )

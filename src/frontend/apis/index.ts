@@ -4,6 +4,7 @@ import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { useMutation, useQuery } from "react-query";
+import { axiosInstance } from "../lib/axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 
@@ -24,7 +25,7 @@ const toastMessage: ToastProps = {
 
 export function useBusGroups(type: string, enabled: boolean) {
     const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { accountType: type }], async () => {
-        const { data } = await axios.get(
+        const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups?type=${type}`
         );
         return data;
@@ -58,7 +59,7 @@ export function useBusAccount({ name, group }: { name: string, group: string }, 
 
 export function useBusGroupTree(key: string, enabled: boolean) {
     const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-group-tree", { group: key }], async () => {
-        const { data } = await axios.get(
+        const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups/tree?_id=${key}`
         );
         return data;
@@ -96,12 +97,6 @@ export const useLoginRequest = <T>() => {
             return axios.post(`/api/app-login`, payload)
         }
     })
-    if (response.error) {
-        const _error = response.error as any
-        toastMessage.title = _error.response.data.message || _error.message || 'An error occurred'
-        toastMessage.status = 'error'
-        toast(toastMessage)
-    }
 
     return response
 }

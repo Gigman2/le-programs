@@ -19,7 +19,6 @@ interface ILocalUser {
 export default function Ushers() {
     const router = useRouter()
     const [disabled, setDisabled] = useState(false)
-    const [search, setSearch] = useState('')
     const [fields, setFIelds] = useState< Record<string, string>>({
         id: ''
     })

@@ -17,8 +17,7 @@ class BusAccountController extends BaseController<BusAccountService> {
 
     async login(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
-            const { data: { statusCode, data, message } } = await axios.post(`${authAPI}login`, req.body)
-            if (statusCode != 200) return responses.error(res, message || "Unable to login")
+            const { data: { data } } = await axios.post(`${authAPI}login`, req.body)
 
             if (data.user) {
                 const accountId = data.user._id
@@ -28,8 +27,7 @@ class BusAccountController extends BaseController<BusAccountService> {
             }
             return responses.successWithData(res, data, "success")
         } catch (error: any) {
-            console.log(error)
-            return responses.error(res, error.message || error)
+            return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
     }
 
@@ -44,7 +42,6 @@ class BusAccountController extends BaseController<BusAccountService> {
 
             return responses.successWithData(res, { data: newUser }, "success")
         } catch (error: any) {
-            console.log(error)
             return responses.error(res, error.message || error)
         }
     }
@@ -59,7 +56,6 @@ class BusAccountController extends BaseController<BusAccountService> {
             const updatedAcc = await this.service.update(user?._id as string, { $set: { accountType: [...filterGroups, userGroup] } })
             return responses.successWithData(res, updatedAcc, "success")
         } catch (error: any) {
-            console.log(error)
             return responses.error(res, error.message || error)
         }
     }
