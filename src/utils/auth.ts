@@ -7,7 +7,7 @@ export interface IAccountUser {
     accountId: string;
     bus: GroupedUnits
     roles: any[];
-    currentRole?: { groupType: string, group: string }
+    currentRole?: { groupType: string, groupId: string }
     currentApp: "BUSING" | "USHERING"
 }
 
@@ -35,6 +35,13 @@ export const getUser = () => {
         return JSON.parse(user as string) as IAccountUser
     }
 }
+
+export const removeSession = () => {
+    if (typeof window !== undefined) {
+        localStorage.clear()
+    }
+}
+
 
 export const addBus = (id: string) => {
     if (typeof window !== undefined) {

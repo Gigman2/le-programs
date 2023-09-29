@@ -43,7 +43,7 @@ export default function BusingLogin() {
                 name: loginData.account.name,
                 bus: {},
                 accountId: loginData?.account._id as string,
-                roles: userAccount?.accountType as any[],
+                roles: loginData.account?.accountType as any[],
                 currentApp: "BUSING"
             }
 

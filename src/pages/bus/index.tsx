@@ -5,10 +5,9 @@ import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useEffect, useRef, useState } from 'react'
 import { IAccountUser, getUser, saveBusUser } from '@/utils/auth'
 import { useRouter } from 'next/router'
-import { IAccountRole, IBusAccount } from '@/interface/bus'
 import useHover from '@/frontend/hooks/useHover'
 
-const RoleSelection = ({data, user}: {data: IAccountRole; user: IAccountUser}) => {
+const RoleSelection = ({data, user}: {data: any; user: IAccountUser}) => {
     const ref = useRef(null);
     const isHovered = useHover(ref);
     const router = useRouter()
@@ -33,16 +32,11 @@ const RoleSelection = ({data, user}: {data: IAccountRole; user: IAccountUser}) =
 
 
 export default function BusHome() {
-    const router = useRouter()
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
 
 
     useEffect(() => {
         const user = getUser() as IAccountUser
-        if(user?.roles?.length === 1){
-            const role = user?.roles?.[0]?.groupType
-            router.push(`/bus/${role.replace("_","-").toLowerCase()}`)
-        }
         setCurrentUser(user)
     },[])
 

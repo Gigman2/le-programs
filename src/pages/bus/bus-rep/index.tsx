@@ -76,12 +76,11 @@ const BusCard = ({time, ended, myLog}: {time: string; ended: boolean; myLog?: bo
   )}
 
 export default function BusRepLogs() {
-  const [userBus, setUserBus] = useState<Record<string, string>[]>([])
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
   
 
-  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.group as string, 
+  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
     !!(currentUser?.currentRole?.groupType === "BUS_REP")
   )
 
