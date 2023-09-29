@@ -1,4 +1,4 @@
-import Attendee from '@backend/models/attendee';
+//import Attendee from '@backend/models/attendee';
 import BusGroup from '@backend/models/busGroups';
 import BusRound from '@backend/models/busRound';
 
@@ -6,6 +6,8 @@ import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 
 import { connectMongo } from '@backend/utils/connectMongo';
+import { authenticateUser } from '@/backend/middlewares/authenticate';
+// import authenticate from '@/backend/middlewares/authenticate';
 
 
 
@@ -95,13 +97,13 @@ const handler: NextApiHandler = async function handler(
 
         const busData = await busGroup.aggregate(busPipeline);
 
-        const busWaiting = await await BusRound.aggregate(waitingPipeline)
-        const busEnroute = await await BusRound.aggregate(enRoutePipeline)
-        const busArrived = await await BusRound.aggregate(arrivedPipeline)
+        // const busWaiting = await await BusRound.aggregate(waitingPipeline)
+        // const busEnroute = await await BusRound.aggregate(enRoutePipeline)
+        // const busArrived = await await BusRound.aggregate(arrivedPipeline)
 
-        const memberCount = await Attendee.find().count()
+        // const memberCount = await Attendee.find().count()
 
-
+ 
         const member = await BusRound;
 
         // const waitingMembers = member.aggregate(memberPipeline)
@@ -117,8 +119,8 @@ const handler: NextApiHandler = async function handler(
 
         return res.status(200).json({
             message: 'created Successfully',
-            busData: { busData, waiting: busWaiting, enRoute: busEnroute, arrived: busArrived },
-            memberData: { totalMembers: memberCount }
+            // busData: { busData, waiting: busWaiting, enRoute: busEnroute, arrived: busArrived },
+            // memberData: { totalMembers: memberCount }
         },)
 
 
@@ -130,8 +132,9 @@ const handler: NextApiHandler = async function handler(
         return res.status(400).json({ error: error })
     }
 
+
 }
 
 
 
-export default handler;
+export default authenticateUser(handler);

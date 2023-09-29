@@ -1,4 +1,6 @@
 import { GroupedUnits } from "@/frontend/components/Accounts/busingLogin";
+import { IBusForm } from "./interfaces";
+import { IoBusOutline } from "react-icons/io5";
 
 export interface IAccountUser {
     name: string;
@@ -38,6 +40,25 @@ export const addBus = (id: string) => {
 
 export const clearUser = () => {
     if (typeof window !== undefined) localStorage.clear()
+}
+
+export const busForm = async (url: string, reqBody: any) => {
+
+    // type PickedType = Omit<IBusForm, 'data'>;
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reqBody),
+    };
+    const response = await fetch(url, requestOptions);
+    const results = await response.json();
+    
+
+
+    return results
 }
 
 

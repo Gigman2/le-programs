@@ -1,5 +1,4 @@
-import BusRound from '@/backend/controllers/BusRound';
-import { authenticateUser } from '@/backend/middlewares/authenticate';
+import ChuchVehicle from '@/backend/controllers/Vehicle';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const handler: NextApiHandler = async function handler(
@@ -9,16 +8,16 @@ const handler: NextApiHandler = async function handler(
     try {
         switch (req.method) {
             case "GET":
-                return BusRound.getById(req, res);
+                return ChuchVehicle.getById(req, res);
 
             case "POST":
-                return BusRound.update(req, res);
+                return ChuchVehicle.update(req, res);
 
             case "DELETE":
-                return BusRound.update(req, res);
+                return ChuchVehicle.update(req, res);
 
             default:
-                return res.status(405).json({ message: "Method not allowed" });
+                break;
         }
     } catch (error) {
         console.log(error);
@@ -27,4 +26,4 @@ const handler: NextApiHandler = async function handler(
 
 }
 
-export default authenticateUser(handler);
+export default handler;

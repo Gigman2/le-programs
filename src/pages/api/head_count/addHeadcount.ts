@@ -3,6 +3,7 @@ import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 
 import { connectMongo } from '../../../backend/utils/connectMongo';
+import { authenticateUser } from '@/backend/middlewares/authenticate';
 
 
 
@@ -24,4 +25,4 @@ const handler: NextApiHandler = async function handler(
 
 
 
-export default handler;
+export default authenticateUser(handler);
