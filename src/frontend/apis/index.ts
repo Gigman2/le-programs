@@ -3,7 +3,7 @@ import { IEvent } from "@/interface/events";
 import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
 import axios, { AxiosError, AxiosResponse } from "axios";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 
@@ -88,6 +88,22 @@ export function useActiveEvent(key: string, enabled: boolean) {
     }
 
     return { error, ...rest }
+}
+
+export const useLoginRequest = <T>() => {
+    const response = useMutation({
+        mutationFn: (payload: T): Promise<AxiosResponse<IResponse<T>>> => {
+            return axios.post(`/api/app-login`, payload)
+        }
+    })
+    if (response.error) {
+        const _error = response.error as any
+        toastMessage.title = _error.response.data.message || _error.message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return response
 }
 
 

@@ -10,8 +10,6 @@ import { SECRET } from "../utils/constants";
 export const authenticateUser = (handler: any) => (req: NextApiRequest,
     res: NextApiResponse<any>) => {
 
-    // const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET
-
 
 
     const token = req.headers.authorization?.replace('Bearer ', '');

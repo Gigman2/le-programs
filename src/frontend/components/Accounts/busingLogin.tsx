@@ -5,7 +5,8 @@ import { useRouter } from 'next/router'
 import { handleChange } from '@/utils/form';
 
 import { IBusAccount } from '@/interface/bus';
-import { IAccountUser, getUser, saveBusUser } from '@/utils/auth';
+import { IAccountUser, getUser, saveBusUser, saveUserToken } from '@/utils/auth';
+import { useLoginRequest } from '@/frontend/apis';
 
 export type GroupedUnits = Record<string, {name?: string, id?: string}>
 
@@ -17,49 +18,40 @@ export default function BusingLogin() {
       email: '',
       password:  ''
     })
+    const authLogin = useLoginRequest()
 
     const gotoBusPage = () => {
         router.push('/bus')
     }
+
 
     useEffect(() => {
         const user = getUser()
         if(user?.currentApp === 'BUSING'){
             gotoBusPage()
         }
-
-        setUserAccount({
-            _id: "65050026f7b7640d8d84d9d4",
-            name: 'Eric',
-            accountType: [
-                { 
-                    groupType :"BUS_REP", 
-                    group: "6504ff84f7b7640d8d84d9d0"
-                },
-                { 
-                    groupType :"BRANCH_HEAD", 
-                    group: "6504ff84f7b7640d8d84d9d0"
-                }
-            ],
-        })
     }, [])
 
 
-    const handleContinue = () => {
+    const handleContinue = async () => {
         try {
             setLoading(true)
+            await authLogin.mutate({email: fields.email, password: fields.password})
+            const loginData = authLogin.data?.data.data as {account: IBusAccount, token: string; user: any}
+
             const user: IAccountUser = {
-                name: userAccount?.name as string,
+                name: loginData.account.name,
                 bus: {},
-                accountId: userAccount?._id as string,
+                accountId: loginData?.account._id as string,
                 roles: userAccount?.accountType as any[],
                 currentApp: "BUSING"
             }
-            console.log('User ', user)
+
             saveBusUser(user)
+            saveUserToken(loginData.token)
             gotoBusPage()
         } catch (error) {
-            
+            console.log(error)
         } finally {
             setLoading(false)
         }
@@ -77,7 +69,7 @@ export default function BusingLogin() {
                 px={4} py={3} 
                 w="100%"
             >
-                You&lsquo;ve either not selected an ID or a Bus Unit</Box>
+                You&lsquo;ve either not entered an email or a password</Box>
                 : null
         }
         <Box mb={6} fontSize={14}>

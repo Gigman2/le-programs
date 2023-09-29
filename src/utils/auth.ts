@@ -17,6 +17,12 @@ export const saveBusUser = (data: IAccountUser) => {
     }
 }
 
+export const saveUserToken = (token: string) => {
+    if (typeof window !== undefined) {
+        localStorage.setItem('auth_token', token)
+    }
+}
+
 export const saveUser = (name?: string, group?: string, isRep?: boolean, groupName?: string, groupStations?: string[]) => {
     if (typeof window !== undefined) {
         localStorage.setItem('le_auth', JSON.stringify({ name, group, isRep, groupName, groupStations }))

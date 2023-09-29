@@ -6,7 +6,7 @@ import axios from 'axios'
 import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
-import {AccountType} from "@/interface/bus";
+import { AccountType } from "@/interface/bus";
 
 
 class BusAccountController extends BaseController<BusAccountService> {
@@ -15,6 +15,23 @@ class BusAccountController extends BaseController<BusAccountService> {
         super(service)
     }
 
+    async login(req: NextApiRequest, res: NextApiResponse<any>) {
+        try {
+            const { data: { statusCode, data, message } } = await axios.post(`${authAPI}login`, req.body)
+            if (statusCode != 200) return responses.error(res, message || "Unable to login")
+
+            if (data.user) {
+                const accountId = data.user._id
+                const busAccount = await this.service.getById(accountId)
+                if (!busAccount) return responses.error(res, "It appears you don't have an account")
+                data.account = busAccount
+            }
+            return responses.successWithData(res, data, "success")
+        } catch (error: any) {
+            console.log(error)
+            return responses.error(res, error.message || error)
+        }
+    }
 
     async createUser(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
@@ -37,10 +54,10 @@ class BusAccountController extends BaseController<BusAccountService> {
             const payload = req.body
             const user = await this.service.getById(payload?.userId)
             const group = await this.busGroupService.getById(payload?.groupId)
-            const userGroup : AccountType = { groupType: getRoleForGroup(group?.type) , groupId: group?._id }
-            const filterGroups: AccountType [] = user?.accountType.filter(g => g.groupType != userGroup.groupType)
-            const updatedAcc =  await this.service.update(user?._id, { $set: { accountType: [...filterGroups, userGroup] }})
-            return  responses.successWithData(res, updatedAcc, "success")
+            const userGroup: AccountType = { groupType: group?.type === "ZONE" ? "BUS_REP" : `${group?.type as 'BRANCH' | 'SECTOR'}_HEAD`, groupId: group?._id as string }
+            const filterGroups: AccountType[] = (user?.accountType || []).filter(g => g.groupType != userGroup.groupType)
+            const updatedAcc = await this.service.update(user?._id as string, { $set: { accountType: [...filterGroups, userGroup] } })
+            return responses.successWithData(res, updatedAcc, "success")
         } catch (error: any) {
             console.log(error)
             return responses.error(res, error.message || error)
@@ -49,9 +66,9 @@ class BusAccountController extends BaseController<BusAccountService> {
 
 }
 
- const getRoleForGroup = (groupType: string) : 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD' =>  {
-    if(['BRANCH', 'SECTOR'].includes(groupType)) return `${groupType}_HEAD`
-     else return 'BUS_REP'
+const getRoleForGroup = (groupType: "BRANCH" | "SECTOR"): 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD' => {
+    if (['BRANCH', 'SECTOR'].includes(groupType)) return `${groupType}_HEAD`
+    else return 'BUS_REP'
 }
 
 const BusAccount = new BusAccountController(
