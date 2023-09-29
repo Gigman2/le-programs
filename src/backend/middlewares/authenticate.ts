@@ -10,14 +10,11 @@ import { SECRET } from "../utils/constants";
 export const authenticateUser = (handler: any) => (req: NextApiRequest,
     res: NextApiResponse<any>) => {
 
-   // const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET
+    // const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET
 
-    
+
 
     const token = req.headers.authorization?.replace('Bearer ', '');
-    console.log('s',)
-
-    console.log('token', token)
 
     if (!token) {
         res.status(401).json({ message: 'Unauthorized: No token provided' });
@@ -26,9 +23,7 @@ export const authenticateUser = (handler: any) => (req: NextApiRequest,
 
     try {
         // Verify the token using your secret key
-
         const user = jwt.verify(token, SECRET);
-        console.log('user', user)
 
 
         // Proceed to the API route handler

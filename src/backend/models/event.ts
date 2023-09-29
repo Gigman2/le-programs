@@ -17,12 +17,15 @@ const schema = new Schema<IEvent>(
                 type: Date,
             },
         },
+        meetingDays: [
+            { type: Number }
+        ],
         venue: {
             type: String,
         },
         meetingType: {
             type: String,
-            enum: [...MeetingTypes],
+            enum: [...MeetingTypes.map(item => item.tag)],
         },
         scope: {
             id: { type: ObjectId },

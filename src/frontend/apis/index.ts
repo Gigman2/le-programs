@@ -1,4 +1,5 @@
 import { IBusAccount, IBusGroups, IBusRound } from "@/interface/bus";
+import { IEvent } from "@/interface/events";
 import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
 import axios, { AxiosError, AxiosResponse } from "axios";
@@ -64,7 +65,6 @@ export function useBusGroupTree(key: string, enabled: boolean) {
     }, { enabled });
     if (error) {
         const _error = error as any
-        console.log(_error)
         toastMessage.title = _error.response.data.message || _error.message || 'An error occurred'
         toastMessage.status = 'error'
         toast(toastMessage)
@@ -74,15 +74,14 @@ export function useBusGroupTree(key: string, enabled: boolean) {
 }
 
 export function useActiveEvent(key: string, enabled: boolean) {
-    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-group-tree", { group: key }], async () => {
+    const { error, ...rest } = useQuery<IResponse<IEvent>>(["active-event", { group: key }], async () => {
         const { data } = await axios.get(
-            `${baseUrl}/api/bus-groups/tree?_id=${key}`
+            `${baseUrl}/api/events/active`
         );
         return data;
     }, { enabled });
     if (error) {
         const _error = error as any
-        console.log(_error)
         toastMessage.title = _error.response.data.message || _error.message || 'An error occurred'
         toastMessage.status = 'error'
         toast(toastMessage)

@@ -9,8 +9,6 @@ import CustomInput from '@frontend/components/Forms/CustomInput'
 import CustomDateTime from '@frontend/components/Forms/CustomDateTime'
 import CustomSelect from '@frontend/components/Forms/CustomSelect'
 import { MeetingTypes } from '@/helpers/misc';
-import addAttendee from "@/pages/api/attendee/addAttendee";
-import {addAttendeeApi} from "@frontend/apis";
 
 export default function Home() {
     const router = useRouter()
@@ -35,23 +33,6 @@ export default function Home() {
     const [fields, setFields] = useState<Record<string, string | boolean | undefined>>({})
     const [errors, setErrors] = useState<Record<string, string | undefined>>({})
 
-    const handleSubmit = async () => {
-        try {
-            setLoading(true)
-            let res = await addAttendeeApi(fields)
-            let resData = await res.json()
-            if(res.status !== 200) throw new Error(resData.message)
-            toast(toastMessage)
-            resetData()
-            router.push('/oversee-admin')
-        } catch (error) {
-            toastMessage.title = 'An error occurred'
-            toastMessage.status = 'error'
-            toast(toastMessage)
-        } finally{
-             setLoading(false)
-        }
-    }
 
     
     const resetData = () => {
@@ -62,7 +43,7 @@ export default function Home() {
 
     useEffect(() => {
         const user = getUser()
-        setCurrentUser(user)
+        setCurrentUser({})
     }, [])
 
   return (
@@ -150,7 +131,7 @@ export default function Home() {
                 <CustomSelect
                     fields={fields} 
                     setFields={setFields} 
-                    data={MeetingTypes} 
+                    data={MeetingTypes.map(item => item.name)} 
                     name="meetingType" 
                     label="Meeting Type" 
                     placeholder='Venue goes here ..' 
@@ -168,7 +149,7 @@ export default function Home() {
                 _active={{bg: "base.blue"}}
                 isLoading={loading}
                 isDisabled={loading}
-                onClick={(v) => handleSubmit()} 
+                onClick={(v) => null} 
                 >Save
             </Box>
             </Box>

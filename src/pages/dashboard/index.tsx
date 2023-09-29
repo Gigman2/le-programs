@@ -24,7 +24,7 @@ function Dashboard() {
   ]);
 
   const [newItem, setNewItem] = useState('');
-  const [editingItemId, setEditingItemId] = useState(null);
+  const [editingItemId, setEditingItemId] = useState<string>();
 
   const handleCreateItem = () => {
     if (newItem.trim() === '') return;
@@ -33,11 +33,11 @@ function Dashboard() {
     setNewItem('');
   };
 
-  const handleEditItem = (id) => {
+  const handleEditItem = (id: string) => {
     setEditingItemId(id);
   };
 
-  const handleUpdateItem = (id, updatedName) => {
+  const handleUpdateItem = (id: number, updatedName: string) => {
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, name: updatedName } : item
     );
@@ -46,7 +46,7 @@ function Dashboard() {
     // setEditingItemId(null);
   };
 
-  const handleDeleteItem = (id) => {
+  const handleDeleteItem = (id: number) => {
     const updatedItems = items.filter((item) => item.id !== id);
     setItems(updatedItems);
   };
@@ -86,7 +86,7 @@ function Dashboard() {
               <Tr key={item.id}>
                 <Td>{item.id}</Td>
                 <Td>
-                  {editingItemId === item.id ? (
+                  {editingItemId === String(item.id) ? (
                     <Input
                       type="text"
                       value={item.name}
@@ -99,11 +99,11 @@ function Dashboard() {
                   )}
                 </Td>
                 <Td>
-                  {editingItemId === item.id ? (
+                  {editingItemId === String(item.id) ? (
                     <Button
                       colorScheme="blue"
                       size="sm"
-                      onClick={() => setEditingItemId(null)}
+                      onClick={() => setEditingItemId(String(item.id))}
                     >
                       Save
                     </Button>
@@ -113,7 +113,7 @@ function Dashboard() {
                         colorScheme="orange"
                         size="sm"
                         mr={2}
-                        onClick={() => handleEditItem(item.id)}
+                        onClick={() => handleEditItem(String(item.id))}
                       >
                         <EditIcon /> Edit
                       </Button>

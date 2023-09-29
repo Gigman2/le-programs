@@ -7,7 +7,7 @@ export interface IEvent extends IDocument {
         start: Date
         end: Date
     };
-    meetingDay?: []
+    meetingDays?: number[]
     speaker: string[]
     venue: string
     scope: {

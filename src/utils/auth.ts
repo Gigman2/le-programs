@@ -45,7 +45,6 @@ export const clearUser = () => {
 export const busForm = async (url: string, reqBody: any) => {
 
     // type PickedType = Omit<IBusForm, 'data'>;
-
     const requestOptions = {
         method: 'POST',
         headers: {
@@ -55,7 +54,7 @@ export const busForm = async (url: string, reqBody: any) => {
     };
     const response = await fetch(url, requestOptions);
     const results = await response.json();
-    
+
 
 
     return results

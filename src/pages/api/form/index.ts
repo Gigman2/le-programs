@@ -12,22 +12,20 @@ const handler: NextApiHandler = async function handler(
     const { email, password } = req.body;
     const AUTH_URL: string = "https://le-auth-api.onrender.com/api/v1/login";
     // `${process.env.AUTH_URL}`
-     const data ={email,password}
-   
+    const data = { email, password }
+
     try {
         switch (req.method) {
-         
+
 
             case 'POST':
-                const results = await  busForm(AUTH_URL,data);
-           
-                const dataRes:BusFormData  =results
-                return res.status(200).json({ _id:dataRes.data.user._id, authToken:dataRes.data.authToken})
+                const results = await busForm(AUTH_URL, data);
+                return res.status(200).json({ data: results.data })
 
             default:
                 break;
         }
-    } catch (error:any) {
+    } catch (error: any) {
         return res.status(400).json({ error: error.message })
     }
 

@@ -48,6 +48,10 @@ export default class BaseService<M> {
     }
   }
 
+  exposeDocument<T>(doc: T) {
+    return JSON.parse(JSON.stringify(doc)) as T
+  }
+
   /**
    * @description Insert a new record to a collection (model)
    */
@@ -69,7 +73,7 @@ export default class BaseService<M> {
     payload: mongoose.UpdateWithAggregationPipeline | mongoose.UpdateQuery<M>
   ) {
     try {
-      return await this.model.findByIdAndUpdate(id, payload, {new: true});
+      return await this.model.findByIdAndUpdate(id, payload, { new: true });
     } catch (error: any) {
       this.log(error.message);
       return null;
