@@ -6,6 +6,7 @@ import axios from 'axios'
 import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
+import {AccountType} from "@/interface/bus";
 
 
 class BusAccountController extends BaseController<BusAccountService> {
@@ -34,14 +35,23 @@ class BusAccountController extends BaseController<BusAccountService> {
     async addUserToGroup(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
             const payload = req.body
-            const data = await this.busGroupService.getById(payload?.groupId)
-
+            const user = await this.service.getById(payload?.userId)
+            const group = await this.busGroupService.getById(payload?.groupId)
+            const userGroup : AccountType = { groupType: getRoleForGroup(group?.type) , groupId: group?._id }
+            const filterGroups: AccountType [] = user?.accountType.filter(g => g.groupType != userGroup.groupType)
+            const updatedAcc =  await this.service.update(user?._id, { $set: { accountType: [...filterGroups, userGroup] }})
+            return  responses.successWithData(res, updatedAcc, "success")
         } catch (error: any) {
             console.log(error)
             return responses.error(res, error.message || error)
         }
     }
 
+}
+
+ const getRoleForGroup = (groupType: string) : 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD' =>  {
+    if(['BRANCH', 'SECTOR'].includes(groupType)) return `${groupType}_HEAD`
+     else return 'BUS_REP'
 }
 
 const BusAccount = new BusAccountController(

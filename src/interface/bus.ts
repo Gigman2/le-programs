@@ -20,7 +20,11 @@ export interface IBusGroups extends IDocument {
     station: string[],
 }
 
+export type AccountType =  {
+    groupType: ('BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD')
+    groupId: string
+}
 export interface IBusAccount extends IDocument {
     name: string,
-    accountType?: { groupType: ('BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD'), group: string }[]
+    accountType?: AccountType[]
 }
