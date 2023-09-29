@@ -31,6 +31,10 @@ const schema = new Schema<IEvent>(
                 enum: ["BRANCH", "SECTOR", "CHURCH"]
             }
         },
+        occurrence: {
+            type: String,
+            enum: ['RECURRING', 'FIXED']
+        },
         status: {
             type: String,
             enum: ['ACTIVE', 'INACTIVE']
