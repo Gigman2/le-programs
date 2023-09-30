@@ -16,7 +16,6 @@ export default function AddBusLog() {
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
     const [activeEvent, setActiveEvent]  = useState<IEvent>()
     const [loading, setLoading] = useState(false)
-    const [showError, setShowError] = useState(false)
     const router = useRouter()
     const toast = useToast()
     const [fields, setFields] = useState({

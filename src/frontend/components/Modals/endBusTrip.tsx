@@ -16,7 +16,6 @@ import {
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
 import { handleChange } from "@/utils/form";
-import Autocomplete from "../Forms/Autocomplete";
 import { addStopPoint, useSingleBusGroup } from "@/frontend/apis/bus";
 
 export default function EndBusTrip(
@@ -26,17 +25,19 @@ export default function EndBusTrip(
     const toast = useToast()
     const [loading, setLoading] = useState(false)
     const [fields, setFields] = useState<any>({
-        people: 0,
-        location: ""
+        people: selectedRecord?.people || 0,
+        busOffering: selectedRecord?.busOffering || 0
     })
 
-    const {isLoading, data: recordData} = useSingleBusGroup((
-        selectedRecord?.busZone as unknown as {_id: string})?._id, 
-        !!(selectedRecord?.busZone as unknown as {_id: string})?._id
-    )
-    const record = recordData?.data
+    useEffect(() => {
+        setFields({
+            people: selectedRecord?.people,
+            busOffering: selectedRecord?.busOffering
+        })
+    }, [selectedRecord])
 
-    const createRecord = async () => {
+
+    const completeTrip = async () => {
         const data = {...fields}
         const newStopPoints = [...(selectedRecord?.stopPoints || []), data]
         const payload: any = {
@@ -66,34 +67,42 @@ export default function EndBusTrip(
        <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Record Check Point</ModalHeader>
+          <ModalHeader>Complete bus trip?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box mt={4}>
                 
+                {Number(fields.people) !== selectedRecord?.people ?
+                    <Box p={2} bg="orange.100" my={2} rounded={"md"} color={"orange.500"}>
+                        <Text>The entered number of people is different from what you recorded earlier <Text as="span" fontWeight={600}>{selectedRecord?.people}</Text>.Be sure its the correct figure </Text>
+                    </Box>
+                    :
+                    <Box p={2} bg="blue.100" my={2} rounded={"md"} color={"blue.500"}>
+                        <Text>You recorded <Text as="span" fontWeight={600}>{selectedRecord?.people}</Text>  people bordered the bus </Text>
+                    </Box>
+                }
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>What is your current location?</FormLabel>
-                    <Autocomplete
-                        placeholder="Select location" 
-                        name={'location'}
-                        options={record?.station || []} 
-                        value={fields.location} 
-                        fields={fields} 
-                        setFields={setFields}
-                    />
-                </Box>
-
-                <Box p={2} bg="blue.100" my={2} rounded={"md"} color={"blue.500"}>
-                    <Text>You currently have <Text as="span" fontWeight={600}>{selectedRecord?.people}</Text> people </Text>
-                </Box>
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>How many people joined the bus</FormLabel>
-                    <Input 
+                    <FormLabel fontSize={14}>Review the number of people in bus ?</FormLabel>
+                     <Input 
                         type={"text"}
                         name="people"
                         placeholder='Enter here ...' 
                         value={fields.people} 
                         onChange={(v) => handleChange(v?.currentTarget?.value, 'people', fields, setFields)} 
+                    />
+                </Box>
+
+                <Box p={2} bg="blue.100" my={2} rounded={"md"} color={"blue.500"}>
+                    <Text>Your bus cost is <Text as="span" fontWeight={600}>Ghc {selectedRecord?.busCost}</Text>. Encourage them to give and bless them</Text>
+                </Box>
+                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                    <FormLabel fontSize={14}>How much did you receive as bus offering ?</FormLabel>
+                    <Input 
+                        type={"text"}
+                        name="busOffering"
+                        placeholder='Enter here ...' 
+                        value={fields.busOffering} 
+                        onChange={(v) => handleChange(v?.currentTarget?.value, 'busOffering', fields, setFields)} 
                     />
                 </Box>
 
@@ -107,9 +116,9 @@ export default function EndBusTrip(
                     _focus={{bg: "base.blue"}}
                     _active={{bg: "base.blue"}}
                     isLoading={loading}
-                    isDisabled={loading || !fields.location}
-                    onClick={(v) => createRecord()} 
-                    >Record
+                    isDisabled={loading || !fields.busOffering}
+                    onClick={(v) => completeTrip()} 
+                    >Complete trip
                 </Box>
             </Box>
           </ModalBody>

@@ -13,6 +13,7 @@ import { saveActiveEvent } from '@/frontend/store/event'
 import { IBusRound } from '@/interface/bus'
 import BusCard from '@/frontend/components/Bus/BusCard'
 import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
+import EndBusTrip from '@/frontend/components/Modals/endBusTrip'
 
 const MenuOptions = [
   {title: "History", icon: TbHistory, fn: null},
@@ -25,6 +26,8 @@ export default function BusRepLogs() {
   const router = useRouter()
   const [showMenu, setShowMenu] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: endIsOpen, onOpen: endOnOpen, onClose: endOnClose } = useDisclosure()
+
   const [selectedRecord, setSelectedRecord]= useState<IBusRound>()
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
@@ -117,6 +120,8 @@ export default function BusRepLogs() {
           <Box mt={4}>
             <Box pos={"relative"} pl={4}>
               <RecordCheckPoint isOpen={isOpen} onClose={onClose} selectedRecord={selectedRecord as IBusRound}/>
+              <EndBusTrip isOpen={endIsOpen} onClose={endOnClose} selectedRecord={selectedRecord as IBusRound}/>
+
               <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
               {busTripLoading ? 
                 <Skeleton h={20} w="100%" rounded={"md"} /> : 
@@ -127,6 +132,7 @@ export default function BusRepLogs() {
                     item={item} 
                     ended={item.busState === 'ARRIVED'}
                     openCheckin={ onOpen}
+                    openEndTrip={ endOnOpen}
                     myLog={(item.recordedBy as unknown as {_id: string})?._id === currentUser?.accountId}
                     setSelectedRecord={setSelectedRecord}
                   />
