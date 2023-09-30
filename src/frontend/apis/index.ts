@@ -112,6 +112,11 @@ export const LoginRequest = <T>(payload: { email: string; password: string }) =>
     return response as T
 }
 export const addGroup = <T>(payload: { name: string; type: string; parent:string }[]) => {
-    const response = axiosInstance.post(`/api/bus-groups`, payload)
+    const response = axiosInstance.post(baseUrl+`/api/bus-groups`, payload)
     return response as T
+}
+export const  getUserGroups = async (type: string, groupId:string ) => {
+    return await axiosInstance.get(
+        `${baseUrl}/api/bus-groups?type=${type}&parent=${groupId}`
+    );
 }

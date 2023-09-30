@@ -23,9 +23,9 @@ export default function useGetUser() {
     return user;
   };
   
-  const currentRole = (): string => {
+  const currentRole = (): {groupType:string;_id:string} => {
     const user = getUser() as IAccountUser;
-    return user.currentRole?.groupType || "";
+    return user?.currentRole||{groupType:'',_id:''};
   };
 
 

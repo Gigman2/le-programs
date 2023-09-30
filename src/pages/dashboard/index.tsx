@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -14,32 +14,76 @@ import {
   Thead,
   Tr,
   Text,
+  ToastProps,
+  useToast,
 } from "@chakra-ui/react";
 import { AddIcon, EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import PageWrapper from "@/frontend/components/layouts/pageWrapper";
 import useGetUser from "../../frontend/hooks/useGetUser";
 import GuardWrapper from "@/frontend/components/layouts/guardWrapper";
-import { addGroup } from "@/frontend/apis";
+import { addGroup, getUserGroups } from "@/frontend/apis";
+import { isSuccess } from "@/utils/isSuccess";
+
+const toastMessage: ToastProps = {
+  position: "top-right",
+  duration: 9000,
+  isClosable: true,
+};
 
 function Dashboard() {
   const [items, setItems] = useState<{ id: string; name: string }[]>([]);
-  const [isUserRole,getUserData , currentRole] = useGetUser();
+  const [isUserRole, getUserData, currentRole] = useGetUser();
   const [newItem, setNewItem] = useState("");
   const [editingItemId, setEditingItemId] = useState<string>();
+  const toast = useToast();
+
+  let userCurrentRole = currentRole();
+
+  // const {isLoading, data: groupTree} = useBusGroups(userCurrentRole?.groupId as string,
+  //   !!(userCurrentRole?.groupId === "BUS_REP")
+  // )
+
+  useEffect(() => {
+    getGroups();
+  }, []);
+
+  const getGroups = async () => {
+    let { data } = await getUserGroups(
+      userCurrentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
+      userCurrentRole._id
+    );
+    if (isSuccess(data?.statusCode)) {
+      setItems(data.data.map((el: any) => ({ id: el._id, name: el.name })));
+    }
+  };
 
   const handleCreateItem = async () => {
     if (newItem.trim() === "") return;
 
     const newItemObject = { id: Date.now(), name: newItem };
-    await addGroup([
+    let res = await addGroup([
       {
         name: newItem,
-        parent: currentRole() === "BUS_HEAD" ? "BRANCH" : "SECTOR",
-        type: currentRole() === "BUS_HEAD" ? "ZONE" : "BRANCH",
+        parent: userCurrentRole._id,
+        type: userCurrentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
       },
     ]);
-    setItems([...items, newItemObject]);
-    setNewItem("");
+
+    if (isSuccess(res?.statusCode)) {
+      toast({
+        ...toastMessage,
+        status: "success",
+        title: res.message || "Success",
+      });
+      setItems([...items, newItemObject]);
+      setNewItem("");
+    } else {
+      toast({
+        ...toastMessage,
+        status: "erroe",
+        title: res.message || "Something went wrong",
+      });
+    }
   };
 
   const handleEditItem = (id: string) => {
@@ -86,7 +130,9 @@ function Dashboard() {
                 <Input
                   type="text"
                   placeholder={
-                    isUserRole(["BUS_HEAD"]) ? "New Zone" : "New Branch"
+                    userCurrentRole.groupType === "BUS_HEAD"
+                      ? "New Zone"
+                      : "New Branch"
                   }
                   value={newItem}
                   onChange={(e) => setNewItem(e.target.value)}
@@ -104,7 +150,7 @@ function Dashboard() {
               <Table variant="simple">
                 <Thead>
                   <Tr>
-                    <Th>ID</Th>
+                    {/* <Th>ID</Th> */}
                     <Th>Name</Th>
                     <Th>Actions</Th>
                   </Tr>
@@ -112,7 +158,7 @@ function Dashboard() {
                 <Tbody>
                   {items.map((item) => (
                     <Tr key={item.id}>
-                      <Td>{item.id}</Td>
+                      {/* <Td>{item.id}</Td> */}
                       <Td>
                         {editingItemId === String(item.id) ? (
                           <Input
