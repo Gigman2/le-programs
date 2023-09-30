@@ -23,14 +23,15 @@ const toastMessage: ToastProps = {
 }
 
 
-export function useBusGroups(type: string, enabled: boolean) {
+export function useBusGroups(query: Record<string, string>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
-    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { accountType: type }], async () => {
+    const parsedQuery = new URLSearchParams(query).toString()
+    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", query], async () => {
         const { data } = await axiosInstance.get(
-            `${baseUrl}/api/bus-groups?type=${type}`
+            `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`
         );
         return data;
     }, { enabled });
@@ -138,7 +139,7 @@ export const LoginRequest = <T>(payload: { email: string; password: string }) =>
     const response = axios.post(`/api/app-login`, payload)
     return response as T
 }
-export const addGroup = <T>(payload: { name: string; type: string; parent:string }[]) => {
+export const addGroup = <T>(payload: { name: string; type: string; parent: string }[]) => {
     const response = axiosInstance.post(`/api/bus-groups`, payload)
     return response as T
 }

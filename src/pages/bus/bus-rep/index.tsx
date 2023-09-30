@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Button, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Skeleton, Text, useDisclosure } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { TbAlignRight, TbCheck, TbMapPinPlus, TbHistory, TbPlus, TbPower } from 'react-icons/tb'
@@ -13,6 +13,7 @@ import { saveActiveEvent } from '@/frontend/store/event'
 import { IBusRound } from '@/interface/bus'
 import dayjs from 'dayjs'
 import BusCard from '@/frontend/components/Bus/BusCard'
+import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
 const MenuOptions = [
   {title: "History", icon: TbHistory, fn: null},
   {title: "Logout", icon: TbPower, fn: removeSession}
@@ -23,6 +24,7 @@ export default function BusRepLogs() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
   const [showMenu, setShowMenu] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
     !!(currentUser?.currentRole?.groupType === "BUS_REP")
@@ -108,16 +110,20 @@ export default function BusRepLogs() {
 
           <Box mt={4}>
             <Box pos={"relative"} pl={4}>
+              <RecordCheckPoint isOpen={isOpen} onClose={onClose}/>
               <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
               {busTripLoading ? 
                 <Skeleton h={20} w="100%" rounded={"md"} /> : 
-                <>{busTripData?.data.map((item, i) => (<BusCard 
+                <>{busTripData?.data.map((item, i) => (
+                <BusCard 
                     key={item._id} 
                     index={i} 
                     item={item} 
                     ended={item.busState === 'ARRIVED'}
+                    // openCheckin={ onOpen}
                     myLog={(item.recordedBy as unknown as {_id: string})?._id === currentUser?.accountId}
-                  />))}</>
+                  />
+                ))}</>
               }
             </Box>
           </Box>
