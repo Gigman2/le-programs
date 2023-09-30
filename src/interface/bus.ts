@@ -12,6 +12,7 @@ export interface IBusRound extends IDocument {
     busCost: number;
     stopPoints: string[];
     arrivalTime: string;
+    lastCheckPoint?: string
 }
 
 export interface IBusGroups extends IDocument {

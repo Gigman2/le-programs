@@ -45,7 +45,6 @@ export default function BusingLogin() {
                     roles: userData?.account?.accountType as any[],
                     currentApp: "BUSING"
                 }
-                console.log(user)
                 setLoading(false)
                 saveBusUser(user)
                 saveUserToken(userData?.authToken)

@@ -23,14 +23,15 @@ const toastMessage: ToastProps = {
 }
 
 
-export function useBusGroups(type: string, enabled: boolean) {
+export function useBusGroups(query: Record<string, string>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
-    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { accountType: type }], async () => {
+    const parsedQuery = new URLSearchParams(query).toString()
+    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", query], async () => {
         const { data } = await axiosInstance.get(
-            `${baseUrl}/api/bus-groups?type=${type}`
+            `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`
         );
         return data;
     }, { enabled });
@@ -106,6 +107,33 @@ export function useActiveEvent(key: string, enabled: boolean) {
 
     return { error, ...rest }
 }
+
+
+export function useBusTrips({ event, zone }: { event: string; zone: string }, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const { error, ...rest } = useQuery<IResponse<IBusRound[]>>(["bus-rounds", { event, zone }], async () => {
+        const { data } = await axiosInstance.get(
+            `${baseUrl}/api/bus-rounds?event=${event}&busZone=${zone}`, {
+            headers: { 'Authorization': "Bearer " + token },
+        }
+        );
+        return data;
+    }, { enabled });
+    if (error) {
+        const _error = error as any
+        toastMessage.title = _error?.response?.data.message || _error.message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
+
+
 
 export const LoginRequest = <T>(payload: { email: string; password: string }) => {
     const response = axios.post(`/api/app-login`, payload)

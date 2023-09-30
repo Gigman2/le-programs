@@ -9,7 +9,9 @@ const schema = new Schema<IBusRound>(
       ref: 'Event'
     },
     recordedBy: {
-      type: String,
+      type: ObjectId,
+      ref: "BusAccount",
+      autopopulate: { select: ['name'], maxDepth: 1 }
     },
     vehicle: {
       type: ObjectId,
@@ -17,7 +19,8 @@ const schema = new Schema<IBusRound>(
     },
     busZone: {
       type: ObjectId,
-      ref: 'BusGroup'
+      ref: 'BusGroup',
+      autopopulate: { select: ['name'], maxDepth: 1 }
     },
     busState: {
       type: String,
@@ -33,6 +36,10 @@ const schema = new Schema<IBusRound>(
     },
     busOffering: {
       type: Number,
+      default: 0
+    },
+    lastCheckPoint: {
+      type: String,
       default: 0
     },
     stopPoints: {
@@ -56,5 +63,6 @@ const schema = new Schema<IBusRound>(
     }
   })
 
+schema.plugin(require('mongoose-autopopulate'))
 const BusRound = models.BusRound || model<IBusRound>('BusRound', schema);
 export default BusRound;

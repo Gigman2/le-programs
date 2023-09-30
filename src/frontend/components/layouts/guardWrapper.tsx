@@ -27,7 +27,6 @@ const GuardWrapper = ({allowed, app,  redirectTo, children}: {allowed: string[];
         const isAllowed = user?.roles?.map(item => item.groupType).some(userRole => {
           return allowed.includes(userRole)
         })
-        console.log('Allowed ', isAllowed)
         setUserAllowed(isAllowed)
     },[])
   return (

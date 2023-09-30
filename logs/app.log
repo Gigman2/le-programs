@@ -76,4 +76,88 @@
 [2023-09-30T01:36:19.877] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 =======
 [2023-09-30T02:44:43.368] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+<<<<<<< HEAD
+[2023-09-30T05:01:46.229] [ERROR] default - connection timed out
+[2023-09-30T05:01:46.225] [ERROR] default - connection timed out
+[2023-09-30T05:01:46.234] [ERROR] default - connection timed out
+[2023-09-30T05:02:16.237] [ERROR] default - connection timed out
+[2023-09-30T05:02:47.371] [ERROR] default - connection timed out
+[2023-09-30T05:03:17.381] [ERROR] default - read ECONNRESET
+[2023-09-30T05:03:42.432] [ERROR] default - read ECONNRESET
+[2023-09-30T05:03:45.527] [ERROR] default - read ECONNRESET
+[2023-09-30T05:03:45.531] [ERROR] default - read ECONNRESET
+[2023-09-30T05:04:15.542] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:04:39.545] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:04:44.952] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:04:44.955] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:05:31.769] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T05:05:31.775] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T05:05:31.772] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T05:05:54.982] [ERROR] default - connection <monitor> to 34.225.241.19:27017 timed out
+[2023-09-30T05:06:16.582] [ERROR] default - connection timed out
+[2023-09-30T05:06:19.329] [ERROR] default - connection timed out
+[2023-09-30T05:06:19.332] [ERROR] default - connection timed out
+[2023-09-30T05:06:24.998] [ERROR] default - connection timed out
+[2023-09-30T05:06:49.341] [ERROR] default - connection timed out
+[2023-09-30T05:07:16.227] [ERROR] default - connection timed out
+[2023-09-30T05:07:22.167] [ERROR] default - connection timed out
+[2023-09-30T05:07:52.172] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:08:24.208] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T05:08:54.215] [ERROR] default - connection timed out
+[2023-09-30T05:09:28.257] [ERROR] default - connection timed out
+[2023-09-30T05:09:58.265] [ERROR] default - connection timed out
+[2023-09-30T05:43:59.470] [ERROR] default - connection timed out
+[2023-09-30T05:43:59.575] [ERROR] default - connection timed out
+[2023-09-30T05:44:29.487] [ERROR] default - connection timed out
+[2023-09-30T05:44:39.505] [ERROR] default - connection timed out
+[2023-09-30T05:44:42.435] [ERROR] default - connection timed out
+[2023-09-30T05:44:42.438] [ERROR] default - connection timed out
+[2023-09-30T05:45:12.456] [ERROR] default - connection timed out
+[2023-09-30T05:45:43.521] [ERROR] default - connection timed out
+[2023-09-30T05:46:13.533] [ERROR] default - connection timed out
+[2023-09-30T05:46:45.570] [ERROR] default - connection timed out
+[2023-09-30T05:47:15.575] [ERROR] default - connection timed out
+[2023-09-30T05:47:49.613] [ERROR] default - connection timed out
+[2023-09-30T05:48:19.621] [ERROR] default - connection timed out
+[2023-09-30T08:38:24.705] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:38:24.761] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:38:28.477] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:38:28.493] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:38:34.778] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:38:38.486] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:38:53.910] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:38:53.912] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:39:00.009] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:39:00.011] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:39:03.920] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:39:10.017] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:39:11.224] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:40:10.736] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:40:10.782] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:40:20.749] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:40:21.800] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:40:21.815] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:40:31.817] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:40:41.785] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:41:30.111] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:41:30.142] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:41:40.148] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:42:17.547] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:42:17.550] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:42:20.831] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:42:20.845] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:42:27.565] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:42:30.855] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:43:02.220] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:43:02.222] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:43:12.230] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:43:15.187] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:43:19.995] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:43:19.999] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:43:30.006] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T08:44:14.464] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:44:14.582] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T08:44:24.476] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+=======
 >>>>>>> 7d16810343dba1135c2949fc2f690fb46c1cb1b7
+>>>>>>> f0f2f25adcb3969b4bef727271710d4107fd060a
