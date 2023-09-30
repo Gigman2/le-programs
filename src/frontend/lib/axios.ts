@@ -14,6 +14,5 @@ if (typeof window !== "undefined") {
 
 export const axiosInstance = axios.create({
     baseURL: 'baseUrlHere',
-    timeout: 1000,
     headers: headers
 });

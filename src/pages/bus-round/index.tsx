@@ -2,7 +2,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser } from '@/utils/auth'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import Link from 'next/link'
 import moment from 'moment'
 import {createBusRoundsApi, recordBusRoundsApi} from "@frontend/apis";

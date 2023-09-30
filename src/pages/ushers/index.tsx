@@ -3,7 +3,7 @@ import { useState , useEffect} from 'react'
 import Image from 'next/image'
 import { Box, Button, Flex, Grid, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { getUser } from '@/utils/auth'
+import { getUser } from '@/frontend/store/auth'
 import moment from 'moment'
 import {getHeadCountPostApi} from "@frontend/apis";
 

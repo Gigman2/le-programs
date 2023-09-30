@@ -6,7 +6,7 @@ import { handleChange } from '@/utils/form';
 import {RxCaretDown} from 'react-icons/rx'
 
 export default function Autocomplete(
-    {name, label, data, fields, setFields}: 
+    {name, placeholder, label, data, fields, setFields}: 
     {
         name: string;
         placeholder: string; 
@@ -30,7 +30,7 @@ export default function Autocomplete(
                 fontSize={14} rounded={'md'}
                 onClick={() => setOpen(!isOpen)}
             >
-                {fields[name] ? <Text>{fields[name]}</Text> : <Text color="gray.500">Select a meeting type...</Text> }
+                {fields[name] ? <Text>{fields[name]}</Text> : <Text color="gray.500">{placeholder}</Text> }
                 <Icon as={RxCaretDown} fontSize={24} />
             </Flex>
             {isOpen && data.length > 0 &&  <Box mt={4} borderWidth={1} borderColor={"gray.300"} rounded="sm" 

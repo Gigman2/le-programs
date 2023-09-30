@@ -1,5 +1,5 @@
 import BusRound from '@/backend/controllers/BusRound';
-import { busForm } from '@/utils/auth';
+import { busForm } from '@/frontend/store/auth';
 import { BusFormData, IBusForm } from '@/utils/interfaces';
 import axios from 'axios';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'

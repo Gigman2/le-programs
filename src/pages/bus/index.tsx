@@ -3,7 +3,7 @@ import { Box, Text } from '@chakra-ui/react'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useEffect, useRef, useState } from 'react'
-import { IAccountUser, getUser, saveBusUser } from '@/utils/auth'
+import { IAccountUser, getUser, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import useHover from '@/frontend/hooks/useHover'
 

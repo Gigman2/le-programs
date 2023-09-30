@@ -3,7 +3,7 @@ import Head from 'next/head'
 import {  ReactNode, useEffect, useState } from 'react'
 import { Box, Flex, Text} from '@chakra-ui/react'
 import { useRouter } from 'next/router';
-import { IAccountUser, getUser, removeSession } from '@/utils/auth';
+import { IAccountUser, getUser, removeSession } from '@/frontend/store/auth';
 
 
 const GuardWrapper = ({allowed, app,  redirectTo, children}: {allowed: string[]; app: string; redirectTo?: string; children: ReactNode}) => {

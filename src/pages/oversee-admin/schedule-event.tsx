@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 import { Box, Button, Flex, Text, useToast, Icon, Grid, GridItem } from '@chakra-ui/react'
-import { getUser } from '@/utils/auth'
+import { getUser } from '@/frontend/store/auth'
 import moment from 'moment'
 import { BsArrowLeft } from 'react-icons/bs'
 import { useRouter } from 'next/router'

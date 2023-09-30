@@ -12,7 +12,7 @@ import _,{
   groupBy
 
  } from 'lodash';
-import { getUser } from "@/utils/auth";
+import { getUser } from "@/frontend/store/auth";
 import { useRouter } from "next/router";
 import {addBusRoundsApi} from "@frontend/apis";
 
