@@ -23,7 +23,7 @@ import { addGroup } from "@/frontend/apis";
 
 function Dashboard() {
   const [items, setItems] = useState<{ id: string; name: string }[]>([]);
-  const [isUserRole,d , currentRole] = useGetUser();
+  const [isUserRole,getUserData , currentRole] = useGetUser();
   const [newItem, setNewItem] = useState("");
   const [editingItemId, setEditingItemId] = useState<string>();
 
