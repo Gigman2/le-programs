@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
+import { BsPersonFillAdd } from 'react-icons/bs'
+import { MdAddBusiness } from 'react-icons/md'
 import { TbAlignRight, TbHistory, TbPlus, TbPower, TbX } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useActiveEvent, useBusGroupTree } from '@/frontend/apis'
@@ -10,12 +12,6 @@ import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
 import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
-const MenuOptions = [
-  {title: "History", icon: TbHistory, fn: null},
-  {title: "Logout", icon: TbPower, fn: removeSession}
-
-]
-
 
 const CardItem = ({name, value, myLog}: {name: string; value: string, myLog: boolean}) => {
   return (
@@ -87,6 +83,13 @@ export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
   const [showMenu, setShowMenu] = useState(false)
+
+  const MenuOptions = [
+    {title: "Add Zone", icon: MdAddBusiness, fn: ()=>router.push(`/dashboard`)},
+    {title: "Add Bus Rep", icon: BsPersonFillAdd, fn:  ()=>router.push(`/create-user`)},
+    {title: "History", icon: TbHistory, fn:  ()=>{}},
+    {title: "Logout", icon: TbPower, fn: removeSession}
+  ]
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
     !!(currentUser?.currentRole?.groupType === "BUS_REP")
