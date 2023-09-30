@@ -41,12 +41,12 @@ class BusAccountController extends BaseController<BusAccountService> {
 
                 userId = data.data._id
             } else {
-                userId = userData.data._id
+                userId = userData?.data[0]?._id
             }
 
             const newUser = await this.service.insert({
                 "name": req.body.name,
-                "_id": userData.data[0]._id,
+                "_id": userData?.data[0]?._id,
                 "addedGroup": req.body.group
             })
 

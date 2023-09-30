@@ -19,7 +19,7 @@ import { handleChange } from "@/utils/form";
 import Autocomplete from "../Forms/Autocomplete";
 import { addStopPoint, useSingleBusGroup } from "@/frontend/apis/bus";
 
-export default function RecordCheckPoint(
+export default function EndBusTrip(
     {isOpen, onClose, selectedRecord}: 
     {isOpen: boolean, onClose: () => void; selectedRecord?: IBusRound}
     )  {
