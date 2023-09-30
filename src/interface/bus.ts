@@ -10,7 +10,7 @@ export interface IBusRound extends IDocument {
     people: number;
     busOffering: number;
     busCost: number;
-    stopPoints: string[];
+    stopPoints: { location: string, people: number }[];
     arrivalTime: string;
     lastCheckPoint?: string
 }

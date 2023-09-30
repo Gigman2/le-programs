@@ -17,7 +17,7 @@ import {
 import { IBusRound } from "@/interface/bus";
 import { handleChange } from "@/utils/form";
 import Autocomplete from "../Forms/Autocomplete";
-import { addStopPoint, useSingleBusGroup } from "@/frontend/apis/bus";
+import { updateBusLog, useSingleBusGroup } from "@/frontend/apis/bus";
 
 export default function RecordCheckPoint(
     {isOpen, onClose, selectedRecord}: 
@@ -44,7 +44,7 @@ export default function RecordCheckPoint(
             people: (Number(selectedRecord?.people) || 0) + Number(data.people)
         }
 
-        const res: any = await addStopPoint(selectedRecord?._id as string, payload)
+        const res: any = await updateBusLog(selectedRecord?._id as string, payload)
         if(res){
             toast({
                 status: "success",

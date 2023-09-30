@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
 import { handleChange } from "@/utils/form";
-import { addStopPoint, useSingleBusGroup } from "@/frontend/apis/bus";
+import { updateBusLog } from "@/frontend/apis/bus";
 
 export default function EndBusTrip(
     {isOpen, onClose, selectedRecord}: 
@@ -38,14 +38,14 @@ export default function EndBusTrip(
 
 
     const completeTrip = async () => {
-        const data = {...fields}
-        const newStopPoints = [...(selectedRecord?.stopPoints || []), data]
         const payload: any = {
-            stopPoints : newStopPoints,
-            people: (Number(selectedRecord?.people) || 0) + Number(data.people)
+            busState: "ARRIVED", 
+            arrivalTime: new Date(), 
+            busOffering: fields.busOffering,
+            people: fields.people
         }
-
-        const res: any = await addStopPoint(selectedRecord?._id as string, payload)
+   
+        const res: any = await updateBusLog(selectedRecord?._id as string, payload)
         if(res){
             toast({
                 status: "success",

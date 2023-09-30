@@ -175,3 +175,28 @@
 [2023-09-30T11:58:16.193] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-09-30T11:58:16.281] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-09-30T11:58:26.294] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T14:52:14.238] [ERROR] default - connection 1 to 52.6.199.100:27017 closed
+[2023-09-30T14:52:50.301] [ERROR] default - connection timed out
+[2023-09-30T14:52:50.316] [ERROR] default - connection timed out
+[2023-09-30T14:52:50.318] [ERROR] default - connection timed out
+[2023-09-30T14:53:20.320] [ERROR] default - connection timed out
+[2023-09-30T14:53:28.046] [ERROR] default - connection timed out
+[2023-09-30T14:53:46.701] [ERROR] default - read ECONNRESET
+[2023-09-30T14:53:46.795] [ERROR] default - read ECONNRESET
+[2023-09-30T14:55:09.242] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:55:09.313] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:55:12.744] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:55:12.745] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:55:19.247] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T14:55:22.755] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T14:55:27.966] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:57:36.776] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:57:36.927] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:59:00.430] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:59:00.505] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T14:59:10.521] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-09-30T15:00:29.694] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T15:00:29.770] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T15:00:33.031] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T15:00:33.033] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-09-30T15:00:39.714] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms

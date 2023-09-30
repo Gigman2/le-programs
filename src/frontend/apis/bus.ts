@@ -45,7 +45,7 @@ export interface AddStopPointDTO {
     }],
 }
 
-export const addStopPoint = <T>(id: string, payload: AddStopPointDTO) => {
+export const updateBusLog = <T>(id: string, payload: AddStopPointDTO) => {
     const response = axiosInstance.post(`${baseUrl}/api/bus-rounds/${id}`, payload)
     return response as T
 }

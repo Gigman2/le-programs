@@ -46,7 +46,8 @@ export default function BusRepLogs() {
     {
       event: eventData?.data?._id as string,
       zone: currentUser?.bus['ZONE']?.id as string,
-      isOpen
+      isOpen,
+      endIsOpen
     },
     !!(eventData?.data?._id && currentUser?.bus['ZONE']?.id)
   )

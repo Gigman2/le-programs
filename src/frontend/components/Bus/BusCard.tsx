@@ -23,14 +23,17 @@ export default function BusCard (
     setSelectedRecord: Dispatch<SetStateAction<IBusRound | undefined>>
   }) {
   return (
-    <Box mb={8}>
+    <Box mb={8} color={"white"}>
         <Text fontSize={13} color={"gray.600"}>{dayjs(item.updated_on).format('ddd D, MMMM H:m A')}</Text>
         <Box bg={myLog ? "blackAlpha.800" : "gray.100"} p={3} borderColor={myLog ? "black" :"gray.200"} borderWidth={1} rounded={"md"}>
           <Flex align={"center"} justify={"space-between"} mb={2}>
-            <Text color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
-              <Text as="span" fontWeight={600}>Bus {index + 1}</Text>{item.lastCheckPoint ? ' | Currently at' + 
-              <Text as="span" fontWeight={600} fontSize={14}> {item.lastCheckPoint}</Text>: null}
-            </Text>: <Text></Text>
+            <Flex gap={1} color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
+              <Text as="span" fontWeight={600}>Bus {index + 1}</Text>   
+              {item.stopPoints.length ? <Flex align={"center"} gap={2}>
+                <Text> | Currently at</Text>
+                <Text as="span" fontWeight={600} fontSize={14}> {item.stopPoints[item.stopPoints.length - 1].location as string}</Text>
+              </Flex> : null }    
+            </Flex> <Text></Text>
 
             {myLog ? 
             (
@@ -69,7 +72,7 @@ export default function BusCard (
           </Flex>
           <Flex mt={1} justify={"space-between"}>
               <CardItem name={'Bus Cost'} value={"Ghc "+item.busCost} myLog={!!myLog} />
-              {item.busState === "ARRIVED" ? <CardItem name={'Ended on'} value={item.arrivalTime} myLog={!!myLog} /> : null}
+              {item.busState === "ARRIVED" ? <CardItem name={'Ended on'} value={dayjs(item.arrivalTime).format('h:mm A')} myLog={!!myLog} /> : null}
           </Flex>
           <Flex mt={1} justify={"space-between"}>
               {item.people > 0 ? <CardItem name={'People in bus'} value={item.people} myLog={!!myLog} /> : null}
