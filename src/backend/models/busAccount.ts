@@ -6,6 +6,9 @@ const schema = new Schema<IBusAccount>(
     name: {
       type: String,
     },
+    addedGroup: {
+      type: String
+    },
     accountType: [{
       groupType: {
         type: String,
@@ -14,7 +17,7 @@ const schema = new Schema<IBusAccount>(
       groupId: {
         type: String
       }
-    }],
+    }]
   },
   {
     versionKey: false,
