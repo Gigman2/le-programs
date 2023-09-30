@@ -55,6 +55,7 @@
 [2023-09-29T23:57:52.717] [ERROR] default - connect ETIMEDOUT 34.225.241.19:27017
 [2023-09-29T23:59:03.006] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-09-29T23:59:03.008] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+<<<<<<< HEAD
 [2023-09-30T01:23:13.905] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-09-30T01:23:13.918] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-09-30T01:23:15.149] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
@@ -73,3 +74,6 @@
 [2023-09-30T01:36:09.870] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-09-30T01:36:10.177] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-09-30T01:36:19.877] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+=======
+[2023-09-30T02:44:43.368] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+>>>>>>> 7d16810343dba1135c2949fc2f690fb46c1cb1b7

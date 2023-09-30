@@ -8,6 +8,7 @@ export const saveActiveEvent = (data: IEvent) => {
 
 export const getActiveEvent = () => {
     if (typeof window !== "undefined") {
-        sessionStorage.getItem('active_event')
+        const data = sessionStorage.getItem('active_event')
+        return JSON.parse(data as string) as IEvent
     }
 } 
