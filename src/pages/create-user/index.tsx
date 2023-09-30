@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Button,
@@ -20,44 +20,62 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import PageWrapper from '@/frontend/components/layouts/pageWrapper';
 import useGetUser from '@/frontend/hooks/useGetUser';
 import assignUser from '../api/bus-accounts/assignUser';
-import { addUser ,assignUserToGroup} from '@/frontend/apis';
+import { addUser ,assignUserToGroup, getAccounts, useBusAccount, useBusGroups, useGetAccounts} from '@/frontend/apis';
+import { isSuccess } from '@/utils/isSuccess';
 
 function CreateUser() {
   const [user, setUser] = useState({ email: '', name: '', group: '' });
   const [groups] = useState(['Group A', 'Group B', 'Group C']);
   const [createdUsers, setCreatedUsers] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'ascending' });
+  const [loading, setLoading] = useState(false)
 
   const [isUserRole, getUserData, currentRole] = useGetUser();
+  
+  let userCurrentRole = currentRole() as unknown as {group: string; groupId: string};
+  
+  const {isLoading, data : groupTree} = useBusGroups({parent: userCurrentRole.groupId}, 
+    !!(userCurrentRole.groupId)
+  )
+  // const {data : _createdUsers} = useGetAccounts({"accountType.groupId": userCurrentRole.groupId}, 
+  // {},
+  //   !!(userCurrentRole.groupId)
+  // )
 
-  let userCurrentRole = currentRole() ||'';
-
+  useEffect(() => {
+    getUsers()
+  }, [])
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
+    setLoading(true)
     if (user.email && user.name && user.group) {
       // Create a new user object with the current user state
       const newUser = { email:user.email ,name:user.name};
       // newUser.group = null
       let response = await addUser(user)
 
-      console.log('-handleSubmit');
-      console.log(response);
-      
-
-      // let res = await assignUserToGroup({userId, groupId})
-      // Add the new user to the list of created users
-      setCreatedUsers([...createdUsers, newUser]);
-      // Reset the user state to clear the form fields
-      setUser({ email: '', name: '', group: '' });
+      if (isSuccess(response.data.statusCode)) {
+        
+        let res = await assignUserToGroup({groupId:user.group, userId:response.data.data.data._id})
+        
+        console.log('-handleSubmit');
+        console.log(response);
+        
+        
+        setUser({ email: '', name: '', group: '' });
+        getUsers()
+      }
     } else {
       alert('Please fill in all fields.');
     }
+    setLoading(false)
   };
 
   const handleSort = (key) => {
@@ -85,17 +103,22 @@ function CreateUser() {
   }
 
 
-  const getGroups = ()=>{
-
+  const getUsers = async ()=>{
+   let {data} = await  getAccounts(userCurrentRole.groupId)
+   console.log(data);
+   
+   if (isSuccess(data.statusCode)) {
+    setCreatedUsers(data.data)
+   }
   }
   return (
     <PageWrapper>
     <Box maxW={"500px"} w="100%" position={"relative"}>
-      <Text fontSize="xl" mb={4}>
+      {/* <Text fontSize="xl" mb={4}>
         Create {(userCurrentRole?.groupType === "BUS_HEAD")
                       ? " Bus Rep"
                       : " Branch"}
-      </Text>
+      </Text> */}
       <form onSubmit={handleSubmit}>
         <Stack spacing={4}>
           <FormControl>
@@ -124,9 +147,9 @@ function CreateUser() {
               onChange={handleInputChange}
               placeholder="Select a group"
             >
-              {groups.map((group, index) => (
-                <option key={index} value={group}>
-                  {group}
+              {groupTree?.data.map((group, index) => (
+                <option key={index} value={group._id}>
+                  {group.name}
                 </option>
               ))}
             </Select>
@@ -185,7 +208,7 @@ function CreateUser() {
           </Tr>
         </Thead>
         <Tbody>
-          {sortedUsers.map((createdUser, index) => (
+          {createdUsers.map((createdUser, index) => (
             <Tr key={index}>
               <Td>{createdUser.name}</Td>
               <Td>{createdUser.email}</Td>

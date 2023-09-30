@@ -44,6 +44,27 @@ export function useBusGroups(query: Record<string, string>, enabled: boolean) {
 
     return { error, ...rest }
 }
+export function useGetAccounts(query: Record<string, string>, reloadDep, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const parsedQuery = new URLSearchParams(query).toString()
+    const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-groups", {...query, ...reloadDep}], async () => {
+        const { data } = await axiosInstance.get(
+            `${baseUrl}/api/bus-accounts?${parsedQuery.toString()}`
+        );
+        return data;
+    }, { enabled });
+
+    if (error) {
+        toastMessage.title = (error as any).message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
 
 export function useBusAccount({ name, group }: { name: string, group: string }, enabled: boolean) {
     let token: string
@@ -151,12 +172,17 @@ export const  getUserGroups = async (type: string, groupId:string ) => {
 export const  addUser = async (data: {name: string; email:string} ) => {
     return await axiosInstance.post(
         `${baseUrl}/api/bus-accounts`,
-        {data}
+        data
     );
 }
 export const  assignUserToGroup = async (data: {userId: string; groupId:string} ) => {
     return await axiosInstance.post(
         `${baseUrl}/api/bus-accounts/assignUser`,
-        {data}
+        data
+    );
+}
+export const  getAccounts = async (id: string ) => {
+    return await axiosInstance.get(
+        `${baseUrl}/api/bus-accounts?accountType.groupId=${id}`,
     );
 }
