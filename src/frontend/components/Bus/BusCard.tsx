@@ -1,7 +1,7 @@
 import { IBusRound } from '@/interface/bus';
 import { Box, Button, Flex, Icon, Text } from '@chakra-ui/react';
 import dayjs from 'dayjs';
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { TbCheck, TbMapPinPlus } from 'react-icons/tb';
 
 
@@ -14,7 +14,9 @@ const CardItem = ({name, value, myLog}: {name: string; value: string | number, m
   )
 }
 
-export default function BusCard ({item, index, ended, myLog}: {index:number; item: IBusRound; ended: boolean; myLog?: boolean}) {
+export default function BusCard (
+  {item, index, ended, myLog, openCheckin, setSelectedRecord}: 
+  {index:number; item: IBusRound; ended: boolean; myLog?: boolean, openCheckin: () => void; setSelectedRecord: Dispatch<SetStateAction<IBusRound | undefined>>}) {
   return (
     <Box mb={8}>
         <Text fontSize={13} color={"gray.600"}>{dayjs(item.updated_on).format('ddd D, MMMM H:m A')}</Text>
@@ -30,7 +32,10 @@ export default function BusCard ({item, index, ended, myLog}: {index:number; ite
               <>
                 {ended ? <Text color={"green.500"} fontWeight={600}>Arrived</Text>
                 :<Flex gap={4}>
-                  <Box as={Button}  p={3} bg="white">
+                  <Box as={Button}  p={3} bg="white" onClick={() => {
+                    setSelectedRecord(item)
+                    openCheckin()
+                  }}>
                     <Icon as={TbMapPinPlus} color="blackAlpha.800" fontSize={24}/>
                   </Box>
                   <Box as={Button}  p={3} bg="white">

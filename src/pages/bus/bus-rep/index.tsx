@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Box, Button, Flex, Icon, Skeleton, Text, useDisclosure } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { TbAlignRight, TbCheck, TbMapPinPlus, TbHistory, TbPlus, TbPower } from 'react-icons/tb'
+import { TbAlignRight, TbHistory, TbPlus, TbPower } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useActiveEvent, useBusGroupTree, useBusTrips } from '@/frontend/apis'
 import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
@@ -11,9 +11,9 @@ import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import { IBusRound } from '@/interface/bus'
-import dayjs from 'dayjs'
 import BusCard from '@/frontend/components/Bus/BusCard'
 import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
+
 const MenuOptions = [
   {title: "History", icon: TbHistory, fn: null},
   {title: "Logout", icon: TbPower, fn: removeSession}
@@ -25,6 +25,7 @@ export default function BusRepLogs() {
   const router = useRouter()
   const [showMenu, setShowMenu] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [selectedRecord, setSelectedRecord]= useState<IBusRound>()
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
     !!(currentUser?.currentRole?.groupType === "BUS_REP")
@@ -38,7 +39,12 @@ export default function BusRepLogs() {
     {
       event: eventData?.data?._id as string,
       zone: currentUser?.bus['ZONE']?.id as string
-    }, 
+    },
+    {
+      event: eventData?.data?._id as string,
+      zone: currentUser?.bus['ZONE']?.id as string,
+      isOpen
+    },
     !!(eventData?.data?._id && currentUser?.bus['ZONE']?.id)
   )
 
@@ -110,7 +116,7 @@ export default function BusRepLogs() {
 
           <Box mt={4}>
             <Box pos={"relative"} pl={4}>
-              <RecordCheckPoint isOpen={isOpen} onClose={onClose}/>
+              <RecordCheckPoint isOpen={isOpen} onClose={onClose} selectedRecord={selectedRecord as IBusRound}/>
               <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
               {busTripLoading ? 
                 <Skeleton h={20} w="100%" rounded={"md"} /> : 
@@ -120,8 +126,9 @@ export default function BusRepLogs() {
                     index={i} 
                     item={item} 
                     ended={item.busState === 'ARRIVED'}
-                    // openCheckin={ onOpen}
+                    openCheckin={ onOpen}
                     myLog={(item.recordedBy as unknown as {_id: string})?._id === currentUser?.accountId}
+                    setSelectedRecord={setSelectedRecord}
                   />
                 ))}</>
               }
@@ -132,3 +139,4 @@ export default function BusRepLogs() {
     </GuardWrapper>
   )
 }
+

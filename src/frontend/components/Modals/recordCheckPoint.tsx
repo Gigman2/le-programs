@@ -1,34 +1,59 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import {
+    Box,
     Button,
+    FormLabel,
+    Input,
     Modal,
     ModalBody,
     ModalCloseButton,
     ModalContent,
     ModalHeader,
     ModalOverlay,
-    Text
+    Text,
+    useToast
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
+import { handleChange } from "@/utils/form";
+import Autocomplete from "../Forms/Autocomplete";
+import { addStopPoint, useSingleBusGroup } from "@/frontend/apis/bus";
 
 export default function RecordCheckPoint(
-    {isOpen, onClose}: 
-    {isOpen: boolean, onClose: () => void;}
+    {isOpen, onClose, selectedRecord}: 
+    {isOpen: boolean, onClose: () => void; selectedRecord?: IBusRound}
     )  {
-    const cancelRef = React.useRef(null)
+    const toast = useToast()
     const [loading, setLoading] = useState(false)
+    const [fields, setFields] = useState<any>({
+        people: 0,
+        location: ""
+    })
 
-    const deleteBusRound = async () => {
-        try {
-        setLoading(true)
-        // await removeBusRoundApi(bus);
-        // await getBus()
-        onClose()
-        } catch (error) {
-            console.log(error)
-        } finally{
-            setLoading(false)
+    const {isLoading, data: recordData} = useSingleBusGroup((
+        selectedRecord?.busZone as unknown as {_id: string})?._id, 
+        !!(selectedRecord?.busZone as unknown as {_id: string})?._id
+    )
+    const record = recordData?.data
+
+    const createRecord = async () => {
+        const data = {...fields}
+        const newStopPoints = [...(selectedRecord?.stopPoints || []), data]
+        const payload: any = {
+            stopPoints : newStopPoints,
+            people: (Number(selectedRecord?.people) || 0) + Number(data.people)
+        }
+
+        const res: any = await addStopPoint(selectedRecord?._id as string, payload)
+        if(res){
+            toast({
+                status: "success",
+                duration: 2000,
+                position: 'top-right',
+                isClosable: true, 
+                title: "Stop point recorded"
+            })
+            onClose()
         }
     }
 
@@ -37,10 +62,52 @@ export default function RecordCheckPoint(
        <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Record Check Point</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem similique non cumque qui! Repudiandae odio quod harum corporis placeat, ipsum hic provident molestias aut sequi, aspernatur ipsa sint autem ut?
+            <Box mt={4}>
+                
+                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                    <FormLabel fontSize={14}>What is your current location?</FormLabel>
+                    <Autocomplete
+                        placeholder="Select location" 
+                        name={'location'}
+                        options={record?.station || []} 
+                        value={fields.location} 
+                        fields={fields} 
+                        setFields={setFields}
+                    />
+                </Box>
+
+                <Box p={2} bg="blue.100" my={2} rounded={"md"} color={"blue.500"}>
+                    <Text>You currently have <Text as="span" fontWeight={600}>{selectedRecord?.people}</Text> people </Text>
+                </Box>
+                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                    <FormLabel fontSize={14}>How many people joined the bus</FormLabel>
+                    <Input 
+                        type={"text"}
+                        name="people"
+                        placeholder='Enter here ...' 
+                        value={fields.people} 
+                        onChange={(v) => handleChange(v?.currentTarget?.value, 'people', fields, setFields)} 
+                    />
+                </Box>
+
+                <Box as={Button} 
+                    width="full" 
+                    mt={8} 
+                    mb={4}
+                    bg="base.blue" 
+                    color="white" 
+                    _hover={{bg: "base.blue"}}
+                    _focus={{bg: "base.blue"}}
+                    _active={{bg: "base.blue"}}
+                    isLoading={loading}
+                    isDisabled={loading || !fields.location}
+                    onClick={(v) => createRecord()} 
+                    >Record
+                </Box>
+            </Box>
           </ModalBody>
         </ModalContent>
       </Modal>
