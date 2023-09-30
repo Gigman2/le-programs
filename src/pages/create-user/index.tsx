@@ -34,7 +34,9 @@ function CreateUser() {
   
   let userCurrentRole = currentRole() as unknown as {group: string; groupId: string};
   
-  const {isLoading, data : groupTree} = useBusGroups({parent: userCurrentRole.groupId}, 
+  const {isLoading, data : groupTree} = useBusGroups(
+    {parent: userCurrentRole.groupId},
+    {parent: userCurrentRole.groupId}, 
     !!(userCurrentRole.groupId)
   )
   // const {data : _createdUsers} = useGetAccounts({"accountType.groupId": userCurrentRole.groupId}, 

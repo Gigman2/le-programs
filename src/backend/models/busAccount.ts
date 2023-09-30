@@ -17,7 +17,11 @@ const schema = new Schema<IBusAccount>(
       groupId: {
         type: String
       }
-    }]
+    }],
+    status: {
+      type: String,
+      default: "ACTIVE"
+    }
   },
   {
     versionKey: false,

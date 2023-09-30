@@ -39,8 +39,7 @@ const schema = new Schema<IEvent>(
             enum: ['RECURRING', 'FIXED']
         },
         status: {
-            type: String,
-            enum: ['ACTIVE', 'INACTIVE']
+            type: String
         }
     }, {
 

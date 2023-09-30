@@ -23,13 +23,13 @@ const toastMessage: ToastProps = {
 }
 
 
-export function useBusGroups(query: Record<string, string>, enabled: boolean) {
+export function useBusGroups(query: Record<string, string>, reloadDep: Record<string, any>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
     const parsedQuery = new URLSearchParams(query).toString()
-    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", query], async () => {
+    const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { ...query, ...reloadDep }], async () => {
         const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`
         );
@@ -44,13 +44,15 @@ export function useBusGroups(query: Record<string, string>, enabled: boolean) {
 
     return { error, ...rest }
 }
-export function useGetAccounts(query: Record<string, string>, reloadDep, enabled: boolean) {
+
+
+export function useGetAccounts(query: Record<string, string>, reloadDep: Record<string, string>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
     const parsedQuery = new URLSearchParams(query).toString()
-    const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-groups", {...query, ...reloadDep}], async () => {
+    const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-accounts", { ...query, ...reloadDep }], async () => {
         const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-accounts?${parsedQuery.toString()}`
         );
@@ -66,14 +68,15 @@ export function useGetAccounts(query: Record<string, string>, reloadDep, enabled
     return { error, ...rest }
 }
 
-export function useBusAccount({ name, group }: { name: string, group: string }, enabled: boolean) {
+export function useBusAccount(query: Record<string, string>, reloadDep: Record<string, any>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
-    const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-accounts", { name, group }], async () => {
+    const parsedQuery = new URLSearchParams(query).toString()
+    const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-accounts", { ...query, ...reloadDep }], async () => {
         const { data } = await axios.get(
-            `${baseUrl}/api/bus-accounts?name=${name}&group=${group}`, { headers: { 'Authorization': "Bearer " + token } }
+            `${baseUrl}/api/bus-accounts?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
         );
         return data;
     }, { enabled });
@@ -160,28 +163,43 @@ export const LoginRequest = <T>(payload: { email: string; password: string }) =>
     const response = axios.post(`/api/app-login`, payload)
     return response as T
 }
-export const addGroup = <T>(payload: { name: string; type: string; parent:string }[]) => {
-    const response = axiosInstance.post(baseUrl+`/api/bus-groups`, payload)
+
+export const addGroup = <T>(payload: { name: string; type: string; parent: string, stations?: string[] }[]) => {
+    const response = axiosInstance.post(baseUrl + `/api/bus-groups`, payload)
     return response as T
 }
-export const  getUserGroups = async (type: string, groupId:string ) => {
+
+
+export const updateGroup = <T>(id: string, payload: { name: string; type: string; parent: string, stations?: string[] }[]) => {
+    const response = axiosInstance.post(baseUrl + `/api/bus-groups/${id}`, payload)
+    return response as T
+}
+
+
+export const getUserGroups = async (type: string, groupId: string) => {
     return await axiosInstance.get(
         `${baseUrl}/api/bus-groups?type=${type}&parent=${groupId}`
     );
 }
-export const  addUser = async (data: {name: string; email:string} ) => {
+
+
+export const addUser = async (data: { name: string; email: string }) => {
     return await axiosInstance.post(
         `${baseUrl}/api/bus-accounts`,
         data
     );
 }
-export const  assignUserToGroup = async (data: {userId: string; groupId:string} ) => {
+
+
+export const assignUserToGroup = async (data: { userId: string; groupId: string }) => {
     return await axiosInstance.post(
         `${baseUrl}/api/bus-accounts/assignUser`,
         data
     );
 }
-export const  getAccounts = async (id: string ) => {
+
+
+export const getAccounts = async (id: string) => {
     return await axiosInstance.get(
         `${baseUrl}/api/bus-accounts?accountType.groupId=${id}`,
     );

@@ -51,6 +51,7 @@ class BaseController<S extends IBaseService<any>> {
             const doc = await this.service.insert(req.body)
             return response.successWithData(res, doc, `${this.name} created successfully!`, 201)
         } catch (error: any) {
+            this.log(error)
             return response.error(res, error.message || error)
         }
     }

@@ -53,6 +53,10 @@ const schema = new Schema<IBusRound>(
     }],
     arrivalTime: {
       type: String
+    },
+    status: {
+      type: String,
+      default: "ACTIVE"
     }
   },
   {

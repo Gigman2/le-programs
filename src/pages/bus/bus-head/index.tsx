@@ -5,7 +5,7 @@ import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/st
 import { useRouter } from 'next/router'
 import { BsPersonFillAdd } from 'react-icons/bs'
 import { MdAddBusiness } from 'react-icons/md'
-import { TbAlignRight, TbHistory, TbPlus, TbPower, TbX } from 'react-icons/tb'
+import { TbAlignRight, TbHistory, TbLayoutBottombarCollapseFilled, TbPlus, TbPower, TbUsersGroup, TbX } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useActiveEvent, useBusGroupTree } from '@/frontend/apis'
 import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
@@ -13,71 +13,7 @@ import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 
-const CardItem = ({name, value, myLog}: {name: string; value: string, myLog: boolean}) => {
-  return (
-    <Flex align={"center"} gap={3}>
-      <Text fontSize={13} color={myLog ? "whiteAlpha.800" : "gray.600"}>{name}</Text>
-      <Text fontSize={14} fontWeight={600} color={myLog ? "white" : "blackAlpha.700"}>{value}</Text>
-    </Flex>
-  )
-}
 
-const cardData = [
-  [
-    {name: "Started by", value: "Alex Ferguson"},
-    {name: "Started on", value: "9:00 am"}
-  ],
-  [
-    {name: "No of people", value: "98"},
-    {name: "Ended on", value: "11:00 am"}
-  ],
-  [
-    {name: "Offering Received", value: "Ghc 98"},
-    {name: "Actual Cost", value: "Ghc 205"}
-  ]
-]
-
-const BusCard = ({time, ended, myLog}: {time: string; ended: boolean; myLog?: boolean}) => {
-  return (
-    <Box mb={8}>
-        <Text fontSize={13} color={"gray.600"}>{time}</Text>
-        <Box bg={myLog ? "black" : "gray.100"} p={3} borderColor={myLog ? "black" :"gray.200"} borderWidth={1} rounded={"md"}>
-          <Flex justify={"space-between"} mb={2}>
-            <Text color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
-              <Text as="span" fontWeight={600}>Bus 1</Text> | Currently at 
-              <Text as="span" fontWeight={600} fontSize={14}> Oyarifa</Text>
-            </Text>
-
-            {myLog ? <Box 
-              bg={ended ? "transparent" : "white"} 
-              color={ended ? "white" : "black"} 
-              px={4} rounded={"md"}
-              {...(ended && myLog) ? {fontWeight: 600} : {}}
-              borderColor={"gray.500"}
-            >
-              {ended ? 'Arrived' : "Update Trip"}
-            </Box> : <Box 
-              bg={"transparent"} 
-              color={ended ? "green.400" : "blue.500"} 
-              px={4} rounded={"md"}
-              borderColor={"gray.500"}
-              fontWeight={600}
-            >
-              {ended ? 'Arrived' : "En-Route"}
-            </Box>}
-          </Flex>
-          <Box w={"100%"} h={"1px"} bg="gray.300" />
-          {cardData.map((item, i) => (
-            <Flex key={`${i}`} mt={1} justify={"space-between"}>
-              {item.map(
-                card => (
-                  <CardItem key={`${i}-${card.name}`} name={card.name} value={card.value} myLog={!!myLog} />
-              ))}
-            </Flex>
-          ))}
-        </Box>
-    </Box>
-  )}
 
 export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -85,8 +21,8 @@ export default function BranchHead() {
   const [showMenu, setShowMenu] = useState(false)
 
   const MenuOptions = [
-    {title: "Add Zone", icon: MdAddBusiness, fn: ()=>router.push(`/dashboard`)},
-    {title: "Add Bus Rep", icon: BsPersonFillAdd, fn:  ()=>router.push(`/create-user`)},
+    {title: "Add Zone", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/bus-head/zones`)},
+    {title: "Add Bus Rep", icon: TbUsersGroup, fn:  () => router.push(`/bus/bus-head/accounts`)},
     {title: "History", icon: TbHistory, fn:  ()=>{}},
     {title: "Logout", icon: TbPower, fn: removeSession}
   ]
@@ -102,7 +38,6 @@ export default function BranchHead() {
   useEffect(() => {
     if(groupTree?.data.length){
           const busTreeData = groupTree?.data
-          console.log('Bus ', busTreeData)
           const bus = busTreeData.reduce((acc: GroupedUnits, cValue) => {
             if(cValue){
               acc[cValue.type] = {
@@ -135,7 +70,7 @@ export default function BranchHead() {
   return (
     <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
-        <Box maxW={"500px"} w="100%" position={"relative"}>
+        <Box maxW={"500px"} w="100%"  h={"100vh85"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
           <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
               <Box>
@@ -151,20 +86,10 @@ export default function BranchHead() {
 
           <Flex mt={4} align={"center"} justify={"space-between"}>
             {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data.name}</Text> : <Skeleton h={6} w={"200px"} />}
-            {!eventLoading ? <Flex cursor="pointer" align={"center"} bg="gray.600" gap={2} color={"white"} py={2} px={4} rounded={"md"} onClick={() => router.push('/bus/bus-rep/record')}>
-              <Icon as={TbPlus} fontSize={20} />
-              Record Busing
-            </Flex> : <Skeleton h={12} w="150px" rounded={"md"} />}
           </Flex>
 
           <Box mt={4}>
-            <Box pos={"relative"} pl={4}>
-              <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
-              <BusCard time={"Sun 1, October 9:31 AM"} ended={true} />
-              <BusCard time={"Sun 14, October 10:01 AM"} ended={true}  myLog={true}/>
-              <BusCard time={"Sun 14, October 10:01 AM"} ended={false} />
-              <BusCard time={"Sun 14, October 10:01 AM"} ended={false}  myLog={true}/>
-            </Box>
+            
           </Box>
         </Box>
       </PageWrapper>

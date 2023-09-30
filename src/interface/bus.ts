@@ -13,6 +13,7 @@ export interface IBusRound extends IDocument {
     stopPoints: { location: string, people: number }[];
     arrivalTime: string;
     lastCheckPoint?: string
+    status?: string
 }
 
 export interface IBusGroups extends IDocument {
@@ -20,6 +21,7 @@ export interface IBusGroups extends IDocument {
     type: 'ZONE' | 'BRANCH' | 'SECTOR'
     parent: string | Types.ObjectId,
     station: string[],
+    status?: string
 }
 
 export type AccountType = {
@@ -30,4 +32,6 @@ export interface IBusAccount extends IDocument {
     name: string,
     accountType?: AccountType[],
     addedGroup?: string
+    status?: string
+    email?: string
 }

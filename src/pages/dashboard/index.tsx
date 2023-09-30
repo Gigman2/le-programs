@@ -23,6 +23,7 @@ import useGetUser from "../../frontend/hooks/useGetUser";
 import GuardWrapper from "@/frontend/components/layouts/guardWrapper";
 import { addGroup, getUserGroups } from "@/frontend/apis";
 import { isSuccess } from "@/utils/isSuccess";
+import { getUser } from "@/frontend/store/auth";
 
 const toastMessage: ToastProps = {
   position: "top-right",
@@ -31,17 +32,13 @@ const toastMessage: ToastProps = {
 };
 
 function Dashboard() {
-  const [items, setItems] = useState<{ id: string; name: string }[]>([]);
-  const [isUserRole, getUserData, currentRole] = useGetUser();
+  const [items, setItems] = useState<{ id: string ; name: string }[]>([]);
   const [newItem, setNewItem] = useState("");
   const [editingItemId, setEditingItemId] = useState<string>();
   const toast = useToast();
+  const userData = getUser()
+  const currentRole = userData?.currentRole as {groupType: string ,groupId: string}
 
-  let userCurrentRole = currentRole();
-
-  // const {isLoading, data: groupTree} = useBusGroups(userCurrentRole?.groupId as string,
-  //   !!(userCurrentRole?.groupId === "BUS_REP")
-  // )
 
   useEffect(() => {
     getGroups();
@@ -49,8 +46,8 @@ function Dashboard() {
 
   const getGroups = async () => {
     let { data } = await getUserGroups(
-      userCurrentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
-      userCurrentRole._id
+      currentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
+      currentRole?.groupId
     );
     if (isSuccess(data?.statusCode)) {
       setItems(data.data.map((el: any) => ({ id: el._id, name: el.name })));
@@ -60,12 +57,12 @@ function Dashboard() {
   const handleCreateItem = async () => {
     if (newItem.trim() === "") return;
 
-    const newItemObject = { id: Date.now(), name: newItem };
-    let res = await addGroup([
+    const newItemObject = { id: Date.toString(), name: newItem };
+    let res:any  = await addGroup([
       {
         name: newItem,
-        parent: userCurrentRole._id,
-        type: userCurrentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
+        parent: currentRole.groupId,
+        type: currentRole.groupType === "BUS_HEAD" ? "ZONE" : "BRANCH",
       },
     ]);
 
@@ -75,12 +72,12 @@ function Dashboard() {
         status: "success",
         title: res.message || "Success",
       });
-      setItems([...items, newItemObject]);
+      setItems(prev => ([...prev, newItemObject]));
       setNewItem("");
     } else {
       toast({
         ...toastMessage,
-        status: "erroe",
+        status: "error",
         title: res.message || "Something went wrong",
       });
     }
@@ -90,7 +87,7 @@ function Dashboard() {
     setEditingItemId(id);
   };
 
-  const handleUpdateItem = (id: number, updatedName: string) => {
+  const handleUpdateItem = (id: string | number, updatedName: string) => {
     const updatedItems = items.map((item) =>
       item.id === id ? { ...item, name: updatedName } : item
     );
@@ -99,7 +96,7 @@ function Dashboard() {
     // setEditingItemId(null);
   };
 
-  const handleDeleteItem = (id: number) => {
+  const handleDeleteItem = (id: string | number) => {
     const updatedItems = items.filter((item) => item.id !== id);
     setItems(updatedItems);
   };
@@ -130,7 +127,7 @@ function Dashboard() {
                 <Input
                   type="text"
                   placeholder={
-                    userCurrentRole.groupType === "BUS_HEAD"
+                    currentRole?.groupType === "BUS_HEAD"
                       ? "New Zone"
                       : "New Branch"
                   }
@@ -141,79 +138,14 @@ function Dashboard() {
                   colorScheme="blackAlpha"
                   size="sm"
                   mt={3}
+                  p={4}
                   onClick={handleCreateItem}
                 >
                   <AddIcon /> Add
                 </Button>
               </Box>
 
-              <Table variant="simple">
-                <Thead>
-                  <Tr>
-                    {/* <Th>ID</Th> */}
-                    <Th>Name</Th>
-                    <Th>Actions</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {items.map((item) => (
-                    <Tr key={item.id}>
-                      {/* <Td>{item.id}</Td> */}
-                      <Td>
-                        {editingItemId === String(item.id) ? (
-                          <Input
-                            type="text"
-                            value={item.name}
-                            onChange={(e) =>
-                              handleUpdateItem(item.id, e.target.value)
-                            }
-                          />
-                        ) : (
-                          item.name
-                        )}
-                      </Td>
-                      <Td>
-                        {editingItemId === String(item.id) ? (
-                          <Button colorScheme="blue" size="sm" onClick={save}>
-                            Save
-                          </Button>
-                        ) : (
-                          <Box display={"flex"} flexDirection={"row"}>
-                            <Button
-                              // colorScheme="orange"
-                              size="sm"
-                              mr={2}
-                              onClick={() => handleEditItem(String(item.id))}
-                            >
-                              <EditIcon /> Edit
-                            </Button>
-                            <Button
-                              // colorScheme="red"
-                              size="sm"
-                              onClick={() => handleDeleteItem(item.id)}
-                            >
-                              <DeleteIcon /> Delete
-                            </Button>
-                          </Box>
-                        )}
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-                {items.length == 0 && (
-                  <Box
-                    display={"flex"}
-                    position={"absolute"}
-                    left={0}
-                    right={0}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    textAlign={"center"}
-                  >
-                    <Text>No Data</Text>
-                  </Box>
-                )}
-              </Table>
+              
             </Container>
           </ChakraProvider>
         </Box>

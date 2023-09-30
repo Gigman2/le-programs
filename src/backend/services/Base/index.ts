@@ -56,8 +56,7 @@ export default class BaseService<M> {
    * @description Insert a new record to a collection (model)
    */
   async insert(payload: M, config?: any) {
-
-    return await this.model.create(payload, config);
+    return await this.model.create(payload);
   }
 
   async getOne(query: any) {
