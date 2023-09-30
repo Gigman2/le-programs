@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormLabel, Icon, Input, Text, useToast } from '@chakra-ui/react'
 import { IAccountUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
@@ -49,6 +49,9 @@ export default function AddBusLog() {
     }
 
 
+    useEffect(() => {
+
+    }, [])
 
   return (
     <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>

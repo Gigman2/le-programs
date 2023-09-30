@@ -21,6 +21,7 @@ const GuardWrapper = ({allowed, app,  redirectTo, children}: {allowed: string[];
         const user = getUser() as IAccountUser
         if(!user) router.push(`/${app}/login`)
 
+        console.log(allowed)
         const isAllowed = user?.roles?.map(item => item.groupType).every(userRole => allowed.includes(userRole))
         setUserAllowed(isAllowed)
     },[])
