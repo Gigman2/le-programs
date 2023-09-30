@@ -1,40 +1,67 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import { Box, Button, Flex, FormLabel, Icon, Input, Text, useToast } from '@chakra-ui/react'
-import { IAccountUser } from '@/frontend/store/auth'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { TbChevronLeft} from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { handleChange } from '@/utils/form'
-import Autocomplete from '@/frontend/components/Forms/CustomSelect'
-import { CreateBusTrip, CreateBusTripDTO } from '@/frontend/apis/bus'
+import { CreateBusTrip, CreateBusTripDTO, useBusVehicles } from '@/frontend/apis/bus'
 import { IBusRound } from '@/interface/bus'
+import { IEvent } from '@/interface/events'
+import { getActiveEvent } from '@/frontend/store/event'
+import Autocomplete from '@/frontend/components/Forms/Autocomplete'
 
 export default function AddBusLog() {
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
+    const [activeEvent, setActiveEvent]  = useState<IEvent>()
     const [loading, setLoading] = useState(false)
     const [hasError, setHasError] = useState(false)
     const router = useRouter()
     const toast = useToast()
     const [fields, setFields] = useState({
         busOffering: 0,
-        totalPeople: 0,
+        people: 0,
         busCost: 0,
         vehicle: ""
     })
 
+    const {isLoading, data: dataVehicle} = useBusVehicles(currentUser?.currentRole?.groupId as string, 
+        !!(currentUser)
+    )
+
+    const vehicleList = dataVehicle?.data
+
     const createBus = async () => {
         try {
             setLoading(true)
-            const payload: CreateBusTripDTO = {...fields}
+            const payload: CreateBusTripDTO = { 
+                busOffering: fields.busOffering, 
+                people: fields.people, 
+                busCost: fields.busCost
+            }
+            payload.recordedBy = currentUser?.accountId
+            payload.busZone = currentUser?.bus?.['ZONE']?.id as string
+            payload.event = activeEvent?._id as string
+            payload.busState = "EN_ROUTE"
+            payload.vehicle = (fields.vehicle as unknown as any).value
+
             const res: any = await CreateBusTrip(payload)
             if(res){
                 let  resData: IBusRound = res?.data as any
                 console.log('Data ', resData)
                 
             }
+             toast({
+                status: "success",
+                duration: 2000,
+                position: 'top-right',
+                isClosable: true, 
+                title: "Bus trip recorded"
+            })
+            setLoading(false)
         } catch (error) {
             setLoading(false)
             const _error = error as any
@@ -49,9 +76,14 @@ export default function AddBusLog() {
     }
 
 
-    useEffect(() => {
 
-    }, [])
+    useEffect(() => {
+        const user = getUser() as IAccountUser
+        setCurrentUser(user)
+
+        const event = getActiveEvent()
+        if(event) setActiveEvent(event)
+    },[])
 
   return (
     <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>
@@ -90,10 +122,10 @@ export default function AddBusLog() {
                         <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
                         <Input 
                             type={"text"}
-                            name="totalPeople"
+                            name="people"
                             placeholder='Enter here ...' 
-                            value={fields.totalPeople} 
-                            onChange={(v) => handleChange(v?.currentTarget?.value, 'totalPeople', fields, setFields)} 
+                            value={fields.people} 
+                            onChange={(v) => handleChange(v?.currentTarget?.value, 'people', fields, setFields)} 
                         />
                     </Box>
 
@@ -109,13 +141,15 @@ export default function AddBusLog() {
                     </Box>
 
                     <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                        <Autocomplete 
-                            label='Indicate the vehicle used for the trip'
+                        <FormLabel fontSize={14}>Indicate the vehicle used for the trip</FormLabel>
+                        <Autocomplete
                             name='vehicle'
-                            data={[]}
+                            options={vehicleList?.map(a => ({label:a.name, value: a._id as string})) || []}
+                            value={fields['vehicle']}
                             fields={fields as unknown as Record<string, string>}
                             setFields={setFields as unknown as React.Dispatch<React.SetStateAction<Record<string, string | boolean | undefined >>>}
                             placeholder='Select vehicle'
+
                         />
                         
                     </Box>

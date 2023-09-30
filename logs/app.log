@@ -55,3 +55,4 @@
 [2023-09-29T23:57:52.717] [ERROR] default - connect ETIMEDOUT 34.225.241.19:27017
 [2023-09-29T23:59:03.006] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-09-29T23:59:03.008] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-09-30T02:44:43.368] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
