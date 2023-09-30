@@ -28,5 +28,6 @@ export type AccountType = {
 }
 export interface IBusAccount extends IDocument {
     name: string,
-    accountType?: AccountType[]
+    accountType?: AccountType[],
+    addedGroup?: string
 }
