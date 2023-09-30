@@ -1,4 +1,5 @@
 import { axiosInstance } from "../lib/axios"
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 
 export interface CreateBusTripDTO {
     busOffering: number,
@@ -8,6 +9,6 @@ export interface CreateBusTripDTO {
     event?: string
 }
 export const CreateBusTrip = <T>(payload: CreateBusTripDTO) => {
-    const response = axiosInstance.post(`/api/app-login`, payload)
+    const response = axiosInstance.post(`${baseUrl}/api/bus-rounds`, payload)
     return response as T
 }
