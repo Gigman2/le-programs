@@ -3,7 +3,7 @@ import { Box, Button, Flex, FormLabel, Input, Text, useToast } from '@chakra-ui/
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange, validate } from '@/utils/form';
-import { clearUser, saveUser } from '@/utils/auth';
+import { clearUser, saveUser } from '@/frontend/store/auth';
 
 interface IModifiedBusGroup {
     label?: string,
@@ -19,7 +19,6 @@ interface ILocalUser {
 export default function Ushers() {
     const router = useRouter()
     const [disabled, setDisabled] = useState(false)
-    const [search, setSearch] = useState('')
     const [fields, setFIelds] = useState< Record<string, string>>({
         id: ''
     })

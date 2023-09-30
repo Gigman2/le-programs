@@ -67,7 +67,6 @@ class BaseController<S extends IBaseService<any>> {
             const doc = await this.service.get({ ...req.query, status: { "$ne": "ARCHIVED" } })
             return response.successWithData(res, doc)
         } catch (error: any) {
-            console.log(error)
             return response.error(res, error.message || error)
         }
     }

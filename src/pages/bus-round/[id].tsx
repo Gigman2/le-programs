@@ -6,7 +6,7 @@ import { Box, Button, Flex, FormLabel, Icon, Input, Text, useToast } from '@chak
 import {BsArrowLeft} from 'react-icons/bs'
 import { useRouter } from 'next/router'
 import moment from 'moment'
-import { addBus, getUser } from '@/utils/auth'
+import { addBus, getUser } from '@/frontend/store/auth'
 import { handleChange, validate } from '@/utils/form'
 import Autocomplete from '@/frontend/components/Forms/Autocomplete'
 import {endBusRoundApi, getBusRoundsByBusIdApi, updateBusRoundsApi} from "@frontend/apis";
