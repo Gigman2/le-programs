@@ -20,7 +20,7 @@ import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import PageWrapper from '@/frontend/components/layouts/pageWrapper';
 import useGetUser from '@/frontend/hooks/useGetUser';
 import assignUser from '../api/bus-accounts/assignUser';
-import { addUser ,assignUserToGroup} from '@/frontend/apis';
+import { addUser ,assignUserToGroup, useBusGroups} from '@/frontend/apis';
 
 function CreateUser() {
   const [user, setUser] = useState({ email: '', name: '', group: '' });
@@ -29,9 +29,12 @@ function CreateUser() {
   const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'ascending' });
 
   const [isUserRole, getUserData, currentRole] = useGetUser();
-
-  let userCurrentRole = currentRole() ||'';
-
+  
+  let userCurrentRole = currentRole() as unknown as {group: string; groupId: string};
+  
+  const {isLoading, data : groupTree} = useBusGroups({parent: userCurrentRole.groupId}, 
+    !!(userCurrentRole.groupId)
+  )
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -124,9 +127,9 @@ function CreateUser() {
               onChange={handleInputChange}
               placeholder="Select a group"
             >
-              {groups.map((group, index) => (
-                <option key={index} value={group}>
-                  {group}
+              {groupTree?.data.map((group, index) => (
+                <option key={index} value={group._id}>
+                  {group.name}
                 </option>
               ))}
             </Select>
