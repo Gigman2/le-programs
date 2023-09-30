@@ -88,9 +88,9 @@ function CreateUser() {
     <PageWrapper>
     <Box maxW={"500px"} w="100%" position={"relative"}>
       <Text fontSize="xl" mb={4}>
-        Create {userCurrentRole.groupType === "BUS_HEAD"
-                      ? "New Zone"
-                      : "New Branch"}
+        Create {userCurrentRole?.groupType === "BUS_HEAD"
+                      ? " Bus Rep"
+                      : " Branch"}
       </Text>
       <form onSubmit={handleSubmit}>
         <Stack spacing={4}>
