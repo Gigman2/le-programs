@@ -51,7 +51,7 @@ function Dashboard() {
   };
 
   return (
-    <GuardWrapper allowed={[ "BRANCH_HEAD", "SECTOR_HEAD",]} app="bus" redirectTo='bus/login'>
+    <GuardWrapper allowed={[ "BRANCH_HEAD", "SECTOR_HEAD"]} app="bus" redirectTo='bus/login'>
           <PageWrapper>
               <Box maxW={"500px"} w="100%" position={"relative"}>
 
