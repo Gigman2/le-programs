@@ -15,14 +15,13 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { AddIcon, EditIcon, DeleteIcon } from '@chakra-ui/icons';
+import PageWrapper from '@/frontend/components/layouts/pageWrapper';
+import useGetUser from '../../frontend/hooks/useGetUser';
+import GuardWrapper from '@/frontend/components/layouts/guardWrapper';
 
 function Dashboard() {
-  const [items, setItems] = useState([
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' },
-  ]);
-
+  const [items, setItems] = useState< {id:string,name:string}[]>([]);
+  const [isUserRole] =  useGetUser()
   const [newItem, setNewItem] = useState('');
   const [editingItemId, setEditingItemId] = useState<string>();
 
@@ -52,19 +51,23 @@ function Dashboard() {
   };
 
   return (
-    <ChakraProvider>
+    <GuardWrapper allowed={[ "BRANCH_HEAD", "SECTOR_HEAD",]} app="bus" redirectTo='bus/login'>
+          <PageWrapper>
+              <Box maxW={"500px"} w="100%" position={"relative"}>
+
+              <ChakraProvider>
       <Container maxW="container.lg" py={5}>
         <Heading mb={4}>Dashboard</Heading>
 
         <Box mb={4} display={"flex"} flexDirection={"column"} alignItems={"flex-end"}>
           <Input
             type="text"
-            placeholder="New Item"
+            placeholder={isUserRole(['BRANCH_HEAD'])?"New Zone":'New Branch'}
             value={newItem}
             onChange={(e) => setNewItem(e.target.value)}
           />
           <Button
-            colorScheme="teal"
+            colorScheme="blackAlpha"
             size="sm"
             mt={3}
             onClick={handleCreateItem}
@@ -103,7 +106,7 @@ function Dashboard() {
                     <Button
                       colorScheme="blue"
                       size="sm"
-                      onClick={() => setEditingItemId(String(item.id))}
+                      onClick={() => setEditingItemId(undefined)}
                     >
                       Save
                     </Button>
@@ -133,6 +136,13 @@ function Dashboard() {
         </Table>
       </Container>
     </ChakraProvider>
+</Box>
+
+    </PageWrapper>
+</GuardWrapper>
+  
+
+    
   );
 }
 
