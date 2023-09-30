@@ -3,14 +3,14 @@ import { IAccountUser, getUser } from "@/frontend/store/auth";
 export default function useGetUser() {
 
   const isUserRole = (
-    _roles: ("BUS_REP" | "BUS_HEAD" | "SECTOR_HEAD" | "OVERALL_HEAD")[]
+    rowCheck: ("BUS_REP" | "BUS_HEAD" | "SECTOR_HEAD" | "OVERALL_HEAD")[]
   ) => {
     const { roles } = getUser() as IAccountUser;
 
     if (
       roles
         .map((el) => el.groupType)
-        .every((userRole) => _roles.includes(userRole))
+        .every((userRole) => rowCheck.includes(userRole))
     ) {
       return true;
     } else {
@@ -23,9 +23,9 @@ export default function useGetUser() {
     return user;
   };
   
-  const currentRole = (): {groupType:string;_id:string} => {
+  const currentRole = (): {groupType:string;groupId:string} => {
     const user = getUser() as IAccountUser;
-    return user?.currentRole||{groupType:'',_id:''};
+    return user?.currentRole||{groupType:'',groupId:''};
   };
 
 
