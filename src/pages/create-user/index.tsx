@@ -30,7 +30,7 @@ function CreateUser() {
 
   const [isUserRole, getUserData, currentRole] = useGetUser();
 
-  let userCurrentRole = currentRole();
+  let userCurrentRole = currentRole() ||'';
 
 
   const handleInputChange = (e) => {
@@ -84,11 +84,15 @@ function CreateUser() {
   //  let res = await assignUserToGroup({userId, groupId})
   }
 
+
+  const getGroups = ()=>{
+
+  }
   return (
     <PageWrapper>
     <Box maxW={"500px"} w="100%" position={"relative"}>
       <Text fontSize="xl" mb={4}>
-        Create {userCurrentRole?.groupType === "BUS_HEAD"
+        Create {(userCurrentRole?.groupType === "BUS_HEAD")
                       ? " Bus Rep"
                       : " Branch"}
       </Text>
