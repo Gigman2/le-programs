@@ -35,20 +35,22 @@ class BusAccountController extends BaseController<BusAccountService> {
         try {
             const { data: userData } = await axios.get(`${authAPI}users?email=${req.body.email}`)
             let userId
-            if (userData.statusCode !== 200) {
-                const { data: { statusCode, data } } = await axios.post(`${authAPI}users`, { email: req.body.email, firstName: req.body.name })
+            if (!userData?.data?.length || [400, 422, 401, 403].includes(userData.statusCode)) {
+                const { data: { statusCode, data } } = await axios.post(`${authAPI}users`,
+                    { email: req.body.email, firstName: req.body.name, lastName: req.body.lastName }
+                )
                 if (statusCode != 201 || !data?.firstName) return responses.error(res, "failed to create user")
-
-                userId = data.data._id
+                userId = data._id
             } else {
                 userId = userData?.data?.[0]?._id
             }
 
-            const newUser = await this.service.insert({
-                "name": req.body.name,
-                "_id": userData?.data?.[0]?._id,
-                "addedGroup": req.body.group
-            })
+            const newUser = await this.service.insert(
+                {
+                    "name": req.body.name,
+                    "_id": userId,
+                    "addedGroup": req.body.group
+                })
 
             return responses.successWithData(res, { data: newUser }, "success")
         } catch (error: any) {

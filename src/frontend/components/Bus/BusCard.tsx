@@ -15,8 +15,13 @@ const CardItem = ({name, value, myLog}: {name: string; value: string | number, m
 }
 
 export default function BusCard (
-  {item, index, ended, myLog, openCheckin, setSelectedRecord}: 
-  {index:number; item: IBusRound; ended: boolean; myLog?: boolean, openCheckin: () => void; setSelectedRecord: Dispatch<SetStateAction<IBusRound | undefined>>}) {
+  {item, index, ended, myLog, openCheckin, openEndTrip, setSelectedRecord}: 
+  {
+    index:number; item: IBusRound; 
+    ended: boolean; myLog?: boolean, 
+    openCheckin: () => void; openEndTrip: () => void;
+    setSelectedRecord: Dispatch<SetStateAction<IBusRound | undefined>>
+  }) {
   return (
     <Box mb={8}>
         <Text fontSize={13} color={"gray.600"}>{dayjs(item.updated_on).format('ddd D, MMMM H:m A')}</Text>
@@ -38,7 +43,10 @@ export default function BusCard (
                   }}>
                     <Icon as={TbMapPinPlus} color="blackAlpha.800" fontSize={24}/>
                   </Box>
-                  <Box as={Button}  p={3} bg="white">
+                  <Box as={Button}  p={3} bg="white" onClick={() => {
+                    setSelectedRecord(item)
+                    openEndTrip()
+                  }}>
                     <Icon as={TbCheck} color="blackAlpha.800" fontSize={24}/>
                   </Box>
                 </Flex>}
