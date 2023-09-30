@@ -21,7 +21,8 @@ export default function AddBusLog() {
     const [fields, setFields] = useState({
         busOffering: 0,
         totalPeople: 0,
-        busCost: 0
+        busCost: 0,
+        vehicle: ""
     })
 
     const createBus = async () => {
