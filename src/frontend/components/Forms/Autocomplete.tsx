@@ -11,8 +11,8 @@ interface IProps {
         placeholder: string; 
         options: Record<string, string >[] | any[],
         name: string
-        fields: Record<string, string | boolean | undefined>, 
-        setFields: Dispatch<SetStateAction<Record<string, string  | boolean | undefined>>>
+        fields: Record<string, string | boolean | number | undefined>, 
+        setFields: Dispatch<SetStateAction<Record<string, string | number | boolean | undefined>>>
     }
 
 
@@ -33,7 +33,7 @@ export default function Autocomplete(
             rounded="md"
             cursor={"pointer"}
           >
-            {value ? (value as {label: string}).label : placeholder}
+            {value ? (value as {label: string})?.label || value as string : placeholder}
           </Listbox.Button>
           <Listbox.Options
              as={List}

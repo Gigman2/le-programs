@@ -42,7 +42,7 @@ class BusAccountController extends BaseController<BusAccountService> {
 
             return responses.successWithData(res, { data: newUser }, "success")
         } catch (error: any) {
-            return responses.error(res, error.message || error)
+            return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
     }
 

@@ -42,10 +42,15 @@ const schema = new Schema<IBusRound>(
       type: String,
       default: 0
     },
-    stopPoints: {
-      type: [String],
-      default: []
-    },
+    stopPoints: [{
+      _id: 0,
+      location: {
+        type: String,
+      },
+      people: {
+        type: Number
+      }
+    }],
     arrivalTime: {
       type: String
     }
