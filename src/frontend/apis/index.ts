@@ -148,3 +148,15 @@ export const  getUserGroups = async (type: string, groupId:string ) => {
         `${baseUrl}/api/bus-groups?type=${type}&parent=${groupId}`
     );
 }
+export const  addUser = async (data: {name: string; email:string} ) => {
+    return await axiosInstance.post(
+        `${baseUrl}/api/bus-accounts`,
+        {data}
+    );
+}
+export const  assignUserToGroup = async (data: {userId: string; groupId:string} ) => {
+    return await axiosInstance.post(
+        `${baseUrl}/api/bus-accounts/assignUser`,
+        {data}
+    );
+}

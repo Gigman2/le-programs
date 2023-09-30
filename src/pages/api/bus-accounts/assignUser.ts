@@ -2,7 +2,7 @@ import BusAccount from '@/backend/controllers/BusAccount';
 import { authenticateUser } from '@/backend/middlewares/authenticate';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
-const handler: NextApiHandler = async function handler(
+const assignUser: NextApiHandler = async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
@@ -21,4 +21,4 @@ const handler: NextApiHandler = async function handler(
 
 
 
-export default authenticateUser(handler);
+export default authenticateUser(assignUser);

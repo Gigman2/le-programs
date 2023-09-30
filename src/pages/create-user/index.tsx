@@ -17,29 +17,40 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import PageWrapper from '@/frontend/components/layouts/pageWrapper';
+import useGetUser from '@/frontend/hooks/useGetUser';
+import assignUser from '../api/bus-accounts/assignUser';
+import { addUser ,assignUserToGroup} from '@/frontend/apis';
 
 function CreateUser() {
   const [user, setUser] = useState({ email: '', name: '', group: '' });
   const [groups] = useState(['Group A', 'Group B', 'Group C']);
-  const [createdUsers, setCreatedUsers] = useState([
-    {name:'Kelvin Portuphy',email:'ofolikelvin@gmail.com',group:'Group A'},
-    {name:'Ofoli Portuphy',email:'ofolikelvin@gmail.com',group:'Group B'},
-    {name:'Kelvin Portuphy',email:'ofolikelvin@gmail.com',group:'Group A'},
-    {name:'Azanda',email:'ofolikelvin@gmail.com',group:'Group A'},
-    {name:'Richard',email:'ofolikelvin@gmail.com',group:'Group C'}
-  ]);
+  const [createdUsers, setCreatedUsers] = useState([]);
   const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'ascending' });
+
+  const [isUserRole, getUserData, currentRole] = useGetUser();
+
+  let userCurrentRole = currentRole();
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (user.email && user.name && user.group) {
       // Create a new user object with the current user state
-      const newUser = { ...user };
+      const newUser = { email:user.email ,name:user.name};
+      // newUser.group = null
+      let response = await addUser(user)
+
+      console.log('-handleSubmit');
+      console.log(response);
+      
+
+      // let res = await assignUserToGroup({userId, groupId})
       // Add the new user to the list of created users
       setCreatedUsers([...createdUsers, newUser]);
       // Reset the user state to clear the form fields
@@ -65,10 +76,21 @@ function CreateUser() {
     }
   });
 
+  const save = async () =>{
+
+
+   let response = await addUser(user)
+
+  //  let res = await assignUserToGroup({userId, groupId})
+  }
+
   return (
-    <Box p={4}>
+    <PageWrapper>
+    <Box maxW={"500px"} w="100%" position={"relative"}>
       <Text fontSize="xl" mb={4}>
-        Create User
+        Create {userCurrentRole.groupType === "BUS_HEAD"
+                      ? "New Zone"
+                      : "New Branch"}
       </Text>
       <form onSubmit={handleSubmit}>
         <Stack spacing={4}>
@@ -107,7 +129,7 @@ function CreateUser() {
           </FormControl>
           <Button
             type="submit"
-            colorScheme="teal"
+            colorScheme="blackAlpha"
             leftIcon={<CheckIcon />}
           >
             Create User
@@ -168,7 +190,21 @@ function CreateUser() {
           ))}
         </Tbody>
       </Table>
+        {(sortedUsers.length == 0 || !sortedUsers) && (
+                  <Box
+                    display={"flex"}
+                    position={"absolute"}
+                    left={0}
+                    right={0}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    textAlign={"center"}
+                  >
+                    <Text>No Data</Text>
+                  </Box>
+                )}
     </Box>
+    </PageWrapper>
   );
 }
 
