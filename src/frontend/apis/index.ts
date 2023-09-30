@@ -107,6 +107,33 @@ export function useActiveEvent(key: string, enabled: boolean) {
     return { error, ...rest }
 }
 
+
+export function useBusTrips({ event, zone }: { event: string; zone: string }, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const { error, ...rest } = useQuery<IResponse<IBusRound[]>>(["bus-rounds", { event, zone }], async () => {
+        const { data } = await axiosInstance.get(
+            `${baseUrl}/api/bus-rounds?event=${event}&busZone=${zone}`, {
+            headers: { 'Authorization': "Bearer " + token },
+        }
+        );
+        return data;
+    }, { enabled });
+    if (error) {
+        const _error = error as any
+        toastMessage.title = _error?.response?.data.message || _error.message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
+
+
+
 export const LoginRequest = <T>(payload: { email: string; password: string }) => {
     const response = axios.post(`/api/app-login`, payload)
     return response as T

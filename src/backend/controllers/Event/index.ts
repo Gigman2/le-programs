@@ -63,9 +63,12 @@ class EventController extends BaseController<EventService> implements IEventCont
                     return newItem
                 })
 
-            const maxScoreEvent = activeEvents.reduce(function (prev, current) {
-                return (prev && prev.order > current.order) ? prev : current
-            })
+            let maxScoreEvent = null
+            if (activeEvents.length) {
+                maxScoreEvent = activeEvents.reduce(function (prev, current) {
+                    return (prev && prev.order > current.order) ? prev : current
+                })
+            }
 
 
 
