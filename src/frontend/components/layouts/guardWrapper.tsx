@@ -19,6 +19,9 @@ const GuardWrapper = ({allowed, app,  redirectTo, children}: {allowed: string[];
 
     useEffect(() => {
         const user = getUser() as IAccountUser
+        console.log("--user--");
+        console.log(user);
+        
         if(!user) router.push(`/${app}/login`)
 
         const isAllowed = user?.roles?.map(item => item.groupType).some(userRole => {

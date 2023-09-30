@@ -55,7 +55,28 @@
 [2023-09-29T23:57:52.717] [ERROR] default - connect ETIMEDOUT 34.225.241.19:27017
 [2023-09-29T23:59:03.006] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-09-29T23:59:03.008] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+<<<<<<< HEAD
+[2023-09-30T01:23:13.905] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:23:13.918] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:23:15.149] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:23:35.155] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:23:43.913] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:23:45.156] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:33:01.506] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:33:01.510] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:33:31.519] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:19.612] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:19.621] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:40.171] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:49.630] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:49.670] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:35:49.869] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:36:09.870] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:36:10.177] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-09-30T01:36:19.877] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+=======
 [2023-09-30T02:44:43.368] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+<<<<<<< HEAD
 [2023-09-30T05:01:46.229] [ERROR] default - connection timed out
 [2023-09-30T05:01:46.225] [ERROR] default - connection timed out
 [2023-09-30T05:01:46.234] [ERROR] default - connection timed out
@@ -137,3 +158,6 @@
 [2023-09-30T08:44:14.464] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-09-30T08:44:14.582] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-09-30T08:44:24.476] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+=======
+>>>>>>> 7d16810343dba1135c2949fc2f690fb46c1cb1b7
+>>>>>>> f0f2f25adcb3969b4bef727271710d4107fd060a

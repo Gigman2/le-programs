@@ -138,3 +138,7 @@ export const LoginRequest = <T>(payload: { email: string; password: string }) =>
     const response = axios.post(`/api/app-login`, payload)
     return response as T
 }
+export const addGroup = <T>(payload: { name: string; type: string; parent:string }[]) => {
+    const response = axiosInstance.post(`/api/bus-groups`, payload)
+    return response as T
+}
