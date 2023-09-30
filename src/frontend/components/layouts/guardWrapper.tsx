@@ -24,7 +24,10 @@ const GuardWrapper = ({allowed, app,  redirectTo, children}: {allowed: string[];
         
         if(!user) router.push(`/${app}/login`)
 
-        const isAllowed = user?.roles?.map(item => item.groupType).every(userRole => allowed.includes(userRole))
+        const isAllowed = user?.roles?.map(item => item.groupType).some(userRole => {
+          return allowed.includes(userRole)
+        })
+        console.log('Allowed ', isAllowed)
         setUserAllowed(isAllowed)
     },[])
   return (

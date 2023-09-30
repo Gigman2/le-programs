@@ -4,6 +4,7 @@ import { IDocument } from './misc';
 export interface IBusRound extends IDocument {
     event: string | Types.ObjectId;
     recordedBy: string | Types.ObjectId;
+    vehicle: string | Types.ObjectId;
     busZone: string | Types.ObjectId
     busState: 'EN_ROUTE' | 'ARRIVED';
     people: number;

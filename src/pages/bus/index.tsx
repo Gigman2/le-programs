@@ -41,7 +41,7 @@ export default function BusHome() {
     },[])
 
     return (
-        <GuardWrapper allowed={["BUS_REP", "BRANCH_HEAD", "SECTOR_HEAD", "OVERALL_ADMIN"]} app="bus" redirectTo='bus/login'>
+        <GuardWrapper allowed={["BUS_REP", "BUS_HEAD", "SECTOR_HEAD", "OVERALL_ADMIN"]} app="bus" redirectTo='bus/login'>
             <PageWrapper>
                 <Box minW="370px">
                     <Box mt={4}>

@@ -11,6 +11,10 @@ const schema = new Schema<IBusRound>(
     recordedBy: {
       type: String,
     },
+    vehicle: {
+      type: ObjectId,
+      ref: 'Vehicle'
+    },
     busZone: {
       type: ObjectId,
       ref: 'BusGroup'
