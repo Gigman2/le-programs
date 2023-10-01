@@ -13,6 +13,8 @@ class BusAccountController extends BaseController<BusAccountService> {
     protected name = 'BusAccount';
     constructor(service: BusAccountService, private busGroupService: BusGroupService) {
         super(service)
+        this.getAccount = this.getAccount.bind(this)
+
     }
 
     async login(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -88,6 +90,14 @@ class BusAccountController extends BaseController<BusAccountService> {
         }
     }
 
+    async getAccount(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const data = await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
+            return responses.successWithData(res, data, "success")
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
 }
 
 const BusAccount = new BusAccountController(

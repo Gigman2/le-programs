@@ -110,7 +110,7 @@ export default function BranchHead() {
                             <Tr>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Bus Reps</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Stations</Th>
+                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>People</Th>
                                 <Th textTransform={"capitalize"} color={"gray.500"}>
                                     {/* <Icon as={TbDots}  fontSize={24} /> */}
                                 </Th>
@@ -129,13 +129,12 @@ export default function BranchHead() {
                                     {item.station.length}
                                 </Td>
                                 <Td>
-                                  <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
+                                  <Flex w={10} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
                                   onClick={() => {
                                     setSelectedGroup(item)
                                     onOpen()
                                   }}>
                                     <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
-                                    <Text>Edit</Text>
                                   </Flex>
                                 </Td>
                             </Tr>

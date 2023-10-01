@@ -33,12 +33,15 @@ export default function BranchHead() {
 
   const {isLoading: accountsLoading, data: accountData} = useBusAccount(
     {
-      'accountType.groupType':  'SECTOR_HEAD'
+      "$or": [
+        {'accountType.groupType':  'SECTOR_HEAD'},
+        {addedGroup: null}
+      ]
     }, 
     {
         isOpen
     },
-    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
+    !!(currentUser?.currentRole?.groupType)
   )
 
   useEffect(() => {
@@ -102,13 +105,18 @@ export default function BranchHead() {
                   selected={selected as IBusAccount}
                 />
 
-                <Box mt={4}>
+                <Flex gap={2} my={2}>
+                  <Text color="gray.500">Key</Text>
+                  <Box px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
+                  <Box px={2} rounded={"md"} bg={"orange.100"} color={"orange.500"}>Unassigned</Box>
+                </Flex>
+                <Box mt={1}>
                     <Table variant="simple">
                         <Thead bg="gray.50">
                             <Tr>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Email</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Group</Th>
+                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>State</Th>
                                 <Th textTransform={"capitalize"} color={"gray.500"}>
                                     {/* <Icon as={TbDots}  fontSize={24} /> */}
                                 </Th>
@@ -120,27 +128,33 @@ export default function BranchHead() {
                                 <Td textTransform={"capitalize"}>
                                     { item.name}
                                 </Td>
-                                 <Td>
-                                    { item.email }
-                                </Td>
-                                 <Td>
-                                  
+                                <Td>
+                                    <Text>--</Text>
                                 </Td>
                                 <Td>
-                                  <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
+                                    <Box 
+                                      px={2}
+                                      py={3} 
+                                      bg={item.accountType?.length ? "blue.100" : "orange.100" }
+                                      textAlign={"center"} 
+                                      rounded={"md"}
+                                      color={item.accountType?.length ? "blue.500" : "orange.500"}
+                                    />
+                                </Td>
+                                <Td>
+                                  <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
                                   onClick={() => {
                                     setSelected(item)
                                     onOpen()
                                   }}>
                                     <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
-                                    <Text>Edit</Text>
-                                  </Flex>
+                                  </Box>
                                 </Td>
                             </Tr>
                         ))}
                         </Tbody>
                     </Table>
-                     {accountData?.data.length == 0 && (
+                     {accountData?.data?.length == 0 && (
                             <Flex
                                 w="100%"
                                 mt={4}
