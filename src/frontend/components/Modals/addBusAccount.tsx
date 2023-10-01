@@ -29,18 +29,22 @@ export default function AddBusAccount(
         email: "",
         assignedGroup: ""
     })
+    const query: any = {
+        type:  type,
+    }
+
+    if(parentId) {
+        query.parent = parentId
+    }
 
     const {isLoading: groupLoading, data: groupData} = useBusGroups(
+    query, 
     {
         type:  type,
-        parent: parentId
-    }, 
-    {
-        type:  type,
-        parent: parentId,
+         parent: parentId,
         isOpen
     },
-    !!(type && parentId)
+    !!(type)
   )
 
     useEffect(() => {
@@ -137,7 +141,7 @@ export default function AddBusAccount(
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
                     <FormLabel fontSize={14}>Select a {type.toLowerCase()} to assign user </FormLabel>
                     <Autocomplete
-                        placeholder="Select location" 
+                        placeholder={`Select ${type.toLowerCase()}`} 
                         name={'assignedGroup'}
                         options={groupData?.data.map(item => ({label: item.name, value: item._id})) || []} 
                         value={fields.assignedGroup || fields.group?.map((item: any) =>  ({label: item.name, value: item._id}))?.[0]} 
