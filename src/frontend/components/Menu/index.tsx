@@ -23,7 +23,7 @@ export default function Menu({options, show, setShow}: {options: {title: string,
             </Flex>
 
             <Box mt={24}>
-                {options.map((item, i) => <MenuItem key={item.title} item={item} index={i} />)}
+                {options?.map((item, i) => <MenuItem key={item.title} item={item} index={i} />)}
             </Box>
         </Box>
     </Box>}

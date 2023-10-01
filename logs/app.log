@@ -88,3 +88,14 @@
 [2023-10-01T08:20:37.245] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "parent" for model "BusGroup"
 [2023-10-01T08:20:38.132] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-01T08:20:40.827] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:16:57.852] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:31:35.240] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:13.886] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:16.856] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:20.810] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:33.062] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:35.763] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T12:40:45.164] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T13:54:27.146] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T14:38:38.007] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-01T14:39:08.021] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
