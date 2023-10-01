@@ -35,3 +35,25 @@
 [2023-10-01T04:23:28.426] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-01T04:23:30.612] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-01T04:23:33.014] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:24:02.625] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:24:04.270] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:24:11.135] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:24:36.919] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:24:37.198] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:18.194] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:20.965] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:21.206] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:32.064] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:57.771] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:26:57.866] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:27:09.969] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:27:10.479] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T04:27:21.367] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T05:04:51.636] [ERROR] default - connection timed out
+[2023-10-01T05:04:51.663] [ERROR] default - connection timed out
+[2023-10-01T05:05:29.516] [ERROR] default - connection timed out
+[2023-10-01T05:05:29.563] [ERROR] default - connection timed out
+[2023-10-01T05:06:33.644] [ERROR] default - connection timed out
+[2023-10-01T05:06:33.673] [ERROR] default - connection timed out
+[2023-10-01T05:07:08.070] [ERROR] default - connection timed out
+[2023-10-01T05:07:08.072] [ERROR] default - connection timed out

@@ -22,25 +22,23 @@ export default function BranchHead() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const MenuOptions = [
-    {title: "Manage Branch", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/sector-head/groups`)},
-    {title: "Manage Bus Head", icon: TbUsersGroup, fn:  () => router.push(`/bus/sector-head/accounts`)},
+    {title: "Manage Sectors", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/overall-head/groups`)},
+    {title: "Manage Sector Heads", icon: TbUsersGroup, fn:  () => router.push(`/bus/overall-head/accounts`)},
     {title: "History", icon: TbHistory, fn:  ()=>{}},
     {title: "Logout", icon: TbPower, fn: removeSession}
   ]
-
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
   )
 
   const {isLoading: accountsLoading, data: accountData} = useBusAccount(
     {
-      addedGroup:  currentUser?.currentRole?.groupId as string
+      'accountType.groupType':  'SECTOR_HEAD'
     }, 
     {
-        addedGroup:  currentUser?.currentRole?.groupId as string,
         isOpen
     },
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
   )
 
   useEffect(() => {
@@ -69,7 +67,7 @@ export default function BranchHead() {
   },[])
 
   return (
-    <GuardWrapper allowed={['SECTOR_HEAD']} redirectTo='/bus/login' app='bus'>
+    <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
         <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
@@ -87,11 +85,11 @@ export default function BranchHead() {
 
           <Box mt={4}>
                 <Flex justifyContent={"space-between"}>
-                    <Text fontSize={24} fontWeight={600} color={"gray.600"}>Bus Rep Accounts</Text>
+                    <Text fontSize={24} fontWeight={600} color={"gray.600"}>Sector Head Accounts</Text>
 
                     {isLoading ? <Skeleton h={10} rounded={"md"} w={"120px"} /> : <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
                       <Icon as={TbPlus} fontSize={20} />
-                      Add Bus Rep
+                      Add Sector Head
                     </Flex>}
                 </Flex>
 
@@ -150,9 +148,9 @@ export default function BranchHead() {
                                 align={"center"}
                             >
                               <Box>
-                                <Text>You don&apos;t have a bus rep yet</Text>
+                                <Text>You don&apos;t have a sector head yet</Text>
                                 <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
-                                  <Icon as={TbPlus} fontSize={20} /> Add Bus Rep
+                                  <Icon as={TbPlus} fontSize={20} /> Add Sector Head
                                 </Flex>
                               </Box>
                             </Flex>

@@ -24,8 +24,8 @@ export default function BranchHead() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const MenuOptions = [
-    {title: "Manage Branch", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/sector-head/groups`)},
-    {title: "Manage Bus Head", icon: TbUsersGroup, fn:  () => router.push(`/bus/sector-head/accounts`)},
+    {title: "Manage Sectors", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/overall-head/groups`)},
+    {title: "Manage Sector Heads", icon: TbUsersGroup, fn:  () => router.push(`/bus/overall-head/accounts`)},
     {title: "History", icon: TbHistory, fn:  ()=>{}},
     {title: "Logout", icon: TbPower, fn: removeSession}
   ]

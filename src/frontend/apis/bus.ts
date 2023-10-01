@@ -32,7 +32,12 @@ export interface CreateBusTripDTO {
 
 
 export const CreateBusTrip = <T>(payload: CreateBusTripDTO) => {
-    const response = axiosInstance.post(`${baseUrl}/api/bus-rounds`, payload)
+    let token = ''
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+
+    const response = axiosInstance.post(`${baseUrl}/api/bus-rounds`, payload, { headers: { 'Authorization': "Bearer " + token } })
     return response as T
 }
 
@@ -46,7 +51,12 @@ export interface AddStopPointDTO {
 }
 
 export const updateBusLog = <T>(id: string, payload: AddStopPointDTO) => {
-    const response = axiosInstance.post(`${baseUrl}/api/bus-rounds/${id}`, payload)
+    let token = ''
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+
+    const response = axiosInstance.post(`${baseUrl}/api/bus-rounds/${id}`, payload, { headers: { 'Authorization': "Bearer " + token } })
     return response as T
 }
 
@@ -59,7 +69,7 @@ export function useBusVehicles(type: string, enabled: boolean) {
     }
     const { error, ...rest } = useQuery<IResponse<IVehicle[]>>(["vehicle", { accountType: type }], async () => {
         const { data } = await axiosInstance.get(
-            `${baseUrl}/api/vehicle`
+            `${baseUrl}/api/vehicle`, { headers: { 'Authorization': "Bearer " + token } }
         );
         return data;
     }, { enabled });
@@ -81,7 +91,7 @@ export function useSingleBusGroup(key: string, enabled: boolean) {
     }
     const { error, ...rest } = useQuery<IResponse<IBusGroups>>(["bus-groups", key], async () => {
         const { data } = await axiosInstance.get(
-            `${baseUrl}/api/bus-groups/${key}`
+            `${baseUrl}/api/bus-groups/${key}`, { headers: { 'Authorization': "Bearer " + token } }
         );
         return data;
     }, { enabled });
