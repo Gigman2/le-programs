@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, FormLabel, Input, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, FormLabel, Icon, Input, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange } from '@/utils/form';
@@ -7,6 +7,7 @@ import { handleChange } from '@/utils/form';
 import { IBusAccount } from '@/interface/bus';
 import { IAccountUser, getUser, saveBusUser, saveUserToken } from '@/frontend/store/auth';
 import { LoginRequest } from '@/frontend/apis';
+import { TbEyeCheck } from 'react-icons/tb';
 
 export type GroupedUnits = Record<string, {name?: string, id?: string}>
 
@@ -86,9 +87,12 @@ export default function BusingLogin() {
 
          <Box mb={6} fontSize={14}>
             <FormLabel color="gray.700">Enter password</FormLabel>
-            <Input type='password' fontSize={14} placeholder='Enter password Here ' value={fields.password as string } 
-            onChange={v =>   handleChange(v.currentTarget?.value, 'password', fields, setFIelds)}
-            />
+            <Flex align={"center"}>
+                <Input type='password' fontSize={14} placeholder='Enter password Here ' value={fields.password as string } 
+                    onChange={v =>   handleChange(v.currentTarget?.value, 'password', fields, setFIelds)}
+                />
+                {/* <Icon as={TbEyeCheck} fontSize={24} /> */}
+            </Flex>
         </Box>
         
         <Box as={Button} 
