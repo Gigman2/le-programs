@@ -71,7 +71,7 @@ export default function BranchHead() {
   },[])
 
   return (
-    <GuardWrapper allowed={['SECTOR_HEAD']} redirectTo='/bus/login' app='bus'>
+    <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
         <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />

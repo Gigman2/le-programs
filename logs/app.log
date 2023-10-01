@@ -57,3 +57,7 @@
 [2023-10-01T05:06:33.673] [ERROR] default - connection timed out
 [2023-10-01T05:07:08.070] [ERROR] default - connection timed out
 [2023-10-01T05:07:08.072] [ERROR] default - connection timed out
+[2023-10-01T07:50:55.534] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T07:50:59.407] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T07:51:08.349] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T07:51:33.444] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
