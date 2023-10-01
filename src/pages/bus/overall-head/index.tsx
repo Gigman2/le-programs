@@ -21,18 +21,18 @@ export default function BranchHead() {
   const [showMenu, setShowMenu] = useState(false)
 
   const MenuOptions = [
-    {title: "Add Zone", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/bus-head/zones`)},
-    {title: "Add Bus Rep", icon: TbUsersGroup, fn:  () => router.push(`/bus/bus-head/accounts`)},
+    {title: "Manage Sectors", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/overall-head/groups`)},
+    {title: "Manage Sector Heads", icon: TbUsersGroup, fn:  () => router.push(`/bus/overall-head/accounts`)},
     {title: "History", icon: TbHistory, fn:  ()=>{}},
     {title: "Logout", icon: TbPower, fn: removeSession}
   ]
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
+    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
   )
 
   const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
-    !!currentUser?.currentRole?.groupId
+    !!currentUser?.currentRole?.groupType
   )
 
   useEffect(() => {
@@ -68,15 +68,12 @@ export default function BranchHead() {
   },[])
 
   return (
-    <GuardWrapper allowed={['BUS_HEAD']} redirectTo='/bus/login' app='bus'>
+    <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
         <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
           <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
               <Box>
-                 {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['SECTOR']) &&  <Flex fontWeight={600} color={"gray.600"}>
-                  <Text color={"gray.500"}>{`${currentUser?.bus?.['SECTOR']?.name}, ${currentUser?.bus?.['BRANCH']?.name}`}</Text>
-                </Flex>}
                 <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
               </Box>
               <Flex onClick={() => setShowMenu(true)}>

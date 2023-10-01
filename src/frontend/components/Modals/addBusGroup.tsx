@@ -44,12 +44,16 @@ export default function AddBusGroup(
             setLoading(false)
             const payload: any = {
                 name: fields.name, 
-                station: fields.stations.split(',').map((item : string) => item.trim()), 
-                parent: parentId,
+                parent: parentId || null,
                 type: type.toUpperCase()
+            }
+
+            if(fields.stations.length){
+                payload.station = fields.stations.split(',').map((item : string) => item.trim())
             }
     
             let res: any
+            console.log(payload)
             if(selected){
                 res = await updateGroup(selected?._id as string, payload)
             } else {

@@ -1,22 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, Skeleton } from '@chakra-ui/react'
+import { Box, Button, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, MenuButton, MenuList, MenuItem, Menu as DropMenu, useDisclosure, Skeleton } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { TbAlignRight, TbHistory, TbPower, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen } from 'react-icons/tb'
+import { BsPersonFillAdd } from 'react-icons/bs'
+import { MdAddBusiness } from 'react-icons/md'
+import { TbAlignRight, TbDots, TbHistory, TbPower, TbDotsVertical, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useBusAccount, useBusGroupTree } from '@/frontend/apis'
+import { useBusGroupTree, useBusGroups } from '@/frontend/apis'
 import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
 import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
-import { IBusAccount } from '@/interface/bus'
-import AddBusAccount from '@/frontend/components/Modals/addBusAccount'
+import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
+import { IBusGroups } from '@/interface/bus'
 
 
 
 export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
-  const [selected, setSelected] = useState<IBusAccount>()
+  const [selectedGroup, setSelectedGroup] = useState<IBusGroups>()
   const router = useRouter()
   const [showMenu, setShowMenu] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -29,18 +31,18 @@ export default function BranchHead() {
   ]
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
   )
 
-  const {isLoading: accountsLoading, data: accountData} = useBusAccount(
+  const {isLoading: groupLoading, data: groupData} = useBusGroups(
     {
-      addedGroup:  currentUser?.currentRole?.groupId as string
+        type:  "SECTOR",
     }, 
     {
-        addedGroup:  currentUser?.currentRole?.groupId as string,
+        type:  "SECTOR",
         isOpen
     },
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
   )
 
   useEffect(() => {
@@ -87,51 +89,49 @@ export default function BranchHead() {
 
           <Box mt={4}>
                 <Flex justifyContent={"space-between"}>
-                    <Text fontSize={24} fontWeight={600} color={"gray.600"}>Bus Head Accounts</Text>
+                    <Text fontSize={24} fontWeight={600} color={"gray.600"}>Sector Management</Text>
 
                     {isLoading ? <Skeleton h={10} rounded={"md"} w={"120px"} /> : <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
                       <Icon as={TbPlus} fontSize={20} />
-                      Add Bus Head
+                      Add Sector
                     </Flex>}
                 </Flex>
 
-                <AddBusAccount
+                <AddBusGroup 
                   isOpen={isOpen} 
                   onClose={onClose} 
-                  type='BRANCH' 
-                  role='SECTOR_HEAD'
+                  type='sector' 
                   parentId={currentUser?.currentRole?.groupId as string}
-                  selected={selected as IBusAccount}
+                  selected={selectedGroup}
                 />
-
                 <Box mt={4}>
                     <Table variant="simple">
                         <Thead bg="gray.50">
                             <Tr>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Email</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Group</Th>
+                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Bus Reps</Th>
+                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Stations</Th>
                                 <Th textTransform={"capitalize"} color={"gray.500"}>
                                     {/* <Icon as={TbDots}  fontSize={24} /> */}
                                 </Th>
                             </Tr>
                         </Thead>
                         <Tbody>
-                        {accountData?.data?.map((item) => (
+                        {groupData?.data?.map((item) => (
                             <Tr key={item?._id as string}>
-                                <Td textTransform={"capitalize"}>
+                                <Td>
                                     { item.name}
                                 </Td>
                                  <Td>
-                                    { item.email }
+                                    0
                                 </Td>
                                  <Td>
-                                  
+                                    {item.station.length}
                                 </Td>
                                 <Td>
                                   <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
                                   onClick={() => {
-                                    setSelected(item)
+                                    setSelectedGroup(item)
                                     onOpen()
                                   }}>
                                     <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
@@ -142,7 +142,7 @@ export default function BranchHead() {
                         ))}
                         </Tbody>
                     </Table>
-                     {accountData?.data.length == 0 && (
+                     {groupData?.data.length == 0 && (
                             <Flex
                                 w="100%"
                                 mt={4}
@@ -150,9 +150,10 @@ export default function BranchHead() {
                                 align={"center"}
                             >
                               <Box>
-                                <Text>You don&apos;t have a bus head yet</Text>
+                                <Text>You don&apos;t have a zone yet</Text>
                                 <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
-                                  <Icon as={TbPlus} fontSize={20} /> Add Bus Head
+                                  <Icon as={TbPlus} fontSize={20} />
+                                  Add Sector
                                 </Flex>
                               </Box>
                             </Flex>

@@ -21,7 +21,7 @@ export default function BranchHead() {
   const [showMenu, setShowMenu] = useState(false)
 
   const MenuOptions = [
-    {title: "Manage Branch", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/sector-head/zones`)},
+    {title: "Manage Branch", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/sector-head/groups`)},
     {title: "Manage Bus Head", icon: TbUsersGroup, fn:  () => router.push(`/bus/sector-head/accounts`)},
     {title: "History", icon: TbHistory, fn:  ()=>{}},
     {title: "Logout", icon: TbPower, fn: removeSession}
@@ -70,7 +70,7 @@ export default function BranchHead() {
   return (
     <GuardWrapper allowed={['SECTOR_HEAD']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
-        <Box maxW={"500px"} w="100%"  h={"100vh85"} position={"relative"}>
+        <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
           <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
               <Box>
@@ -85,7 +85,7 @@ export default function BranchHead() {
           </Flex>
 
           <Flex mt={4} align={"center"} justify={"space-between"}>
-            {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data.name}</Text> : <Skeleton h={6} w={"200px"} />}
+            {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data?.name}</Text> : <Skeleton h={6} w={"200px"} />}
           </Flex>
 
           <Box mt={4}>

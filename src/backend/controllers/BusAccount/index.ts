@@ -69,11 +69,17 @@ class BusAccountController extends BaseController<BusAccountService> {
     }
 
     async addUserToGroup(req: NextApiRequest, res: NextApiResponse<any>) {
+        const typeToRole = {
+            ZONE: "BUS_REP",
+            BRANCH: "BUS_HEAD",
+            SECTOR: "SECTOR_HEAD",
+            OVERALL: "OVERALL_HEAD"
+        }
         try {
             const payload = req.body
             const user = await this.service.getById(payload?.userId)
             const group = await this.busGroupService.getById(payload?.groupId)
-            const userGroup: AccountType = { groupType: group?.type === "ZONE" ? "BUS_REP" : `${group?.type as 'BRANCH' | 'SECTOR'}_HEAD`, groupId: group?._id as string }
+            const userGroup: AccountType = { groupType: typeToRole[group?.type as 'ZONE' | 'BRANCH' | 'SECTOR' | 'OVERALL'] as any, groupId: group?._id as string }
             const filterGroups: AccountType[] = (user?.accountType || []).filter(g => g.groupType != userGroup.groupType)
             const updatedAcc = await this.service.update(user?._id as string, { $set: { accountType: [...filterGroups, userGroup] } })
             return responses.successWithData(res, updatedAcc, "success")
@@ -82,11 +88,6 @@ class BusAccountController extends BaseController<BusAccountService> {
         }
     }
 
-}
-
-const getRoleForGroup = (groupType: "BRANCH" | "SECTOR"): 'BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD' => {
-    if (['BRANCH', 'SECTOR'].includes(groupType)) return `${groupType}_HEAD`
-    else return 'BUS_REP'
 }
 
 const BusAccount = new BusAccountController(
