@@ -19,8 +19,6 @@ export default function BranchHead() {
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-
-
   const {isLoading, data: groupData} = useBusGroups(
     {
         type:  "ZONE",

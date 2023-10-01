@@ -14,9 +14,7 @@ import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 
-
-
-export default function BranchHead() {
+export default function OverallhHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 

@@ -99,3 +99,13 @@
 [2023-10-01T13:54:27.146] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-01T14:38:38.007] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-10-01T14:39:08.021] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-01T15:15:46.311] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-10-01T15:15:49.690] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-10-01T15:15:56.332] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-10-01T15:15:59.698] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-10-01T15:16:17.367] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-10-01T15:16:24.298] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-10-01T15:16:27.384] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-10-01T15:16:37.640] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-10-01T15:20:47.537] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-10-01T15:22:03.136] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
