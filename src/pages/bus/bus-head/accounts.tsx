@@ -76,7 +76,7 @@ export default function BranchHead() {
           <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
               <Box>
                 {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['SECTOR']) &&  <Flex fontWeight={600} color={"gray.600"}>
-                  <Text color={"gray.500"}>{`${currentUser?.bus?.['SECTOR']?.name}, ${currentUser?.bus?.['SECTOR']?.name}`}</Text>
+                  <Text color={"gray.500"}>{`${currentUser?.bus?.['SECTOR']?.name}, ${currentUser?.bus?.['BRANCH']?.name}`}</Text>
                 </Flex>}
                 <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
               </Box>
@@ -97,7 +97,9 @@ export default function BranchHead() {
 
                 <AddBusAccount
                   isOpen={isOpen} 
-                  onClose={onClose} type='BUS_REP' 
+                  onClose={onClose} 
+                  type='ZONE' 
+                  role='BUS_REP'
                   parentId={currentUser?.currentRole?.groupId as string}
                   selected={selected as IBusAccount}
                 />

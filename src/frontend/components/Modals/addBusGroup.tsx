@@ -40,33 +40,39 @@ export default function AddBusGroup(
 
 
     const addBusGroup = async () => {
-        const payload: any = {
-            name: fields.name, 
-            station: fields.stations.split(',').map((item : string) => item.trim()), 
-            parent: parentId,
-            type: type.toUpperCase()
-        }
-   
-        let res: any
-        if(selectedGroup){
-            res = await updateGroup(selectedGroup?._id as string, payload)
-        } else {
-            res = await addGroup(payload)
-        }
+        try {
+            setLoading(false)
+            const payload: any = {
+                name: fields.name, 
+                station: fields.stations.split(',').map((item : string) => item.trim()), 
+                parent: parentId,
+                type: type.toUpperCase()
+            }
+    
+            let res: any
+            if(selected){
+                res = await updateGroup(selected?._id as string, payload)
+            } else {
+                res = await addGroup(payload)
+            }
 
-        if(res){
-            toast({
-                status: "success",
-                duration: 2000,
-                position: 'top-right',
-                isClosable: true, 
-                title: "Bus Group Created"
-            })
-            setFields({
-                name: "",
-                stations: ""
-            })
-            onClose()
+            if(res){
+                toast({
+                    status: "success",
+                    duration: 2000,
+                    position: 'top-right',
+                    isClosable: true, 
+                    title: "Bus Group Created"
+                })
+                setFields({
+                    name: "",
+                    stations: ""
+                })
+                onClose()
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
         }
     }
 

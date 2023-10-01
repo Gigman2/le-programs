@@ -1,17 +1,1 @@
-[2023-09-30T20:16:35.012] [ERROR] default - TypeError: Cannot read properties of undefined (reading 'length')
-    at Function.create (C:\Projects\Le_Systems\le-workers-app\node_modules\mongoose\lib\model.js:2801:14)
-    at BusGroupService.insert (webpack-internal:///(api)/./src/backend/services/Base/index.ts:51:33)
-    at BusGroupController.insert (webpack-internal:///(api)/./src/backend/controllers/Base/index.ts:46:44)
-    at handler (webpack-internal:///(api)/./src/pages/api/bus-groups/index.ts:15:94)
-    at eval (webpack-internal:///(api)/./src/backend/middlewares/authenticate.ts:22:20)
-    at Object.apiResolver (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\api-utils\node.js:372:15)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at async DevServer.runApi (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:514:9)
-    at async Object.fn (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\next-server.js:828:35)
-    at async Router.execute (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\router.js:243:32)
-    at async DevServer.runImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:432:29)
-    at async DevServer.run (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\dev\next-dev-server.js:831:20)
-    at async DevServer.handleRequestImpl (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:375:20)
-    at async C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\base-server.js:157:99
-[2023-09-30T21:39:06.077] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "BusGroup"
-[2023-09-30T21:43:14.392] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "_id" for model "BusGroup"
+[2023-10-01T03:16:02.123] [ERROR] default - Cast to ObjectId failed for value "{ label: 'Zone 12', value: '6504ff84f7b7640d8d84d9d0' }" (type Object) at path "_id" for model "BusGroup"

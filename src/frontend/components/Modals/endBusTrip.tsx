@@ -38,27 +38,33 @@ export default function EndBusTrip(
 
 
     const completeTrip = async () => {
-        const payload: any = {
-            busState: "ARRIVED", 
-            arrivalTime: new Date(), 
-            busOffering: fields.busOffering,
-            people: fields.people
-        }
-   
-        const res: any = await updateBusLog(selectedRecord?._id as string, payload)
-        if(res){
-            toast({
-                status: "success",
-                duration: 2000,
-                position: 'top-right',
-                isClosable: true, 
-                title: "Stop point recorded"
-            })
-            setFields({
-                people: 0,
-                location: ""
-            })
-            onClose()
+        try {
+            setLoading(false)
+            const payload: any = {
+                busState: "ARRIVED", 
+                arrivalTime: new Date(), 
+                busOffering: fields.busOffering,
+                people: fields.people
+            }
+    
+            const res: any = await updateBusLog(selectedRecord?._id as string, payload)
+            if(res){
+                toast({
+                    status: "success",
+                    duration: 2000,
+                    position: 'top-right',
+                    isClosable: true, 
+                    title: "Stop point recorded"
+                })
+                setFields({
+                    people: 0,
+                    location: ""
+                })
+                onClose()
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
         }
     }
 

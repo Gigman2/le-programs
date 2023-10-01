@@ -34,23 +34,31 @@ class BusAccountController extends BaseController<BusAccountService> {
     async createUser(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
             const { data: userData } = await axios.get(`${authAPI}users?email=${req.body.email}`)
-            let userId
+            let user
             if (!userData?.data?.length || [400, 422, 401, 403].includes(userData.statusCode)) {
                 let [firstName, lastName] = req.body.name.split(' ')
                 if (!lastName) lastName = '--'
                 const { data: { statusCode, data } } = await axios.post(`${authAPI}users`,
                     { email: req.body.email, firstName: firstName, lastName: lastName }
                 )
-                if (statusCode != 201 || !data?.firstName) return responses.error(res, "failed to create user")
-                userId = data._id
+                if (statusCode != 201 || !data?.firstName) return responses.error(res, "failed to register user")
+
+                user = data
             } else {
-                userId = userData?.data?.[0]?._id
+                user = userData?.data?.[0]
+            }
+
+            if (!user.accountCreated) {
+                const { data: accountCreated } = await axios.post(`${authAPI}users/create-account`,
+                    { id: user._id, role: "Bus Coordinator" }
+                )
+                if (!accountCreated.data.accountCreated) return responses.error(res, "failed to create user account")
             }
 
             const newUser = await this.service.insert(
                 {
                     "name": req.body.name,
-                    "_id": userId,
+                    "_id": user._id,
                     "addedGroup": req.body.group
                 })
 

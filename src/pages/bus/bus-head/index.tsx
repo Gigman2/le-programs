@@ -28,7 +28,7 @@ export default function BranchHead() {
   ]
 
   const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "BUS_REP")
+    !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
   const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
@@ -68,14 +68,14 @@ export default function BranchHead() {
   },[])
 
   return (
-    <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>
+    <GuardWrapper allowed={['BUS_HEAD']} redirectTo='/bus/login' app='bus'>
       <PageWrapper>
         <Box maxW={"500px"} w="100%"  h={"100vh85"} position={"relative"}>
           <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
           <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
               <Box>
-                {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['ZONE']) &&  <Flex fontWeight={600} color={"gray.600"}>
-                  <Text color={"gray.500"}>{`${currentUser?.bus?.['BRANCH']?.name}, ${currentUser?.bus?.['ZONE']?.name}`}</Text>
+                 {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['SECTOR']) &&  <Flex fontWeight={600} color={"gray.600"}>
+                  <Text color={"gray.500"}>{`${currentUser?.bus?.['SECTOR']?.name}, ${currentUser?.bus?.['BRANCH']?.name}`}</Text>
                 </Flex>}
                 <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
               </Box>

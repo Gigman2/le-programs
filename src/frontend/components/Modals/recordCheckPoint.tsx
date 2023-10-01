@@ -37,27 +37,33 @@ export default function RecordCheckPoint(
     const record = recordData?.data
 
     const createRecord = async () => {
-        const data = {...fields}
-        const newStopPoints = [...(selectedRecord?.stopPoints || []), data]
-        const payload: any = {
-            stopPoints : newStopPoints,
-            people: (Number(selectedRecord?.people) || 0) + Number(data.people)
-        }
+        try {
+            setLoading(true)
+            const data = {...fields}
+            const newStopPoints = [...(selectedRecord?.stopPoints || []), data]
+            const payload: any = {
+                stopPoints : newStopPoints,
+                people: (Number(selectedRecord?.people) || 0) + Number(data.people)
+            }
 
-        const res: any = await updateBusLog(selectedRecord?._id as string, payload)
-        if(res){
-            toast({
-                status: "success",
-                duration: 2000,
-                position: 'top-right',
-                isClosable: true, 
-                title: "Stop point recorded"
-            })
-            setFields({
-                people: 0,
-                location: ""
-            })
-            onClose()
+            const res: any = await updateBusLog(selectedRecord?._id as string, payload)
+            if(res){
+                toast({
+                    status: "success",
+                    duration: 2000,
+                    position: 'top-right',
+                    isClosable: true, 
+                    title: "Stop point recorded"
+                })
+                setFields({
+                    people: 0,
+                    location: ""
+                })
+                onClose()
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
         }
     }
 
