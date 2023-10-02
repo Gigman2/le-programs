@@ -121,7 +121,7 @@ export default function BranchHead() {
                                 <Td>
                                     { item.name}
                                 </Td>
-                                 <Td>
+                                <Td>
                                     {item?.accounts?.length}
                                 </Td>
                                 <Td>

@@ -40,7 +40,7 @@ export default function BranchHead() {
         addedGroup:  currentUser?.currentRole?.groupId as string,
         isOpen
     },
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function BranchHead() {
                   isOpen={isOpen} 
                   onClose={onClose} 
                   type='BRANCH' 
-                  role='SECTOR_HEAD'
+                  role='BUS_HEAD'
                   parentId={currentUser?.currentRole?.groupId as string}
                   selected={selected as IBusAccount}
                 />

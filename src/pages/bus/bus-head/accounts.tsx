@@ -142,7 +142,7 @@ export default function BranchHead() {
                         ))}
                         </Tbody>
                     </Table>
-                     {accountData?.data.length == 0 && (
+                    {accountData?.data.length == 0 && (
                             <Flex
                                 w="100%"
                                 mt={4}
