@@ -99,7 +99,7 @@ export default function BranchHead() {
                 <AddBusAccount
                   isOpen={isOpen} 
                   onClose={onClose} 
-                  type='BRANCH' 
+                  type='SECTOR' 
                   role='SECTOR_HEAD'
                   parentId={currentUser?.currentRole?.groupId as string}
                   selected={selected as IBusAccount}
