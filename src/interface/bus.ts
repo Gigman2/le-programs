@@ -22,6 +22,7 @@ export interface IBusGroups extends IDocument {
     parent: string | Types.ObjectId,
     station: string[],
     status?: string
+    accounts?: string
 }
 
 export type AccountType = {

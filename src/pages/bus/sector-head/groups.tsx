@@ -111,8 +111,7 @@ export default function BranchHead() {
                         <Thead bg="gray.50">
                             <Tr>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Bus Reps</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Stations</Th>
+                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Heads</Th>
                                 <Th textTransform={"capitalize"} color={"gray.500"}>
                                     {/* <Icon as={TbDots}  fontSize={24} /> */}
                                 </Th>
@@ -124,11 +123,8 @@ export default function BranchHead() {
                                 <Td>
                                     { item.name}
                                 </Td>
-                                 <Td>
-                                    0
-                                </Td>
-                                 <Td>
-                                    {item.station.length}
+                                <Td>
+                                    {item?.accounts?.length}
                                 </Td>
                                 <Td>
                                   <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
