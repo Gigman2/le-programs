@@ -56,7 +56,6 @@ export default function BranchHead() {
             return acc
           }, {})
           const account = currentUser as IAccountUser
-
           saveBusUser({...account, bus})
           setCurrentUser({...account, bus})
     }

@@ -24,7 +24,7 @@ class BusGroupController extends BaseController<BusGroupService> {
 
   async fullData(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const getAll = this.service.exposeDocument(await this.service.get(req.query))
+      const getAll = this.service.exposeDocument<IBusGroups[]>(await this.service.get(req.query))
       const data = await Promise.all(
         getAll.map(async (item: any) => {
           item.accounts = await this.account.get({ 'accountType.groupId': item._id })
@@ -32,6 +32,18 @@ class BusGroupController extends BaseController<BusGroupService> {
         })
       )
       return responses.successWithData(res, data)
+    } catch (error: any) {
+      return responses.error(res, error.message || error)
+    }
+  }
+
+  async fullSingleGroup(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      const group = this.service.exposeDocument<IBusGroups>(await this.service.getById((req.query as { id: string | string[] }).id))
+      group.accounts = await this.account.get({ 'accountType.groupId': (req.query as { id: string | string[] }).id }) as IBusAccount[]
+      group.subGroup = await this.service.get({ parent: (req.query as { id: string | string[] }).id }) as IBusGroups[]
+
+      return responses.successWithData(res, group)
     } catch (error: any) {
       return responses.error(res, error.message || error)
     }

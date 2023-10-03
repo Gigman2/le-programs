@@ -45,6 +45,27 @@ export function useBusGroups(query: Record<string, string>, reloadDep: Record<st
     return { error, ...rest }
 }
 
+export function useSingleBusGroup(id: string, reloadDep: Record<string, any>, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const { error, ...rest } = useQuery<IResponse<IBusGroups>>(["bus-groups", id], async () => {
+        const { data } = await axiosInstance.get(
+            `${baseUrl}/api/bus-groups/${id}`, { headers: { 'Authorization': "Bearer " + token } }
+        );
+        return data;
+    }, { enabled });
+
+    if (error) {
+        toastMessage.title = (error as any).message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
 
 export function useGetAccounts(query: Record<string, string>, reloadDep: Record<string, string>, enabled: boolean) {
     let token: string

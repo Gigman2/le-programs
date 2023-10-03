@@ -48,7 +48,7 @@ export default class BaseService<M> {
     }
   }
 
-  exposeDocument<T>(doc: T) {
+  exposeDocument<T>(doc: any) {
     return JSON.parse(JSON.stringify(doc)) as T
   }
 
