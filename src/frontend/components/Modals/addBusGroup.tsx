@@ -53,7 +53,6 @@ export default function AddBusGroup(
             }
     
             let res: any
-            console.log(payload)
             if(selected){
                 res = await updateGroup(selected?._id as string, payload)
             } else {

@@ -80,7 +80,6 @@ export default function AddBusAccount(
                 res = await addUser(payload)
             }
             if(res){
-                console.log(res)
                 const assignData = {
                     userId: res?.data?.data?.data?._id as string,
                     groupId: fields.assignedGroup.value

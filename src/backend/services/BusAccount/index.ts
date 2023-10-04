@@ -61,14 +61,9 @@ export default class BusAccountService extends BaseService<IBusAccount>  {
                 })
             )
 
-            console.log('Cached ', unCachedUsersIds)
-            console.log('Users ', newUsersArrayData)
-
-
             if (unCachedUsersIds.length) {
                 params.append('_id', JSON.stringify({ $in: unCachedUsersIds }))
 
-                console.log(`${authAPI}users?${params.toString()}`)
                 const authorization_ = await this.generateBotAuth()
                 const { data: users } = await axios.get(`${authAPI}users/bulk-get?${params.toString()}`, {
                     headers: {

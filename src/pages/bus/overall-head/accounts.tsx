@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, Skeleton } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { TbAlignRight, TbHistory, TbPower, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen } from 'react-icons/tb'
+import { TbAlignRight, TbHistory, TbPower, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen, TbEye } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import { useBusAccount, useBusGroupTree } from '@/frontend/apis'
 import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
@@ -129,7 +129,7 @@ export default function BranchHead() {
                                     { item.name}
                                 </Td>
                                 <Td>
-                                    <Text>--</Text>
+                                    <Text>{item.account?.email.slice(0, 7)+'...'}</Text>
                                 </Td>
                                 <Td>
                                     <Box 
@@ -142,13 +142,22 @@ export default function BranchHead() {
                                     />
                                 </Td>
                                 <Td>
-                                  <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
-                                  onClick={() => {
-                                    setSelected(item)
-                                    onOpen()
-                                  }}>
+                                  <Flex gap={2}>
+                                    <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelected(item)
+                                        onOpen()
+                                      }}>
+                                        <Icon as={TbEye} fontSize={20} color={"gray.600"}/>
+                                    </Box>
+                                    <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelected(item)
+                                        onOpen()
+                                      }}>
                                     <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
                                   </Box>
+                                  </Flex>
                                 </Td>
                             </Tr>
                         ))}

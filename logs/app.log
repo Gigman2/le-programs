@@ -37,3 +37,79 @@
 [2023-10-04T13:32:09.636] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-04T13:32:09.635] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-04T13:32:09.637] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:14.157] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:35:17.414] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:35:17.583] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:17.582] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:17.584] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:17.585] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:17.587] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:17.586] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:35:18.785] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:35:20.634] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:35:25.026] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:13.155] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:13.437] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:14.586] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:14.587] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:14.588] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:14.591] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:14.584] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:14.590] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:21.651] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:21.788] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:23.071] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:23.074] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:23.075] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:23.073] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:23.076] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:23.077] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:27.653] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:36:28.874] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:28.876] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:28.876] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:28.877] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:28.878] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:28.875] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:36:32.919] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:37:24.931] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:37:25.896] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:25.898] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:25.899] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:25.900] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:25.901] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:25.903] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:44.633] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:37:45.677] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:45.678] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:45.680] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:45.681] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:45.683] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:37:45.684] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:40.949] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:38:42.128] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:42.130] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:42.131] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:42.132] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:42.133] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:42.135] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:49.418] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:38:50.359] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:50.362] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:50.361] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:50.363] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:50.364] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:50.366] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:38:52.632] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:39:15.704] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:39:24.627] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:39:25.948] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:25.950] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:25.951] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:25.954] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:25.956] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:25.957] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:39:40.647] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:40:31.680] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:41:18.800] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-04T13:41:43.611] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
