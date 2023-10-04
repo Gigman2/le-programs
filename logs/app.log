@@ -1,111 +1,132 @@
-[2023-10-01T03:16:02.123] [ERROR] default - Cast to ObjectId failed for value "{ label: 'Zone 12', value: '6504ff84f7b7640d8d84d9d0' }" (type Object) at path "_id" for model "BusGroup"
-[2023-10-01T04:10:22.031] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:10:49.834] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:10:52.762] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:11:04.375] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:00.848] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:02.646] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:04.053] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:10.336] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:16.760] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:17.872] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:23.254] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:41.461] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:12:59.358] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:13:39.693] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:13:46.150] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:16:10.962] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:16:30.881] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:16:58.337] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:17:00.091] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:17:55.006] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:17:59.136] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:18:31.138] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:18:56.506] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:19:07.433] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:19:07.792] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:19:18.412] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:19:33.805] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:19:43.101] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:21:08.889] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:21:18.792] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:21:30.291] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:21:40.917] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:23:15.883] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:23:28.426] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:23:30.612] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:23:33.014] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:24:02.625] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:24:04.270] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:24:11.135] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:24:36.919] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:24:37.198] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:18.194] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:20.965] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:21.206] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:32.064] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:57.771] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:26:57.866] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:27:09.969] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:27:10.479] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T04:27:21.367] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T05:04:51.636] [ERROR] default - connection timed out
-[2023-10-01T05:04:51.663] [ERROR] default - connection timed out
-[2023-10-01T05:05:29.516] [ERROR] default - connection timed out
-[2023-10-01T05:05:29.563] [ERROR] default - connection timed out
-[2023-10-01T05:06:33.644] [ERROR] default - connection timed out
-[2023-10-01T05:06:33.673] [ERROR] default - connection timed out
-[2023-10-01T05:07:08.070] [ERROR] default - connection timed out
-[2023-10-01T05:07:08.072] [ERROR] default - connection timed out
-[2023-10-01T07:50:55.534] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:50:59.407] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:51:08.349] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:51:33.444] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:52:11.691] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:57:31.995] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:57:34.336] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:57:35.730] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T07:57:42.092] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:04:40.471] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:04:48.012] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:04:55.864] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:05:01.768] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:12:30.344] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:13:56.108] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:14:27.759] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:14:37.583] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:17:35.780] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:17:42.282] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:17:45.490] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:17:47.816] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:18:34.135] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "parent" for model "BusGroup"
-[2023-10-01T08:19:00.784] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "parent" for model "BusGroup"
-[2023-10-01T08:19:20.088] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "parent" for model "BusGroup"
-[2023-10-01T08:19:20.134] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:19:29.923] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "parent" for model "BusGroup"
-[2023-10-01T08:19:29.941] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:20:37.131] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:20:37.245] [ERROR] default - Cast to ObjectId failed for value "undefined" (type string) at path "parent" for model "BusGroup"
-[2023-10-01T08:20:38.132] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T08:20:40.827] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:16:57.852] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:31:35.240] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:13.886] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:16.856] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:20.810] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:33.062] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:35.763] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T12:40:45.164] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T13:54:27.146] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-01T14:38:38.007] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
-[2023-10-01T14:39:08.021] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
-[2023-10-01T15:15:46.311] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-10-01T15:15:49.690] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-10-01T15:15:56.332] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
-[2023-10-01T15:15:59.698] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
-[2023-10-01T15:16:17.367] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
-[2023-10-01T15:16:24.298] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-01T15:16:27.384] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
-[2023-10-01T15:16:37.640] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-01T15:20:47.537] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-01T15:22:03.136] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-10-04T22:31:35.131] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:31:35.136] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:31:35.139] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:31:35.141] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:31:35.144] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:31:35.138] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.033] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.036] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.044] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.039] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.041] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:42:54.038] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.075] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.082] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.079] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.087] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.089] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:43:24.085] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.397] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.399] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.401] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.402] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.403] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:04.400] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.217] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.219] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.218] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.219] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.220] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:50:38.219] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.735] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.737] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.738] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.736] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.738] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:06.739] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.114] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.113] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.113] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.115] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.115] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:41.114] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.578] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.581] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.582] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.580] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.582] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:51:50.579] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.710] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.711] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.712] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.712] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.713] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:52:23.713] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.362] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.362] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.365] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.364] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.363] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:20.365] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.730] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.731] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.733] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.734] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.732] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:53:52.729] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.388] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.389] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.389] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.390] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.390] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:21.391] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.676] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.677] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.677] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.678] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.678] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:36.678] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.019] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.020] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.021] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.021] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.022] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:54:45.018] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.966] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.968] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.970] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.971] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.967] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:15.965] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.544] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.545] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.546] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.547] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.546] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:27.548] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.950] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.951] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.951] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.952] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.952] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:35.953] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.420] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.419] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.419] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.421] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.421] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:55:48.423] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.060] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.059] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.061] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.061] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.062] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:05.063] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.115] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.115] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.116] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.117] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.116] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:17.117] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:32.997] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:32.997] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:32.999] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:32.999] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:33.000] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:56:32.998] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.196] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.196] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.197] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.197] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.198] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T22:59:08.197] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

@@ -1,16 +1,15 @@
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 import BusGroup from '@/backend/controllers/BusGroup';
 import { authenticateUser } from '@/backend/middlewares/authenticate';
+import BusAccount from '@/backend/controllers/BusAccount';
 const handler: NextApiHandler = async function handler(
     req: NextApiRequest,
     res: NextApiResponse<any>
 ) {
     try {
         switch (req.method) {
-            case 'GET':
-                return BusGroup.fullData(req, res);
             case 'POST':
-                return BusGroup.insert(req, res);
+                return BusAccount.getAccount(req, res);
             default:
                 return res.status(405).json({ message: "Method not allowed" });
 
@@ -20,5 +19,7 @@ const handler: NextApiHandler = async function handler(
     }
 
 }
+
+
 
 export default authenticateUser(handler);

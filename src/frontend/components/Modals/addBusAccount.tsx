@@ -80,7 +80,6 @@ export default function AddBusAccount(
                 res = await addUser(payload)
             }
             if(res){
-                console.log(res)
                 const assignData = {
                     userId: res?.data?.data?.data?._id as string,
                     groupId: fields.assignedGroup.value
@@ -133,7 +132,8 @@ export default function AddBusAccount(
                         type={"text"}
                         name="email"
                         placeholder='Enter here ...' 
-                        value={fields.email} 
+                        value={selected ? selected.account?.email : fields.email} 
+                        readOnly={!!selected}
                         onChange={(v) => handleChange(v?.currentTarget?.value, 'email', fields, setFields)} 
                     />
                 </Box>

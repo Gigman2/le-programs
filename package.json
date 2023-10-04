@@ -45,9 +45,9 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "react-query": "^3.39.3",
-    "react-search-box": "^3.0.0",
     "react-select": "^5.7.2",
     "react-tag-input-component": "^2.0.2",
+    "redis": "^4.6.10",
     "typescript": "5.0.4"
   },
   "devDependencies": {

@@ -1,14 +1,14 @@
 import BusGroupService from "@/backend/services/BusGroup";
-import { BusGroup as Group } from "@/backend/models";
+import { BusAccount, BusGroup as Group } from "@/backend/models";
 import BaseController from "../Base";
 import { NextApiRequest, NextApiResponse } from "next";
-import { IBusGroups } from "@/interface/bus";
-import { Types } from "mongoose";
 import responses from "@/backend/lib/response";
+import BusAccountService from "@/backend/services/BusAccount";
+import { IBusAccount, IBusGroups } from "@/interface/bus";
 
 class BusGroupController extends BaseController<BusGroupService> {
   protected name = "Bus group";
-  constructor(service: BusGroupService) {
+  constructor(service: BusGroupService, private account: BusAccountService) {
     super(service);
     this.getTree = this.getTree.bind(this)
   }
@@ -21,7 +21,37 @@ class BusGroupController extends BaseController<BusGroupService> {
       return responses.error(res, error.message || error)
     }
   }
+
+  async fullData(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      const getAll = this.service.exposeDocument<IBusGroups[]>(await this.service.get(req.query))
+      const data = await Promise.all(
+        getAll.map(async (item: any) => {
+          item.accounts = await this.account.get({ 'accountType.groupId': item._id })
+          return item
+        })
+      )
+      return responses.successWithData(res, data)
+    } catch (error: any) {
+      return responses.error(res, error.message || error)
+    }
+  }
+
+  async fullSingleGroup(req: NextApiRequest, res: NextApiResponse) {
+    try {
+      const group = this.service.exposeDocument<IBusGroups>(await this.service.getById((req.query as { id: string | string[] }).id))
+      group.accounts = await this.account.get({ 'accountType.groupId': (req.query as { id: string | string[] }).id }) as IBusAccount[]
+      group.subGroup = await this.service.get({ parent: (req.query as { id: string | string[] }).id }) as IBusGroups[]
+
+      return responses.successWithData(res, group)
+    } catch (error: any) {
+      return responses.error(res, error.message || error)
+    }
+  }
 }
 
-const BusGroup = new BusGroupController(new BusGroupService(Group));
+const BusGroup = new BusGroupController(
+  new BusGroupService(Group),
+  new BusAccountService(BusAccount)
+);
 export default BusGroup;

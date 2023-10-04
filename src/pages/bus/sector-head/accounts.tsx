@@ -26,7 +26,7 @@ export default function BranchHead() {
         addedGroup:  currentUser?.currentRole?.groupId as string,
         isOpen
     },
-    !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
+    !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
   useEffect(() => {

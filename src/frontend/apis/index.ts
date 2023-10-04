@@ -2,8 +2,8 @@ import { IBusAccount, IBusGroups, IBusRound } from "@/interface/bus";
 import { IEvent } from "@/interface/events";
 import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { useMutation, useQuery } from "react-query";
+import axios from "axios";
+import { useQuery } from "react-query";
 import { axiosInstance } from "../lib/axios";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -45,7 +45,6 @@ export function useBusGroups(query: Record<string, string>, reloadDep: Record<st
     return { error, ...rest }
 }
 
-
 export function useGetAccounts(query: Record<string, string>, reloadDep: Record<string, string>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
@@ -68,15 +67,14 @@ export function useGetAccounts(query: Record<string, string>, reloadDep: Record<
     return { error, ...rest }
 }
 
-export function useBusAccount(query: Record<string, string>, reloadDep: Record<string, any>, enabled: boolean) {
+export function useBusAccount(query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
-    const parsedQuery = new URLSearchParams(query).toString()
     const { error, ...rest } = useQuery<IResponse<IBusAccount[]>>(["bus-accounts", { ...query, ...reloadDep }], async () => {
-        const { data } = await axios.get(
-            `${baseUrl}/api/bus-accounts?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
+        const { data } = await axios.post(
+            `${baseUrl}/api/bus-accounts/all`, query, { headers: { 'Authorization': "Bearer " + token } }
         );
         return data;
     }, { enabled });
@@ -131,7 +129,6 @@ export function useActiveEvent(key: string, enabled: boolean) {
 
     return { error, ...rest }
 }
-
 
 export function useBusTrips({ event, zone }: { event: string; zone: string }, queryKey: Record<string, string | boolean>, enabled: boolean) {
     let token: string

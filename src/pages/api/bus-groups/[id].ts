@@ -8,7 +8,7 @@ const handler: NextApiHandler = async function handler(
     try {
         switch (req.method) {
             case 'GET':
-                return BusGroup.getById(req, res);
+                return BusGroup.fullSingleGroup(req, res);
 
             case 'POST':
                 return BusGroup.update(req, res);

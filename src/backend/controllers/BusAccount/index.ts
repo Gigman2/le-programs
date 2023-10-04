@@ -6,13 +6,16 @@ import axios from 'axios'
 import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
-import { AccountType } from "@/interface/bus";
+import { AccountType, IBusAccount } from "@/interface/bus";
+import AppCache from '@/backend/helpers/cache';
 
 
 class BusAccountController extends BaseController<BusAccountService> {
     protected name = 'BusAccount';
     constructor(service: BusAccountService, private busGroupService: BusGroupService) {
         super(service)
+        this.getAccount = this.getAccount.bind(this)
+
     }
 
     async login(req: NextApiRequest, res: NextApiResponse<any>) {
@@ -55,14 +58,18 @@ class BusAccountController extends BaseController<BusAccountService> {
                 if (!accountCreated.data.accountCreated) return responses.error(res, "failed to create user account")
             }
 
-            const newUser = await this.service.insert(
-                {
-                    "name": req.body.name,
-                    "_id": user._id,
-                    "addedGroup": req.body.group
-                })
+            let savedUser = await this.service.getById(user._id)
 
-            return responses.successWithData(res, { data: newUser }, "success")
+            if (!savedUser) {
+                await this.service.insert(
+                    {
+                        "name": req.body.name,
+                        "_id": user._id,
+                        "addedGroup": req.body.group
+                    })
+            }
+
+            return responses.successWithData(res, { data: savedUser }, "success")
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
@@ -79,7 +86,11 @@ class BusAccountController extends BaseController<BusAccountService> {
             const payload = req.body
             const user = await this.service.getById(payload?.userId)
             const group = await this.busGroupService.getById(payload?.groupId)
-            const userGroup: AccountType = { groupType: typeToRole[group?.type as 'ZONE' | 'BRANCH' | 'SECTOR' | 'OVERALL'] as any, groupId: group?._id as string }
+            const userGroup: AccountType = {
+                groupType: typeToRole[group?.type as 'ZONE' | 'BRANCH' | 'SECTOR' | 'OVERALL'] as any,
+                groupId: group?._id as string
+            }
+
             const filterGroups: AccountType[] = (user?.accountType || []).filter(g => g.groupType != userGroup.groupType)
             const updatedAcc = await this.service.update(user?._id as string, { $set: { accountType: [...filterGroups, userGroup] } })
             return responses.successWithData(res, updatedAcc, "success")
@@ -88,6 +99,35 @@ class BusAccountController extends BaseController<BusAccountService> {
         }
     }
 
+    async getAccount(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const data = this.service.exposeDocument<IBusAccount[]>(
+                await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
+            )
+
+            if (data.length) {
+                const ids = Array.from(new Set([...data.map(f => f._id).filter(Boolean)]))
+                const users = await this.service.getUsers(ids as string[], req.headers.authorization as string, true)
+                data.map((item) => {
+                    item.account = users[item?._id as string]
+                })
+            }
+            return responses.successWithData(res, data, "success")
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
+
+    async testCache(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const Auth = req.headers.authorization
+            const { email } = req.query
+            const userData = await this.service.getUser(email as string, Auth as string)
+            return responses.successWithData(res, userData, "success")
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
 }
 
 const BusAccount = new BusAccountController(
