@@ -132,7 +132,8 @@ export default function AddBusAccount(
                         type={"text"}
                         name="email"
                         placeholder='Enter here ...' 
-                        value={fields.email} 
+                        value={selected ? selected.account?.email : fields.email} 
+                        readOnly={!!selected}
                         onChange={(v) => handleChange(v?.currentTarget?.value, 'email', fields, setFields)} 
                     />
                 </Box>
