@@ -7,6 +7,7 @@ import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
 import { AccountType } from "@/interface/bus";
+import AppCache from '@/backend/helpers/cache';
 
 
 class BusAccountController extends BaseController<BusAccountService> {
@@ -57,14 +58,18 @@ class BusAccountController extends BaseController<BusAccountService> {
                 if (!accountCreated.data.accountCreated) return responses.error(res, "failed to create user account")
             }
 
-            const newUser = await this.service.insert(
-                {
-                    "name": req.body.name,
-                    "_id": user._id,
-                    "addedGroup": req.body.group
-                })
+            let savedUser = await this.service.getById(user._id)
 
-            return responses.successWithData(res, { data: newUser }, "success")
+            if (!savedUser) {
+                await this.service.insert(
+                    {
+                        "name": req.body.name,
+                        "_id": user._id,
+                        "addedGroup": req.body.group
+                    })
+            }
+
+            return responses.successWithData(res, { data: savedUser }, "success")
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
@@ -94,6 +99,18 @@ class BusAccountController extends BaseController<BusAccountService> {
         try {
             const data = await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
             return responses.successWithData(res, data, "success")
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
+
+    async testCache(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const Auth = req.headers.authorization
+            let authKey = Auth?.split(' ')
+            const cacheSystem = new AppCache()
+            const userData = await cacheSystem.getCachedData(authKey?.[1] as string)
+            return responses.successWithData(res, userData, "success")
         } catch (error: any) {
             return responses.error(res, error.message || error)
         }
