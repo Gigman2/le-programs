@@ -5,7 +5,7 @@ import { Box, Flex, Icon, Text} from '@chakra-ui/react'
 import { NextRouter, useRouter } from 'next/router';
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth';
 import Menu from '../Menu';
-import { TbAlignRight, TbArrowBackUp, TbHistory, TbLayoutBottombarCollapseFilled, TbPower, TbUsersGroup } from 'react-icons/tb';
+import { TbAlignRight, TbArrowBackUp, TbHistory, TbHomeDot, TbLayoutBottombarCollapseFilled, TbPower, TbUsersGroup } from 'react-icons/tb';
 import PageWrapper from './pageWrapper';
 import { useBusGroupTree } from '@/frontend/apis';
 import { GroupedUnits } from '../Accounts/busingLogin';
@@ -24,29 +24,33 @@ interface RoleMenu {
 const roleMenu = (router: NextRouter, showMenu: boolean, setShowMenu: Dispatch<SetStateAction<boolean>>): RoleMenu => {
     return {
         BUS_REP: [
-            {title: "Back To Apps", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
+            {title: "Home", icon: TbHomeDot, fn: () => router.push(`/bus/bus-rep`)},
             {title: "History", icon: TbHistory, fn: null},
+            {title: "Role Selection", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
             {title: "Logout", icon: TbPower, fn: removeSession}
         ],
         BUS_HEAD: [
-            {title: "Back To Apps", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
+            {title: "Home", icon: TbHomeDot, fn: () => router.push(`/bus/bus-head`)},
             {title: "Add Zone", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/bus-head/zones`)},
             {title: "Add Bus Rep", icon: TbUsersGroup, fn:  () => router.push(`/bus/bus-head/accounts`)},
             {title: "History", icon: TbHistory, fn:  ()=>{}},
+            {title: "Role Selection", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
             {title: "Logout", icon: TbPower, fn: removeSession}
         ],
         SECTOR_HEAD: [
-            {title: "Back To Apps", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
+            {title: "Home", icon: TbHomeDot, fn: () => router.push(`/bus/sector-head`)},
             {title: "Manage Branch", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/sector-head/groups`)},
             {title: "Manage Bus Head", icon: TbUsersGroup, fn:  () => router.push(`/bus/sector-head/accounts`)},
             {title: "History", icon: TbHistory, fn:  ()=>{}},
+            {title: "Role Selection", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
             {title: "Logout", icon: TbPower, fn: removeSession}
         ],
         OVERALL_HEAD: [
-            {title: "Back To Apps", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
+            {title: "Home", icon: TbHomeDot, fn: () => router.push(`/bus/overall-head`)},
             {title: "Manage Sectors", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/overall-head/groups`)},
             {title: "Manage Sector Heads", icon: TbUsersGroup, fn:  () => router.push(`/bus/overall-head/accounts`)},
             {title: "History", icon: TbHistory, fn:  ()=>{}},
+            {title: "Role Selection", icon: TbArrowBackUp, fn: () => router.push(`/bus`)},
             {title: "Logout", icon: TbPower, fn: removeSession}
         ]
     }
