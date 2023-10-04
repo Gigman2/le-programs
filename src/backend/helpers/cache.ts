@@ -9,19 +9,22 @@ class AppCache {
 
     async insertData(key: string, data: any, time = 22400) {
         try {
+            const redisClient = RedisClient.getInstance();
             if (typeof key !== 'string') {
                 key = JSON.stringify(key)
             }
-            this.cluster.initializeAsync({
-                host: redisHost,
-                port: redisPort,
-                password: redisPass,
+            await redisClient.initializeAsync({
+                host: redisHost as string,
+                port: redisPort as string,
+                password: redisPass as string,
             });
 
-            const redisKey = key
-            this.cluster.Client.setex(redisKey, time, JSON.stringify(data))
-
-            return true
+            if (redisClient.Client) {
+                redisClient.Client.setEx(key, time, JSON.stringify(data))
+                return true
+            }
+            getLogger().warn('Failed to get instance of redis client')
+            return false
         } catch (e) {
             getLogger().error(e)
             return false
@@ -43,10 +46,7 @@ class AppCache {
 
             if (redisClient.Client) {
                 const Client = redisClient.Client
-                const getAsync = util.promisify(Client.get).bind(Client)
-                const data = await getAsync(key)
-
-                return data
+                return await Client.get(key)
             }
             getLogger().warn('Failed to get instance of redis client')
             return null

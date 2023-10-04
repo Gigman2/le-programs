@@ -12,3 +12,6 @@ export const smtpPass = process.env.SMTP_PASS
 export const smtpHost = process.env.SMTP_HOST
 export const smtpPort = process.env.SMTP_PORT
 export const authAPI = process.env.DEV_AUTH_API
+
+export const botEmail = process.env.BOT_EMAIL;
+export const botPass = process.env.BOT_PASS;

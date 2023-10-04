@@ -7,6 +7,7 @@
 import { getLogger } from "@/backend/config/logger";
 import mongoose, { Model, ObjectId } from "mongoose";
 import { connectMongo } from "@/backend/utils/connectMongo";
+import { botEmail, botPass } from "@/backend/config/env";
 
 export default class BaseService<M> {
   constructor(protected readonly model: Model<M>) {
@@ -103,7 +104,7 @@ export default class BaseService<M> {
     }
   }
 
-  async deleteOne(...query: any[]) {
+  async deleteOne(...query: any) {
     try {
       return await this.model.findOneAndRemove({ ...query });
     } catch (error: any) {
@@ -118,6 +119,22 @@ export default class BaseService<M> {
     } catch (error: any) {
       this.log(error.message);
       return [];
+    }
+  }
+
+
+  /**
+* returns generated bot authorization
+*  @returns string
+*/
+  async generateBotAuth() {
+    try {
+      // generate auth bot to handle request
+      const buff = Buffer.from(botEmail + ':' + botPass)
+      const authorization_ = 'x-bot-auth ' + buff.toString('base64')
+      return authorization_
+    } catch (error) {
+      return Promise.reject(error)
     }
   }
 }

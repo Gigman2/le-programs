@@ -1,18 +1,39 @@
-[2023-10-04T08:35:08.361] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-04T08:35:11.061] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-04T08:35:33.576] [ERROR] default - TypeError: this.cluster.initializeAsync is not a function
-    at AppCache.getCachedData (webpack-internal:///(api)/./src/backend/helpers/cache.ts:45:32)
-    at BusAccountController.testCache (webpack-internal:///(api)/./src/backend/controllers/BusAccount/index.ts:133:48)
-    at handler (webpack-internal:///(api)/./src/pages/api/bus-accounts/cache.ts:16:96)
-    at eval (webpack-internal:///(api)/./src/backend/middlewares/authenticate.ts:22:20)
-    at C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\next-server\pages-api.runtime.dev.js:21:3039
-    at C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\lib\trace\tracer.js:117:36
-    at NoopContextManager.with (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7057)
-    at ContextAPI.with (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:516)
-    at NoopTracer.startActiveSpan (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18086)
-    at ProxyTracer.startActiveSpan (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18847)
-    at C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\lib\trace\tracer.js:106:107
-    at NoopContextManager.with (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7057)
-    at ContextAPI.with (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:516)
-    at NextTracerImpl.trace (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\server\lib\trace\tracer.js:106:32)
-    at K (C:\Projects\Le_Systems\le-workers-app\node_modules\next\dist\compiled\next-server\pages-api.runtime.dev.js:21:2970)
+[2023-10-04T11:47:22.028] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:22.030] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:22.033] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:22.029] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:22.036] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:58.798] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:58.799] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:58.796] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:58.804] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:47:58.801] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:50:12.266] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:50:12.268] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:50:12.269] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T11:50:12.269] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:17:56.693] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:17:56.690] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:17:56.696] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:17:56.694] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:17:56.695] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:23:33.722] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:23:33.726] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:23:33.728] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:23:33.730] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:27:00.713] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:27:00.715] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:27:00.717] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:27:00.716] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:30:16.986] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:30:16.987] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:30:16.988] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T12:30:16.984] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:24:32.199] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:24:32.195] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:24:32.203] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:24:32.201] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:32:09.633] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:32:09.636] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:32:09.635] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-04T13:32:09.637] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

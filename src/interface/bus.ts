@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { IDocument } from './misc';
+import { IDocument, IUser } from './misc';
 
 export interface IBusRound extends IDocument {
     event: string | Types.ObjectId;
@@ -37,4 +37,5 @@ export interface IBusAccount extends IDocument {
     addedGroup?: string
     status?: string
     email?: string
+    account?: IUser
 }

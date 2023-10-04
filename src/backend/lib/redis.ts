@@ -33,7 +33,6 @@ class AppRedisClient implements IAppRedisClient {
 
             this.Client.on('connect', () => {
                 console.log('Redis connected');
-                console.log(this.Client)
                 appDebugger(`Connected to redis on ${host}`);
             });
 
@@ -41,7 +40,6 @@ class AppRedisClient implements IAppRedisClient {
                 appDebugger(`Redis server stopped because ${err}`);
             });
 
-            console.log(this.Client)
         }
     }
 }

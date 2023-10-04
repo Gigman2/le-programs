@@ -6,7 +6,7 @@ import axios from 'axios'
 import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
-import { AccountType } from "@/interface/bus";
+import { AccountType, IBusAccount } from "@/interface/bus";
 import AppCache from '@/backend/helpers/cache';
 
 
@@ -86,7 +86,11 @@ class BusAccountController extends BaseController<BusAccountService> {
             const payload = req.body
             const user = await this.service.getById(payload?.userId)
             const group = await this.busGroupService.getById(payload?.groupId)
-            const userGroup: AccountType = { groupType: typeToRole[group?.type as 'ZONE' | 'BRANCH' | 'SECTOR' | 'OVERALL'] as any, groupId: group?._id as string }
+            const userGroup: AccountType = {
+                groupType: typeToRole[group?.type as 'ZONE' | 'BRANCH' | 'SECTOR' | 'OVERALL'] as any,
+                groupId: group?._id as string
+            }
+
             const filterGroups: AccountType[] = (user?.accountType || []).filter(g => g.groupType != userGroup.groupType)
             const updatedAcc = await this.service.update(user?._id as string, { $set: { accountType: [...filterGroups, userGroup] } })
             return responses.successWithData(res, updatedAcc, "success")
@@ -97,7 +101,16 @@ class BusAccountController extends BaseController<BusAccountService> {
 
     async getAccount(req: NextApiRequest, res: NextApiResponse) {
         try {
-            const data = await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
+            const data = this.service.exposeDocument<IBusAccount[]>(
+                await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
+            )
+            if (data.length) {
+                const ids = Array.from(new Set([...data.map(f => f._id).filter(Boolean)]))
+                const users = await this.service.getUsers(ids as string[], req.headers.authorization as string, true)
+                data.map((item) => {
+                    item.account = users[item?._id as string]
+                })
+            }
             return responses.successWithData(res, data, "success")
         } catch (error: any) {
             return responses.error(res, error.message || error)
@@ -107,9 +120,8 @@ class BusAccountController extends BaseController<BusAccountService> {
     async testCache(req: NextApiRequest, res: NextApiResponse) {
         try {
             const Auth = req.headers.authorization
-            let authKey = Auth?.split(' ')
-            const cacheSystem = new AppCache()
-            const userData = await cacheSystem.getCachedData(authKey?.[1] as string)
+            const { email } = req.query
+            const userData = await this.service.getUser(email as string, Auth as string)
             return responses.successWithData(res, userData, "success")
         } catch (error: any) {
             return responses.error(res, error.message || error)
