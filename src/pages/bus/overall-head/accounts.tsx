@@ -100,7 +100,7 @@ export default function OverallAccounts() {
                                   { item.name}
                               </Td>
                               <Td>
-                                  <Text>{item.account?.email.slice(0, 7)+'...'}</Text>
+                                  <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
                               <Td>
                                   <Box 

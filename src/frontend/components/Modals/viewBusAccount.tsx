@@ -57,11 +57,14 @@ export default function ViewBusAccount(
 
                     <Box mb={4}>
                         <Text fontWeight={600} fontSize={14} color={"gray.600"}>Roles</Text>
-                        <Flex gap={2}>
-                            <Text fontWeight={500} color={"blue.500"}>Sector Head</Text>
-                            <Text>for</Text>
-                            <Text fontWeight={500} color={"blue.500"}>Accra north sector</Text>
-                        </Flex>
+                        {data?.data.accountType?.map(item => 
+                            (<Flex gap={2} key={item.groupId}>
+                                <Text fontWeight={500} color={"blue.500"} textTransform={"capitalize"}>{item.groupType.replace("_", ' ').toLowerCase()}</Text>
+                                {item.group ? <>
+                                    <Text>for</Text>
+                                    <Text fontWeight={500} color={"blue.500"}>{item.group.name}</Text>
+                                </>: null}
+                            </Flex>))}
                     </Box>
 
                 </Box>}

@@ -61,7 +61,7 @@ export default function AddBusAccount(
                 setFields((prev: any) => ({...prev, group: newAssigned}))
             }
         }
-    }, [selected])
+    }, [selected, role, groupData?.data])
 
 
     const addBusGroup = async () => {
