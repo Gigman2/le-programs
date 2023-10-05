@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, Skeleton } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { TbBallpen, TbPlus } from 'react-icons/tb'
+import { TbBallpen, TbEye, TbPlus } from 'react-icons/tb'
 import { useBusAccount } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import { IBusAccount } from '@/interface/bus'
 import AddBusAccount from '@/frontend/components/Modals/addBusAccount'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import ViewBusAccount from '@/frontend/components/Modals/viewBusAccount'
 
 
 
@@ -17,11 +18,21 @@ export default function BranchHead() {
   const [selected, setSelected] = useState<IBusAccount>()
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenAccount, onOpen: onOpenAccount, onClose: onCloseAccount } = useDisclosure()
+
 
   const {isLoading, data: accountData} = useBusAccount(
     {
-      addedGroup:  currentUser?.currentRole?.groupId as string
-    }, 
+      "$or": [
+        {addedGroup:  currentUser?.currentRole?.groupId as string},
+        {
+          "$and": [
+            {'accountType.groupType':  "BUS_REP"},
+            {'accountType.groupId':   currentUser?.currentRole?.groupId }
+          ]
+        }
+      ]
+    },
     {
         addedGroup:  currentUser?.currentRole?.groupId as string,
         isOpen
@@ -29,6 +40,7 @@ export default function BranchHead() {
     !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
+  console.log('Bus ', currentUser?.currentRole)
   useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
@@ -57,8 +69,26 @@ export default function BranchHead() {
                 selected={selected as IBusAccount}
               />
 
+              <ViewBusAccount
+                isOpen={isOpenAccount} 
+                onClose={onCloseAccount} 
+                type='BRANCH' 
+                selected={selected as IBusAccount}
+              />
+
               <Box mt={4}>
-                  <Table variant="simple">
+                  <Flex gap={2} my={2}>
+                    <Text color="gray.500">Key</Text>
+                    <Box  fontSize={14} px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
+                    <Box fontSize={14} px={2} rounded={"md"} bg={"orange.100"} color={"orange.500"}>Unassigned</Box>
+                  </Flex>
+                  { isLoading ? 
+                    <>
+                      <Skeleton mb={2} h={12} w="100%" />
+                      <Skeleton mb={2} h={12} w="100%" />
+                    </>
+                  : 
+                                      <Table variant="simple">
                       <Thead bg="gray.50">
                           <Tr>
                               <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
@@ -75,26 +105,42 @@ export default function BranchHead() {
                               <Td textTransform={"capitalize"}>
                                   { item.name}
                               </Td>
-                                <Td>
-                                  { item.email }
-                              </Td>
-                                <Td>
-                                
+                              <Td>
+                                <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
                               <Td>
-                                <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
-                                onClick={() => {
-                                  setSelected(item)
-                                  onOpen()
-                                }}>
-                                  <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
-                                  <Text>Edit</Text>
+                                  <Box 
+                                    px={2}
+                                    py={3} 
+                                    bg={item.accountType?.length ? "blue.100" : "orange.100" }
+                                    textAlign={"center"} 
+                                    rounded={"md"}
+                                    color={item.accountType?.length ? "blue.500" : "orange.500"}
+                                  />
+                              </Td>
+                              <Td>
+                                <Flex gap={2}>
+                                  <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelected(item)
+                                        onOpenAccount()
+                                      }}>
+                                        <Icon as={TbEye} fontSize={20} color={"gray.600"}/>
+                                    </Box>
+                                    <Box w={8} py={1} px={1} bg="gray.100" rounded={"md"} textAlign={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelected(item)
+                                        onOpen()
+                                      }}>
+                                    <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
+                                  </Box>
                                 </Flex>
                               </Td>
                           </Tr>
                       ))}
                       </Tbody>
                   </Table>
+                  }
                     {accountData?.data.length == 0 && (
                           <Flex
                               w="100%"

@@ -28,6 +28,7 @@ class BusGroupController extends BaseController<BusGroupService> {
       const data = await Promise.all(
         getAll.map(async (item: any) => {
           item.accounts = await this.account.get({ 'accountType.groupId': item._id })
+          item.subGroup = await this.service.get({ parent: item._id }) as IBusGroups[]
           return item
         })
       )

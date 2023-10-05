@@ -1,13 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, Skeleton } from '@chakra-ui/react'
-import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { TbAlignRight, TbHistory, TbPower, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen, TbEye, TbDots } from 'react-icons/tb'
-import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useBusGroupTree, useBusGroups } from '@/frontend/apis'
-import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
-import Menu from '@/frontend/components/Menu'
+import { TbPlus, TbBallpen, TbEye, TbDots } from 'react-icons/tb'
+import { useBusGroups } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
 import { IBusGroups } from '@/interface/bus'
@@ -67,6 +64,7 @@ export default function OverallGroups() {
                   onClose={onCloseViewGroup} 
                   type='sector' 
                   selected={selectedGroup}
+                  subgroup='branches'
                 />
 
                 <Box mt={4}>
