@@ -61,6 +61,16 @@ export default function ViewBusGroup(
                         : <Text>No zone found in {data?.data.name} {type}</Text>}
                     </Box>}
 
+                    {type =='zone' ? <Box mb={4}>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Pickup Points</Text>
+                        {data?.data.station?.length ?
+                            <Flex wrap={"wrap"} gap={2}>{data?.data?.station?.map?.((item: any) => (
+                            <Box rounded={"sm"} fontSize={13} bg="gray.100" color={"gray.600"} key={item} px={3} py={1}>{item}</Box>
+                            ))}
+                        </Flex>
+                        : <Text>No zone found in {data?.data.name} {type}</Text>}
+                    </Box>:  null}
+
                      <Box mb={4}>
                         <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Created on</Text>
                         <Text>{dayjs(selected?.created_on as Date).format('D MMM YYYY, hh:mm a')} </Text>
