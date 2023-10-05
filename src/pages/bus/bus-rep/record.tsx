@@ -11,6 +11,7 @@ import { CreateBusTrip, CreateBusTripDTO } from '@/frontend/apis/bus'
 import { IEvent } from '@/interface/events'
 import { getActiveEvent } from '@/frontend/store/event'
 import dayjs from 'dayjs'
+import AppWrapper from '@/frontend/components/layouts/appWrapper'
 
 export default function AddBusLog() {
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -75,98 +76,96 @@ export default function AddBusLog() {
 
   return (
     <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>
-      <PageWrapper>
-        <Box maxW={"500px"} w="100%" position={"relative"} mt={8}>
-            <Flex gap={4}>
-                <Flex px={3} py={4} align={"center"} rounded={"md"} bg="gray.200" h={14} cursor={"pointer"}
-                    onClick={() => router.back()}
-                >
-                    <Icon as={TbChevronLeft} fontSize={32} color={"gray.500"} />
-                </Flex>
-                <Box textAlign={"center"} p={4} bg="gray.400" rounded={"md"} color="white" mb={4} w="100%" h={14}>
-                    Creating a new bus trip
-                </Box>
+      <AppWrapper hideInfo={true}>
+        <Flex gap={4}>
+            <Flex px={3} py={4} align={"center"} rounded={"md"} bg="gray.200" h={14} cursor={"pointer"}
+                onClick={() => router.back()}
+            >
+                <Icon as={TbChevronLeft} fontSize={32} color={"gray.500"} />
             </Flex>
-            <Flex justify={"space-between"} mt={2}>
-                <Box>
-                    <Text color={"gray.500"} lineHeight={1.2}>Event</Text>
-                    <Text fontWeight={600} color={"gray.600"}>{activeEvent?.name}</Text>
-                </Box>
+            <Box textAlign={"center"} p={4} bg="gray.400" rounded={"md"} color="white" mb={4} w="100%" h={14}>
+                Creating a new bus trip
+            </Box>
+        </Flex>
+        <Flex justify={"space-between"} mt={2}>
+            <Box>
+                <Text color={"gray.500"} lineHeight={1.2}>Event</Text>
+                <Text fontWeight={600} color={"gray.600"}>{activeEvent?.name}</Text>
+            </Box>
 
-                <Box textAlign={"right"}>
-                    <Text color={"gray.500"} lineHeight={1.2}>Current time is</Text>
-                    <Text fontWeight={600} color={"gray.600"}>{dayjs().format('h:mm A')}</Text>
-                </Box>
-            </Flex>
+            <Box textAlign={"right"}>
+                <Text color={"gray.500"} lineHeight={1.2}>Current time is</Text>
+                <Text fontWeight={600} color={"gray.600"}>{dayjs().format('h:mm A')}</Text>
+            </Box>
+        </Flex>
 
-            <Box mt={4}>
-                {!fields.busCost ? <Box p={4} bg="orange.300" color={"white"} mb={4} rounded={"md"}>
-                    Bus logs can&apos;t be created without a bus cost
-                </Box> : null}
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>What is the cost of the bus fare?</FormLabel>
-                    <Input 
-                        type={"text"}
-                        name="busCost"
-                        placeholder='Enter here ...' 
-                        value={fields.busCost} 
-                        onChange={(v) => handleChange(v?.currentTarget?.value, 'busCost', fields, setFields)} 
-                    />
-                </Box>
+        <Box mt={4}>
+            {!fields.busCost ? <Box p={4} bg="orange.300" color={"white"} mb={4} rounded={"md"}>
+                Bus logs can&apos;t be created without a bus cost
+            </Box> : null}
+            <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                <FormLabel fontSize={14}>What is the cost of the bus fare?</FormLabel>
+                <Input 
+                    type={"text"}
+                    name="busCost"
+                    placeholder='Enter here ...' 
+                    value={fields.busCost} 
+                    onChange={(v) => handleChange(v?.currentTarget?.value, 'busCost', fields, setFields)} 
+                />
+            </Box>
 
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
-                    <Input 
-                        type={"text"}
-                        name="people"
-                        placeholder='Enter here ...' 
-                        value={fields.people} 
-                        onChange={(v) => handleChange(v?.currentTarget?.value, 'people', fields, setFields)} 
-                    />
-                </Box>
+            <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
+                <Input 
+                    type={"text"}
+                    name="people"
+                    placeholder='Enter here ...' 
+                    value={fields.people} 
+                    onChange={(v) => handleChange(v?.currentTarget?.value, 'people', fields, setFields)} 
+                />
+            </Box>
 
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                    <FormLabel fontSize={14}>How much offering were you able to collect</FormLabel>
-                    <Input 
-                        type={"text"}
-                        name="busOffering"
-                        placeholder='Enter here ...' 
-                        value={fields.busOffering} 
-                        onChange={(v) => handleChange(v?.currentTarget?.value, 'busOffering', fields, setFields)} 
-                    />
-                </Box>
+            <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
+                <FormLabel fontSize={14}>How much offering were you able to collect</FormLabel>
+                <Input 
+                    type={"text"}
+                    name="busOffering"
+                    placeholder='Enter here ...' 
+                    value={fields.busOffering} 
+                    onChange={(v) => handleChange(v?.currentTarget?.value, 'busOffering', fields, setFields)} 
+                />
+            </Box>
 
-                {/* <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                    <FormLabel fontSize={14}>Indicate the vehicle used for the trip</FormLabel>
-                    <Autocomplete
-                        name='vehicle'
-                        options={vehicleList?.map(a => ({label:a.name, value: a._id as string})) || []}
-                        value={fields['vehicle']}
-                        fields={fields as unknown as Record<string, string>}
-                        setFields={setFields as unknown as React.Dispatch<React.SetStateAction<Record<string, string | boolean | undefined >>>}
-                        placeholder='Select vehicle'
+            {/* <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
+                <FormLabel fontSize={14}>Indicate the vehicle used for the trip</FormLabel>
+                <Autocomplete
+                    name='vehicle'
+                    options={vehicleList?.map(a => ({label:a.name, value: a._id as string})) || []}
+                    value={fields['vehicle']}
+                    fields={fields as unknown as Record<string, string>}
+                    setFields={setFields as unknown as React.Dispatch<React.SetStateAction<Record<string, string | boolean | undefined >>>}
+                    placeholder='Select vehicle'
 
-                    />
-                    
-                </Box> */}
+                />
+                
+            </Box> */}
 
-                <Box as={Button} 
-                    width="full" 
-                    mt={8} 
-                    mb={4}
-                    bg="base.blue" 
-                    color="white" 
-                    _hover={{bg: "base.blue"}}
-                    _focus={{bg: "base.blue"}}
-                    _active={{bg: "base.blue"}}
-                    isLoading={loading}
-                    isDisabled={loading || !fields.busCost}
-                    onClick={(v) => createBus()} 
-                    >Create
-                </Box>
+            <Box as={Button} 
+                width="full" 
+                mt={8} 
+                mb={4}
+                bg="base.blue" 
+                color="white" 
+                _hover={{bg: "base.blue"}}
+                _focus={{bg: "base.blue"}}
+                _active={{bg: "base.blue"}}
+                isLoading={loading}
+                isDisabled={loading || !fields.busCost}
+                onClick={(v) => createBus()} 
+                >Create
             </Box>
         </Box>
-      </PageWrapper>
+      </AppWrapper>
     </GuardWrapper>
   )
 }

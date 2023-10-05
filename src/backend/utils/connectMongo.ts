@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
+import { dbName, dbUrl } from "../config/env";
 
-const DB_NAME = process.env.DB_NAME
-const DB_URl = process.env.DB_URL
-const MONGODB_URI: string = `${DB_URl}/${DB_NAME}`
+const MONGODB_URI: string = `${dbUrl}/${dbName}`
 
 export const connectMongo = async () => mongoose.connect(MONGODB_URI) 

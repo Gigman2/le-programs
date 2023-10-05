@@ -49,7 +49,7 @@ export default function AddBusGroup(
             }
 
             if(fields.stations.length){
-                payload.station = fields.stations.split(',').map((item : string) => item.trim())
+                payload.station = fields.stations.split(',').map((item : string) => item.trim()) || []
             }
     
             let res: any
@@ -84,7 +84,7 @@ export default function AddBusGroup(
        <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add {type}</ModalHeader>
+          <ModalHeader>{selected ? 'Edit' : 'Add'} {type}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Box mt={4}>
@@ -99,17 +99,17 @@ export default function AddBusGroup(
                     />
                 </Box>
 
-                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
+                {(['zone', 'branch'].includes(type)) ? <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
                     <FormLabel fontSize={14}>Enter the stations / pick up points in the {type}?</FormLabel>
                     <Text color="blue.500" fontSize={14}>Separate them by comma eg. East legon, UPSA, Atomic</Text>
-                     <Input 
+                    <Input 
                         type={"text"}
                         name="stations"
                         placeholder='Enter here ...' 
                         value={fields.stations} 
                         onChange={(v) => handleChange(v?.currentTarget?.value, 'stations', fields, setFields)} 
                     />
-                </Box>
+                </Box>: <></>}
 
 
                 <Box as={Button} 

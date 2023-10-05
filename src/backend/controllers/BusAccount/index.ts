@@ -6,7 +6,7 @@ import axios from 'axios'
 import responses from '@/backend/lib/response';
 import BusGroupService from '@/backend/services/BusGroup';
 import { authAPI } from '@/backend/config/env';
-import { AccountType, IBusAccount } from "@/interface/bus";
+import { AccountType, IBusAccount, IBusGroups } from "@/interface/bus";
 import AppCache from '@/backend/helpers/cache';
 
 
@@ -15,6 +15,7 @@ class BusAccountController extends BaseController<BusAccountService> {
     constructor(service: BusAccountService, private busGroupService: BusGroupService) {
         super(service)
         this.getAccount = this.getAccount.bind(this)
+        this.fullSingleAccount = this.fullSingleAccount.bind(this)
 
     }
 
@@ -104,6 +105,7 @@ class BusAccountController extends BaseController<BusAccountService> {
             const data = this.service.exposeDocument<IBusAccount[]>(
                 await this.service.get({ ...req.body, status: { "$ne": "ARCHIVED" } })
             )
+
             if (data.length) {
                 const ids = Array.from(new Set([...data.map(f => f._id).filter(Boolean)]))
                 const users = await this.service.getUsers(ids as string[], req.headers.authorization as string, true)
@@ -112,6 +114,31 @@ class BusAccountController extends BaseController<BusAccountService> {
                 })
             }
             return responses.successWithData(res, data, "success")
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
+
+    async fullSingleAccount(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const data = this.service.exposeDocument<IBusAccount>(
+                await this.service.getById((req.query as { id: string | string[] }).id)
+            )
+
+            const cachedUser = await this.service.getUser(data._id as string, req.headers.authorization as string)
+            data.account = cachedUser.data
+
+            const newAccountData = await Promise.all(
+                (data?.accountType || [])?.map(async role => {
+                    if (role.groupId) {
+                        role.group = await this.busGroupService.getById(role.groupId) as IBusGroups
+                    }
+                    return role
+                })
+            )
+
+            data.accountType = newAccountData
+            return responses.successWithData(res, data)
         } catch (error: any) {
             return responses.error(res, error.message || error)
         }

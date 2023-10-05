@@ -2,10 +2,7 @@
 import React, { useState, useEffect } from "react";
 import {
     Box,
-    Button,
     Flex,
-    FormLabel,
-    Input,
     Modal,
     ModalBody,
     ModalCloseButton,
@@ -15,16 +12,16 @@ import {
     Skeleton,
     Text,
 } from "@chakra-ui/react";
-import { IBusAccount, IBusGroups } from "@/interface/bus";
-import { useSingleBusGroup } from "@/frontend/apis";
+import { IBusGroups } from "@/interface/bus";
+import dayjs from "dayjs";
+import { useSingleBusGroup } from "@/frontend/apis/bus";
 
 export default function ViewBusGroup(
-        {isOpen, onClose, type, selected}: 
-        {isOpen: boolean, onClose: () => void; type: string, selected?: IBusGroups}
+        {isOpen, onClose, type, subgroup, selected}: 
+        {isOpen: boolean, onClose: () => void; type: string; subgroup?: string; selected?: IBusGroups}
     )  
     {
-    const [loading, setLoading] = useState(false)
-      const {isLoading, data} = useSingleBusGroup(selected?._id as string, {id: selected?._id}, !!(selected?._id)
+      const {isLoading, data} = useSingleBusGroup(selected?._id as string, !!(selected?._id)
   )
     return (
        <Modal isOpen={isOpen} onClose={onClose}>
@@ -46,19 +43,27 @@ export default function ViewBusGroup(
                     </Box>
 
                     <Box mb={4}>
-                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>{type} head(s)</Text>
-                        <Flex>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>{type === 'zone' ? "Bus rep(s)" : `${type} head(s)`}</Text>
+                        {data?.data.accounts?.length ?<Flex gap={2} wrap={"wrap"}>
                             {data?.data?.accounts?.map?.((item: any) => (
                                 <Box rounded={"sm"} fontSize={13} bg="gray.100" color={"gray.600"} key={item._id} px={3} py={1}>{item.name}</Box>
                             ))}
-                        </Flex>
+                        </Flex> : <Text>No account found for {type} head(s)</Text>}
                     </Box>
 
-                    <Box mb={4}>
-                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Branches</Text>
-                        <Flex wrap={"wrap"} gap={2}>{data?.data?.subGroup?.map?.((item: any) => (
+                    {subgroup && <Box mb={4}>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>{subgroup}</Text>
+                        {data?.data.subGroup?.length ?
+                            <Flex wrap={"wrap"} gap={2}>{data?.data?.subGroup?.map?.((item: any) => (
                             <Box rounded={"sm"} fontSize={13} bg="gray.100" color={"gray.600"} key={item._id} px={3} py={1}>{item.name}</Box>
-                        ))}</Flex>
+                            ))}
+                        </Flex>
+                        : <Text>No zone found in {data?.data.name} {type}</Text>}
+                    </Box>}
+
+                     <Box mb={4}>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Created on</Text>
+                        <Text>{dayjs(selected?.created_on as Date).format('D MMM YYYY, hh:mm a')} </Text>
                     </Box>
                 </Box>}
           </ModalBody>

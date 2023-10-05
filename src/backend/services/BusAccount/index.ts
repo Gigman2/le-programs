@@ -16,7 +16,7 @@ export default class BusAccountService extends BaseService<IBusAccount>  {
     async getUser(id: string, authorization: string) {
         try {
             if (id) {
-                const key = JSON.stringify(id) + '_cached_user'
+                const key = id + '_cached_user'
                 const cacheSystem = new AppCache()
                 const storedUser = await cacheSystem.getCachedData(key) as string
                 const parsedStoredUser = JSON.parse(storedUser) as { data: IAccountUser }
@@ -72,7 +72,8 @@ export default class BusAccountService extends BaseService<IBusAccount>  {
                 })
                 if (users.data && users.data.length) {
                     users.data.forEach((item: any) => {
-                        cacheSystem.insertData(item._id, item)
+                        const userKey = item._id + '_cached_user'
+                        cacheSystem.insertData(userKey, item)
                     });
                     newUsersArrayData.push(...users.data)
                 }

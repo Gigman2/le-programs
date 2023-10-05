@@ -15,22 +15,22 @@ import {
     Skeleton,
     Text,
 } from "@chakra-ui/react";
-import { IBusAccount, IBusGroups } from "@/interface/bus";
-import { useSingleBusGroup } from "@/frontend/apis";
+import { IBusAccount } from "@/interface/bus";
+import { useSingleBusAccount } from "@/frontend/apis/bus";
+import dayjs from "dayjs";
 
-export default function ViewBusGroup(
+export default function ViewBusAccount(
         {isOpen, onClose, type, selected}: 
-        {isOpen: boolean, onClose: () => void; type: string, selected?: IBusGroups}
+        {isOpen: boolean, onClose: () => void; type: string, selected?: IBusAccount}
     )  
     {
-    const [loading, setLoading] = useState(false)
-      const {isLoading, data} = useSingleBusGroup(selected?._id as string, {id: selected?._id}, !!(selected?._id)
-  )
+    const {isLoading, data} = useSingleBusAccount(selected?._id as string, !!(selected?._id))
+    
     return (
        <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>View  {type}</ModalHeader>
+          <ModalHeader>View Account </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {isLoading ? 
@@ -42,24 +42,31 @@ export default function ViewBusGroup(
                 <Box>
                     <Box mb={4}>
                         <Text fontWeight={600} fontSize={14} color={"gray.600"}>Name</Text>
-                        <Text>{selected?.name} </Text>
+                        <Text>{data?.data?.name || selected?.name} </Text>
                     </Box>
 
                     <Box mb={4}>
-                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>{type} head(s)</Text>
-                        <Flex>
-                            {data?.data?.accounts?.map?.((item: any) => (
-                                <Box rounded={"sm"} fontSize={13} bg="gray.100" color={"gray.600"} key={item._id} px={3} py={1}>{item.name}</Box>
-                            ))}
-                        </Flex>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"}>Email</Text>
+                        <Text>{data?.data?.account?.email || selected?.account?.email} </Text>
                     </Box>
 
                     <Box mb={4}>
-                        <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Branches</Text>
-                        <Flex wrap={"wrap"} gap={2}>{data?.data?.subGroup?.map?.((item: any) => (
-                            <Box rounded={"sm"} fontSize={13} bg="gray.100" color={"gray.600"} key={item._id} px={3} py={1}>{item.name}</Box>
-                        ))}</Flex>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"}>Added On</Text>
+                        <Text>{dayjs(data?.data?.created_on || selected?.created_on).format('D MMM YYYY, hh:mm a')} </Text>
                     </Box>
+
+                    <Box mb={4}>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"}>Roles</Text>
+                        {data?.data.accountType?.map(item => 
+                            (<Flex gap={2} key={item.groupId}>
+                                <Text fontWeight={500} color={"blue.500"} textTransform={"capitalize"}>{item.groupType.replace("_", ' ').toLowerCase()}</Text>
+                                {item.group ? <>
+                                    <Text>for</Text>
+                                    <Text fontWeight={500} color={"blue.500"}>{item.group.name}</Text>
+                                </>: null}
+                            </Flex>))}
+                    </Box>
+
                 </Box>}
           </ModalBody>
         </ModalContent>

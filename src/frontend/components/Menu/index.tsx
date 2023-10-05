@@ -9,7 +9,7 @@ const MenuItem = ({item, index}: {item: {title: string, icon: any,  fn:  any}, i
                 <Flex rounded={"md"} bg="gray.200" p={3}>
                     <Icon as={item.icon} fontSize={24} />
                 </Flex>
-                <Text ml={6} fontSize={20}>{item.title}</Text>
+                <Text ml={6} fontSize={18}>{item.title}</Text>
             </Flex>
 }
 
@@ -23,7 +23,7 @@ export default function Menu({options, show, setShow}: {options: {title: string,
             </Flex>
 
             <Box mt={24}>
-                {options.map((item, i) => <MenuItem key={item.title} item={item} index={i} />)}
+                {options?.map((item, i) => <MenuItem key={item.title} item={item} index={i} />)}
             </Box>
         </Box>
     </Box>}

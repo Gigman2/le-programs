@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Button, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, MenuButton, MenuList, MenuItem, Menu as DropMenu, useDisclosure, Skeleton } from '@chakra-ui/react'
-import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
+import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, Skeleton } from '@chakra-ui/react'
+import { IAccountUser, getUser, } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { BsPersonFillAdd } from 'react-icons/bs'
-import { MdAddBusiness } from 'react-icons/md'
-import { TbAlignRight, TbDots, TbHistory, TbPower, TbDotsVertical, TbPlus, TbLayoutBottombarCollapseFilled, TbUsersGroup, TbBallpen } from 'react-icons/tb'
+import {  TbPlus, TbBallpen, TbEye } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useBusGroupTree, useBusGroups } from '@/frontend/apis'
-import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
-import Menu from '@/frontend/components/Menu'
+import {  useBusGroups } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
 import { IBusGroups } from '@/interface/bus'
+import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import ViewBusGroup from '@/frontend/components/Modals/viewBusGroup'
 
 
 
@@ -20,21 +18,11 @@ export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const [selectedGroup, setSelectedGroup] = useState<IBusGroups>()
   const router = useRouter()
-  const [showMenu, setShowMenu] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen: isOpenViewGroup, onOpen: onOpenViewGroup, onClose: onCloseViewGroup } = useDisclosure()
 
-  const MenuOptions = [
-    {title: "Add Zone", icon: TbLayoutBottombarCollapseFilled, fn: () => router.push(`/bus/bus-head/zones`)},
-    {title: "Add Bus Rep", icon: TbUsersGroup, fn:  () => router.push(`/bus/bus-head/accounts`)},
-    {title: "History", icon: TbHistory, fn:  ()=>{}},
-    {title: "Logout", icon: TbPower, fn: removeSession}
-  ]
 
-  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
-  )
-
-  const {isLoading: groupLoading, data: groupData} = useBusGroups(
+  const {isLoading, data: groupData} = useBusGroups(
     {
         type:  "ZONE",
         parent: currentUser?.currentRole?.groupId as string
@@ -48,25 +36,6 @@ export default function BranchHead() {
   )
 
   useEffect(() => {
-    if(groupTree?.data.length){
-          const busTreeData = groupTree?.data
-          const bus = busTreeData.reduce((acc: GroupedUnits, cValue) => {
-            if(cValue){
-              acc[cValue.type] = {
-                  id: cValue._id,
-                  name: cValue.name
-              }
-            }
-            return acc
-          }, {})
-          const account = currentUser as IAccountUser
-
-          saveBusUser({...account, bus})
-          setCurrentUser({...account, bus})
-    }
-  }, [groupTree])
-
-  useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
     setCurrentUser(user)
@@ -74,21 +43,7 @@ export default function BranchHead() {
 
   return (
     <GuardWrapper allowed={['BUS_HEAD']} redirectTo='/bus/login' app='bus'>
-      <PageWrapper>
-        <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
-          <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
-          <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
-              <Box>
-                {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['SECTOR']) &&  <Flex fontWeight={600} color={"gray.600"}>
-                  <Text color={"gray.500"}>{`${currentUser?.bus?.['SECTOR']?.name}, ${currentUser?.bus?.['SECTOR']?.name}`}</Text>
-                </Flex>}
-                <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
-              </Box>
-              <Flex onClick={() => setShowMenu(true)}>
-                <Icon as={TbAlignRight} color="gray.600" fontSize={28} mr={3} />
-              </Flex>
-          </Flex>
-
+      <AppWrapper>
           <Box mt={4}>
                 <Flex justifyContent={"space-between"}>
                     <Text fontSize={24} fontWeight={600} color={"gray.600"}>Zone Management</Text>
@@ -106,8 +61,20 @@ export default function BranchHead() {
                   parentId={currentUser?.currentRole?.groupId as string}
                   selected={selectedGroup}
                 />
+
+                <ViewBusGroup
+                  isOpen={isOpenViewGroup} 
+                  onClose={onCloseViewGroup} 
+                  type='zone' 
+                  selected={selectedGroup}
+                />
                 <Box mt={4}>
-                    <Table variant="simple">
+                    {isLoading ? <>
+                      <Skeleton mb={2} h={12} w="100%" />
+                      <Skeleton mb={2} h={12} w="100%" />
+                    </>
+                    :
+                      <Table variant="simple">
                         <Thead bg="gray.50">
                             <Tr>
                                 <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
@@ -131,20 +98,28 @@ export default function BranchHead() {
                                     {item.station.length}
                                 </Td>
                                 <Td>
-                                  <Flex gap={2} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
-                                  onClick={() => {
-                                    setSelectedGroup(item)
-                                    onOpen()
-                                  }}>
-                                    <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
-                                    <Text>Edit</Text>
+                                  <Flex gap={3}>
+                                    <Flex w={10} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelectedGroup(item)
+                                        onOpenViewGroup()
+                                      }}>
+                                        <Icon as={TbEye} fontSize={20} color={"gray.600"}/>
+                                    </Flex>
+                                    <Flex w={10} py={1} px={2} bg="gray.100" rounded={"md"} align={"center"} cursor={"pointer"} 
+                                      onClick={() => {
+                                        setSelectedGroup(item)
+                                        onOpen()
+                                      }}>
+                                        <Icon as={TbBallpen} fontSize={20} color={"gray.600"}/>
+                                    </Flex>
                                   </Flex>
                                 </Td>
                             </Tr>
                         ))}
                         </Tbody>
-                    </Table>
-                     {groupData?.data.length == 0 && (
+                    </Table>}
+                    {groupData?.data.length == 0 && (
                             <Flex
                                 w="100%"
                                 mt={4}
@@ -159,11 +134,10 @@ export default function BranchHead() {
                                 </Flex>
                               </Box>
                             </Flex>
-                        )}
+                    )}
                 </Box>
           </Box>
-        </Box>
-      </PageWrapper>
+      </AppWrapper>
     </GuardWrapper>
   )
 }

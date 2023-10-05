@@ -14,6 +14,7 @@ import { IBusRound } from '@/interface/bus'
 import BusCard from '@/frontend/components/Bus/BusCard'
 import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
 import EndBusTrip from '@/frontend/components/Modals/endBusTrip'
+import AppWrapper from '@/frontend/components/layouts/appWrapper'
 
 const MenuOptions = [
   {title: "History", icon: TbHistory, fn: null},
@@ -24,15 +25,10 @@ const MenuOptions = [
 export default function BusRepLogs() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
-  const [showMenu, setShowMenu] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: endIsOpen, onOpen: endOnOpen, onClose: endOnClose } = useDisclosure()
 
   const [selectedRecord, setSelectedRecord]= useState<IBusRound>()
-
-  const {isLoading, data: groupTree} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-    !!(currentUser?.currentRole?.groupType === "BUS_REP")
-  )
 
   const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
     !!currentUser?.currentRole?.groupId
@@ -53,26 +49,6 @@ export default function BusRepLogs() {
   )
 
   useEffect(() => {
-    if(groupTree?.data.length){
-          const busTreeData = groupTree?.data
-          const bus = busTreeData.reduce((acc: GroupedUnits, cValue) => {
-            if(cValue){
-              acc[cValue.type] = {
-                  id: cValue._id,
-                  name: cValue.name
-              }
-            }
-            return acc
-          }, {})
-          const account = currentUser as IAccountUser
-
-          saveBusUser({...account, bus})
-          setCurrentUser({...account, bus})
-    }
-  }, [groupTree])
-
-
-  useEffect(() => {
     if(eventData && !eventError){
       saveActiveEvent(eventData?.data)
     }
@@ -86,21 +62,7 @@ export default function BusRepLogs() {
 
   return (
     <GuardWrapper allowed={['BUS_REP']} redirectTo='/bus/login' app='bus'>
-      <PageWrapper>
-        <Box maxW={"500px"} w="100%" h={"100vh"} position={"relative"}>
-          <Menu options={MenuOptions} show={showMenu} setShow={setShowMenu} />
-          <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
-              <Box>
-                {!isLoading && (currentUser?.bus?.['BRANCH'] || currentUser?.bus?.['ZONE']) &&  <Flex fontWeight={600} color={"gray.600"}>
-                  <Text color={"gray.500"}>{`${currentUser?.bus?.['BRANCH']?.name}, ${currentUser?.bus?.['ZONE']?.name}`}</Text>
-                </Flex>}
-                <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
-              </Box>
-              <Flex onClick={() => setShowMenu(true)}>
-                <Icon as={TbAlignRight} color="gray.600" fontSize={28} mr={3} />
-              </Flex>
-          </Flex>
-
+      <AppWrapper>
           <Flex mt={4} align={"center"} justify={"space-between"}>
             {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data?.name}</Text> : <Skeleton h={6} w={"200px"} />}
             {!eventLoading ? (
@@ -141,8 +103,7 @@ export default function BusRepLogs() {
               }
             </Box>
           </Box>
-        </Box>
-      </PageWrapper>
+      </AppWrapper>
     </GuardWrapper>
   )
 }

@@ -30,6 +30,7 @@ export interface IBusGroups extends IDocument {
 export type AccountType = {
     groupType: ('BUS_REP' | 'BRANCH_HEAD' | 'SECTOR_HEAD' | 'OVERALL_HEAD')
     groupId: string
+    group?: IBusGroups
 }
 export interface IBusAccount extends IDocument {
     name: string,
