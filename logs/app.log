@@ -5993,3 +5993,1533 @@
 [2023-10-06T14:34:15.850] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-06T14:34:24.659] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-06T14:34:24.660] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.517] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.525] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.523] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.528] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.529] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.526] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.531] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:13:49.534] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.832] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.831] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.834] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.840] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.835] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.838] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.841] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:14:31.836] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.776] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.777] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.778] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.779] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.780] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.781] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.782] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.785] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:32.783] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:16:33.493] [ERROR] default - AxiosError: Request failed with status code 400
+    at settle (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/adapters/http.js:572:11)
+    at IncomingMessage.emit (node:events:529:35)
+    at endReadableNT (node:internal/streams/readable:1368:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: 'http',
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ',
+      'User-Agent': 'axios/1.5.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'get',
+    url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: false,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'le-auth-api.onrender.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 10,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'le-auth-api.onrender.com',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 277049,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 60,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+      'User-Agent: axios/1.5.0\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: le-auth-api.onrender.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype],
+      freeSockets: [Object: null prototype] {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/api/v1/users/651b1c3922205136e92d2d14',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 52,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'le-auth-api.onrender.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: Object [AxiosHeaders] {
+      date: 'Fri, 06 Oct 2023 15:16:32 GMT',
+      'content-type': 'application/json; charset=utf-8',
+      'transfer-encoding': 'chunked',
+      connection: 'close',
+      'cf-ray': '811eddb7598448a7-LIS',
+      'cf-cache-status': 'DYNAMIC',
+      'access-control-allow-origin': 'http://localhost:7000',
+      etag: 'W/"47-6R9/whTdcWg5eo5PCsw+YxMoVvQ"',
+      'strict-transport-security': 'max-age=15552000; includeSubDomains',
+      vary: 'Accept-Encoding',
+      'access-control-allow-credentials': 'true',
+      'content-security-policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+      'cross-origin-embedder-policy': 'require-corp',
+      'cross-origin-opener-policy': 'same-origin',
+      'cross-origin-resource-policy': 'same-origin',
+      'origin-agent-cluster': '?1',
+      'referrer-policy': 'no-referrer',
+      'x-content-type-options': 'nosniff',
+      'x-dns-prefetch-control': 'off',
+      'x-download-options': 'noopen',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-permitted-cross-domain-policies': 'none',
+      'x-render-origin-server': 'Render',
+      'x-xss-protection': '0',
+      server: 'cloudflare',
+      'alt-svc': 'h3=":443"; ma=86400'
+    },
+    config: {
+      transitional: [Object],
+      adapter: 'http',
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'get',
+      url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+        'User-Agent: axios/1.5.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: le-auth-api.onrender.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/v1/users/651b1c3922205136e92d2d14',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'le-auth-api.onrender.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: {
+      statusCode: 400,
+      message: "Access denied, you don't have permission"
+    }
+  }
+}
+[2023-10-06T15:17:21.338] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.341] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.344] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.342] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.345] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.346] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.347] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:17:21.348] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.514] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.521] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.515] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.519] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.525] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.524] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.523] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:18:32.516] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.231] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.234] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.236] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.237] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.239] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.240] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.241] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.238] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.242] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:17.843] [ERROR] default - AxiosError: Request failed with status code 400
+    at settle (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/adapters/http.js:572:11)
+    at IncomingMessage.emit (node:events:529:35)
+    at endReadableNT (node:internal/streams/readable:1368:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: 'http',
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ',
+      'User-Agent': 'axios/1.5.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'get',
+    url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: false,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'le-auth-api.onrender.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 10,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'le-auth-api.onrender.com',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 301819,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 60,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+      'User-Agent: axios/1.5.0\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: le-auth-api.onrender.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype],
+      freeSockets: [Object: null prototype] {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/api/v1/users/651b1c3922205136e92d2d14',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 52,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'le-auth-api.onrender.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: Object [AxiosHeaders] {
+      date: 'Fri, 06 Oct 2023 15:19:17 GMT',
+      'content-type': 'application/json; charset=utf-8',
+      'transfer-encoding': 'chunked',
+      connection: 'close',
+      'cf-ray': '811ee1baaa844892-LIS',
+      'cf-cache-status': 'DYNAMIC',
+      'access-control-allow-origin': 'http://localhost:7000',
+      etag: 'W/"47-6R9/whTdcWg5eo5PCsw+YxMoVvQ"',
+      'strict-transport-security': 'max-age=15552000; includeSubDomains',
+      vary: 'Accept-Encoding',
+      'access-control-allow-credentials': 'true',
+      'content-security-policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+      'cross-origin-embedder-policy': 'require-corp',
+      'cross-origin-opener-policy': 'same-origin',
+      'cross-origin-resource-policy': 'same-origin',
+      'origin-agent-cluster': '?1',
+      'referrer-policy': 'no-referrer',
+      'x-content-type-options': 'nosniff',
+      'x-dns-prefetch-control': 'off',
+      'x-download-options': 'noopen',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-permitted-cross-domain-policies': 'none',
+      'x-render-origin-server': 'Render',
+      'x-xss-protection': '0',
+      server: 'cloudflare',
+      'alt-svc': 'h3=":443"; ma=86400'
+    },
+    config: {
+      transitional: [Object],
+      adapter: 'http',
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'get',
+      url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+        'User-Agent: axios/1.5.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: le-auth-api.onrender.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/v1/users/651b1c3922205136e92d2d14',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'le-auth-api.onrender.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: {
+      statusCode: 400,
+      message: "Access denied, you don't have permission"
+    }
+  }
+}
+[2023-10-06T15:19:24.323] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.322] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.326] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.324] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.327] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.328] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.329] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:19:24.330] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.388] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.390] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.391] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.392] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.393] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.396] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.397] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.394] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:58.395] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:40:59.156] [ERROR] default - AxiosError: Request failed with status code 400
+    at settle (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/adapters/http.js:572:11)
+    at IncomingMessage.emit (node:events:529:35)
+    at endReadableNT (node:internal/streams/readable:1368:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: 'http',
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ',
+      'User-Agent': 'axios/1.5.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'get',
+    url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: false,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'le-auth-api.onrender.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 10,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'le-auth-api.onrender.com',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 311891,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 60,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+      'User-Agent: axios/1.5.0\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: le-auth-api.onrender.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype],
+      freeSockets: [Object: null prototype] {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/api/v1/users/651b1c3922205136e92d2d14',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 52,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'le-auth-api.onrender.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: Object [AxiosHeaders] {
+      date: 'Fri, 06 Oct 2023 15:40:58 GMT',
+      'content-type': 'application/json; charset=utf-8',
+      'transfer-encoding': 'chunked',
+      connection: 'close',
+      'cf-ray': '811f017f3a6d3443-LIS',
+      'cf-cache-status': 'DYNAMIC',
+      'access-control-allow-origin': 'http://localhost:7000',
+      etag: 'W/"47-6R9/whTdcWg5eo5PCsw+YxMoVvQ"',
+      'strict-transport-security': 'max-age=15552000; includeSubDomains',
+      vary: 'Accept-Encoding',
+      'access-control-allow-credentials': 'true',
+      'content-security-policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+      'cross-origin-embedder-policy': 'require-corp',
+      'cross-origin-opener-policy': 'same-origin',
+      'cross-origin-resource-policy': 'same-origin',
+      'origin-agent-cluster': '?1',
+      'referrer-policy': 'no-referrer',
+      'x-content-type-options': 'nosniff',
+      'x-dns-prefetch-control': 'off',
+      'x-download-options': 'noopen',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-permitted-cross-domain-policies': 'none',
+      'x-render-origin-server': 'Render',
+      'x-xss-protection': '0',
+      server: 'cloudflare',
+      'alt-svc': 'h3=":443"; ma=86400'
+    },
+    config: {
+      transitional: [Object],
+      adapter: 'http',
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'get',
+      url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+        'User-Agent: axios/1.5.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: le-auth-api.onrender.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/v1/users/651b1c3922205136e92d2d14',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'le-auth-api.onrender.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: {
+      statusCode: 400,
+      message: "Access denied, you don't have permission"
+    }
+  }
+}
+[2023-10-06T15:41:18.400] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.401] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.402] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.402] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.403] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.404] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.405] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:18.405] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.392] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.390] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.393] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.396] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.395] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.398] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.399] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:41:47.400] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.229] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.230] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.231] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.232] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.234] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.233] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.235] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:42:52.233] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.635] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.636] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.638] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.639] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.640] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.640] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.641] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:04.637] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.730] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.734] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.731] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.732] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.733] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.735] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.736] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:43:17.737] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.070] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.076] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.073] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.079] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.072] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.074] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.078] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:45:56.077] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.627] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.628] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.628] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.629] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.629] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.630] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.631] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:46:12.631] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.057] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.057] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.058] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.058] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.058] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.059] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.059] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.060] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.060] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:50:14.680] [ERROR] default - AxiosError: Request failed with status code 400
+    at settle (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/core/settle.js:19:12)
+    at IncomingMessage.handleStreamEnd (file:///C:/Projects/Le_Systems/le-workers-app/node_modules/axios/lib/adapters/http.js:572:11)
+    at IncomingMessage.emit (node:events:529:35)
+    at endReadableNT (node:internal/streams/readable:1368:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'ERR_BAD_REQUEST',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: 'http',
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ',
+      'User-Agent': 'axios/1.5.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'get',
+    url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+    data: undefined
+  },
+  request: <ref *1> ClientRequest {
+    _events: [Object: null prototype] {
+      abort: [Function (anonymous)],
+      aborted: [Function (anonymous)],
+      connect: [Function (anonymous)],
+      error: [Function (anonymous)],
+      socket: [Function (anonymous)],
+      timeout: [Function (anonymous)],
+      finish: [Function: requestOnFinish]
+    },
+    _eventsCount: 7,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    destroyed: false,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    maxRequestsOnConnectionReached: false,
+    _defaultKeepAlive: true,
+    useChunkedEncodingByDefault: false,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    strictContentLength: false,
+    _contentLength: 0,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    _closed: false,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      secureConnecting: false,
+      _SNICallback: null,
+      servername: 'le-auth-api.onrender.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 10,
+      connecting: false,
+      _hadError: false,
+      _parent: null,
+      _host: 'le-auth-api.onrender.com',
+      _closeAfterHandlingError: false,
+      _readableState: [ReadableState],
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: [TLSWrap],
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular *1],
+      [Symbol(res)]: [TLSWrap],
+      [Symbol(verified)]: true,
+      [Symbol(pendingSession)]: null,
+      [Symbol(async_id_symbol)]: 358406,
+      [Symbol(kHandle)]: [TLSWrap],
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kCapture)]: false,
+      [Symbol(kSetNoDelay)]: false,
+      [Symbol(kSetKeepAlive)]: true,
+      [Symbol(kSetKeepAliveInitialDelay)]: 60,
+      [Symbol(kBytesRead)]: 0,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+      'User-Agent: axios/1.5.0\r\n' +
+      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+      'Host: le-auth-api.onrender.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _keepAliveTimeout: 0,
+    _onPendingData: [Function: nop],
+    agent: Agent {
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      defaultPort: 443,
+      protocol: 'https:',
+      options: [Object: null prototype],
+      requests: [Object: null prototype] {},
+      sockets: [Object: null prototype],
+      freeSockets: [Object: null prototype] {},
+      keepAliveMsecs: 1000,
+      keepAlive: false,
+      maxSockets: Infinity,
+      maxFreeSockets: 256,
+      scheduling: 'lifo',
+      maxTotalSockets: Infinity,
+      totalSocketCount: 2,
+      maxCachedSessions: 100,
+      _sessionCache: [Object],
+      [Symbol(kCapture)]: false
+    },
+    socketPath: undefined,
+    method: 'GET',
+    maxHeaderSize: undefined,
+    insecureHTTPParser: undefined,
+    joinDuplicateHeaders: undefined,
+    path: '/api/v1/users/651b1c3922205136e92d2d14',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      _events: [Object: null prototype],
+      _eventsCount: 4,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      rawHeaders: [Array],
+      rawTrailers: [],
+      joinDuplicateHeaders: undefined,
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 400,
+      statusMessage: 'Bad Request',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular *1],
+      responseUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      redirects: [],
+      [Symbol(kCapture)]: false,
+      [Symbol(kHeaders)]: [Object],
+      [Symbol(kHeadersCount)]: 52,
+      [Symbol(kTrailers)]: null,
+      [Symbol(kTrailersCount)]: 0
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    reusedSocket: false,
+    host: 'le-auth-api.onrender.com',
+    protocol: 'https:',
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      _events: [Object: null prototype],
+      _eventsCount: 3,
+      _maxListeners: undefined,
+      _options: [Object],
+      _ended: true,
+      _ending: true,
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 0,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function (anonymous)],
+      _currentRequest: [Circular *1],
+      _currentUrl: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      [Symbol(kCapture)]: false
+    },
+    [Symbol(kCapture)]: false,
+    [Symbol(kBytesWritten)]: 0,
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(corked)]: 0,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      authorization: [Array],
+      'user-agent': [Array],
+      'accept-encoding': [Array],
+      host: [Array]
+    },
+    [Symbol(errored)]: null,
+    [Symbol(kHighWaterMark)]: 16384,
+    [Symbol(kRejectNonStandardBodyWrites)]: false,
+    [Symbol(kUniqueHeaders)]: null
+  },
+  response: {
+    status: 400,
+    statusText: 'Bad Request',
+    headers: Object [AxiosHeaders] {
+      date: 'Fri, 06 Oct 2023 15:50:14 GMT',
+      'content-type': 'application/json; charset=utf-8',
+      'transfer-encoding': 'chunked',
+      connection: 'close',
+      'cf-ray': '811f0f0ffc16950c-LIS',
+      'cf-cache-status': 'DYNAMIC',
+      'access-control-allow-origin': 'http://localhost:7000',
+      etag: 'W/"47-6R9/whTdcWg5eo5PCsw+YxMoVvQ"',
+      'strict-transport-security': 'max-age=15552000; includeSubDomains',
+      vary: 'Accept-Encoding',
+      'access-control-allow-credentials': 'true',
+      'content-security-policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+      'cross-origin-embedder-policy': 'require-corp',
+      'cross-origin-opener-policy': 'same-origin',
+      'cross-origin-resource-policy': 'same-origin',
+      'origin-agent-cluster': '?1',
+      'referrer-policy': 'no-referrer',
+      'x-content-type-options': 'nosniff',
+      'x-dns-prefetch-control': 'off',
+      'x-download-options': 'noopen',
+      'x-frame-options': 'SAMEORIGIN',
+      'x-permitted-cross-domain-policies': 'none',
+      'x-render-origin-server': 'Render',
+      'x-xss-protection': '0',
+      server: 'cloudflare',
+      'alt-svc': 'h3=":443"; ma=86400'
+    },
+    config: {
+      transitional: [Object],
+      adapter: 'http',
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'get',
+      url: 'https://le-auth-api.onrender.com/api/v1/users/651b1c3922205136e92d2d14',
+      data: undefined
+    },
+    request: <ref *1> ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: [TLSSocket],
+      _header: 'GET /api/v1/users/651b1c3922205136e92d2d14 HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTFhZTU1ZDIyMjA1MTM2ZTkyZDJjOWMiLCJlbWFpbCI6ImFkb3J0dW1vcjkwQGdtYWlsLmNvbSIsImlhdCI6MTY5NjYwMzgzOSwiZXhwIjoxNjk5MTk1ODM5fQ.DEVncFrqMJPLsJUwAUFnelkPWNgN0AFRnCg9HgwDYNQ\r\n' +
+        'User-Agent: axios/1.5.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: le-auth-api.onrender.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/v1/users/651b1c3922205136e92d2d14',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'le-auth-api.onrender.com',
+      protocol: 'https:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    data: {
+      statusCode: 400,
+      message: "Access denied, you don't have permission"
+    }
+  }
+}
+[2023-10-06T15:51:25.943] [ERROR] default - [ErrorReply: ERR max number of clients reached]
+[2023-10-06T15:56:18.606] [ERROR] default - [ErrorReply: ERR max number of clients reached]
+[2023-10-06T15:57:05.249] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.246] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.249] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.248] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.252] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.251] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.250] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-06T15:57:05.252] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

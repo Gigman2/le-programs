@@ -182,6 +182,16 @@ export const updateGroup = <T>(id: string, payload: { name: string; type: string
     return response as T
 }
 
+export const updateUser = <T>(id: string, payload: { name: string; type: string; parent: string, stations?: string[] }[]) => {
+    let token = ''
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+
+    const response = axiosInstance.post(baseUrl + `/api/bus-accounts/${id}`, payload, { headers: { 'Authorization': "Bearer " + token } })
+    return response as T
+}
+
 
 export const getUserGroups = async (type: string, groupId: string) => {
     return await axiosInstance.get(
