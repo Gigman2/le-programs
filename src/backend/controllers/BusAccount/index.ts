@@ -37,13 +37,13 @@ class BusAccountController extends BaseController<BusAccountService> {
 
     async createUser(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
-            const { data: userData } = await axios.get(`${authAPI}users?email=${req.body.email}`)
+            const { data: userData } = await axios.get(`${authAPI}users?email=${req.body?.email?.toLowerCase()}`)
             let user
             if (!userData?.data?.length || [400, 422, 401, 403].includes(userData.statusCode)) {
                 let [firstName, lastName] = req.body.name.split(' ')
                 if (!lastName) lastName = '--'
                 const { data: { statusCode, data } } = await axios.post(`${authAPI}users`,
-                    { email: req.body.email, firstName: firstName, lastName: lastName }
+                    { email: req.body?.email?.toLowerCase(), firstName: firstName, lastName: lastName }
                 )
                 if (statusCode != 201 || !data?.firstName) return responses.error(res, "failed to register user")
 
