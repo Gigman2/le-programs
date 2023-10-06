@@ -103,7 +103,6 @@ const AppWrapper = (
     }
 
     useEffect(() => {
-        console.log('Tree Data ', treeData)
         if(treeData?.data.length){
             const busTreeData = treeData?.data
             const bus = busTreeData.reduce((acc: GroupedUnits, cValue: IBusGroups) => {
@@ -117,7 +116,6 @@ const AppWrapper = (
             }, {})
             const account = currentUser as IAccountUser
 
-            console.log('Bus data',bus)
             saveBusUser({...account, bus})
             setCurrentUser({...account, bus})
         }
