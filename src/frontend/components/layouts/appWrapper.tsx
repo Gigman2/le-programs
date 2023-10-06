@@ -131,24 +131,26 @@ const AppWrapper = (
   return (
     <PageWrapper>
         <Box maxW={"500px"} w="100%"  h={"100vh"} position={"relative"}>
-            {hideInfo ? null : <>
-                <Menu 
-                    options={roleMenu(router, showMenu, setShowMenu)[currentUser?.currentRole?.groupType as string]} 
-                    show={showMenu}
-                    setShow={setShowMenu} 
-                />
-                <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
-                    <Box>
-                        {!isLoading && showChurchUnit(currentUser?.currentRole?.groupType as string)}
-                        <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
-                    </Box>
-                    <Flex onClick={() => setShowMenu(true)}>
-                        <Icon as={TbAlignRight} color="gray.600" fontSize={28} mr={3} />
+            <Menu 
+                options={roleMenu(router, showMenu, setShowMenu)[currentUser?.currentRole?.groupType as string]} 
+                show={showMenu}
+                setShow={setShowMenu} 
+            />
+            <Box px={4}>
+                {hideInfo ? null : <>
+                    <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2} mt={4} rounded={"md"}>
+                        <Box>
+                            {!isLoading && showChurchUnit(currentUser?.currentRole?.groupType as string)}
+                            <Text fontWeight={600} fontSize={14} color="gray.400" textTransform={"capitalize"}>Hello {currentUser?.name}!</Text>
+                        </Box>
+                        <Flex onClick={() => setShowMenu(true)}>
+                            <Icon as={TbAlignRight} color="gray.600" fontSize={28} mr={3} />
+                        </Flex>
                     </Flex>
-                </Flex>
-            </>}
+                </>}
 
-            {children}
+                {children}
+            </Box>
         </Box>
     </PageWrapper>
   )

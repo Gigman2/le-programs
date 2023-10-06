@@ -67,7 +67,7 @@ export default function OverallGroups() {
                   subgroup='branches'
                 />
 
-                <Box mt={4}>
+                <Box mt={4}  maxH={'calc(100vh - 200px)'} overflowY={'scroll'}>
                     {isLoading ? 
                     <>
                       <Skeleton mb={2} h={12} w="100%" />
@@ -76,8 +76,8 @@ export default function OverallGroups() {
                     : <Table variant="simple">
                         <Thead bg="gray.50">
                             <Tr>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                                <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Heads</Th>
+                                <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Name</Th>
+                                <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Heads</Th>
                                 <Th textTransform={"capitalize"} color={"gray.500"}>
                                     <Icon as={TbDots}  fontSize={24} />
                                 </Th>
@@ -86,7 +86,7 @@ export default function OverallGroups() {
                         <Tbody>
                         {groupData?.data?.map((item) => (
                             <Tr key={item?._id as string}>
-                                <Td>
+                                <Td px={2} fontSize={15}>
                                     { item.name}
                                 </Td>
                                 <Td>

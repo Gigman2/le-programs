@@ -74,7 +74,7 @@ export default function BranchHead() {
                 selected={selected as IBusAccount}
               />
               
-              <Box mt={4}>
+              <Box mt={4} maxH={'calc(100vh - 200px)'} overflowY={'scroll'}>
                 <Flex gap={2} my={2}>
                   <Text color="gray.500">Key</Text>
                   <Box  fontSize={14} px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
@@ -90,9 +90,9 @@ export default function BranchHead() {
                   <Table variant="simple">
                       <Thead bg="gray.50">
                           <Tr>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Email</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>State</Th>
+                              <Th textTransform={"capitalize"} fontSize={14} px={2} color={"gray.400"}>Name</Th>
+                              <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Email</Th>
+                              <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>State</Th>
                               <Th textTransform={"capitalize"} color={"gray.500"}>
                                   {/* <Icon as={TbDots}  fontSize={24} /> */}
                               </Th>
@@ -101,10 +101,10 @@ export default function BranchHead() {
                       <Tbody>
                       {accountData?.data?.map((item) => (
                           <Tr key={item?._id as string}>
-                              <Td textTransform={"capitalize"}>
+                              <Td textTransform={"capitalize"} px={2} fontSize={14}>
                                   { item.name}
                               </Td>
-                              <Td>
+                              <Td fontSize={14} px={2}>
                                   <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
                               <Td>

@@ -79,9 +79,9 @@ export default function BranchHead() {
                     <Table variant="simple">
                       <Thead bg="gray.50">
                           <Tr>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Bus Reps</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Stations</Th>
+                              <Th px={2} textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Name</Th>
+                              <Th px={2} textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Bus Reps</Th>
+                              <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Stations</Th>
                               <Th textTransform={"capitalize"} color={"gray.500"}>
                                   {/* <Icon as={TbDots}  fontSize={24} /> */}
                               </Th>
@@ -90,13 +90,13 @@ export default function BranchHead() {
                       <Tbody>
                       {groupData?.data?.map((item) => (
                           <Tr key={item?._id as string}>
-                              <Td>
+                              <Td px={2} fontSize={14} >
                                   { item.name}
                               </Td>
-                                <Td>
+                                <Td fontSize={14} >
                                   { item?.subGroup?.length || 0}
                               </Td>
-                                <Td>
+                                <Td fontSize={14} >
                                   {item.station.length}
                               </Td>
                               <Td>

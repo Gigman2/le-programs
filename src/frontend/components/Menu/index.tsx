@@ -22,7 +22,7 @@ export default function Menu({options, show, setShow}: {options: {title: string,
                 <Icon as={TbX} fontSize={32}/>
             </Flex>
 
-            <Box mt={24}>
+            <Box mt={12}>
                 {options?.map((item, i) => <MenuItem key={item.title} item={item} index={i} />)}
             </Box>
         </Box>
