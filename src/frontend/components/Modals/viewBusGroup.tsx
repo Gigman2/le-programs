@@ -71,7 +71,7 @@ export default function ViewBusGroup(
                         : <Text>No zone found in {data?.data.name} {type}</Text>}
                     </Box>:  null}
 
-                     <Box mb={4}>
+                    <Box mb={4}>
                         <Text fontWeight={600} fontSize={14} color={"gray.600"} textTransform={"capitalize"}>Created on</Text>
                         <Text>{dayjs(selected?.created_on as Date).format('D MMM YYYY, hh:mm a')} </Text>
                     </Box>
