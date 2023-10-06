@@ -40,7 +40,6 @@ export default function BranchHead() {
     !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
-  console.log('Bus ', currentUser?.currentRole)
   useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
@@ -76,7 +75,7 @@ export default function BranchHead() {
                 selected={selected as IBusAccount}
               />
 
-              <Box mt={4}>
+              <Box mt={4} maxH={'calc(100vh - 200px)'} overflowY={'scroll'}>
                   <Flex gap={2} my={2}>
                     <Text color="gray.500">Key</Text>
                     <Box  fontSize={14} px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
@@ -88,29 +87,28 @@ export default function BranchHead() {
                       <Skeleton mb={2} h={12} w="100%" />
                     </>
                   : 
-                                      <Table variant="simple">
-                      <Thead bg="gray.50">
-                          <Tr>
+                  <Table variant="simple">
+                      <Thead bg="gray.50" fontSize={14}>
+                          <Tr >
                               <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
                               <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Email</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Group</Th>
+                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"} maxW={4}></Th>
                               <Th textTransform={"capitalize"} color={"gray.500"}>
                                   {/* <Icon as={TbDots}  fontSize={24} /> */}
                               </Th>
                           </Tr>
                       </Thead>
-                      <Tbody>
+                      <Tbody fontSize={14}>
                       {accountData?.data?.map((item) => (
                           <Tr key={item?._id as string}>
-                              <Td textTransform={"capitalize"}>
+                              <Td textTransform={"capitalize"} p={2}>
                                   { item.name}
                               </Td>
-                              <Td>
+                              <Td p={2}>
                                 <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
-                              <Td>
+                              <Td p={2}>
                                   <Box 
-                                    px={2}
                                     py={3} 
                                     bg={item.accountType?.length ? "blue.100" : "orange.100" }
                                     textAlign={"center"} 
@@ -141,21 +139,21 @@ export default function BranchHead() {
                       </Tbody>
                   </Table>
                   }
-                    {accountData?.data.length == 0 && (
-                          <Flex
-                              w="100%"
-                              mt={4}
-                              justify={"center"}
-                              align={"center"}
-                          >
-                            <Box>
-                              <Text>You don&apos;t have a bus rep yet</Text>
-                              <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
-                                <Icon as={TbPlus} fontSize={20} /> Add Bus Rep
-                              </Flex>
-                            </Box>
-                          </Flex>
-                      )}
+                  {accountData?.data.length == 0 && (
+                        <Flex
+                            w="100%"
+                            mt={4}
+                            justify={"center"}
+                            align={"center"}
+                        >
+                          <Box>
+                            <Text>You don&apos;t have a bus rep yet</Text>
+                            <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
+                              <Icon as={TbPlus} fontSize={20} /> Add Bus Rep
+                            </Flex>
+                          </Box>
+                        </Flex>
+                    )}
               </Box>
         </Box>
       </AppWrapper>

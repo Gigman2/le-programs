@@ -46,10 +46,10 @@ export default function OverallAccounts() {
       <AppWrapper>
         <Box mt={4}>
               <Flex justifyContent={"space-between"}>
-                  <Text fontSize={24} fontWeight={600} color={"gray.600"}>Sector Head Accounts</Text>
+                  <Text fontSize={20} fontWeight={600} color={"gray.600"}>Sector Head Accounts</Text>
 
                   {isLoading ? <Skeleton h={10} rounded={"md"} w={"120px"} /> : <Flex align={"center"} py={2} px={3} bg="gray.500" color="white" rounded={"md"} cursor={"pointer"} onClick={() => onOpen()}>
-                    <Icon as={TbPlus} fontSize={20} />
+                    <Icon as={TbPlus} fontSize={12} />
                     Add Sector Head
                   </Flex>}
               </Flex>
@@ -69,25 +69,24 @@ export default function OverallAccounts() {
                   type='SECTOR' 
                   selected={selected as IBusAccount}
                 />
-
-                <Flex gap={2} my={2}>
-                  <Text color="gray.500">Key</Text>
-                  <Box  fontSize={14} px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
-                  <Box fontSize={14} px={2} rounded={"md"} bg={"orange.100"} color={"orange.500"}>Unassigned</Box>
-                </Flex>
-                {isLoading ? 
-                <>
-                  <Skeleton mb={2} h={12} w="100%" />
-                  <Skeleton mb={2} h={12} w="100%" />
-                </>
-                :
-                <Box mt={1}>
+                <Box mt={1} maxH={'calc(100vh - 200px)'} overflowY={'scroll'}>
+                  <Flex gap={2} my={2}>
+                    <Text color="gray.500">Key</Text>
+                    <Box  fontSize={14} px={2} rounded={"md"} bg={"blue.100"} color={"blue.500"}>Assigned</Box>
+                    <Box fontSize={14} px={2} rounded={"md"} bg={"orange.100"} color={"orange.500"}>Unassigned</Box>
+                  </Flex>
+                  {isLoading ? 
+                  <>
+                    <Skeleton mb={2} h={12} w="100%" />
+                    <Skeleton mb={2} h={12} w="100%" />
+                  </>
+                  :
                   <Table variant="simple">
                       <Thead bg="gray.50">
                           <Tr>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Name</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>Email</Th>
-                              <Th textTransform={"capitalize"} fontSize={17}  color={"gray.400"}>State</Th>
+                              <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Name</Th>
+                              <Th textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>Email</Th>
+                              <Th p={2} textTransform={"capitalize"} fontSize={14}  color={"gray.400"}>State</Th>
                               <Th textTransform={"capitalize"} color={"gray.500"}>
                                   {/* <Icon as={TbDots}  fontSize={24} /> */}
                               </Th>
@@ -96,13 +95,13 @@ export default function OverallAccounts() {
                       <Tbody>
                       {accountData?.data?.map((item) => (
                           <Tr key={item?._id as string}>
-                              <Td textTransform={"capitalize"}>
+                              <Td textTransform={"capitalize"} px={2} fontSize={14}>
                                   { item.name}
                               </Td>
-                              <Td>
+                              <Td fontSize={14} px={2}>
                                   <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
-                              <Td>
+                              <Td px={2}>
                                   <Box 
                                     px={2}
                                     py={3} 
@@ -134,8 +133,9 @@ export default function OverallAccounts() {
                       ))}
                       </Tbody>
                   </Table>
+                  }
                 </Box>
-                }
+
                 {accountData?.data.length == 0 && (
                     <Flex
                         w="100%"
