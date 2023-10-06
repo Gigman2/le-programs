@@ -66,7 +66,7 @@ const AppWrapper = (
     const [showMenu, setShowMenu] = useState<boolean>(false)
 
     const {isLoading, data: treeData} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-        !!(['BUS_HEAD', 'BUS_HEAD', 'SECTOR_HEAD', 'OVERALL_HEAD'].includes(currentUser?.currentRole?.groupType as string))
+        !!(['BUS_REP','BUS_HEAD', 'BUS_HEAD', 'SECTOR_HEAD', 'OVERALL_HEAD'].includes(currentUser?.currentRole?.groupType as string))
     )
 
     const showChurchUnit = (role: string) => {
@@ -115,6 +115,7 @@ const AppWrapper = (
                 return acc
             }, {})
             const account = currentUser as IAccountUser
+
 
             saveBusUser({...account, bus})
             setCurrentUser({...account, bus})
