@@ -66,7 +66,7 @@ const AppWrapper = (
     const [showMenu, setShowMenu] = useState<boolean>(false)
 
     const {isLoading, data: treeData} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
-        !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
+        !!(['BUS_HEAD', 'BUS_HEAD', 'SECTOR_HEAD', 'OVERALL_HEAD'].includes(currentUser?.currentRole?.groupType as string))
     )
 
     const showChurchUnit = (role: string) => {
@@ -103,6 +103,7 @@ const AppWrapper = (
     }
 
     useEffect(() => {
+        console.log('Tree Data ', treeData)
         if(treeData?.data.length){
             const busTreeData = treeData?.data
             const bus = busTreeData.reduce((acc: GroupedUnits, cValue: IBusGroups) => {
@@ -116,6 +117,7 @@ const AppWrapper = (
             }, {})
             const account = currentUser as IAccountUser
 
+            console.log('Bus data',bus)
             saveBusUser({...account, bus})
             setCurrentUser({...account, bus})
         }

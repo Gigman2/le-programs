@@ -14,7 +14,7 @@ import {
     useToast
 } from "@chakra-ui/react";
 import { handleChange } from "@/utils/form";
-import { addUser, assignUserToGroup, updateGroup, useBusGroups } from "@/frontend/apis";
+import { addUser, assignUserToGroup, updateUser, useBusGroups } from "@/frontend/apis";
 import { IBusAccount } from "@/interface/bus";
 import Autocomplete from "../Forms/Autocomplete";
 
@@ -41,7 +41,7 @@ export default function AddBusAccount(
     query, 
     {
         type:  type,
-         parent: parentId,
+        parent: parentId,
         isOpen
     },
     !!(type)
@@ -75,15 +75,19 @@ export default function AddBusAccount(
     
             let res: any
             if(selected){
-                res = await updateGroup(selected?._id as string, payload)
+                res = await updateUser(selected?._id as string, payload)
             } else {
                 res = await addUser(payload)
             }
+
             if(res){
+                let userId = selected?._id || res?.data?.data?.data?._id as string
+    
                 const assignData = {
-                    userId: res?.data?.data?.data?._id as string,
+                    userId,
                     groupId: fields.assignedGroup.value
                 }
+
                 await assignUserToGroup(assignData)
 
 
