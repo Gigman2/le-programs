@@ -1,16 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser, removeSession } from '@/frontend/store/auth'
+import { Box, Flex, Skeleton, Text, useDisclosure } from '@chakra-ui/react'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { useActiveEvent, useEventZoneSummary } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import ZoneCard from '@/frontend/components/Bus/ZoneCard'
+import { IBusRound } from '@/interface/bus'
 
 
 
 export default function BranchHead() {
+  const {isOpen, onOpen, onClose} = useDisclosure()
+  const [selectedBus, setSelectedBus] = useState<IBusRound>()
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 
@@ -116,6 +120,7 @@ export default function BranchHead() {
                 flex={1} p={2} rounded={"md"} 
                 bg="red.100" borderWidth={1} 
                 borderColor={"red.200"} mt={3}
+                cursor={"pointer"}
           >
             <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
             <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data?.notStarted.length}</Text>
@@ -124,11 +129,31 @@ export default function BranchHead() {
                 flex={1} p={2} rounded={"md"} 
                 bg="orange.100" borderWidth={1} 
                 borderColor={"orange.200"} mt={3}
+                cursor={"pointer"}
           >
             <Text fontSize={15} fontWeight={600} color={"orange.400"}>Target not met</Text>
             <Text fontSize={15} fontWeight={600} color={"orange.400"}>{data?.data?.unMetTarget?.length}</Text>
           </Flex>}
         </Flex>
+
+            
+        <Box py={6}>
+          <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
+          {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
+
+          <Box  maxH={'320px'} overflowY={'scroll'}>
+            {!isLoading && Object.keys(data?.data.zones||{})?.map((item : string) => (
+                <ZoneCard
+                    key={item} 
+                    loading={isLoading} 
+                    data={data?.data?.zones[item] as IBusRound[]}  
+                    name={item} 
+                    setSelectedBus={setSelectedBus}
+                    onOpen={onOpen}
+                />
+            ))}
+          </Box>
+        </Box>
       </AppWrapper>
     </GuardWrapper>
   )

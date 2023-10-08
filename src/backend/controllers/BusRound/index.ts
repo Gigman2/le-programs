@@ -8,7 +8,7 @@ import EventService from '@/backend/services/Event';
 import BusGroupService from '@/backend/services/BusGroup';
 import { IEvent } from '@/interface/events';
 import dayjs from 'dayjs';
-import { IBusRound } from '@/interface/bus';
+import { IBusGroups, IBusRound } from '@/interface/bus';
 
 class BusRoundController extends BaseController<BusRoundService> {
     protected name = 'BusGroup';
@@ -60,6 +60,8 @@ class BusRoundController extends BaseController<BusRoundService> {
             }
             let nonActiveZones: string[] = zoneIds
             let unMetTarget: string[] = []
+            let groupedByZone: Record<string, IBusRound[]> = {}
+            let groupedByZoneName: Record<string, IBusRound[]> = {}
 
             records.forEach(item => {
                 const zoneId = (item.busZone as unknown as { _id: string })?._id || item.busZone
@@ -83,7 +85,26 @@ class BusRoundController extends BaseController<BusRoundService> {
                 nonActiveZones = nonActiveZones.filter(f => String(f) !== String(zoneId))
             })
 
-            return responses.successWithData(res, { busInfo, peopleInfo, financeInfo, notStarted: nonActiveZones, unMetTarget })
+            groupedByZone = records.reduce((acc: Record<string, any>, cValue: IBusRound) => {
+                const zoneId = (cValue.busZone as unknown as { _id: string })?._id || cValue.busZone as string
+
+                if (!acc[zoneId]) acc[zoneId] = []
+                acc[zoneId].push(cValue)
+                return acc
+            }, {})
+
+            allZonesInGroup.forEach(item => {
+                groupedByZoneName[item.name] = groupedByZone[item._id as string]
+            })
+
+            return responses.successWithData(res, {
+                busInfo,
+                peopleInfo,
+                financeInfo,
+                unMetTarget,
+                notStarted: nonActiveZones,
+                zones: groupedByZoneName,
+            })
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
