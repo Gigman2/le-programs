@@ -48,8 +48,6 @@ export default function BusRepLogs() {
     !!(eventData?.data?._id && currentUser?.bus['ZONE']?.id)
   )
 
-  console.log('Current ',currentUser?.bus)
-
   useEffect(() => {
     if(eventData && !eventError){
       saveActiveEvent(eventData?.data)
