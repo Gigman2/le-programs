@@ -10781,3 +10781,22 @@
 [2023-10-08T10:25:06.101] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-10-08T10:25:06.108] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
 [2023-10-08T10:25:07.408] [ERROR] default - Operation `busgroups.findOne()` buffering timed out after 10000ms
+[2023-10-08T11:31:32.495] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T11:31:34.665] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T11:31:35.431] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T11:47:42.038] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:47:42.043] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:47:42.046] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:48:12.046] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:48:12.053] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:48:18.770] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:48:42.695] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:48:43.163] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:12.722] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:13.177] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:16.078] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:52.322] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:52.563] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:49:52.568] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:50:22.580] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T11:50:22.585] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net

@@ -8,9 +8,8 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import { BsPencilSquare } from "react-icons/bs";
-import { MdDeleteOutline } from "react-icons/md";
 import moment from "moment";
+import { TbBallpen, TbTrash } from "react-icons/tb";
 
 export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
    {loading?: boolean, data: IBusRound[], name: string, onOpen:() =>  void; setSelectedBus: (a: IBusRound) => void}) {
@@ -25,62 +24,68 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
         mb={4}
         bg="gray.400"
         overflow={"hidden"}
-        onClick={() => setSelected(!selected)}
+       
     >
-        <Flex align="center" justify={"space-between"} p={2}>
-        <Text fontSize={15} fontWeight={700} color="white">
-            {name}
-        </Text>
-        <Box
-            fontWeight={600}
-            p={1}
-            fontSize={14}
-            rounded={"md"}
-            color="white"
-        >
-            {data.length || 0} Buses
-        </Box>
+        <Flex align="center" justify={"space-between"} p={2} onClick={() => setSelected(!selected)}>
+            <Text fontSize={15} fontWeight={700} color="white">
+                {name}
+            </Text>
+            <Box
+                fontWeight={600}
+                p={1}
+                fontSize={14}
+                rounded={"md"}
+                color="white"
+            >
+                {data.length || 0} Buses
+            </Box>
         </Flex>
         
         {selected && <Box>
         {data
         .map((l: IBusRound, i: number) =>                   
         <Box key={l._id } bg="gray.200" p={2} 
-            borderBottomWidth={1} borderBottomColor="gray.400" 
+            borderBottomWidth={1} borderBottomColor="gray.300" 
             pb={3} pos="relative"
         >
-            <Flex justify={"space-between"} zIndex={2}>
-            <Text fontWeight={600} fontSize={13} textTransform="capitalize"> {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}</Text>
-            <Flex gap={4} align={"center"}>
-                <Flex>
-                  <Icon as={BsPencilSquare} />
+            <Flex justify={"space-between"} zIndex={2} mb={4}>
+                <Flex gap={2}>
+                    <Text fontSize={14} color={"gray.500"}>Started By</Text>
+                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>Eric Abbey</Text>
                 </Flex>
-                <Flex cursor={"pointer"} onClick={() => {
-                 setSelectedBus(l)
-                  onOpen()
-                }}>
-                <Icon as={MdDeleteOutline} fontSize={20} color="red.500" />
+                {/* <Text fontWeight={600} fontSize={13} textTransform="capitalize"> {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}</Text> */}
+                {l.busState === 'EN_ROUTE' ?<Flex fontSize={14} gap={1}>
+                    <Text fontSize={14} color={"gray.500"}>Last point</Text>
+                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>Atomic</Text>
                 </Flex>
-            </Flex>
+                : <Box px={3} py={0} bg="blue.400" color={"white"} rounded={"md"} fontSize={14}>Arrived</Box>}
             </Flex>
             <Flex fontWeight={500} fontSize={13} justify={"space-between"} gap={6} mt={2}>
             <Flex flex={1} justify={"space-between"}>
-                <Text fontWeight={600}>Start Time</Text>
-                <Text>{moment(l.created_on).format('h: mm a')}</Text>
+                <Text  fontSize={14} color={"gray.500"}>Duration</Text>
+                <Flex gap={2} fontWeight={600} color={"gray.500"}>
+                    <Text>{moment(l.created_on).format('h: mm a')}</Text>
+                    <Text>-</Text>
+                    <Text>{moment(l.arrivalTime).format('h: mm a')}</Text>
+                </Flex>
             </Flex>
             <Flex flex={1} justify={"space-between"}>
-                <Text fontWeight={600}>End Time</Text>
-                <Text>{moment(l.arrivalTime).format('h: mm a')}</Text>
+                <Text fontSize={14} color={"gray.500"}></Text>
+                <Text fontSize={15} color={"gray.500"}><Text fontWeight={600} as="span">{l.people}</Text> people bused</Text>
             </Flex>
             </Flex>
             <Flex fontWeight={500} fontSize={13} justify={"space-between"} gap={6} mt={2}>
-            <Flex flex={1} justify={"space-between"}>
-                <Text fontWeight={600}>People</Text>
-                <Text>{l.people}</Text>
+            <Flex flex={1} justify={"space-between"}> 
+                <Text fontSize={14} color={"gray.500"}>Financial</Text>
+                <Text fontWeight={600} color={"gray.500"}>Ghc {`${l.busOffering} ${l.busCost ? '/ '+l.busCost: ''}`}</Text>
             </Flex>
-            <Flex flex={1} justify={"space-between"}>
-                <Text fontWeight={600}>Offering</Text>
-                <Text>Ghc {`${l.busOffering} ${l.busCost ? '/ '+l.busCost: ''}`}</Text>
+            <Flex flex={1} justify={"flex-end"} gap={2}>
+                <Flex p={2} rounded={"md"} align="center" justify="center" cursor="pointer" bg="gray.400" color="white">
+                    <Icon fontSize={14} as={TbBallpen} />
+                </Flex>
+                 <Flex p={2} rounded={"md"} align="center" justify="center" cursor="pointer" bg="red.400" color="white">
+                    <Icon fontSize={14} as={TbTrash} />
+                </Flex>
             </Flex>
             </Flex>
         </Box>)}
