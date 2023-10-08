@@ -58,8 +58,11 @@ class BusRoundController extends BaseController<BusRoundService> {
                 offering: 0,
                 cost: 0
             }
-            let activeZones: string[] = []
+            let nonActiveZones: string[] = zoneIds
+            let unMetTarget: string[] = []
+
             records.forEach(item => {
+                const zoneId = (item.busZone as unknown as { _id: string })?._id || item.busZone
                 busInfo.total_buses += 1
                 if (item.busState === 'ARRIVED') {
                     busInfo.arrived += 1
@@ -73,11 +76,14 @@ class BusRoundController extends BaseController<BusRoundService> {
 
                 financeInfo.offering += Number(item.busOffering)
                 financeInfo.cost += Number(item.busCost)
-                const zoneId = (item.busZone as unknown as { _id: string })?._id || item.busZone
-                activeZones = [...activeZones.filter(z => z !== String(zoneId)), String(zoneId)]
+
+                if (item.people < 15) {
+                    unMetTarget.push(zoneId as string)
+                }
+                nonActiveZones = nonActiveZones.filter(f => String(f) !== String(zoneId))
             })
 
-            return responses.successWithData(res, { busInfo, peopleInfo, financeInfo, notStarted: (zoneIds?.length || 0) - (activeZones?.length || 0) })
+            return responses.successWithData(res, { busInfo, peopleInfo, financeInfo, notStarted: nonActiveZones, unMetTarget })
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }

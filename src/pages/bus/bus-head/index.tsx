@@ -90,7 +90,7 @@ export default function BranchHead() {
           )}
         </Flex>
 
-        {isLoading ? <Skeleton mt={4}  h={24} w="100%" rounded={"md"}  /> : (<Box justifyContent={"space-between"} 
+        {isLoading ? <Skeleton mt={3}  h={24} w="100%" rounded={"md"}  /> : (<Box justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="gray.100" borderWidth={1} 
                 borderColor={"gray.200"} mt={3}
@@ -111,22 +111,23 @@ export default function BranchHead() {
         </Box>)}
 
         <Flex gap={3}>
+          {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : (
           <Flex justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="red.100" borderWidth={1} 
                 borderColor={"red.200"} mt={3}
           >
             <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
-            <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data.notStarted}</Text>
-          </Flex>
-          <Flex justifyContent={"space-between"} 
+            <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data?.notStarted.length}</Text>
+          </Flex>)}
+         {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : <Flex justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="orange.100" borderWidth={1} 
                 borderColor={"orange.200"} mt={3}
           >
             <Text fontSize={15} fontWeight={600} color={"orange.400"}>Target not met</Text>
-            <Text fontSize={15} fontWeight={600} color={"orange.400"}>3</Text>
-          </Flex>
+            <Text fontSize={15} fontWeight={600} color={"orange.400"}>{data?.data?.unMetTarget?.length}</Text>
+          </Flex>}
         </Flex>
       </AppWrapper>
     </GuardWrapper>

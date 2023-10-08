@@ -140,7 +140,8 @@ export function useEventZoneSummary(key: string, enabled: boolean) {
             busInfo: { total_buses: number, arrived: number, on_route: number };
             peopleInfo: { people: number, arrived: number, on_route: number };
             financeInfo: { offering: number, cost: number };
-            notStarted: number
+            notStarted: string[],
+            unMetTarget: string[]
         }>>(["zone-summary", { group: key }], async () => {
             const { data } = await axios.get(
                 `${baseUrl}/api/bus-rounds/zone-summary/${key}`, { headers: { 'Authorization': "Bearer " + token } }
