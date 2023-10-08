@@ -7539,3 +7539,37 @@
 [2023-10-06T20:14:20.938] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-06T20:14:20.935] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-06T20:14:20.936] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.215] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.216] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.218] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.218] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.220] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.217] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.218] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.219] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.224] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.223] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.224] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.222] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.225] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.226] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.225] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.226] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.227] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.228] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.228] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.228] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.229] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.229] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.230] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.230] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.232] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.233] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.232] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T03:46:47.233] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T04:40:26.384] [ERROR] default - connection <monitor> to 52.6.199.100:27017 timed out
+[2023-10-08T04:40:26.391] [ERROR] default - connection <monitor> to 52.6.199.100:27017 timed out
+[2023-10-08T04:40:56.411] [ERROR] default - connection timed out
+[2023-10-08T04:42:37.869] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T04:42:37.876] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T04:43:07.887] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net

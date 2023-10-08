@@ -27,6 +27,7 @@ export interface CreateBusTripDTO {
     event?: string
     recordedBy?: string
     busZone?: string
+    tag?: string
     busState?: 'EN_ROUTE' | 'ARRIVED'
 }
 

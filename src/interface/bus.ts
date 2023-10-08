@@ -14,6 +14,7 @@ export interface IBusRound extends IDocument {
     arrivalTime: string;
     lastCheckPoint?: string
     status?: string
+    tag?: string
 }
 
 export interface IBusGroups extends IDocument {

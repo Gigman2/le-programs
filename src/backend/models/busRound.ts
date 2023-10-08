@@ -57,6 +57,9 @@ const schema = new Schema<IBusRound>(
     status: {
       type: String,
       default: "ACTIVE"
+    },
+    tag: {
+      type: String
     }
   },
   {

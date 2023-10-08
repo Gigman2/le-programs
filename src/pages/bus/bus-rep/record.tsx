@@ -34,6 +34,11 @@ export default function AddBusLog() {
                 people: fields.people, 
                 busCost: fields.busCost
             }
+            const eventStart = activeEvent?.occurrence === 'FIXED' ? dayjs(activeEvent.duration?.start).format('YYYY-MM-DDThh:mm') : dayjs().startOf('day').format('YYYY-MM-DDThh:mm')
+            const eventEnd = activeEvent?.occurrence === 'FIXED' ? dayjs(activeEvent.duration?.end).format('YYYY-MM-DDThh:mm') : dayjs().endOf('day').format('YYYY-MM-DDThh:mm')
+            const eventKey = `${activeEvent?._id}_${eventStart}_${eventEnd}_${activeEvent?.meetingType}`
+            
+            payload.tag = eventKey
             payload.recordedBy = currentUser?.accountId
             payload.busZone = currentUser?.bus?.['ZONE']?.id as string
             payload.event = activeEvent?._id as string
