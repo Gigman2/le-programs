@@ -9,6 +9,7 @@ import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import ZoneCard from '@/frontend/components/Bus/ZoneCard'
 import { IBusRound } from '@/interface/bus'
+import DeleteBusRound from '@/frontend/components/Modals/deleteBusRound'
 
 
 
@@ -136,7 +137,9 @@ export default function BranchHead() {
           </Flex>}
         </Flex>
 
-            
+        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}/>
+        
+
         <Box py={6}>
           <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
           {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
