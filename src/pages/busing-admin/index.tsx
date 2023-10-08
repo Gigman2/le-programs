@@ -61,21 +61,13 @@ export default function OverView() {
       <main>
         <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}  getBus={getSummary}/>
         <Flex w="100%" justify={"center"}>
-          <Box minW={"600px"} w="400px">
-            <Flex align={"right"} direction={"row"} alignItems={"flex-end"} mt={6} mb={3} justify="space-between">
-              <Box
-                as={Button}
-                bg={"green.500"}
-                color="white"
-                onClick={() => getSummary()}
-              >
-                Refresh
-              </Box>
-             <Box colorScheme="green" as={Button} variant={"outline"} onClick={() => router.push("busing-admin/statistics")}>
-                <Text>Statistics</Text>
-             </Box>
-            </Flex>
-            <BusingAdmin loading={loading} onOpen={onOpen} setSelectedBus={setSelectedBus} data={data}/>
+         <Box maxW={"500px"} w="100%">
+            <Box p={3} textAlign={"center"}>
+            <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
+            <Text color='blue.400' fontSize={20} mt={4}>
+              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+            </Text>
+           </Box>
           </Box>
         </Flex>
       </main>

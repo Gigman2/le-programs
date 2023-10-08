@@ -13,6 +13,7 @@ import { IBusRound } from "@/interface/bus";
 import BusingAdmin from "@/components/Busing/Admin";
 import { useRouter } from "next/router";
 import { BsArrowLeft } from "react-icons/bs";
+import Link from "next/link";
 
 export default function OverView() {
   const [ data, setData ] = useState<any>({})
@@ -60,30 +61,14 @@ export default function OverView() {
       </Head>
       <main>
         <Flex w="100%" justify={"center"}> 
-          <Box maxW={"600px"} w="420px" mt={4}>
-            <Flex 
-                    onClick={() => router.push('/busing-admin/statistics')}
-                    textAlign="center" 
-                    cursor="pointer"
-                    color="gray.600" 
-                    bg={'gray.200'} 
-                    rounded={"md"} 
-                    align="center"
-                    fontSize={14} 
-                    w={24} 
-                    mb={6} 
-                    py={1}
-                    px={2}>
-                    <Icon as={BsArrowLeft} fontSize={16} mr={1}/> 
-                    Go Back
-                </Flex>
-            <BusingAdmin 
-                loading={loading} 
-                onOpen={onOpen} 
-                setSelectedBus={setSelectedBus} 
-                data={data}
-            />
-          </Box> 
+          <Box maxW={"500px"} w="100%">
+            <Box p={3} textAlign={"center"}>
+            <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
+            <Text color='blue.400' fontSize={20} mt={4}>
+              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+            </Text>
+           </Box>
+          </Box>
         </Flex>
       </main>
     </>

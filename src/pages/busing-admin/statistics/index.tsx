@@ -13,6 +13,7 @@ import _ from 'lodash';
 import { TbChevronDown } from "react-icons/tb";
 import { IBusRound } from "@/interface/bus";
 import MonthlyCard from "@/components/Busing/statistics/monthlyCard";
+import Link from "next/link";
 
 export default function OverView() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
@@ -134,49 +135,14 @@ export default function OverView() {
       </Head>
       <main>
         <Flex w="100%" justify={"center"}>
-            <Box maxW={"500px"} w="420px" mt={5}>
-                <Box fontSize={15} color="gray.500" textAlign={"center"} mb={2}>
-                  <Text fontWeight={800} color="gray.500" fontSize={18} mb={1}>Busing Summary</Text>
-                  <Text as="span" fontWeight={600}>26th March</Text> - <Text as="span" fontWeight={600}>07th May 2023</Text>
-                </Box>
-                <Grid templateColumns={'repeat(3, 1fr)'} gap={3}>
-                  <Box p={3} bg={"gray.100"} rounded={"md"} position={"relative"} h={24}>
-                    <Text fontSize={14} color="gray.500">Total Buses</Text>
-                    <Text fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>{summary.buses}</Text>
-                  </Box>
-                  <Box p={3} bg={"gray.100"} rounded={"md"} position={"relative"}>
-                    <Text fontSize={14} color="gray.500">People Transported</Text>
-                    <Text fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>{summary.people}</Text>
-                  </Box>
-                  <Box p={3} bg={"gray.100"} rounded={"md"}  position={"relative"}>
-                    <Text fontSize={14} color="gray.500">Total Bus Fare</Text>
-                    <Flex align={"center"} gap={2} fontSize={20} color="gray.600" fontWeight={600} position={"absolute"} bottom={1}>
-                      <Text fontSize={13}>Ghc</Text> {summary.fare.toFixed(2)}
-                    </Flex>
-                  </Box>
-                </Grid>
-
-                <Grid templateColumns={'repeat(2, 1fr)'} gap={3} my={3}>
-                  <Flex p={3} bg={"gray.100"} rounded={"md"} gap={2} align={"center"}>
-                    <Text fontSize={20} color="gray.600" fontWeight={600}>{Object.keys(allGroups).length}</Text>
-                    <Text fontSize={14} color="gray.500">Bus groups</Text>
-                  </Flex>
-                  <Flex p={3}  bg={"gray.100"} rounded={"md"} gap={2}  align={"center"}>
-                    <Text fontSize={20} color="gray.600" fontWeight={600}>{total}</Text>
-                    <Text fontSize={14} color="gray.500">Events</Text>
-                  </Flex>
-                </Grid>
-
-                <Box my={8}>
-                  <Text fontSize={14} color={"gray.400"}>Click or tap on the arrow to expand</Text>
-                    {loading ? <Box>
-                      <Skeleton h={32} w="100%" rounded={"md"}/>
-                    </Box> : Object.keys(busSummary).map((item, i) =>  <Box key={item} mt={6}>
-                        <MonthlyCard key={item} data={busSummary[item]} title={item} />
-                    </Box>)}
-                    {}
-                </Box>
-            </Box>
+          <Box maxW={"500px"} w="100%">
+            <Box p={3} textAlign={"center"}>
+            <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
+            <Text color='blue.400' fontSize={20} mt={4}>
+              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+            </Text>
+           </Box>
+          </Box>
         </Flex>
       </main>
     </>

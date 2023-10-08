@@ -85,50 +85,12 @@ export default function Home() {
       <main>
         <Flex w="100%" justify={"center"}>
           <Box maxW={"500px"} w="100%">
-            <Flex align={"center"} justify="space-between" bg="gray.100" py={4} px={2}>
-                <Box>
-                  <Text fontWeight={600}>{currentUser.groupName}</Text>
-                  <Text fontWeight={600} fontSize={13} color="gray.500">{currentUser.name}</Text>
-                </Box>
-                <Box 
-                  as={Button} 
-                  bg="base.blue" 
-                  color="white" 
-                  fontWeight={500} 
-                  _hover={{bg: "base.blue"}}
-                  _active={{bg: "base.blue"}}
-                  _focus={{bg: "base.blue"}} 
-                  fontSize={14}
-                  onClick={() => addBusRound()}
-                >Start Busing</Box>
-            </Flex>
-
-
-          <Box mt={4}>
-              {loading ? 
-                <Flex h={48} w="100%" justify={"center"} align="center">
-                  <Spinner color='gray.300' width={12} h={12} />
-                </Flex> 
-                : (userBus || [])?.map((item, i) => ( 
-                <Link href={`/bus-round/${item._id}`} key={item._id}>
-                  <Box key={item._id} p={2} borderWidth={1} borderColor={"gray.200"} rounded="md" mb={4} bg="blackAlpha.900">
-                      <Flex align="center" justify={"space-between"}>
-                          <Text fontSize={15} fontWeight={700} color="white">Bus #{i + 1} at {moment(item?.created_on).format('h:mm a')}</Text>
-                          {item.busState === 'ARRIVED' ?
-                            <Box fontWeight={600} p={1} fontSize={14} rounded={'md'} color="orange.500">arrived</Box> :
-                            <Box fontWeight={600} p={1} fontSize={14} rounded={'md'} color="green.500">on route</Box>
-                          }
-                      </Flex>
-                      <Flex justify={"space-between"}>
-                        <Text fontWeight={400} fontSize={14} color="white">People: {item.totalPeople || 0}</Text>
-                        <Text fontWeight={400} fontSize={14} color="white">
-                          {item.busState === 'ARRIVED' ? `Ghc ${item.busFare} ${item.totalFare ? 'out of '+ item.totalFare : ''}` : item.currentStation }
-                        </Text>
-                      </Flex>
-                  </Box>
-                </Link>))
-              }
-            </Box>
+            <Box p={3} textAlign={"center"}>
+            <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
+            <Text color='blue.400' fontSize={20} mt={4}>
+              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+            </Text>
+           </Box>
           </Box>
         </Flex>
       </main>

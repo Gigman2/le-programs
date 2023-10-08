@@ -9,6 +9,7 @@ import moment from 'moment'
 import { addBus, getUser } from '@/utils/auth'
 import { handleChange, validate } from '@/utils/form'
 import Autocomplete from '@/components/Forms/Autocomplete'
+import Link from 'next/link'
 
 export default function BusMembers() {
   const router = useRouter()
@@ -155,98 +156,14 @@ export default function BusMembers() {
       <main>
         <Flex w="100%" justify={"center"}>
           <Box maxW={"500px"} w="100%" pt={4} px={4} >
-            <Flex justify={"space-between"}>
-              <Text fontWeight={600}>Started at {moment(userBus?.created_on).format('h:mm a')}</Text>
-              {userBus?.busState === 'ARRIVED' 
-              ? 
-                <Text fontWeight={600}>Arrived at {moment(userBus?.arrivalTime).format('h:mm a')}</Text> :
-                <Box
-                  as={Button} fontSize={12} 
-                  bg="green.500" 
-                  _hover={{bg:"green.500"}}
-                  _focus={{bg:"green.500"}} 
-                  color="white"
-                  onClick={() => endRound()}
-                >End Round</Box>
-              }
-              
-            </Flex>
-
-            <Box mt={8}>
-              <Flex justifyContent={"space-between"} align="center">
-                <Flex fontSize={14} 
-                  onClick={() => router.push('/bus-round')}
-                  align={"center"} 
-                  mb={3} 
-                  bg="gray.200" 
-                  p={1} 
-                  rounded={"sm"} 
-                  color="gray.500" 
-                  cursor={"pointer"}>
-                    <Icon as={BsArrowLeft} mr={1}/> Back
-                  </Flex>
-              </Flex>
-              <Box mt={4}>
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2}>
-                  <FormLabel fontSize={14}>How much are you to pay for the bus</FormLabel>
-                  <Input 
-                      type={"text"}
-                      name="totalFare"
-                      placeholder='Enter here ...' 
-                      value={fields.totalFare} 
-                      onChange={(v) => handleChange(v?.currentTarget?.value, 'totalFare', fields, setFields)} 
-                  />
-                </Box>
-
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2}>
-                  <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
-                  <Input 
-                      type={"text"}
-                      name="totalPeople"
-                      placeholder='Enter here ...' 
-                      value={fields.totalPeople} 
-                      onChange={(v) => handleChange(v?.currentTarget?.value, 'totalPeople', fields, setFields)} 
-                  />
-                </Box>
-
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                  <FormLabel fontSize={14}>How much offering were you able to collect</FormLabel>
-                  <Input 
-                      type={"text"}
-                      name="busFare"
-                      placeholder='Enter here ...' 
-                      value={fields.busFare} 
-                      onChange={(v) => handleChange(v?.currentTarget?.value, 'busFare', fields, setFields)} 
-                  />
-                </Box>
-
-                <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                  <FormLabel fontSize={14}>What is your current / last station</FormLabel>
-                  <Input 
-                      type={"text"}
-                      name="currentStation"
-                      placeholder='Enter here ...' 
-                      value={fields.currentStation} 
-                      onChange={(v) => handleChange(v?.currentTarget?.value, 'currentStation', fields, setFields)} 
-                  />
-                </Box>
-
-                <Box as={Button} 
-                    width="full" 
-                    mt={8} 
-                    mb={4}
-                    bg="base.blue" 
-                    color="white" 
-                    _hover={{bg: "base.blue"}}
-                    _focus={{bg: "base.blue"}}
-                    _active={{bg: "base.blue"}}
-                    isLoading={loading}
-                    isDisabled={hasError}
-                    onClick={(v) => updateBus()} 
-                    >Save
-                </Box>
-              </Box>
-            </Box>
+            <Box maxW={"500px"} w="100%">
+            <Box p={3} textAlign={"center"}>
+            <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
+            <Text color='blue.400' fontSize={20} mt={4}>
+              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+            </Text>
+           </Box>
+          </Box>
           </Box>
         </Flex>
       </main>
