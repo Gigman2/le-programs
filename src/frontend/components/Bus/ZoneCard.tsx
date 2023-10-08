@@ -21,7 +21,7 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
         borderWidth={1}
         borderColor={"gray.200"}
         rounded="md"
-        mb={4}
+        mb={3}
         bg="gray.400"
         overflow={"hidden"}
        

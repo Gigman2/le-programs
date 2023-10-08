@@ -10,6 +10,7 @@ import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import ZoneCard from '@/frontend/components/Bus/ZoneCard'
 import { IBusRound } from '@/interface/bus'
 import DeleteBusRound from '@/frontend/components/Modals/deleteBusRound'
+import { saveExtraBusRecord } from '@/frontend/store/bus'
 
 
 
@@ -35,9 +36,18 @@ export default function BranchHead() {
   },[eventData, eventError])
 
   useEffect(() => {
+    const payload = {
+      notStarted: data?.data.notStarted as string[],
+      unMetTarget: data?.data.unMetTarget as string[]
+    }
+    saveExtraBusRecord(payload)
+  }, [data?.data.unMetTarget, data?.data.notStarted])
+
+  useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
     setCurrentUser(user)
+   saveExtraBusRecord({})
   },[])
 
   return (
@@ -122,6 +132,7 @@ export default function BranchHead() {
                 bg="red.100" borderWidth={1} 
                 borderColor={"red.200"} mt={3}
                 cursor={"pointer"}
+                onClick={() => router.push('/bus/bus-head/no-activity')}
           >
             <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
             <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data?.notStarted.length}</Text>
@@ -144,7 +155,7 @@ export default function BranchHead() {
           <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
           {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
 
-          <Box  maxH={'320px'} overflowY={'scroll'}>
+          <Box maxH={'320px'} overflowY={'scroll'}>
             {!isLoading && Object.keys(data?.data.zones||{})?.map((item : string) => (
                 <ZoneCard
                     key={item} 

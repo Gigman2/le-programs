@@ -23,12 +23,19 @@ const toastMessage: ToastProps = {
 }
 
 
-export function useBusGroups(query: Record<string, string>, reloadDep: Record<string, any>, enabled: boolean) {
+export function useBusGroups(query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
-    const parsedQuery = new URLSearchParams(query).toString()
+    const parsedQuery = new URLSearchParams()
+    for (const key in query) {
+        if (typeof query[key] === 'object')
+            parsedQuery.append(key, JSON.stringify(query[key]))
+        else
+            parsedQuery.append(key, query[key])
+    }
+
     const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { ...query, ...reloadDep }], async () => {
         const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
