@@ -51,9 +51,8 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
             <Flex justify={"space-between"} zIndex={2} mb={4}>
                 <Flex gap={2}>
                     <Text fontSize={14} color={"gray.500"}>Started By</Text>
-                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>Eric Abbey</Text>
+                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>{`${l.addedBy?.firstName ? l.addedBy?.firstName : ''} ${l.addedBy?.lastName ? l.addedBy?.lastName : ''}`} </Text>
                 </Flex>
-                {/* <Text fontWeight={600} fontSize={13} textTransform="capitalize"> {l.busState === 'ARRIVED' ? 'Arrived' : 'On Route'}</Text> */}
                 {l.busState === 'EN_ROUTE' ?<Flex fontSize={14} gap={1}>
                     <Text fontSize={14} color={"gray.500"}>Last point</Text>
                     <Text fontSize={14} color={"gray.500"} fontWeight={600}>Atomic</Text>

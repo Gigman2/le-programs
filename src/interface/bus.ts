@@ -15,6 +15,7 @@ export interface IBusRound extends IDocument {
     lastCheckPoint?: string
     status?: string
     tag?: string
+    addedBy?: IUser
 }
 
 export interface IBusGroups extends IDocument {

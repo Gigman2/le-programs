@@ -9,6 +9,8 @@ import BusGroupService from '@/backend/services/BusGroup';
 import { IEvent } from '@/interface/events';
 import dayjs from 'dayjs';
 import { IBusGroups, IBusRound } from '@/interface/bus';
+import AppCache from '@/backend/helpers/cache';
+import { IUser } from '@/interface/misc';
 
 class BusRoundController extends BaseController<BusRoundService> {
     protected name = 'BusGroup';
@@ -18,6 +20,7 @@ class BusRoundController extends BaseController<BusRoundService> {
 
     async busBranchSummary(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
+            const cacheSystem = new AppCache()
             const active = await this.eventService.activeEvent(
                 { group: (req.query as { id: string }).id },
                 this.busGroupService
@@ -38,7 +41,7 @@ class BusRoundController extends BaseController<BusRoundService> {
             }
 
 
-            const records = this.service.exposeDocument(
+            let records = this.service.exposeDocument(
                 await this.service.get(busRoundPayload)
             ) as IBusRound[]
 
@@ -85,6 +88,17 @@ class BusRoundController extends BaseController<BusRoundService> {
                 nonActiveZones = nonActiveZones.filter(f => String(f) !== String(zoneId))
             })
 
+            records = await Promise.all(
+                records.map(async item => {
+                    const addedBy = (item.recordedBy as unknown as { _id: string })?._id || item.recordedBy
+                    const key = addedBy + '_cached_user'
+                    const user = await cacheSystem.getCachedData(key)
+                    if (user) {
+                        item.addedBy = JSON.parse(user)
+                    }
+                    return item
+                })
+            )
             groupedByZone = records.reduce((acc: Record<string, any>, cValue: IBusRound) => {
                 const zoneId = (cValue.busZone as unknown as { _id: string })?._id || cValue.busZone as string
 

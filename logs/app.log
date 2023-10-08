@@ -10800,3 +10800,19 @@
 [2023-10-08T11:49:52.568] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-10-08T11:50:22.580] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
 [2023-10-08T11:50:22.585] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-08T12:12:44.294] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.297] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.298] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.297] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.299] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.296] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.296] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:12:44.299] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.561] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.564] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.564] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.562] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.566] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.565] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.566] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T12:13:20.567] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
