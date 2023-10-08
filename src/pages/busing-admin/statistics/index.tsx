@@ -139,7 +139,7 @@ export default function OverView() {
             <Box p={3} textAlign={"center"}>
             <Text color={"gray.600"} fontSize={18} textAlign={"center"}>Please login here instead</Text>
             <Text color='blue.400' fontSize={20} mt={4}>
-              <Link href="https://workers-app.loveeconomychurch.org/bus">https://workers-app.loveeconomychurch.org/bus</Link>
+              <Link href="https://workers-app.loveeconomychurch.org/bus/login">https://workers-app.loveeconomychurch.org/bus</Link>
             </Text>
            </Box>
           </Box>
