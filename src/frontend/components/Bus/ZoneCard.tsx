@@ -82,7 +82,12 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
                 <Flex p={2} rounded={"md"} align="center" justify="center" cursor="pointer" bg="gray.400" color="white">
                     <Icon fontSize={14} as={TbBallpen} />
                 </Flex>
-                 <Flex p={2} rounded={"md"} align="center" justify="center" cursor="pointer" bg="red.400" color="white">
+                 <Flex p={2} rounded={"md"} align="center" justify="center" cursor="pointer" bg="red.400" color="white"
+                    onClick={() => {
+                        setSelectedBus(l)
+                        onOpen()
+                    }}
+                    >
                     <Icon fontSize={14} as={TbTrash} />
                 </Flex>
             </Flex>

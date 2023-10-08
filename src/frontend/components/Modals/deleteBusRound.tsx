@@ -48,7 +48,7 @@ export default function DeleteBusRound(
                 </AlertDialogHeader>
 
                 <AlertDialogBody>
-                    <Text>Bus was created by <Text as="span" textTransform={"capitalize"} fontWeight={600}>{(bus?.recordedBy as unknown as {name: string}).name}</Text></Text>
+                    <Text>Record was created by <Text as="span" textTransform={"capitalize"} fontWeight={600}>{(bus?.recordedBy as unknown as {name: string})?.name}</Text></Text>
                     <Text>Are you sure? You can&lsquo;t undo this action afterwards.</Text>
                 </AlertDialogBody>
 
