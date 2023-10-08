@@ -142,6 +142,7 @@ export default function BranchHead() {
                 bg="orange.100" borderWidth={1} 
                 borderColor={"orange.200"} mt={3}
                 cursor={"pointer"}
+                onClick={() => router.push('/bus/bus-head/target')}
           >
             <Text fontSize={15} fontWeight={600} color={"orange.400"}>Target not met</Text>
             <Text fontSize={15} fontWeight={600} color={"orange.400"}>{data?.data?.unMetTarget?.length}</Text>

@@ -11067,3 +11067,30 @@
 [2023-10-08T15:36:13.621] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-08T15:36:13.621] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-08T15:36:13.619] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.100] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.102] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.102] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.102] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.101] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.103] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:54:41.103] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T15:59:58.533] [ERROR] default - Connection pool for cluster0-shard-00-02.vsw6p.mongodb.net:27017 was cleared because another operation failed with: "connection <monitor> to 52.6.199.100:27017 closed"
+[2023-10-08T15:59:58.534] [ERROR] default - connect ETIMEDOUT 52.6.199.100:27017
+[2023-10-08T15:59:58.538] [ERROR] default - connect ETIMEDOUT 52.6.199.100:27017
+[2023-10-08T16:00:00.957] [ERROR] default - connection 26 to 52.6.199.100:27017 closed
+[2023-10-08T16:00:31.094] [ERROR] default - read ECONNRESET
+[2023-10-08T16:00:31.202] [ERROR] default - read ECONNRESET
+[2023-10-08T17:05:38.992] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.995] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.995] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.993] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.994] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.994] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:05:38.995] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.251] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.252] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.252] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.253] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.254] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.253] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-08T17:08:47.254] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

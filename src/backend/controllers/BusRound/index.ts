@@ -82,8 +82,8 @@ class BusRoundController extends BaseController<BusRoundService> {
                 financeInfo.offering += Number(item.busOffering)
                 financeInfo.cost += Number(item.busCost)
 
-                if (item.people < 15) {
-                    unMetTarget.push(zoneId as string)
+                if (item.people < 8) {
+                    unMetTarget.push(item._id as string)
                 }
                 nonActiveZones = nonActiveZones.filter(f => String(f) !== String(zoneId))
             })

@@ -24,17 +24,8 @@ class BusGroupController extends BaseController<BusGroupService> {
 
   async fullData(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const query = req.query
-      for (const key in query) {
-        if (query.hasOwnProperty(key)) {
 
-          if (/^{.*}$/.test(query[key] as string)) {
-            query[key] = JSON.parse(query[key] as string)
-          }
-        }
-      }
-
-      const getAll = this.service.exposeDocument<IBusGroups[]>(await this.service.get(query))
+      const getAll = this.service.exposeDocument<IBusGroups[]>(await this.service.get(req.query))
       const data = await Promise.all(
         getAll.map(async (item: any) => {
           item.accounts = await this.account.get({ 'accountType.groupId': item._id })

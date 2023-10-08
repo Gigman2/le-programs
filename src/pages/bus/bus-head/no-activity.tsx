@@ -50,7 +50,7 @@ export default function BranchHead() {
                 <Icon as={TbChevronLeft} fontSize={32} color={"gray.500"} />
             </Flex>
             <Box textAlign={"center"} bg="gray.400" rounded={"md"} color="white" mb={4} w="100%" h={14}>
-                <Text fontSize={17}> Zones That Didn&apos;t Bus</Text>
+                <Text fontSize={17} fontWeight={600}> Zones That Didn&apos;t Bus</Text>
                 <Text  fontSize={14}>{event?.name}</Text>
             </Box>
         </Flex>

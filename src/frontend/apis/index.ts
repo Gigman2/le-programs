@@ -22,6 +22,38 @@ const toastMessage: ToastProps = {
     isClosable: true,
 }
 
+export function useBusRounds(query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const parsedQuery = new URLSearchParams()
+    for (const key in query) {
+        if (typeof query[key] === 'object')
+            parsedQuery.append(key, JSON.stringify(query[key]))
+        else
+            parsedQuery.append(key, query[key])
+    }
+    const { error, ...rest } = useQuery<IResponse<IBusRound[]>>(["bus-rounds", reloadDep], async () => {
+        const { data } = await axiosInstance.get(
+            `${baseUrl}/api/bus-rounds?${parsedQuery.toString()}`, {
+            headers: { 'Authorization': "Bearer " + token },
+        }
+        );
+        return data;
+    }, { enabled });
+    if (error) {
+        const _error = error as any
+        toastMessage.title = _error?.response?.data.message || _error.message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
+
+
 
 export function useBusGroups(query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
     let token: string
@@ -229,13 +261,11 @@ export const updateUser = <T>(id: string, payload: { name: string; type: string;
     return response as T
 }
 
-
 export const getUserGroups = async (type: string, groupId: string) => {
     return await axiosInstance.get(
         `${baseUrl}/api/bus-groups?type=${type}&parent=${groupId}`,
     );
 }
-
 
 export const addUser = async (data: { name: string; email: string }) => {
     let token = ''
