@@ -37,9 +37,11 @@ class BusRoundController extends BaseController<BusRoundService> {
                 tag: eventKey
             }
 
+
             const records = this.service.exposeDocument(
                 await this.service.get(busRoundPayload)
             ) as IBusRound[]
+
 
             const busInfo = {
                 total_buses: 0,
@@ -56,7 +58,7 @@ class BusRoundController extends BaseController<BusRoundService> {
                 offering: 0,
                 cost: 0
             }
-
+            let activeZones: string[] = []
             records.forEach(item => {
                 busInfo.total_buses += 1
                 if (item.busState === 'ARRIVED') {
@@ -71,9 +73,11 @@ class BusRoundController extends BaseController<BusRoundService> {
 
                 financeInfo.offering += Number(item.busOffering)
                 financeInfo.cost += Number(item.busCost)
+                const zoneId = (item.busZone as unknown as { _id: string })?._id || item.busZone
+                activeZones = [...activeZones.filter(z => z !== String(zoneId)), String(zoneId)]
             })
 
-            return responses.successWithData(res, { busInfo, peopleInfo, financeInfo })
+            return responses.successWithData(res, { busInfo, peopleInfo, financeInfo, notStarted: (zoneIds?.length || 0) - (activeZones?.length || 0) })
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }

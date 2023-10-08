@@ -116,8 +116,8 @@ export default function BranchHead() {
                 bg="red.100" borderWidth={1} 
                 borderColor={"red.200"} mt={3}
           >
-            <Text fontSize={15} fontWeight={600} color={"red.400"}>Bus not started</Text>
-            <Text fontSize={15} fontWeight={600} color={"red.400"}>3</Text>
+            <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
+            <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data.notStarted}</Text>
           </Flex>
           <Flex justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 

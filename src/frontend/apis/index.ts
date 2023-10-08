@@ -137,9 +137,10 @@ export function useEventZoneSummary(key: string, enabled: boolean) {
     }
     const { error, ...rest } = useQuery<IResponse<
         {
-            busInfo: { total_buses: 0, arrived: 0, on_route: 0 };
-            peopleInfo: { people: 0, arrived: 0, on_route: 0 };
-            financeInfo: { offering: 0, cost: 0 }
+            busInfo: { total_buses: number, arrived: number, on_route: number };
+            peopleInfo: { people: number, arrived: number, on_route: number };
+            financeInfo: { offering: number, cost: number };
+            notStarted: number
         }>>(["zone-summary", { group: key }], async () => {
             const { data } = await axios.get(
                 `${baseUrl}/api/bus-rounds/zone-summary/${key}`, { headers: { 'Authorization': "Bearer " + token } }
