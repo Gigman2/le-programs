@@ -34,7 +34,7 @@ export default class BaseService<M> {
   /**
    * @description function to cast id string to  Object Id
    */
-  objectId = (id: string) => new mongoose.Schema.Types.ObjectId(id);
+  objectId = (id: string) => new mongoose.Types.ObjectId(id);
 
   async get(...query: any[]) {
     try {

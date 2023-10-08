@@ -7573,3 +7573,209 @@
 [2023-10-08T04:42:37.869] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-10-08T04:42:37.876] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
 [2023-10-08T04:43:07.887] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-02.vsw6p.mongodb.net
+[2023-10-08T07:26:03.530] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:26:07.824] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:26:11.108] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:26:30.895] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:28:34.100] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:33:01.439] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:33:58.908] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:35:06.130] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:35:16.129] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:35:18.664] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:38:44.004] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:39:18.918] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:39:32.197] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:50:26.602] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:52:26.498] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:56:41.944] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: undefined,
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:59:58.479] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T07:59:58.679] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "parent" for model "BusGroup"
+[2023-10-08T08:00:42.806] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "_id" for model "BusGroup"
+[2023-10-08T08:00:43.006] [ERROR] default - Cast to ObjectId failed for value "ObjectId {
+  path: '6504ef3d634051710e24b7d6',
+  instance: 'ObjectId',
+  validators: [],
+  getters: [],
+  setters: [],
+  _presplitPath: [ '6504ef3d634051710e24b7d6' ],
+  options: SchemaObjectIdOptions {},
+  _index: null,
+  [Symbol(mongoose#schemaType)]: true
+}" (type ObjectId) at path "parent" for model "BusGroup"

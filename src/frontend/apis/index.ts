@@ -130,6 +130,33 @@ export function useActiveEvent(key: string, enabled: boolean) {
     return { error, ...rest }
 }
 
+export function useEventZoneSummary(key: string, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const { error, ...rest } = useQuery<IResponse<
+        {
+            busInfo: { total_buses: 0, arrived: 0, on_route: 0 };
+            peopleInfo: { people: 0, arrived: 0, on_route: 0 };
+            financeInfo: { offering: 0, cost: 0 }
+        }>>(["zone-summary", { group: key }], async () => {
+            const { data } = await axios.get(
+                `${baseUrl}/api/bus-rounds/zone-summary/${key}`, { headers: { 'Authorization': "Bearer " + token } }
+            );
+            return data;
+        }, { enabled });
+    if (error) {
+        const _error = error as any
+        toastMessage.title = _error?.response?.data?.message || _error?.message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}
+
+
 export function useBusTrips({ event, zone }: { event: string; zone: string }, queryKey: Record<string, string | boolean>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {

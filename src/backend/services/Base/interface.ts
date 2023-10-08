@@ -1,9 +1,9 @@
-import { ObjectId } from 'mongoose';
+import { ObjectId, Types } from 'mongoose';
 
 interface IBaseService<M> {
     __call(method: string): void;
     log(error: any): void;
-    objectId(id: string): ObjectId;
+    objectId(id: string): Types.ObjectId;
     get(...query: any[]): Promise<M[]>;
     insert(payload: M): Promise<M> | null;
     getOne(query: any): Promise<M | null>;

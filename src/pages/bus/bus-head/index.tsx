@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser, removeSession } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import {  TbLayoutBottombarCollapseFilled, TbPower, TbUsersGroup, TbX } from 'react-icons/tb'
-import { useActiveEvent } from '@/frontend/apis'
+import { useActiveEvent, useEventZoneSummary } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
@@ -16,6 +15,10 @@ export default function BranchHead() {
   const router = useRouter()
 
   const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
+    !!currentUser?.currentRole?.groupId
+  )
+
+  const {isLoading, data, error} = useEventZoneSummary(currentUser?.currentRole?.groupId as string, 
     !!currentUser?.currentRole?.groupId
   )
 
@@ -40,50 +43,54 @@ export default function BranchHead() {
         </Flex>
 
         <Flex gap={3} mt={4}>
-          <Box justifyContent={"space-between"} 
+          {isLoading ? <Skeleton h={24} w="100%" rounded={"md"} /> : (
+            <Box justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="gray.100" borderWidth={1} 
                 borderColor={"gray.200"}
           >
             <Flex borderBottomWidth={1} borderColor={"gray.200"} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} fontWeight={600} color={"gray.500"}>Bus Started </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>24</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.busInfo?.total_buses || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>Bus in route </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.busInfo?.on_route || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>Bus arrived </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data.busInfo?.arrived || 0}</Text>
             </Flex>
-          </Box>
+            </Box>
+          )}
 
-          <Box justifyContent={"space-between"} 
+          {isLoading ? <Skeleton h={24} w="100%" rounded={"md"} /> : (
+            <Box justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="gray.100" borderWidth={1} 
                 borderColor={"gray.200"}
           >
             <Flex borderBottomWidth={1} borderColor={"gray.200"} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} fontWeight={600} color={"gray.500"}>People Transported  </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>24</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.people || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>People in route </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.on_route || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>People arrived </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.arrived}</Text>
             </Flex>
-          </Box>
+            </Box>
+          )}
         </Flex>
 
-        <Box justifyContent={"space-between"} 
+        {isLoading ? <Skeleton mt={4}  h={24} w="100%" rounded={"md"}  /> : (<Box justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
                 bg="gray.100" borderWidth={1} 
                 borderColor={"gray.200"} mt={3}
@@ -94,14 +101,14 @@ export default function BranchHead() {
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>Bus Cost Accrued</Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.cost || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>Bus Offering Received </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>3</Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.offering || 0}</Text>
             </Flex>
-        </Box>
+        </Box>)}
 
         <Flex gap={3}>
           <Flex justifyContent={"space-between"} 
