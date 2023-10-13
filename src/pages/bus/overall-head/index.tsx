@@ -1,20 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Divider, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
+import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { BsPersonFillAdd } from 'react-icons/bs'
-import { MdAddBusiness } from 'react-icons/md'
-import { TbAlignRight, TbHistory, TbLayoutBottombarCollapseFilled, TbPlus, TbPower, TbUsersGroup, TbX } from 'react-icons/tb'
-import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useActiveEvent, useBusGroupTree } from '@/frontend/apis'
-import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
-import Menu from '@/frontend/components/Menu'
+import { useActiveEvent } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 
-export default function OverallhHead() {
+export default function EventSummarySector() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 
@@ -37,72 +31,77 @@ export default function OverallhHead() {
   return (
     <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
       <AppWrapper>
-        <Flex mt={4} align={"center"} justify={"space-between"}>
-            {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data?.name}</Text> : <Skeleton h={6} w={"200px"} />}
-        </Flex>
-
-        <Box mt={4}>
-          <Flex gap={3}>
-            <Box bg="gray.100" p={4} rounded={"md"} flex={7}>
-              <Text color={"gray.400"}>Zones</Text>
-              <hr />
-              <Flex align={"baseline"} color={"gray.500"} gap={2}>
-                <Text fontSize={32} fontWeight={600}>265</Text>
-                <Text>zones bused</Text>
-              </Flex>
-              <Flex align={"baseline"} color={"gray.400"} gap={2}>
-                <Text fontWeight={700}>48</Text>
-                <Text>zones have not bused</Text>
-              </Flex>
-            </Box>
-            <Box bg="blue.100" p={4} rounded={"md"} flex={6}>
-                <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>Bus</Box>
-                <Flex align={"baseline"} color={"blue.500"} gap={2}>
-                <Text fontSize={32} fontWeight={600}>391</Text>
-                  <Text>on route</Text>
+        <Box mt={12}>
+            <Text fontWeight={600} color={"gray.500"}>Events</Text>
+            <Box borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={4}  bg={"gray.100"}>
+                <Flex justify={"space-between"} align={"center"} borderBottomWidth={1} borderColor={"gray.200"} pb={1}>
+                    <Flex align={"center"} gap={2}>
+                        <Text color={"gray.500"} fontWeight={600}>Mega gathering service</Text>
+                    </Flex>
+                    <Flex align={"center"} gap={1}>
+                        <Text color={"gray.500"}>active</Text>
+                        <Box rounded={"full"} boxSize={3} bg="green.400"></Box>
+                    </Flex>
                 </Flex>
-                <Flex align={"baseline"} color={"blue.400"} gap={2}>
-                <Text fontWeight={700}>48</Text>
-                <Text>buses have arrived</Text>
-              </Flex>
+                <Box pt={1}>
+                    <Flex color={"gray.500"} justify={"space-between"}>
+                        <Box>
+                            <Box my={1} bg="yellow.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>In route</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
+                        </Box>
+                        <Box>
+                            <Box my={1} bg="blue.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Arrived</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
+                        </Box>
+                        <Box>
+                            <Box my={1} bg="green.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Finance</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 2000</Text> Offering</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 3000</Text> Bus Cost</Text>
+                        </Box>
+                    </Flex>
+                </Box>
             </Box>
-          </Flex>
-          <Flex gap={3} mt={3}>
-            <Box bg="blue.100" p={4} rounded={"md"} flex={6}>
-                <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>People</Box>
-                <Flex align={"baseline"} color={"blue.500"} gap={2}>
-                <Text fontSize={32} fontWeight={600}>1234</Text>
-                  <Text>on route</Text>
+            <Box borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={2} bg={"gray.100"}>
+                <Flex borderBottomWidth={1} borderColor={"gray.200"} pb={1} justifyContent={"space-between"}>
+                    <Flex align={"center"} gap={2}>
+                        <Text color={"gray.500"} fontWeight={600}>Mega gathering service</Text>
+                    </Flex>
+                    <Text color={"gray.400"} fontSize={14}>7 Days ago</Text>
                 </Flex>
-                <Flex align={"baseline"} color={"blue.400"} gap={2}>
-                <Text fontWeight={700}>515</Text>
-                <Text>people have arrived</Text>
-              </Flex>
+                <Box pt={1}>
+                    <Flex color={"gray.500"} justify={"space-between"}>
+                        <Box>
+                            <Box my={1} bg="yellow.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>In route</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
+                        </Box>
+                        <Box>
+                            <Box my={1} bg="blue.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Arrived</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
+                        </Box>
+                        <Box>
+                            <Box my={1} bg="green.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Finance</Box>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 2000</Text> Offering</Text>
+                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 3000</Text> Bus Cost</Text>
+                        </Box>
+                    </Flex>
+                </Box>
             </Box>
-            <Box bg="gray.100" p={4} rounded={"md"} flex={7}>
-              <Text color={"gray.400"}>Financial</Text>
-              <hr />
-              <Flex align={"baseline"} color={"gray.500"} gap={2}>
-                <Text fontWeight={600}>Ghc </Text>
-                <Text fontSize={28} fontWeight={600}>2265</Text>
-                <Text>bus offering</Text>
-              </Flex>
-              <Flex align={"baseline"} color={"gray.400"} gap={2}>
-                <Text fontWeight={700}>Ghc 20000</Text>
-                <Text>busing cost</Text>
-              </Flex>
-            </Box>
-          </Flex>
         </Box>
-        
-        <Flex rounded={"md"} mt={4} p={4} bg="yellow.100" gap={4} align={"center"}>
-          <Text fontWeight={600} color={"yellow.600"} fontSize={24}>21%</Text>
-          <Box>
-            <Text color={"yellow.500"}>had more than 15 people in bus</Text>
-            <Divider />
-            <Text color={"yellow.500"}>237 / 451 buses</Text>
-          </Box>
-        </Flex>
+
+       <Box mt={4}>
+             <Flex my={2} gap={1}>
+                <Text fontWeight={600} color={"gray.500"}>Alerts</Text>
+                <Text fontWeight={600} color={"red.400"} fontSize={16}>!!</Text>
+            </Flex>
+            <Box rounded={"md"} p={2} mb={2} color={"red.400"} bg={"red.100"}>12 Zones don&apos;t have a bus rep</Box>
+            <Box rounded={"md"} p={2} mb={2} color={"red.400"} bg={"red.100"}>3 Zones don&apos;t have a any record stations</Box>
+            <Box rounded={"md"} p={2} mb={2} color={"red.400"} bg={"red.100"}>3 Account holders haven&apos;t logged in</Box>
+
+       </Box>
       </AppWrapper>
     </GuardWrapper>
   )
