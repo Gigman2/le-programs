@@ -125,16 +125,16 @@ export default function OverallhHead() {
         
         
           <Box rounded={"md"} mt={4} py={2} px={4} bg="yellow.100">
-            <Text  color={"yellow.400"}>Percent with more than half full</Text>
-            <Flex borderColor={"yellow.200"} borderTopWidth={1} gap={4} align={"center"}>
-              <Text fontWeight={600} color={"yellow.600"} fontSize={28}>{
-                (((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0)) 
-                  / (data?.data?.busInfo?.total_buses || 0) * 100).toFixed(2)}%</Text>
-              <Box>
+            <Text  color={"yellow.500"}>Data of buses more than half full</Text>
+            <Box borderColor={"yellow.200"} borderTopWidth={1} gap={4}>
+              <Flex gap={2} align={"center"}>
+                <Text fontWeight={600} color={"yellow.600"} fontSize={28}>{
+                  (((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0)) 
+                  / (data?.data?.busInfo?.total_buses || 0) * 100).toFixed(0)}%</Text>
                 <Text color={"yellow.500"} py={1}>had more than 8 people in bus</Text>
-                <Text color={"yellow.400"}>{data?.data?.unMetTarget.length} / {data?.data?.busInfo?.total_buses} buses</Text>
-              </Box>
-            </Flex>
+              </Flex>
+              <Text textAlign="left" color={"yellow.500"}>{((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0))} out of the {data?.data?.busInfo?.total_buses} buses</Text>
+            </Box>
           </Box>
 
           {/* <Box mt={6}>
