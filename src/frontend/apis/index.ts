@@ -325,3 +325,25 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any>, relo
 
     return { error, ...rest }
 }
+
+export function useBasePostQuery<T>(url: string, query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+
+    const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
+        const { data } = await axios.post(
+            `${baseUrl}/api/${url}`, query, { headers: { 'Authorization': "Bearer " + token } }
+        );
+        return data;
+    }, { enabled });
+
+    if (error) {
+        toastMessage.title = (error as any).message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
+}

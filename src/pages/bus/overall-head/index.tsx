@@ -55,6 +55,7 @@ export default function EventSummarySector() {
       <AppWrapper>
         <Box mt={12}>
             <Text fontWeight={600} color={"gray.500"}>Events</Text>
+            {eventsLoading ? <Skeleton h={16} rounded={"md"} w={"100%"} mb={4} /> : null}
             {eventsData?.data.map(item => (
                 <Box key={item.id} borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={4}  bg={"gray.100"} cursor={"pointer"} 
                     onClick={() => gotoEvents('selected-event', item)}

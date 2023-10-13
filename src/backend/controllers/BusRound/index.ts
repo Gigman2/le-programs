@@ -45,7 +45,6 @@ class BusRoundController extends BaseController<BusRoundService> {
                 await this.service.get(busRoundPayload)
             ) as IBusRound[]
 
-
             const busInfo = {
                 total_buses: 0,
                 arrived: 0,
@@ -121,6 +120,78 @@ class BusRoundController extends BaseController<BusRoundService> {
             })
         } catch (error: any) {
             return responses.error(res, error?.response?.data?.message || error?.message || error)
+        }
+    }
+
+    async eventSummary(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const payload = req.body
+            const eventStart = dayjs(payload?.start).format('YYYY-MM-DDTHH:mm')
+            const eventEnd = dayjs(payload?.end).format('YYYY-MM-DDTHH:mm')
+            const eventKey = `${payload?.id}_${eventStart}_${eventEnd}_${payload?.meetingType}`
+
+            const allZonesInGroup = await this.busGroupService.get()
+            const zoneIds = allZonesInGroup.map(item => item._id)
+
+            const busRoundPayload = {
+                tag: eventKey
+            }
+
+            let records = this.service.exposeDocument(
+                await this.service.get(busRoundPayload)
+            ) as IBusRound[]
+
+            const busInfo = {
+                total_buses: 0,
+                arrived: 0,
+                on_route: 0
+            }
+            const peopleInfo = {
+                people: 0,
+                arrived: 0,
+                on_route: 0,
+            }
+
+            const financeInfo = {
+                offering: 0,
+                cost: 0
+            }
+            let nonActiveZones: string[] = zoneIds
+            let unMetTarget: string[] = []
+
+            records.forEach(item => {
+                const zoneId = (item.busZone as unknown as { _id: string })?._id || item.busZone
+                busInfo.total_buses += 1
+                if (item.busState === 'ARRIVED') {
+                    busInfo.arrived += 1
+                    peopleInfo.arrived += Number(item.people)
+                } else if (item.busState === 'EN_ROUTE') {
+                    busInfo.on_route += 1
+                    peopleInfo.on_route += Number(item.people)
+                }
+
+                peopleInfo.people += Number(item.people)
+
+                financeInfo.offering += Number(item.busOffering)
+                financeInfo.cost += Number(item.busCost)
+
+                nonActiveZones = nonActiveZones.filter(f => String(f) !== String(zoneId))
+
+                if (item.people < 8) {
+                    unMetTarget.push(item._id as string)
+                }
+            })
+
+            return responses.successWithData(res, {
+                busInfo,
+                peopleInfo,
+                financeInfo,
+                allZones: zoneIds.length,
+                nonActiveZones,
+                unMetTarget
+            })
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
         }
     }
 }

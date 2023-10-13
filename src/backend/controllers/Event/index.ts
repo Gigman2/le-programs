@@ -50,7 +50,8 @@ class EventController extends BaseController<EventService> implements IEventCont
                                 start: dayjs(item.duration.start).format('YYYY-MM-DDTHH:mm'),
                                 end: dayjs(item.duration.end).format('YYYY-MM-DDTHH:mm'),
                                 timeSince: dayjs(item.duration.end).fromNow(),
-                                live: dayjs().isBetween(item.duration.start, item.duration.end)
+                                live: dayjs().isBetween(item.duration.start, item.duration.end),
+                                meetingType: item.meetingType
                             })
                         } else {
                             item.meetingDays?.map(m => {
@@ -65,7 +66,8 @@ class EventController extends BaseController<EventService> implements IEventCont
                                     live: dayjs().isBetween(
                                         dayjs().day(m).startOf('day'),
                                         dayjs().day(m).endOf('day')
-                                    )
+                                    ),
+                                    meetingType: item.meetingType
                                 })
                             })
                         }

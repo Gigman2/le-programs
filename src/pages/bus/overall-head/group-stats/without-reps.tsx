@@ -28,7 +28,7 @@ export default function WithoutReps() {
         const user = getUser() as IAccountUser
         setCurrentUser(user)
 
-        const list = getSpecificBusData('no-reps')
+        const list = getSpecificBusData<string[]>('no-reps')
         setExtraData(list)
     },[])
 
