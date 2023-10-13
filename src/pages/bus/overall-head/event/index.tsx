@@ -13,32 +13,38 @@ import Menu from '@/frontend/components/Menu'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import { getSpecificBusData } from '@/frontend/store/bus'
+
+interface IEventData { 
+      id: string,
+      name:string,
+      start: string,
+      end: string,
+      timeSince: string,
+      live: boolean
+  }
 
 export default function OverallhHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
+    const [extraData, setExtraData] = useState<IEventData>()
+
   const router = useRouter()
 
-  const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
-    !!currentUser?.currentRole?.groupType
-  )
-
-  useEffect(() => {
-    if(eventData && !eventError){
-      saveActiveEvent(eventData?.data)
-    }
-  },[eventData, eventError])
 
   useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
     setCurrentUser(user)
+
+    const list = getSpecificBusData<IEventData>('selected-event')
+    setExtraData(list)
   },[])
 
   return (
     <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
       <AppWrapper>
         <Flex mt={4} align={"center"} justify={"space-between"}>
-            {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data?.name}</Text> : <Skeleton h={6} w={"200px"} />}
+             <Text fontWeight={600} color="gray.500"> {extraData?.name}</Text>
         </Flex>
 
         <Box mt={4}>

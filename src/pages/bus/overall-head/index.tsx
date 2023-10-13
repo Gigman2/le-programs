@@ -8,37 +8,45 @@ import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import { saveBusData } from '@/frontend/store/bus'
+import dayjs from 'dayjs'
 
 export default function EventSummarySector() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 
-  const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
-    !!currentUser?.currentRole?.groupType
-  )
 
-    const {isLoading, data, error} = useBaseGetQuery<{ withoutStations: string[], noBusRep: string[] }>('bus-groups/group-stats', {type: 'zone'}, {type: 'zone'}, 
-    !!currentUser
-  )
+    const {isLoading, data} = useBaseGetQuery<{ withoutStations: string[], noBusRep: string[] }>('bus-groups/group-stats', {type: 'zone'}, {type: 'zone'}, 
+        !!currentUser
+    )
 
+    const {isLoading: eventsLoading, data: eventsData} = useBaseGetQuery<{ 
+            id: string,
+            name:string,
+            start: string,
+            end: string,
+            timeSince: string,
+            live: boolean
+        }[]>('events/previous', {}, {}, 
+        !!currentUser
+    )
 
-  useEffect(() => {
-    if(eventData && !eventError){
-      saveActiveEvent(eventData?.data)
-    }
-  },[eventData, eventError])
 
   useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
     setCurrentUser(user)
 
-    console.log('Removing data ')
-    // saveBusData('no-reps', [])
+    saveBusData('no-reps', [])
+    saveBusData('selected-event', {})
   },[])
 
   const gotoGroupsWithoutRep = (key: string, data: Record<string, any>) => {
     router.push('/bus/overall-head/group-stats/without-reps')
+    saveBusData(key, data)
+  }
+
+  const gotoEvents = (key: string, data: Record<string, any>) => {
+    router.push('/bus/overall-head/event')
     saveBusData(key, data)
   }
 
@@ -47,63 +55,31 @@ export default function EventSummarySector() {
       <AppWrapper>
         <Box mt={12}>
             <Text fontWeight={600} color={"gray.500"}>Events</Text>
-            <Box borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={4}  bg={"gray.100"}>
-                <Flex justify={"space-between"} align={"center"} borderBottomWidth={1} borderColor={"gray.200"} pb={1}>
-                    <Flex align={"center"} gap={2}>
-                        <Text color={"gray.500"} fontWeight={600}>Mega gathering service</Text>
+            {eventsData?.data.map(item => (
+                <Box key={item.id} borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={4}  bg={"gray.100"} cursor={"pointer"} 
+                    onClick={() => gotoEvents('selected-event', item)}
+                >
+                    <Flex justify={"space-between"} align={"center"} borderBottomWidth={1} borderColor={"gray.200"} pb={1}>
+                        <Flex align={"center"} gap={2}>
+                            <Text color={"gray.500"} fontWeight={600}>{item.name}</Text>
+                        </Flex>
+                        {item.live ? 
+                        (<Flex align={"center"} gap={1}>
+                            <Text color={"gray.500"}>active</Text>
+                            <Box rounded={"full"} boxSize={3} bg="green.400"></Box>
+                        </Flex>) : (
+                            <Flex align={"center"} gap={1}>
+                                <Text color={"gray.500"}>passed</Text>
+                                <Box rounded={"full"} boxSize={3} bg="red.400"></Box>
+                            </Flex>
+                        )}
                     </Flex>
-                    <Flex align={"center"} gap={1}>
-                        <Text color={"gray.500"}>active</Text>
-                        <Box rounded={"full"} boxSize={3} bg="green.400"></Box>
-                    </Flex>
-                </Flex>
-                <Box pt={1}>
                     <Flex color={"gray.500"} justify={"space-between"}>
-                        <Box>
-                            <Box my={1} bg="yellow.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>In route</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
-                        </Box>
-                        <Box>
-                            <Box my={1} bg="blue.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Arrived</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
-                        </Box>
-                        <Box>
-                            <Box my={1} bg="green.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Finance</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 2000</Text> Offering</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 3000</Text> Bus Cost</Text>
-                        </Box>
+                        <Text fontSize={14}><Text as="span"  fontWeight={600}>Start</Text> {dayjs(item.start).format('D MMM YYYY hh:mm a')}</Text>
+                        <Text fontSize={14}><Text as="span"  fontWeight={600}>End</Text> {dayjs(item.end).format('D MMM YYYY hh:mm a')}</Text>
                     </Flex>
                 </Box>
-            </Box>
-            <Box borderColor={"gray.100"} borderWidth={1} rounded={"md"} p={4} mb={2} bg={"gray.100"}>
-                <Flex borderBottomWidth={1} borderColor={"gray.200"} pb={1} justifyContent={"space-between"}>
-                    <Flex align={"center"} gap={2}>
-                        <Text color={"gray.500"} fontWeight={600}>Mega gathering service</Text>
-                    </Flex>
-                    <Text color={"gray.400"} fontSize={14}>7 Days ago</Text>
-                </Flex>
-                <Box pt={1}>
-                    <Flex color={"gray.500"} justify={"space-between"}>
-                        <Box>
-                            <Box my={1} bg="yellow.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>In route</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
-                        </Box>
-                        <Box>
-                            <Box my={1} bg="blue.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Arrived</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>12</Text> People</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>4</Text> Buses</Text>
-                        </Box>
-                        <Box>
-                            <Box my={1} bg="green.300" textAlign="center" color={"white"} fontSize={14} rounded={"full"}>Finance</Box>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 2000</Text> Offering</Text>
-                            <Text fontSize={14}><Text as="span"  fontWeight={600}>Ghc 3000</Text> Bus Cost</Text>
-                        </Box>
-                    </Flex>
-                </Box>
-            </Box>
+            ))}
         </Box>
 
         {isLoading ? <Skeleton h={16} w="100%" rounded={"md"} /> : null}

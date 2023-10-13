@@ -22,11 +22,11 @@ export const saveBusData = async (key: string, data: string | string[] | Record<
     }
 }
 
-export const getSpecificBusData = (key: string) => {
+export const getSpecificBusData = <T>(key: string) => {
     if (typeof window !== "undefined") {
         const data = sessionStorage.getItem('bus_data')
         const retrievedData = JSON.parse(data as string) as Record<string, any>
-        return retrievedData[key]
+        return retrievedData[key] as T
     }
 }
 
