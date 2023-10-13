@@ -69,6 +69,7 @@ export function useBusGroups(query: Record<string, any>, reloadDep: Record<strin
     }
 
     const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { ...query, ...reloadDep }], async () => {
+        console.log(query)
         const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
         );
@@ -198,7 +199,6 @@ export function useEventZoneSummary(key: string, enabled: boolean) {
     return { error, ...rest }
 }
 
-
 export function useBusTrips({ event, zone }: { event: string; zone: string }, queryKey: Record<string, string | boolean>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
@@ -221,8 +221,6 @@ export function useBusTrips({ event, zone }: { event: string; zone: string }, qu
 
     return { error, ...rest }
 }
-
-
 
 
 export const LoginRequest = <T>(payload: { email: string; password: string }) => {
@@ -297,4 +295,33 @@ export const getAccounts = async (id: string) => {
     return await axiosInstance.get(
         `${baseUrl}/api/bus-accounts?accountType.groupId=${id}`,
     );
+}
+
+export function useBaseGetQuery<T>(url: string, query: Record<string, any>, reloadDep: Record<string, any>, enabled: boolean) {
+    let token: string
+    if (typeof window !== "undefined") {
+        token = localStorage.getItem('auth_token') as string
+    }
+    const parsedQuery = new URLSearchParams()
+    for (const key in query) {
+        if (typeof query[key] === 'object')
+            parsedQuery.append(key, JSON.stringify(query[key]))
+        else
+            parsedQuery.append(key, query[key])
+    }
+
+    const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
+        const { data } = await axios.get(
+            `${baseUrl}/api/${url}?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
+        );
+        return data;
+    }, { enabled });
+
+    if (error) {
+        toastMessage.title = (error as any).message || 'An error occurred'
+        toastMessage.status = 'error'
+        toast(toastMessage)
+    }
+
+    return { error, ...rest }
 }

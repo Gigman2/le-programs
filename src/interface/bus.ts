@@ -26,6 +26,7 @@ export interface IBusGroups extends IDocument {
     status?: string
     accounts?: ((IBusAccount | string)[]) | null
     subGroup?: ((IBusGroups | string)[]) | null
+    fullParent?: IBusGroups
 
 }
 

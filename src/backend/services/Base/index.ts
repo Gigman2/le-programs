@@ -38,8 +38,22 @@ export default class BaseService<M> {
 
   async get(...query: any[]) {
     try {
+      const newQuery = query[0]
+      for (const key in newQuery) {
+        if (newQuery.hasOwnProperty(key)) {
+
+          if (/^{.*}$/.test(newQuery[key] as string)) {
+            newQuery[key] = JSON.parse(newQuery[key] as string)
+          }
+        }
+
+        if (newQuery[key] === null || newQuery[key] === "null") {
+          delete newQuery[key]
+        }
+      }
+
       return await this.model.find(
-        query[0],
+        newQuery,
         query[1] || null,
         query[2] || null
       );

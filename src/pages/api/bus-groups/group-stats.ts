@@ -8,7 +8,7 @@ const handler: NextApiHandler = async function handler(
     try {
         switch (req.method) {
             case 'GET':
-                return BusGroup.groupsWithAccount(req, res);
+                return BusGroup.overallGroupsStat(req, res);
             default:
                 return res.status(405).json({ message: "Method not allowed" });
 

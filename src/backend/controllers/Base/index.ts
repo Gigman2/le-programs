@@ -66,15 +66,6 @@ class BaseController<S extends IBaseService<any>> {
     async get(req: NextApiRequest, res: NextApiResponse) {
         try {
             const query = req.query
-            for (const key in query) {
-                if (query.hasOwnProperty(key)) {
-
-                    if (/^{.*}$/.test(query[key] as string)) {
-                        query[key] = JSON.parse(query[key] as string)
-                    }
-                }
-            }
-
             const doc = await this.service.get({ ...query, status: { "$ne": "ARCHIVED" } })
             return response.successWithData(res, doc)
         } catch (error: any) {
