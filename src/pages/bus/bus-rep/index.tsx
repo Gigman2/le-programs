@@ -88,7 +88,7 @@ export default function BusRepLogs() {
               <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
               {busTripLoading ? 
                 <Skeleton h={20} w="100%" rounded={"md"} /> : 
-                <>{busTripData?.data.map((item, i) => (
+                <Box maxH={"calc(100vh - 200px)"} overflowY={"scroll"}>{busTripData?.data.map((item, i) => (
                 <BusCard 
                     key={item._id} 
                     index={i} 
@@ -99,7 +99,7 @@ export default function BusRepLogs() {
                     myLog={(item.recordedBy as unknown as {_id: string})?._id === currentUser?.accountId}
                     setSelectedRecord={setSelectedRecord}
                   />
-                ))}</>
+                ))}</Box>
               }
             </Box>
           </Box>

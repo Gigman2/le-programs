@@ -1,268 +1,90 @@
-[2023-10-13T14:51:34.038] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:51:34.039] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:51:36.032] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:51:36.072] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:58:09.009] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:58:09.010] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:58:11.259] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:58:11.326] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:01.072] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:01.085] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:01.385] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:01.394] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:03.661] [ERROR] default - Cast to ObjectId failed for value "{"$in":["651a4aa41a489625feb2f048","651b66c3aa207f8a0dd84fff","651b677eaa207f8a0dd850e1","651fe9ba49392d2e235d9ef0","65200f41217833b479b14547","652034446f1c8fce4ef24066","652034646f1c8fce4ef2406e","652034876f1c8fce4ef2407a","652034a56f1c8fce4ef2408a","65203eb770ba492863da59d3","65205f93e4248cbf1df0970a","6520616ad04cbefe69e5aaca","6520616ad04cbefe69e5aacc","6520616bd04cbefe69e5aad7","65206247d04cbefe69e5ac9b","65206282d04cbefe69e5ad19","652062d9d04cbefe69e5adf6","6520695aa606278aa27ba83f","65206e69a606278aa27bbac4","65207067a606278aa27bbd9d","652076bda606278aa27bc317","65207748a606278aa27bc336","6522767744f6ba85b7c6c852","6528fc8db6ab2e044a3a21f5"]}" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T14:59:03.685] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:00:13.971] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:01:29.560] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:02:10.481] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:04:06.189] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:06:04.483] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:06:42.377] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:06:58.328] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:07:28.083] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T15:08:02.467] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:32:30.953] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:32:44.088] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:33:16.326] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:33:24.312] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:33:51.122] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:45:26.967] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:45:56.005] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T16:55:05.686] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T17:19:57.985] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T17:21:33.097] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T17:32:31.112] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:00:37.795] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:03:55.388] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:05:47.006] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:15:58.292] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:19:47.339] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:21:07.906] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:22:03.597] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:22:36.449] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:22:40.018] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:23:00.059] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:24:08.736] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:24:33.605] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:24:42.402] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:24:48.275] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:28:21.466] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:29:55.857] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:30:25.263] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:30:29.623] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:31:21.395] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:34:24.609] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:58:43.902] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T18:59:48.594] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:02:08.203] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:02:56.764] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:04:14.673] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:04:31.276] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:06:19.539] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:06:21.710] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:06:23.436] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:09:00.938] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:09:04.548] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:11:30.551] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:24.837] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:27.380] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:28.417] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:32.760] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:37.184] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:15:39.743] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:22:59.619] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:26:23.710] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:36:56.709] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:52:51.924] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:52:58.147] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:53:12.339] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:53:15.704] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T19:56:47.076] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:00:27.473] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:01:21.692] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:01:26.309] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:05:01.591] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:05:19.006] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:05:27.371] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:05:27.702] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:05:29.949] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:06:51.526] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:12.627] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:12.984] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:29.450] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:31.748] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:59.128] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:07:59.454] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:08:01.314] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:08:18.683] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:08:19.337] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:13:02.374] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:14:17.905] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:14:20.239] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:42:08.126] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:42:08.860] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T20:42:11.362] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:06:03.816] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:06:03.817] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:06:07.243] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:08:23.407] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:08:25.608] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:08:28.872] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:14:49.811] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:14:49.812] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:14:51.984] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:20:05.429] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:31:27.495] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:31:37.329] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:43:35.020] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:43:40.261] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:43:43.497] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:47:03.678] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T21:51:42.889] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:27:17.842] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:27:29.701] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:27:54.965] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:27:58.676] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:29:37.188] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:29:41.743] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:29:46.833] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:35:01.757] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:36:43.044] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:48:46.101] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:53:22.752] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T22:53:36.093] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:28:28.344] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:28:35.073] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:28:53.652] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:29:40.508] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:30:06.919] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:30:46.541] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:31:03.473] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:31:32.321] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:34:59.525] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:12.247] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:14.605] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:16.558] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:45.755] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:47.350] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:49.195] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:37:52.259] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:38:48.243] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:40:28.411] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:41:59.700] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:42:04.122] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:42:05.145] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:42:06.255] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:42:08.294] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:42:14.098] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:43:20.902] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:43:35.490] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:43:55.658] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:44:19.710] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:44:45.886] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:44:52.024] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:45:31.891] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:47:19.609] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:47:25.129] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:47:32.692] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:47:53.154] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:48:35.704] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:48:56.876] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:49:01.266] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:49:26.574] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:49:33.412] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:49:39.697] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:49:45.498] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:52:27.920] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:54:25.377] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:56:29.361] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:56:32.371] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:58:22.041] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:58:23.640] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:58:52.971] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:59:02.035] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:59:05.278] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-13T23:59:10.344] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:05:04.006] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:05:08.583] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:05:14.005] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:05:14.009] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:05:24.025] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:05:24.030] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:05:34.043] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:05:44.057] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:06:45.853] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:06:47.531] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:06:55.330] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:06:55.858] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:06:55.861] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:07:05.869] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:07:05.873] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:07:05.913] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:07:15.878] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:07:25.884] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:09:19.891] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:09:29.893] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:09:29.896] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:09:39.909] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:09:39.912] [ERROR] default - Operation `busrounds.find()` buffering timed out after 10000ms
-[2023-10-14T00:09:49.026] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:09:49.920] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
-[2023-10-14T00:10:42.995] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:10:45.508] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:11:05.470] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:11:13.378] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:11:33.762] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:12:03.578] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:12:06.157] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:12:08.145] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:00.592] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:32.653] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:43.746] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:49.909] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:51.677] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:13:56.791] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:14:13.688] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:14:16.269] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:14:17.860] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:15:02.568] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:15:06.595] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:15:11.878] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:15:33.000] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:15:47.158] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:16:56.642] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:17:59.882] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:18:05.133] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:18:06.687] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:18:24.838] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:19:27.775] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:20:26.500] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:20:27.673] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:20:30.752] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:20:46.667] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:21:22.194] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:21:25.527] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:21:40.408] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:21:43.447] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:21:46.240] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:23:36.795] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:27:04.891] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:29:22.838] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:29:23.869] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:29:25.476] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:03.976] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:05.943] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:07.771] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:12.965] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:14.393] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:16.636] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:30:57.472] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:31:12.876] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:32:12.629] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:44:30.221] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:44:56.397] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:46:59.383] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:47:02.983] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:48:11.983] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:48:15.184] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
-[2023-10-14T00:48:17.313] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:21:57.545] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:21:59.235] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:22:02.421] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.425] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.424] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.425] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.423] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.426] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:22:02.427] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:25:54.520] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:26:00.489] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.487] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.489] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.490] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.491] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.491] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:26:00.492] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:04.435] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:28:08.918] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.919] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.919] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.921] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.917] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.918] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:28:08.920] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:10.390] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:29:11.182] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.182] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.181] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.183] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.183] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.184] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:11.184] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:29:19.346] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:29:49.575] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:29:54.885] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:30:56.880] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:31:01.760] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-14T02:59:01.668] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:01.670] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:01.669] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:01.670] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:33.458] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:33.461] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:33.464] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:33.465] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T02:59:33.462] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:44.095] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:44.098] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:44.099] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:44.097] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:44.098] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:59.713] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:59.715] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:59.718] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:59.720] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:02:59.716] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:03.837] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:03.844] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:03.847] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:03.846] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:46.495] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:46.497] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:46.500] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:09:46.498] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:10:23.229] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:10:23.232] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:10:23.234] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:10:23.237] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:11:44.285] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:11:44.288] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:11:44.290] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:11:44.291] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:11:44.293] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:14:30.580] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:14:30.582] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:14:30.583] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:14:30.584] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:14:30.585] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.811] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.814] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.819] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.818] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.816] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:45.815] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:47.020] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:47.021] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:47.024] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:47.025] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-14T03:41:47.023] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
