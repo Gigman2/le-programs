@@ -29,9 +29,9 @@ export default function BusCard (
           <Flex align={"center"} justify={"space-between"} mb={2}>
             <Flex gap={1} color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
               <Text as="span" fontWeight={600}>Bus {index + 1}</Text>   
-              {item.stopPoints.length ? <Flex align={"center"} gap={2}>
+              {(item?.stopPoints as any[]).length ? <Flex align={"center"} gap={2}>
                 <Text> | last checkpoint</Text>
-                <Text as="span" fontWeight={600} fontSize={14}> {item.stopPoints[item.stopPoints.length - 1].location as string}</Text>
+                <Text as="span" fontWeight={600} fontSize={14}> {((item.stopPoints as any[])?.[(item.stopPoints as any[]).length - 1]).location as string}</Text>
               </Flex> : null }    
             </Flex> <Text></Text>
 
