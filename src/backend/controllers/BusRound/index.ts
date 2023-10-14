@@ -203,7 +203,9 @@ class BusRoundController extends BaseController<BusRoundService> {
                     const group = groupedBySector[item._id as string]
                     const children = await this.busGroupService.get({ parent: item._id })
                     const unBused = children.map(k => k.name).filter(k => !(group?.branches || []).includes(k as string))
-                    group.unBused = unBused
+                    if (group) {
+                        group.unBused = unBused
+                    }
                     return { ...item, ...group }
                 })
             )
