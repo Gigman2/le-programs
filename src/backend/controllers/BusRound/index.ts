@@ -112,6 +112,107 @@ class BusRoundController extends BaseController<BusRoundService> {
             return responses.error(res, error.message || error)
         }
     }
+
+    async overallSummary(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const payload = req.body
+            const eventStart = dayjs(payload?.start).format('YYYY-MM-DDTHH:mm')
+            const eventEnd = dayjs(payload?.end).format('YYYY-MM-DDTHH:mm')
+            const eventKey = `${payload?.id}_${eventStart}_${eventEnd}_${payload?.meetingType}`
+
+            const allZonesInGroup = await this.busGroupService.get()
+            const structuredZone = allZonesInGroup.reduce((acc: Record<string, { parent: string }>, cValue) => {
+                if (!acc[cValue._id]) acc[cValue._id] = { parent: cValue.parent as string }
+                return acc
+            }, {})
+
+            const busRoundPayload = {
+                tag: eventKey
+            }
+
+            let records = this.service.exposeDocument(
+                await this.service.get(busRoundPayload)
+            ) as IBusRound[]
+
+            interface IStructuredRecord extends IBusRound {
+                zoneParent: string
+            }
+
+            const structuredZoneRecord = (records as unknown as IStructuredRecord[]).map(item => {
+                item.zoneParent = structuredZone[(item.busZone as unknown as { _id: string })._id].parent
+
+                delete item.event
+                delete item.stopPoints
+                delete item.addedBy
+                delete item.recordedBy
+                delete item.created_on
+                delete item.updated_on
+                delete item.busZone
+
+                return item
+            })
+
+            const groupedByBranch = structuredZoneRecord.reduce((acc: Record<string, any>, cValue) => {
+                if (!acc[cValue.zoneParent]) acc[cValue.zoneParent] = {}
+
+                const item = {
+                    total: (acc[cValue.zoneParent]?.total || 0) + 1,
+                    offering: (acc[cValue.zoneParent]?.offering || 0) + cValue.busOffering,
+                    cost: (acc[cValue.zoneParent]?.cost || 0) + cValue.busCost
+                }
+                acc[cValue.zoneParent] = item
+                return acc
+            }, {})
+
+            const branchParentIds = Object.keys(groupedByBranch)
+            const branchParents = this.service.exposeDocument<IBusGroups[]>(
+                await this.busGroupService.get({ _id: { $in: branchParentIds } })
+            )
+
+            interface IStructuredBranch extends IBusGroups {
+                subData: any
+            }
+            const branchData = (branchParents as IStructuredBranch[]).map(item => {
+                const newItem = {
+                    name: item.name,
+                    parent: item.parent,
+                    subData: groupedByBranch[item._id as string]
+                }
+
+                return newItem
+            })
+
+            const groupedBySector = branchData.reduce((acc: Record<string, any>, cValue) => {
+                if (!acc[cValue.parent as string]) acc[cValue.parent as string] = {}
+
+                const item = {
+                    branches: [...(acc[cValue.parent as string].branches || []), cValue.name],
+                    total: (acc[cValue.parent as string]?.total || 0) + cValue.subData.total,
+                    offering: (acc[cValue.parent as string]?.offering || 0) + + cValue.subData.offering,
+                    cost: (acc[cValue.parent as string]?.cost || 0) + + cValue.subData.cost
+                }
+                acc[cValue.parent as string] = item
+                return acc
+            }, {})
+
+            const sectors = this.service.exposeDocument<IBusGroups[]>(
+                await this.busGroupService.get({ type: "SECTOR" })
+            )
+            const finalData = await Promise.all(
+                sectors.map(async item => {
+                    const group = groupedBySector[item._id as string]
+                    const children = await this.busGroupService.get({ parent: item._id })
+                    const unBused = children.map(k => k.name).filter(k => !(group?.branches || []).includes(k as string))
+                    group.unBused = unBused
+                    return { ...item, ...group }
+                })
+            )
+
+            return responses.successWithData(res, finalData)
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
 }
 
 const BusRound = new BusRoundController(

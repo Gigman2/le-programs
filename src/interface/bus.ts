@@ -2,15 +2,15 @@ import { Types } from 'mongoose';
 import { IDocument, IUser } from './misc';
 
 export interface IBusRound extends IDocument {
-    event: string | Types.ObjectId;
-    recordedBy: string | Types.ObjectId;
+    event?: string | Types.ObjectId;
+    recordedBy?: string | Types.ObjectId;
     vehicle: string | Types.ObjectId;
-    busZone: string | Types.ObjectId
+    busZone?: string | Types.ObjectId
     busState: 'EN_ROUTE' | 'ARRIVED';
     people: number;
     busOffering: number;
     busCost: number;
-    stopPoints: { location: string, people: number }[];
+    stopPoints?: { location: string, people: number }[];
     arrivalTime: string;
     lastCheckPoint?: string
     status?: string

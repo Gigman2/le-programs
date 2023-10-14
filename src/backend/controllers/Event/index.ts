@@ -8,6 +8,7 @@ import responses from '@/backend/lib/response';
 import { IEvent } from '@/interface/events';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime'
+import isBetween from 'dayjs/plugin/isBetween'
 
 class EventController extends BaseController<EventService> implements IEventController {
     protected name = 'Event';
@@ -27,6 +28,8 @@ class EventController extends BaseController<EventService> implements IEventCont
 
     async getPreviousEvents(req: NextApiRequest, res: NextApiResponse) {
         dayjs.extend(relativeTime)
+        dayjs.extend(isBetween)
+
         try {
             const allEvents = this.service.exposeDocument<IEvent[]>(
                 await this.service.get()
