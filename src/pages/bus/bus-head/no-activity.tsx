@@ -61,7 +61,7 @@ export default function BranchHead() {
             <Skeleton mb={2} rounded={"md"} h={24} w="100%" />
             <Skeleton rounded={"md"} h={24} w="100%" />
 
-        </Box> :  <Box mt={8} maxH={'600px'} overflowY={'scroll'}>
+        </Box> :  <Box mt={8} maxH={'430px'} overflowY={'scroll'}>
            {data?.data.map(item => (
              <Box mb={3} bg="gray.100" p={4} rounded={"md"} key={item._id}>
                 <Text color={"gray.500"} fontWeight={600}>{item.name}</Text>

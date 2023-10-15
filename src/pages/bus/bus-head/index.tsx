@@ -156,7 +156,7 @@ export default function BranchHead() {
           <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
           {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
 
-          <Box maxH={'320px'} overflowY={'scroll'}>
+          <Box maxH={'300px'} overflowY={'scroll'}>
             {!isLoading && Object.keys(data?.data.zones||{})?.map((item : string) => (
                 <ZoneCard
                     key={item} 

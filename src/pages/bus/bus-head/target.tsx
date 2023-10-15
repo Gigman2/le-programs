@@ -62,7 +62,7 @@ export default function BranchHead() {
 
             </Box> 
         :
-            <Box mt={6}>
+            <Box mt={6} maxH={"430px"} overflowY={"scroll"}>
             {data?.data.map(item => (
                 <Box key={item._id} bg="gray.100" rounded={"md"} p={4} mb={3}>
                     <Flex justifyContent={"space-between"} align={"center"}>
