@@ -31,3 +31,32 @@
 [2023-10-15T11:24:35.501] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-15T11:24:35.500] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-15T11:24:35.503] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.362] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.364] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.366] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.365] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.367] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.370] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.367] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.368] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.371] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.374] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:32:00.376] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.435] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.437] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.440] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.438] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.441] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.443] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.445] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.446] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.447] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.448] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:12.449] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-15T11:34:47.473] [ERROR] default - ConnectionTimeoutError: Connection timeout
+    at Socket.<anonymous> (C:\Projects\Le_Systems\le-workers-app\node_modules\@redis\client\dist\lib\client\socket.js:177:124)
+    at Object.onceWrapper (node:events:631:28)
+    at Socket.emit (node:events:517:28)
+    at Socket._onTimeout (node:net:598:8)
+    at listOnTimeout (node:internal/timers:569:17)
+    at process.processTimers (node:internal/timers:512:7)
