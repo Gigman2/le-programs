@@ -34,7 +34,6 @@ export default function BranchHead() {
         setEvent(currentEvent)
 
         const record = getExtraBusRecord()
-        console.log(record)
         setExtraData(record)
     },[])
 

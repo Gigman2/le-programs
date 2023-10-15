@@ -119,7 +119,6 @@ class BaseController<S extends IBaseService<any>> {
         try {
             // if(hasAccess !== 200)
             const doc = await this.service.update((req.query as { id: string | string[] | ObjectId }).id, req.body)
-            console.log(doc)
             return response.successWithData(res, doc, `${this.name} updated successfully!`)
         } catch (error: any) {
             return response.error(res, error.message || error)

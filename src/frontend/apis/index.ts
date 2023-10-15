@@ -69,7 +69,6 @@ export function useBusGroups(query: Record<string, any>, reloadDep: Record<strin
     }
 
     const { error, ...rest } = useQuery<IResponse<IBusGroups[]>>(["bus-groups", { ...query, ...reloadDep }], async () => {
-        console.log(query)
         const { data } = await axiosInstance.get(
             `${baseUrl}/api/bus-groups?${parsedQuery.toString()}`, { headers: { 'Authorization': "Bearer " + token } }
         );

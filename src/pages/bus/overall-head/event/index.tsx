@@ -1,21 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Divider, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
-import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
+import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
+import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { BsPersonFillAdd } from 'react-icons/bs'
-import { MdAddBusiness } from 'react-icons/md'
-import { TbAlignRight, TbChevronLeft, TbHistory, TbLayoutBottombarCollapseFilled, TbPlus, TbPower, TbUsersGroup, TbX } from 'react-icons/tb'
-import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useActiveEvent, useBaseGetQuery, useBasePostQuery, useBusGroupTree } from '@/frontend/apis'
-import { GroupedUnits } from '@/frontend/components/Accounts/busingLogin'
-import Menu from '@/frontend/components/Menu'
+import { TbChevronLeft } from 'react-icons/tb'
+import { useBasePostQuery } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
-import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
-import { getSpecificBusData } from '@/frontend/store/bus'
+import { getSpecificBusData, saveBusData } from '@/frontend/store/bus'
 
-interface IEventData { 
+export interface IEventData { 
       id: string,
       name:string,
       start: string,
@@ -24,7 +18,7 @@ interface IEventData {
       live: boolean
   }
 
-export default function OverallhHead() {
+export default function SectorHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const [extraData, setExtraData] = useState<IEventData>()
 
@@ -44,6 +38,11 @@ export default function OverallhHead() {
   const {isLoading: overallLoading, data: overallData} = useBasePostQuery<any[]>('bus-rounds/overall', extraData as IEventData, extraData as IEventData, 
     !!currentUser
   )
+
+  const gotoSectorSummary = (sector: string) => {
+    saveBusData('selected-sector', sector)
+    router.push('event/sectors')
+  }
 
 
   useEffect(() => {
@@ -152,7 +151,7 @@ export default function OverallhHead() {
         <Box mt={6}>
           <Text color={"gray.500"} fontWeight={600} fontSize={20} >Sectors</Text>
           {overallData?.data.map(item => (
-            <Box key={item._id} rounded={"md"} borderWidth={1} bg={"gray.100"} p={4} mb={4}>
+            <Box cursor={"pointer"} key={item._id} rounded={"md"} borderWidth={1} bg={"gray.100"} p={4} mb={4} onClick={() => gotoSectorSummary(item)}>
               <Flex justify={"space-between"} borderBottomWidth={1} borderColor={"gray.300"} my={2}>
                 <Text color={"gray.500"}>{item.name}</Text>
                 <Text color={"gray.500"}><Text as={"span"} fontWeight={600}>{item.total || 0}</Text> Buses</Text>

@@ -154,7 +154,6 @@ class BusRoundController extends BaseController<BusRoundService> {
                     return item
                 }
             })
-            console.log(structuredZoneRecord)
 
             const groupedByBranch = structuredZoneRecord.reduce((acc: Record<string, any>, cValue) => {
                 if (!cValue) {
@@ -228,6 +227,99 @@ class BusRoundController extends BaseController<BusRoundService> {
             )
 
             return responses.successWithData(res, finalData)
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
+
+    async sectorSummary(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const payload = req.body
+            const eventStart = dayjs(payload?.start).format('YYYY-MM-DDTHH:mm')
+            const eventEnd = dayjs(payload?.end).format('YYYY-MM-DDTHH:mm')
+            const eventKey = `${payload?.id}_${eventStart}_${eventEnd}_${payload?.meetingType}`
+
+
+            let branches = this.service.exposeDocument<IBusGroups[]>(
+                await this.busGroupService.get({
+                    parent: payload.group
+                })
+            ).map(item => ({
+                name: item.name,
+                id: item._id,
+                zones: [] as string[] | undefined,
+                children: [] as any[],
+                records: {} as any
+            }))
+
+            const branchIds = branches.map(item => item.id)
+            const zones = this.service.exposeDocument<IBusGroups[]>(
+                await this.busGroupService.get({
+                    parent: { '$in': branchIds }
+                })
+            ).map(item => ({ name: item.name, id: item._id, parent: item.parent }))
+
+            const zoneIds = zones.map(item => item.id)
+            branches = branches.map(item => {
+                item.zones = zones.filter(k => k.parent === item.id).map(item => item.id as string)
+                item.children = zones.filter(k => k.parent === item.id)
+                return item
+            })
+
+            branches = await Promise.all(
+                branches.map(async item => {
+                    const busRoundPayload = {
+                        busZone: { '$in': item.zones },
+                        tag: eventKey
+                    }
+                    const records = this.service.exposeDocument<IBusRound[]>(
+                        await this.service.get(busRoundPayload)
+                    ).map(item => {
+                        return {
+                            people: item.people,
+                            busState: item.busState,
+                            busCost: item.busCost,
+                            offering: item.busOffering,
+                            zone: (item.busZone as unknown as { _id: string })._id
+                        }
+                    })
+
+                    item.children.map(c => {
+                        const isRecord = records.find(f => f.zone === c.id)
+                        c.bused = !!isRecord
+                        return c
+                    })
+
+                    const reducedRecords = records.reduce((acc, cValue) => {
+                        acc.people += cValue.people
+                        acc.offering += cValue.offering
+                        acc.cost += cValue.busCost
+                        if (cValue.busState === 'ARRIVED') {
+                            acc.busArrived += 1
+                            acc.peopleArrived += cValue.people
+                        } else {
+                            acc.busInRoute += 1
+                            acc.peopleInRoute += cValue.people
+                        }
+                        return acc
+                    }, {
+                        people: 0,
+                        offering: 0,
+                        cost: 0,
+                        peopleArrived: 0,
+                        peopleInRoute: 0,
+                        busArrived: 0,
+                        busInRoute: 0
+                    })
+
+                    delete item.zones
+                    item.records = reducedRecords
+
+                    return item
+                })
+            )
+
+            return responses.successWithData(res, branches)
         } catch (error: any) {
             return responses.error(res, error.message || error)
         }
