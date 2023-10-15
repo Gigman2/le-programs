@@ -199,14 +199,14 @@ export function useEventZoneSummary(key: string, enabled: boolean) {
     return { error, ...rest }
 }
 
-export function useBusTrips({ event, zone }: { event: string; zone: string }, queryKey: Record<string, string | boolean>, enabled: boolean) {
+export function useBusTrips({ tag, zone }: { tag: string; zone: string }, queryKey: Record<string, string | boolean>, enabled: boolean) {
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
     }
     const { error, ...rest } = useQuery<IResponse<IBusRound[]>>(["bus-rounds", queryKey], async () => {
         const { data } = await axiosInstance.get(
-            `${baseUrl}/api/bus-rounds?event=${event}&busZone=${zone}`, {
+            `${baseUrl}/api/bus-rounds?tag=${tag}&busZone=${zone}`, {
             headers: { 'Authorization': "Bearer " + token },
         }
         );

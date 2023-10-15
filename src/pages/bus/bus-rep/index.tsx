@@ -15,12 +15,7 @@ import BusCard from '@/frontend/components/Bus/BusCard'
 import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
 import EndBusTrip from '@/frontend/components/Modals/endBusTrip'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
-
-const MenuOptions = [
-  {title: "History", icon: TbHistory, fn: null},
-  {title: "Logout", icon: TbPower, fn: removeSession}
-
-]
+import dayjs from 'dayjs'
 
 export default function BusRepLogs() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -29,6 +24,7 @@ export default function BusRepLogs() {
   const { isOpen: endIsOpen, onOpen: endOnOpen, onClose: endOnClose } = useDisclosure()
 
   const [selectedRecord, setSelectedRecord]= useState<IBusRound>()
+  const [eventTag, setEventTag] = useState('')
 
   const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
     !!currentUser?.currentRole?.groupId
@@ -36,21 +32,27 @@ export default function BusRepLogs() {
 
   const {isLoading: busTripLoading, data: busTripData} = useBusTrips(
     {
-      event: eventData?.data?._id as string,
+      tag: eventTag,
       zone: currentUser?.bus['ZONE']?.id as string
     },
     {
-      event: eventData?.data?._id as string,
+      tag: eventTag,
       zone: currentUser?.bus['ZONE']?.id as string,
       isOpen,
       endIsOpen
     },
-    !!(eventData?.data?._id && currentUser?.bus['ZONE']?.id)
+    !!(eventTag && currentUser?.bus['ZONE']?.id)
   )
 
   useEffect(() => {
     if(eventData && !eventError){
       saveActiveEvent(eventData?.data)
+
+      const eventStart = eventData?.data?.occurrence === 'FIXED' ? dayjs(eventData?.data.duration?.start).format('YYYY-MM-DDTHH:mm') : dayjs().startOf('day').format('YYYY-MM-DDTHH:mm')
+      const eventEnd = eventData?.data?.occurrence === 'FIXED' ? dayjs(eventData?.data.duration?.end).format('YYYY-MM-DDTHH:mm') : dayjs().endOf('day').format('YYYY-MM-DDTHH:mm')
+      
+      const eventKey = `${eventData?.data?._id}_${eventStart}_${eventEnd}_${eventData?.data?.meetingType}`
+      setEventTag(eventKey)
     }
   },[eventData, eventError])
 
@@ -88,7 +90,7 @@ export default function BusRepLogs() {
               <Box left={0} pos={"absolute"} h={"100%"} w={2} rounded={"full"} bg="gray"></Box>
               {busTripLoading ? 
                 <Skeleton h={20} w="100%" rounded={"md"} /> : 
-                <Box maxH={"calc(100vh - 200px)"} overflowY={"scroll"}>{busTripData?.data.map((item, i) => (
+                <Box maxH={"calc(100vh - 200px)"} overflowY={"scroll"}>{busTripData?.data?.reverse()?.map((item, i) => (
                 <BusCard 
                     key={item._id} 
                     index={i} 
