@@ -243,3 +243,51 @@
 [2023-10-15T19:19:22.053] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-15T19:19:22.052] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
 [2023-10-15T19:19:47.770] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:20:45.450] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:21:21.242] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:22:16.245] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:23:38.210] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:29:23.889] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:29:53.895] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-15T19:30:23.907] [ERROR] default - getaddrinfo ENOTFOUND cluster0-shard-00-00.vsw6p.mongodb.net
+[2023-10-15T19:32:00.987] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:45:05.997] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:45:07.008] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:45:14.555] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:45:20.543] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:45:35.994] [ERROR] default - connection timed out
+[2023-10-15T19:45:37.013] [ERROR] default - connection timed out
+[2023-10-15T19:45:37.015] [ERROR] default - connection timed out
+[2023-10-15T19:45:47.705] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:46:06.003] [ERROR] default - connection timed out
+[2023-10-15T19:46:07.030] [ERROR] default - connection timed out
+[2023-10-15T19:46:07.033] [ERROR] default - connection timed out
+[2023-10-15T19:46:37.045] [ERROR] default - connection timed out
+[2023-10-15T19:47:07.058] [ERROR] default - connection timed out
+[2023-10-15T19:47:14.747] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:47:16.672] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:47:18.871] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:47:42.644] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-15T19:47:44.753] [ERROR] default - connection timed out
+[2023-10-15T19:47:44.755] [ERROR] default - connection timed out
+[2023-10-15T19:48:12.617] [ERROR] default - connection timed out
+[2023-10-15T19:48:12.619] [ERROR] default - connection timed out
+[2023-10-15T19:48:14.758] [ERROR] default - connection timed out
+[2023-10-15T19:48:14.761] [ERROR] default - connection timed out
+[2023-10-15T19:48:42.629] [ERROR] default - connection timed out
+[2023-10-15T19:48:42.631] [ERROR] default - connection timed out
+[2023-10-15T19:48:44.766] [ERROR] default - connection timed out
+[2023-10-15T19:49:12.640] [ERROR] default - read ECONNRESET
+[2023-10-15T19:49:14.772] [ERROR] default - read ECONNRESET
+[2023-10-15T19:49:42.652] [ERROR] default - connection timed out
+[2023-10-20T13:49:05.214] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-20T13:49:09.511] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2023-10-20T13:49:15.103] [ERROR] default - Operation `events.find()` buffering timed out after 10000ms
+[2023-10-20T13:49:15.211] [ERROR] default - Operation `busgroups.find()` buffering timed out after 10000ms
+[2023-10-20T13:49:25.220] [ERROR] default - Operation `busaccounts.find()` buffering timed out after 10000ms
+[2023-10-20T14:46:22.237] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-20T14:47:09.068] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-20T15:08:31.145] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-20T15:08:31.149] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-20T15:11:42.491] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2023-10-20T15:11:42.497] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

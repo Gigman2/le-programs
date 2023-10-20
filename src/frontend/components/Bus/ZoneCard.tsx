@@ -50,12 +50,14 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
         >
             <Flex justify={"space-between"} zIndex={2} mb={4}>
                 <Flex gap={2}>
-                    <Text fontSize={14} color={"gray.500"}>Started By</Text>
+                    <Text fontSize={14} color={"gray.500"}>By</Text>
                     <Text fontSize={14} color={"gray.500"} fontWeight={600}>{`${(l.recordedBy as unknown as {name: string})?.name}`} </Text>
                 </Flex>
                 {l.busState === 'EN_ROUTE' ?<Flex fontSize={14} gap={1}>
                     <Text fontSize={14} color={"gray.500"}>Last point</Text>
-                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>Atomic</Text>
+                    <Text fontSize={14} color={"gray.500"} fontWeight={600}>
+                        {((l.stopPoints as any[])?.[(l.stopPoints as any[]).length - 1]).location as string}
+                    </Text>
                 </Flex>
                 : <Box px={3} py={0} bg="blue.400" color={"white"} rounded={"md"} fontSize={14}>Arrived</Box>}
             </Flex>
@@ -70,7 +72,7 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
             </Flex>
             <Flex flex={1} justify={"space-between"}>
                 <Text fontSize={14} color={"gray.500"}></Text>
-                <Text fontSize={15} color={"gray.500"}><Text fontWeight={600} as="span">{l.people}</Text> people bused</Text>
+                <Text fontSize={15} color={"gray.500"}><Text fontWeight={600} as="span">{l.people}</Text> people </Text>
             </Flex>
             </Flex>
             <Flex fontWeight={500} fontSize={13} justify={"space-between"} gap={6} mt={2}>

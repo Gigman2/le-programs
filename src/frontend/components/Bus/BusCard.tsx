@@ -27,10 +27,10 @@ export default function BusCard (
         <Text fontSize={13} color={"gray.600"}>{dayjs(item.updated_on).format('ddd D, MMMM H:m A')}</Text>
         <Box bg={myLog ? "blackAlpha.800" : "gray.100"} p={3} borderColor={myLog ? "black" :"gray.200"} borderWidth={1} rounded={"md"}>
           <Flex align={"center"} justify={"space-between"} mb={2}>
-            <Flex gap={1} color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
+            <Flex direction={"column"} gap={1} color={myLog ? "white" : "blackAlpha.700"} fontSize={13}>
               <Text as="span" fontWeight={600}>Bus {index + 1}</Text>   
               {(item?.stopPoints as any[]).length ? <Flex align={"center"} gap={2}>
-                <Text> | last checkpoint</Text>
+                <Text>last checkpoint</Text>
                 <Text as="span" fontWeight={600} fontSize={14}> {((item.stopPoints as any[])?.[(item.stopPoints as any[]).length - 1]).location as string}</Text>
               </Flex> : null }    
             </Flex> <Text></Text>
@@ -67,16 +67,16 @@ export default function BusCard (
           </Flex>
           <Box w={"100%"} h={"1px"} bg="gray.300" />
           <Flex mt={1} justify={"space-between"}>
-              <CardItem name={'Started by'} value={(item.recordedBy as unknown as {name:string})?.name as string} myLog={!!myLog} />
-              <CardItem name={'Started on'} value={dayjs(item.created_on).format('h:mm A')} myLog={!!myLog} />
+              <CardItem name={'By'} value={(item.recordedBy as unknown as {name:string})?.name as string} myLog={!!myLog} />
+              <CardItem name={'Started At'} value={dayjs(item.created_on).format('h:mm A')} myLog={!!myLog} />
           </Flex>
           <Flex mt={1} justify={"space-between"}>
-              <CardItem name={'Bus Cost'} value={"Ghc "+item.busCost} myLog={!!myLog} />
-              {item.busState === "ARRIVED" ? <CardItem name={'Ended on'} value={dayjs(item.arrivalTime).format('h:mm A')} myLog={!!myLog} /> : null}
+              <CardItem name={'Cost'} value={"Ghc "+item.busCost} myLog={!!myLog} />
+              {item.busState === "ARRIVED" ? <CardItem name={'Ended at'} value={dayjs(item.arrivalTime).format('h:mm A')} myLog={!!myLog} /> : null}
           </Flex>
           <Flex mt={1} justify={"space-between"}>
-              {item.people > 0 ? <CardItem name={'People in bus'} value={item.people} myLog={!!myLog} /> : null}
-              {item.busOffering > 0 ? <CardItem name={'Offering received'} value={'Ghc '+ item.busOffering} myLog={!!myLog} /> : null}
+              {item.people > 0 ? <CardItem name={'People '} value={item.people} myLog={!!myLog} /> : null}
+              {item.busOffering > 0 ? <CardItem name={'Offering'} value={'Ghc '+ item.busOffering} myLog={!!myLog} /> : null}
           </Flex>
         </Box>
     </Box>
