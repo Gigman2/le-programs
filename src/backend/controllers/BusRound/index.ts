@@ -232,6 +232,38 @@ class BusRoundController extends BaseController<BusRoundService> {
         }
     }
 
+    async overallSectorSummary(req: NextApiRequest, res: NextApiResponse) {
+        try {
+            const payload = req.body
+            const eventStart = dayjs(payload?.start).format('YYYY-MM-DDTHH:mm')
+            const eventEnd = dayjs(payload?.end).format('YYYY-MM-DDTHH:mm')
+            const eventKey = `${payload?.id}_${eventStart}_${eventEnd}_${payload?.meetingType}`
+
+
+            const getAllChildren = await this.busGroupService.getChildren(payload.group, 'ZONE')
+
+            const busRoundPayload = {
+                busZone: { '$in': getAllChildren },
+                tag: eventKey
+            }
+
+
+            let records = this.service.exposeDocument(
+                await this.service.get(busRoundPayload)
+            ) as IBusRound[]
+
+            const summary = await this.service.summaryData(records, getAllChildren as string[])
+
+
+            return responses.successWithData(res, {
+                ...summary,
+                notStarted: summary.nonActiveZones
+            })
+        } catch (error: any) {
+            return responses.error(res, error.message || error)
+        }
+    }
+
     async sectorSummary(req: NextApiRequest, res: NextApiResponse) {
         try {
             const payload = req.body
@@ -259,7 +291,6 @@ class BusRoundController extends BaseController<BusRoundService> {
                 })
             ).map(item => ({ name: item.name, id: item._id, parent: item.parent }))
 
-            const zoneIds = zones.map(item => item.id)
             branches = branches.map(item => {
                 item.zones = zones.filter(k => k.parent === item.id).map(item => item.id as string)
                 item.children = zones.filter(k => k.parent === item.id)

@@ -32,7 +32,7 @@ class EventController extends BaseController<EventService> implements IEventCont
 
         try {
             const allEvents = this.service.exposeDocument<IEvent[]>(
-                await this.service.get()
+                await this.service.get({ status: "ACTIVE" })
             )
 
             const dates: any[] = []
@@ -77,7 +77,7 @@ class EventController extends BaseController<EventService> implements IEventCont
                     })
             )
 
-            return responses.successWithData(res, dates.slice(0, 4))
+            return responses.successWithData(res, dates.slice(0, 4).sort((a, b) => (new Date(b.start).getTime() - new Date(a.start).getTime())))
         } catch (error: any) {
             return responses.error(res, error.message || error)
         }

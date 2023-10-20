@@ -48,4 +48,31 @@ export default class BusGroupService extends BaseService<IBusGroups> {
             this.log(error)
         }
     }
+
+    async getChildren(group: string, base: string) {
+        try {
+            const baseNodes: string[] = []
+            let parents = [group]
+
+            let noChildren = false
+            while (!noChildren) {
+                const nodes = await this.get({ parent: { '$in': parents } })
+                parents = []
+                nodes.forEach(item => {
+                    if (item.type === base) {
+                        baseNodes.push(item._id)
+                    } else {
+                        parents.push(item._id)
+                    }
+                })
+
+                if (!parents.length) {
+                    noChildren = true
+                }
+            }
+            return baseNodes
+        } catch (error) {
+            this.log(error)
+        }
+    }
 }

@@ -25,7 +25,7 @@ const RoleSelection = ({data, user}: {data: any; user: IAccountUser}) => {
             p={4} borderColor={"gray.300"} borderWidth={1} w="100%"
             onClick={() => gotoRole()}
         >
-            Continue as a {data.groupType.replace("_", " ").toLowerCase()}
+            Continue as {data.groupType === 'OVERALL_HEAD' ? 'an' : 'a'} {data.groupType.replace("_", " ").toLowerCase()}
         </Box>
     )
 }

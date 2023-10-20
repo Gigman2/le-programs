@@ -87,6 +87,7 @@ class BusGroupController extends BaseController<BusGroupService> {
   }
 }
 
+
 const BusGroup = new BusGroupController(
   new BusGroupService(Group),
   new BusAccountService(BusAccount)
