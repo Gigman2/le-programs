@@ -37,7 +37,7 @@ const ZoneListCard = ({records, active}: {records: string[], active: boolean}) =
                    <Box mt={2}>
                         <Text fontSize={14} color={"gray.500"}>Last checkpoints</Text>
                         <Flex mt={1} gap={2} wrap={"wrap"}>
-                            {item.stopPoints?.map((s) => <Box fontSize={14} color={"blue.500"} bg="blue.100" py={1} px={3} rounded={"md"} key={s.location+item._id}>{s.location}</Box>)}
+                            {item.stopPoints?.map((s, index) => <Box fontSize={14} color={(index === ((item?.stopPoints || [])?.length - 1) && !active) ? 'white' : "blue.500"} bg={(index === ((item?.stopPoints || [])?.length - 1) && !active) ? "blue.600" : "blue.100"} py={1} px={3} rounded={"md"} key={s.location+item._id}>{s.location}</Box>)}
                         </Flex>
                    </Box>
                 </Box>
