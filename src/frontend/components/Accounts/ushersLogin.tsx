@@ -3,7 +3,8 @@ import { Box, Button, Flex, FormLabel, Input, Text, useToast } from '@chakra-ui/
 import { useEffect, useState, Dispatch, SetStateAction } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange, validate } from '@/utils/form';
-import { clearUser, saveUser } from '@/frontend/store/auth';
+import { clearUser } from '@/frontend/store/auth';
+import { getUser, saveUser } from '@/frontend/store/temporalUshering';
 
 interface IModifiedBusGroup {
     label?: string,
@@ -16,12 +17,22 @@ interface ILocalUser {
     name: string
 }
 
-export default function Ushers() {
+export default function UshersLogin() {
     const router = useRouter()
     const [disabled, setDisabled] = useState(false)
     const [fields, setFIelds] = useState< Record<string, string>>({
         id: ''
     })
+
+    const gotoHome = () => {
+        router.push('/ushers')
+    }
+    useEffect(() => {
+        const user = getUser()
+        if(user?.currentApp === 'USHERING'){
+            gotoHome()
+        }
+    }, [])
 
     const [errors, setErrors] = useState<Record<string, string | undefined>>({
         id: undefined,
@@ -38,7 +49,8 @@ export default function Ushers() {
         const user: ILocalUser = {name: fields.id.toLowerCase()}
         router.push(`/ushers`)
         saveUser(
-            user.name
+            user.name,
+            'USHERING'
         )
     }
 
