@@ -13,21 +13,37 @@ export default function Home() {
   const toast = useToast()
   const [loading, setLoading] = useState(false)
   const [currentUser, setCurrentUser] = useState<{name?: string;}>({})
-  const [sections, setSections] = useState<Record<string, number>>({
+  const [auditorium, setAuditorium] = useState<Record<string, number>>({
     'choir': 0,
     'behind choir': 0,
-    'extreme main left': 0,
-    'main left': 0,
-    'main center': 0,
-    'main right': 0,
-    'extreme main right': 0,
+    'extreme main left 1': 0,
+    'extreme main left 2': 0,
+    'main left 1': 0,
+    'main left 2': 0,
+    'main center 1': 0,
+    'main center 2': 0,
+    'main right 1': 0,
+    'main right 2': 0,
+    'extreme main right 1': 0,
+    'extreme main right 2': 0,
     'behind mc': 0,
     'mc Heads': 0,
     'media top': 0,
     'audio room': 0,
     'miscellaneous': 0,
-    'mothers lounge': 0,
-    'kids': 0
+    'pastors lounge': 0,
+  })
+
+  const [overflow, setOverflow] = useState<Record<string, number>>({
+    'view 1': 0,
+    'view 2': 0
+  })
+
+    const [annex, setAnnex] = useState<Record<string, number>>({
+    'mother lounge 1': 0,
+    'mother lounge 2': 0,
+    'sick bay': 0,
+    'born again room': 0
   })
 
     const toastMessage: { 
@@ -47,11 +63,12 @@ export default function Home() {
   const handleSubmit = async () => {
     try {
       setLoading(true)
-      const total = Object.keys(sections).reduce((acc, cur) => {
-        acc += Number(sections[cur])
+      const data = {...auditorium, ...annex, ...overflow}
+      const total = Object.keys(data).reduce((acc, cur) => {
+        acc += Number(data[cur])
         return acc
       }, 0)
-      const payload = {section: sections, total, recorder: currentUser.name}
+      const payload = {section: {...data}, total, recorder: currentUser.name}
       const res = await fetch(`${baseUrl}/api/head_count/addHeadcount`, {
           method: 'post',
           body: JSON.stringify(payload)
@@ -69,9 +86,17 @@ export default function Home() {
   }
 
   const resetData = () => {
-    const data = {...sections}
-    Object.keys(data).map(item => data[item] = 0)
-    setSections(data)
+    const auditoriumData = {...auditorium}
+    Object.keys(auditoriumData).map(item => auditoriumData[item] = 0)
+    setAuditorium(auditoriumData)
+
+    const annexData = {...annex}
+    Object.keys(annexData).map(item => annexData[item] = 0)
+    setAnnex(annexData)
+
+    const overflowData = {...overflow}
+    Object.keys(overflowData).map(item => overflowData[item] = 0)
+    setOverflow(overflowData)
   } 
 
   useEffect(() => {
@@ -117,19 +142,54 @@ export default function Home() {
                     Go Back
                 </Flex>
             </Flex>
-              <Grid templateColumns="repeat(3,1fr)" columnGap={6} rowGap={3}>
-                {Object.keys(sections).map(item => 
-                  <Box key={item} borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={4}>
-                    <FormLabel fontSize={14} textTransform="capitalize">{item}</FormLabel>
-                    <Input 
-                        type={"text"}
-                        name="firstName"
-                        placeholder='Enter name here ...' 
-                        value={sections[item]} 
-                        onChange={(v) => handleChange(v?.currentTarget?.value, item, sections, setSections)} 
-                    />
-                </Box>)}
-              </Grid>
+              <Box borderBottomWidth={2} borderColor={"gray.300"}>
+                <Text fontWeight={600} fontSize={18} color={"gray.500"}>Auditorium</Text>
+                <Grid templateColumns="repeat(3,1fr)" columnGap={6} rowGap={3}>
+                  {Object.keys(auditorium).map(item => 
+                    <Box key={item} borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={4}>
+                      <FormLabel fontSize={14} textTransform="capitalize">{item}</FormLabel>
+                      <Input 
+                          type={"text"}
+                          name="firstName"
+                          placeholder='Enter name here ...' 
+                          value={auditorium[item]} 
+                          onChange={(v) => handleChange(v?.currentTarget?.value, item, auditorium, setAuditorium)} 
+                      />
+                  </Box>)}
+                </Grid>
+              </Box>
+              <Box borderBottomWidth={2} borderColor={"gray.300"} mt={6}>
+                <Text fontWeight={600} fontSize={18} color={"gray.500"}>Overflow</Text>
+                <Grid templateColumns="repeat(3,1fr)" columnGap={6} rowGap={3}>
+                  {Object.keys(overflow).map(item => 
+                    <Box key={item} borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={4}>
+                      <FormLabel fontSize={14} textTransform="capitalize">{item}</FormLabel>
+                      <Input 
+                          type={"text"}
+                          name="firstName"
+                          placeholder='Enter name here ...' 
+                          value={overflow[item]} 
+                          onChange={(v) => handleChange(v?.currentTarget?.value, item, overflow, setOverflow)} 
+                      />
+                  </Box>)}
+                </Grid>
+              </Box>
+              <Box borderBottomWidth={2} borderColor={"gray.300"} mt={6}>
+                <Text fontWeight={600} fontSize={18} color={"gray.500"}>Annex</Text>
+                <Grid templateColumns="repeat(3,1fr)" columnGap={6} rowGap={3}>
+                  {Object.keys(annex).map(item => 
+                    <Box key={item} borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={4}>
+                      <FormLabel fontSize={14} textTransform="capitalize">{item}</FormLabel>
+                      <Input 
+                          type={"text"}
+                          name="firstName"
+                          placeholder='Enter name here ...' 
+                          value={annex[item]} 
+                          onChange={(v) => handleChange(v?.currentTarget?.value, item, annex, setAnnex)} 
+                      />
+                  </Box>)}
+                </Grid>
+              </Box>
               <Box as={Button} 
                   width="full" 
                   mt={24} 
