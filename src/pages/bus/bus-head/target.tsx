@@ -18,7 +18,6 @@ export default function BranchHead() {
   const [extraData, setExtraData] = useState<{unMetTarget?: string[]}>()
   const router = useRouter()
 
-
     const {isLoading, data, error} = useBusRounds({
         _id: {'$in': extraData?.unMetTarget}
     },

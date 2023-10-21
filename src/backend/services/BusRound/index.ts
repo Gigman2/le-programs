@@ -11,6 +11,9 @@ export default class BusRoundService extends BaseService<IBusRound>  {
     }
 
     async summaryData(records: IBusRound[], zoneIds: string[]) {
+        const arrivedBuses: string[] = []
+        const enRouteBuses: string[] = []
+
         const busInfo = {
             total_buses: 0,
             arrived: 0,
@@ -35,9 +38,11 @@ export default class BusRoundService extends BaseService<IBusRound>  {
             if (item.busState === 'ARRIVED') {
                 busInfo.arrived += 1
                 peopleInfo.arrived += Number(item.people)
+                arrivedBuses.push(item._id as string)
             } else if (item.busState === 'EN_ROUTE') {
                 busInfo.on_route += 1
                 peopleInfo.on_route += Number(item.people)
+                enRouteBuses.push(item._id as string)
             }
 
             peopleInfo.people += Number(item.people)
@@ -57,7 +62,9 @@ export default class BusRoundService extends BaseService<IBusRound>  {
             peopleInfo,
             financeInfo,
             unMetTarget,
-            nonActiveZones
+            nonActiveZones,
+            arrivedBuses,
+            enRouteBuses
         }
 
     }

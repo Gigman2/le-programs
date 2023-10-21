@@ -107,7 +107,7 @@ class BusRoundController extends BaseController<BusRoundService> {
 
             return responses.successWithData(res, {
                 ...summary,
-                allZones: zoneIds.length,
+                allZones: zoneIds,
             })
         } catch (error: any) {
             return responses.error(res, error.message || error)

@@ -28,9 +28,11 @@ export default function SectorHead() {
     busInfo: { total_buses: number, arrived: number, on_route: number };
     peopleInfo: { people: number, arrived: number, on_route: number };
     financeInfo: { offering: number, cost: number };
-    allZones: number
+    allZones: string[]
     nonActiveZones: string[]
     unMetTarget: string[]
+    arrivedBuses: string[]
+    enRouteBuses: string[]
   }>('bus-rounds/summary', extraData as IEventData, extraData as IEventData, 
     !!currentUser
   )
@@ -44,6 +46,15 @@ export default function SectorHead() {
     router.push('event/sectors')
   }
 
+  const gotoZoneView = (all: string[] , busless: string[]) => {
+    saveBusData('saved-zones', {all, busless})
+    router.push('event/zone-summary')
+  }
+
+    const gotoBusView = (arrived: string[] , enroute: string[]) => {
+    saveBusData('saved-buses', {arrived, enroute})
+    router.push('event/bus-summary')
+  }
 
   useEffect(() => {
     const user = getUser() as IAccountUser
@@ -80,11 +91,13 @@ export default function SectorHead() {
           (<Box>
             <Box mt={4}>
               <Flex gap={3}>
-                <Box bg="gray.100" p={4} rounded={"md"} flex={7}>
+                <Box bg="gray.100" p={4} rounded={"md"} flex={7} cursor={"pointer"}
+                  onClick={() => gotoZoneView(data?.data?.allZones || [] , data?.data?.nonActiveZones || [])}
+                >
                   <Text color={"gray.400"}>Zones</Text>
                   <hr />
                   <Flex align={"baseline"} color={"gray.500"} gap={2}>
-                    <Text fontSize={32} fontWeight={600}>{(data?.data?.allZones || 0) - (data?.data?.nonActiveZones.length || 0)}</Text>
+                    <Text fontSize={32} fontWeight={600}>{(data?.data?.allZones.length || 0) - (data?.data?.nonActiveZones.length || 0)}</Text>
                     <Text>zones bused</Text>
                   </Flex>
                   <Flex align={"baseline"} color={"gray.400"} gap={2}>
@@ -92,7 +105,9 @@ export default function SectorHead() {
                     <Text>zones have not bused</Text>
                   </Flex>
                 </Box>
-                <Box bg="blue.100" p={4} rounded={"md"} flex={6}>
+                <Box bg="blue.100" p={4} rounded={"md"} flex={6} cursor={"pointer"}
+                   onClick={() => gotoBusView(data?.data?.arrivedBuses || [] , data?.data?.enRouteBuses || [])}
+                >
                     <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>Bus</Box>
                     <Flex align={"baseline"} color={"blue.500"} gap={2}>
                     <Text fontSize={32} fontWeight={600}>{data?.data?.busInfo?.on_route || 0}</Text>
