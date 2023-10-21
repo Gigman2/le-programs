@@ -17,7 +17,7 @@ export default function Home() {
   const defaultSections = [
     'view 2', 'view 1', 'behind choir', 'choir', 'mc Heads', 'behind mc', 'ext main left 1', 'main left 1', 'main center 1', 'main right 1', 'ext main right 1',
     'media down', 'media top', 'ext main left 2', 'main left 2', 'main center 2', 'main right 2', 'ext main right 2', 'sick bay','born again room',
-    'mother lounge 1', 'mother lounge 2', 'pastors lounge', 'audio room'
+    'mother lounge 1', 'mother lounge 2', 'pastors lounge', 'audio room', 'office hallway'
   ]
 
     const fetchData = async (user: {name: string}) => {
@@ -92,7 +92,7 @@ export default function Home() {
                         {item.section['view 2']}
                       </Flex>
                       <Flex bg="orange.200" p={3} rounded={"md"} mb={2} w={"84%"}>
-                        {Number(item.section['pastors lounge'] || 0) + Number(item.section['audio room'] || 0)}
+                        {Number(item.section['pastors lounge'] || 0) + Number(item.section['audio room'] || 0) + Number(item.section['office hallway'] || 0)}
                       </Flex>
                       <Flex gap={2} rounded={"md"}>
                         <Flex w="85%" bg={"purple.200"} direction={"column"} p={2} rounded={"md"}>
@@ -106,10 +106,10 @@ export default function Home() {
                               </Box>
                             </Flex>
                             <Flex gap={2}>
-                              <Box w={20} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
-                                {item.section['mc Heads']}
+                              <Box w={16} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
+                                {item.section['mc Head  s']}
                               </Box>
-                              <Box w={20} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
+                              <Box w={14} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
                                 {item.section['behind mc']}
                               </Box>
                             </Flex>
