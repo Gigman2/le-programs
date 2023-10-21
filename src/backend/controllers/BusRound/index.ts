@@ -92,7 +92,7 @@ class BusRoundController extends BaseController<BusRoundService> {
             const eventEnd = dayjs(payload?.end).format('YYYY-MM-DDTHH:mm')
             const eventKey = `${payload?.id}_${eventStart}_${eventEnd}_${payload?.meetingType}`
 
-            const allZonesInGroup = await this.busGroupService.get()
+            const allZonesInGroup = await this.busGroupService.get({ status: "ACTIVE" })
             const zoneIds = allZonesInGroup.map(item => item._id)
 
             const busRoundPayload = {

@@ -58,7 +58,7 @@ class BusGroupController extends BaseController<BusGroupService> {
       let withoutStations: string[] = []
 
       if (type) {
-        const allGroupsByType = this.service.exposeDocument<IBusGroups[]>(await this.service.get({ type: type.toUpperCase(), }))
+        const allGroupsByType = this.service.exposeDocument<IBusGroups[]>(await this.service.get({ type: type.toUpperCase(), status: "ACTIVE" }))
         const allAccountAsBusRep = this.service.exposeDocument<IBusAccount[]>(await this.accountService.get({ 'accountType.groupType': 'BUS_REP' }))
 
         let accountGroupId: string[] = []
