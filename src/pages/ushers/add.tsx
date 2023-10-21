@@ -32,6 +32,7 @@ export default function Home() {
     'audio room': 0,
     'miscellaneous': 0,
     'pastors lounge': 0,
+    'kids': 0
   })
 
   const [overflow, setOverflow] = useState<Record<string, number>>({
