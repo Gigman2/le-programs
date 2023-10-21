@@ -14,7 +14,11 @@ export default function Home() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [headCounts, setHeadCounts] = useState<IHeadcount[]>([])
 
-  const defaultSections = ['behind choir', 'choir', 'mc Heads', 'behind mc', 'extreme main left', 'main left', 'main center', 'main right', 'extreme main right', 'media down', 'media top']
+  const defaultSections = [
+    'view 2', 'view 1', 'behind choir', 'choir', 'mc Heads', 'behind mc', 'ext main left 1', 'main left 1', 'main center 1', 'main right 1', 'ext main right 1',
+    'media down', 'media top', 'ext main left 2', 'main left 2', 'main center 2', 'main right 2', 'ext main right 2', 'sick bay','born again room',
+    'mother lounge 1', 'mother lounge 2'
+  ]
 
     const fetchData = async (user: {name: string}) => {
       try {
@@ -84,8 +88,11 @@ export default function Home() {
                       <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
                     </Flex>
                     <Box mt={2}>
+                      <Flex bg="green.200" mb={2} w={"50%"} p={3} rounded={"md"}>
+                        {item.section['view 2']}
+                      </Flex>
                       <Flex gap={2} rounded={"md"}>
-                        <Flex w="80%" bg={"purple.200"} direction={"column"} p={2} rounded={"md"}>
+                        <Flex w="85%" bg={"purple.200"} direction={"column"} p={2} rounded={"md"}>
                           <Flex mb={3} justifyContent={'space-between'}>
                             <Flex gap={2}>
                               <Box w={20} px={2} py={0.5} borderColor={'gray.200'}  bg='green.100' borderWidth={1} rounded={'md'}>
@@ -146,7 +153,20 @@ export default function Home() {
                             </Box>
                           </Flex>
                         </Flex>
-                        <Flex w="20%" bg="yellow.200"></Flex>
+                        <Flex direction={"column"} w="15%" bg="orange.200" rounded="md" overflow={"hidden"}>
+                          <Flex align={'center'} justify={"center"} w="100%" h="40%" p={2} bg="pink.200">
+                            {Number(item.section['mother lounge 1'] || 0) + Number(item.section['mother lounge 2'] || 0)}
+                          </Flex>
+                          <Flex color="white" align={'center'} justify={"center"}  w="100%" h="30%" p={2} bg="green.400">
+                            {Number(item.section['born again room'] || 0)}
+                          </Flex>
+                          <Flex  align={'center'} justify={"center"} w="100%" h="30%" p={2} bg="red.300" color={"white"}>
+                            {Number(item.section['sick bay'] || 0)}
+                          </Flex>
+                        </Flex>
+                      </Flex>
+                      <Flex mt={2} bg="green.200" mb={2} w={"80%"} p={3} rounded={"md"}>
+                        {item.section['view 1']}
                       </Flex>
                     </Box>
                     <Grid templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
