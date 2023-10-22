@@ -88,7 +88,7 @@ export default function Home() {
                       <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
                     </Flex>
                     <Box mt={2}>
-                      <Flex bg="orange.200" p={3} rounded={"md"} mb={2} w={"84%"}>
+                      <Flex bg="orange.100" p={3} rounded={"md"} mb={2} w={"84%"}>
                         {Number(item.section['pastors lounge'] || 0) + Number(item.section['audio room'] || 0) + Number(item.section['office hallway'] || 0)}
                       </Flex>
                       <Flex gap={2} rounded={"md"}>
@@ -104,7 +104,7 @@ export default function Home() {
                             </Flex>
                             <Flex gap={2}>
                               <Box w={16} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
-                                {item.section['mc Head  s']}
+                                {item.section['mc Heads']}
                               </Box>
                               <Box w={14} px={2} py={1} borderColor={'gray.200'} bg='green.100' borderWidth={1} rounded={'md'}>
                                 {item.section['behind mc']}
