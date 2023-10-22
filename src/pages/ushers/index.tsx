@@ -88,9 +88,6 @@ export default function Home() {
                       <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
                     </Flex>
                     <Box mt={2}>
-                      <Flex bg="green.200" mb={2} w={"50%"} p={3} rounded={"md"}>
-                        {item.section['view 2']}
-                      </Flex>
                       <Flex bg="orange.200" p={3} rounded={"md"} mb={2} w={"84%"}>
                         {Number(item.section['pastors lounge'] || 0) + Number(item.section['audio room'] || 0) + Number(item.section['office hallway'] || 0)}
                       </Flex>
@@ -156,23 +153,14 @@ export default function Home() {
                             </Box>
                           </Flex>
                         </Flex>
-                        <Flex direction={"column"} w="15%" bg="orange.200" rounded="md" overflow={"hidden"}>
-                          <Flex align={'center'} justify={"center"} w="100%" h="40%" p={2} bg="pink.200">
-                            {Number(item.section['mother lounge 1'] || 0) + Number(item.section['mother lounge 2'] || 0)}
-                          </Flex>
-                          <Flex color="white" align={'center'} justify={"center"}  w="100%" h="30%" p={2} bg="green.400">
-                            {Number(item.section['born again room'] || 0)}
-                          </Flex>
-                          <Flex  align={'center'} justify={"center"} w="100%" h="30%" p={2} bg="red.300" color={"white"}>
-                            {Number(item.section['sick bay'] || 0)}
+                        <Flex direction={"column"} w="15%" borderWidth={1} borderColor={"gray.300"} bg="white.200" rounded="md" overflow={"hidden"}>
+                          <Flex align={'center'} justify={"center"} w="100%" h="50%" p={2} bg="pink.200">
+                            {Number(item.section['mothers lounge'] || 0) + Number(item.section['mother lounge 2'] || 0)}
                           </Flex>
                         </Flex>
                       </Flex>
-                      <Flex mt={2} bg="green.200" mb={2} w={"80%"} p={3} rounded={"md"}>
-                        {item.section['view 1']}
-                      </Flex>
                     </Box>
-                    <Grid templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
+                    <Grid mt={1} templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
                       {Object.keys(item.section).filter(key => !defaultSections.includes(key)).map((s: string) => (
                         <Flex key={s} mr={3} align="center" justify={"space-between"}>
                           <Text fontSize={13} mr={2} textTransform={'capitalize'}>{s}</Text> 
