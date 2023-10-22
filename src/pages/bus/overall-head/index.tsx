@@ -25,7 +25,8 @@ export default function EventSummarySector() {
             start: string,
             end: string,
             timeSince: string,
-            live: boolean
+            live: boolean,
+            daysTo: number
         }[]>('events/previous', {}, {}, 
         !!currentUser
     )
@@ -64,16 +65,19 @@ export default function EventSummarySector() {
                         <Flex align={"center"} gap={2}>
                             <Text color={"gray.500"} fontWeight={600}>{item.name}</Text>
                         </Flex>
-                        {item.live ? 
-                        (<Flex align={"center"} gap={1}>
-                            <Text color={"gray.500"}>active</Text>
-                            <Box rounded={"full"} boxSize={3} bg="green.400"></Box>
-                        </Flex>) : (
+                        {item.daysTo < 0 ? <Flex align={"center"} gap={2}>
+                            <Box rounded={"full"} boxSize={3} bg="yellow.400"></Box>
+                            <Text color={"gray.500"}>{item.timeSince}</Text>
+                        </Flex>: item.daysTo > 0 ? 
                             <Flex align={"center"} gap={1}>
-                                <Text color={"gray.500"}>passed</Text>
                                 <Box rounded={"full"} boxSize={3} bg="red.400"></Box>
+                                <Text color={"gray.500"}>{item.timeSince}</Text>
+                            </Flex> : 
+                            <Flex align={"center"} gap={1}>
+                                <Text color={"gray.500"}>Active</Text>
+                                <Box rounded={"full"} boxSize={3} bg="green.500"></Box>
                             </Flex>
-                        )}
+                        }
                     </Flex>
                     <Flex color={"gray.500"} justify={"space-between"}>
                         <Text fontSize={14}><Text as="span"  fontWeight={600}>Start</Text> {dayjs(item.start).format('D MMM YYYY hh:mm a')}</Text>

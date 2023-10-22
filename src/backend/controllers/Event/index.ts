@@ -36,11 +36,12 @@ class EventController extends BaseController<EventService> implements IEventCont
             )
 
             const dates: any[] = []
+            const endOfWeek = dayjs().endOf('w')
             await Promise.all(
                 allEvents
                     .filter(item => {
                         if (item.occurrence === 'FIXED') {
-                            const eventDay = dayjs().isBetween((item.duration as { start: Date }).start, (item.duration as { end: Date }).end)
+                            const eventDay = dayjs((item.duration as { end: Date }).end).isBetween((item.duration as { start: Date }).start, endOfWeek)
                             return eventDay
                         }
                         return true
@@ -54,6 +55,7 @@ class EventController extends BaseController<EventService> implements IEventCont
                                 end: dayjs(item.duration.end).format('YYYY-MM-DDTHH:mm'),
                                 timeSince: dayjs(item.duration.end).fromNow(),
                                 live: dayjs().isBetween(item.duration.start, item.duration.end),
+                                daysTo: dayjs().diff(item.duration.start, 'day'),
                                 meetingType: item.meetingType
                             })
                         } else {
@@ -63,13 +65,14 @@ class EventController extends BaseController<EventService> implements IEventCont
                                 dates.push({
                                     id: item._id,
                                     name: item.name,
-                                    start,
-                                    end,
-                                    timeSince: dayjs().day(m).endOf('day').fromNow(),
+                                    start: start.format('YYYY-MM-DDTHH:mm'),
+                                    end: end.format('YYYY-MM-DDTHH:mm'),
+                                    timeSince: start.fromNow(),
                                     live: dayjs().isBetween(
-                                        dayjs().day(m).startOf('day'),
-                                        dayjs().day(m).endOf('day')
+                                        start,
+                                        end
                                     ),
+                                    daysTo: dayjs().diff(start, 'day'),
                                     meetingType: item.meetingType
                                 })
                             })
@@ -77,6 +80,7 @@ class EventController extends BaseController<EventService> implements IEventCont
                     })
             )
 
+            console.log(dates)
             return responses.successWithData(res, dates.slice(0, 4).sort((a, b) => (new Date(b.start).getTime() - new Date(a.start).getTime())))
         } catch (error: any) {
             return responses.error(res, error.message || error)
