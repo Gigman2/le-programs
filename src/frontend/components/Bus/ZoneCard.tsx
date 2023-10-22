@@ -56,7 +56,7 @@ export default function ZoneCard({loading, data, name, onOpen, setSelectedBus}:
                 {l.busState === 'EN_ROUTE' ?<Flex fontSize={14} gap={1}>
                     <Text fontSize={14} color={"gray.500"}>Last point</Text>
                     <Text fontSize={14} color={"gray.500"} fontWeight={600}>
-                        {((l.stopPoints as any[])?.[(l.stopPoints as any[]).length - 1]).location as string}
+                        {((l.stopPoints as any[])?.[(l.stopPoints as any[]).length - 1])?.location as string}
                     </Text>
                 </Flex>
                 : <Box px={3} py={0} bg="blue.400" color={"white"} rounded={"md"} fontSize={14}>Arrived</Box>}

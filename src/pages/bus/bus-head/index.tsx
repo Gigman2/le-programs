@@ -57,7 +57,8 @@ export default function BranchHead() {
           {!eventLoading ? <Text fontWeight={600} color="gray.500"> {eventData?.data?.name}</Text> : <Skeleton h={6} w={"200px"} />}
         </Flex>
 
-        <Flex gap={3} mt={4}>
+        <Box maxH={'calc(100vh - 150px)'} overflowY={'scroll'}>
+          <Flex gap={3} mt={4}>
           {isLoading ? <Skeleton h={24} w="100%" rounded={"md"} /> : (
             <Box justifyContent={"space-between"} 
                 flex={1} p={2} rounded={"md"} 
@@ -102,71 +103,71 @@ export default function BranchHead() {
               <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.arrived}</Text>
             </Flex>
             </Box>
-          )}
-        </Flex>
+            )}
+          </Flex>
 
-        {isLoading ? <Skeleton mt={3}  h={24} w="100%" rounded={"md"}  /> : (<Box justifyContent={"space-between"} 
-                flex={1} p={2} rounded={"md"} 
-                bg="gray.100" borderWidth={1} 
-                borderColor={"gray.200"} mt={3}
-          >
-            <Flex borderBottomWidth={1} borderColor={"gray.200"} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} fontWeight={600} color={"gray.500"}>Finance Summary </Text>
-            </Flex>
+          {isLoading ? <Skeleton mt={3}  h={24} w="100%" rounded={"md"}  /> : (<Box justifyContent={"space-between"} 
+                  flex={1} p={2} rounded={"md"} 
+                  bg="gray.100" borderWidth={1} 
+                  borderColor={"gray.200"} mt={3}
+            >
+              <Flex borderBottomWidth={1} borderColor={"gray.200"} w="100%" justifyContent={"space-between"}>
+                <Text fontSize={15} fontWeight={600} color={"gray.500"}>Finance Summary </Text>
+              </Flex>
 
-            <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>Bus Cost Accrued</Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.cost || 0}</Text>
-            </Flex>
+              <Flex mt={1} w="100%" justifyContent={"space-between"}>
+                <Text fontSize={15} color={"gray.500"}>Bus Cost Accrued</Text>
+                <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.cost || 0}</Text>
+              </Flex>
 
-            <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>Bus Offering Received </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.offering || 0}</Text>
-            </Flex>
-        </Box>)}
+              <Flex mt={1} w="100%" justifyContent={"space-between"}>
+                <Text fontSize={15} color={"gray.500"}>Bus Offering Received </Text>
+                <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>Ghc {data?.data?.financeInfo?.offering || 0}</Text>
+              </Flex>
+          </Box>)}
 
-        <Flex gap={3}>
-          {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : (
-          <Flex justifyContent={"space-between"} 
-                flex={1} p={2} rounded={"md"} 
-                bg="red.100" borderWidth={1} 
-                borderColor={"red.200"} mt={3}
-                cursor={"pointer"}
-                onClick={() => router.push('/bus/bus-head/no-activity')}
-          >
-            <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
-            <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data?.notStarted.length}</Text>
-          </Flex>)}
-         {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : <Flex justifyContent={"space-between"} 
-                flex={1} p={2} rounded={"md"} 
-                bg="orange.100" borderWidth={1} 
-                borderColor={"orange.200"} mt={3}
-                cursor={"pointer"}
-                onClick={() => router.push('/bus/bus-head/target')}
-          >
-            <Text fontSize={15} fontWeight={600} color={"orange.400"}>Target not met</Text>
-            <Text fontSize={15} fontWeight={600} color={"orange.400"}>{data?.data?.unMetTarget?.length}</Text>
-          </Flex>}
-        </Flex>
+          <Flex gap={3}>
+            {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : (
+            <Flex justifyContent={"space-between"} 
+                  flex={1} p={2} rounded={"md"} 
+                  bg="red.100" borderWidth={1} 
+                  borderColor={"red.200"} mt={3}
+                  cursor={"pointer"}
+                  onClick={() => router.push('/bus/bus-head/no-activity')}
+            >
+              <Text fontSize={15} fontWeight={600} color={"red.400"}>No activity zones</Text>
+              <Text fontSize={15} fontWeight={600} color={"red.400"}>{data?.data?.notStarted.length}</Text>
+            </Flex>)}
+          {isLoading ? <Skeleton  mt={3} h={12} w="100%" rounded={"md"} /> : <Flex justifyContent={"space-between"} 
+                  flex={1} p={2} rounded={"md"} 
+                  bg="orange.100" borderWidth={1} 
+                  borderColor={"orange.200"} mt={3}
+                  cursor={"pointer"}
+                  onClick={() => router.push('/bus/bus-head/target')}
+            >
+              <Text fontSize={15} fontWeight={600} color={"orange.400"}>Target not met</Text>
+              <Text fontSize={15} fontWeight={600} color={"orange.400"}>{data?.data?.unMetTarget?.length}</Text>
+            </Flex>}
+          </Flex>
 
-        <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}/>
-        
+          <DeleteBusRound isOpen={isOpen} onClose={onClose} bus={selectedBus as IBusRound}/>
 
-        <Box py={6}>
-          <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
-          {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
+          <Box py={6}>
+            <Text fontWeight={600} color={"gray.500"}>Bus Zones</Text>
+            {isLoading && <Skeleton w="100%" h={24} rounded="md" />}
 
-          <Box maxH={'200px'} overflowY={'scroll'}>
-            {!isLoading && Object.keys(data?.data.zones||{})?.map((item : string) => (
-                <ZoneCard
-                    key={item} 
-                    loading={isLoading} 
-                    data={data?.data?.zones[item] as IBusRound[]}  
-                    name={item} 
-                    setSelectedBus={setSelectedBus}
-                    onOpen={onOpen}
-                />
-            ))}
+            <Box>
+              {!isLoading && Object.keys(data?.data.zones||{})?.map((item : string) => (
+                  <ZoneCard
+                      key={item} 
+                      loading={isLoading} 
+                      data={data?.data?.zones[item] as IBusRound[]}  
+                      name={item} 
+                      setSelectedBus={setSelectedBus}
+                      onOpen={onOpen}
+                  />
+              ))}
+            </Box>
           </Box>
         </Box>
       </AppWrapper>
