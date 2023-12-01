@@ -80,8 +80,10 @@ class EventController extends BaseController<EventService> implements IEventCont
                     })
             )
 
+            dates.sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+
             console.log(dates)
-            return responses.successWithData(res, dates.slice(0, 4).sort((a, b) => (new Date(b.start).getTime() - new Date(a.start).getTime())))
+            return responses.successWithData(res, dates.slice(0, 4))
         } catch (error: any) {
             return responses.error(res, error.message || error)
         }
