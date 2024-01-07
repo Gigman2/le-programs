@@ -15,8 +15,8 @@ import {
     useToast
 } from "@chakra-ui/react";
 import { handleChange } from "@/utils/form";
-import { addGroup, updateGroup } from "@/frontend/apis";
 import { IBusGroups } from "@/interface/bus";
+import { baseCreate } from "@/frontend/apis/base";
 
 export default function AddBusGroup(
     {isOpen, onClose, type, parentId, selected}: 
@@ -54,9 +54,15 @@ export default function AddBusGroup(
     
             let res: any
             if(selected){
-                res = await updateGroup(selected?._id as string, payload)
+
+                res = await baseCreate
+                <
+                    IBusGroups, 
+                    { name: string; type: string; parent: string, stations?: string[] }[]
+                >(`bus-accounts/${selected?._id}`,payload)
+                
             } else {
-                res = await addGroup(payload)
+                res = await baseCreate<IBusGroups,  { name: string; type: string; parent: string, stations?: string[] }[]>('bus-groups',payload)
             }
 
             if(res){

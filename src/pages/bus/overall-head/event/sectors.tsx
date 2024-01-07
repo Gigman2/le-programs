@@ -7,7 +7,7 @@ import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import { TbChevronLeft } from 'react-icons/tb'
 import { getSpecificBusData } from '@/frontend/store/bus'
 import { IEventData } from '.'
-import { useBasePostQuery } from '@/frontend/apis'
+import { useBasePostQuery } from '@/frontend/apis/base'
 
 export default function EventSummarySector() {
   const router = useRouter()

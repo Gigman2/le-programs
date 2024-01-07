@@ -6,18 +6,22 @@ import { TbChevronLeft } from 'react-icons/tb'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import { getSpecificBusData } from '@/frontend/store/bus'
-import { useBusGroups } from '@/frontend/apis'
-import { IBusAccount } from '@/interface/bus'
+import { IBusAccount, IBusGroups } from '@/interface/bus'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 const ZoneListCard = ({zones, active}: {zones: string[], active: boolean}) => {
 
-    const {isLoading, data, error} = useBusGroups({
+    const {isLoading, data} = useBaseGetQuery<IBusGroups[]>(
+        'bus-groups',
+        {
         _id: {'$in': zones},
         type: "ZONE"
     },
-        {ids: zones}, !!zones
+       {ids: zones}, 
+       !!zones
     )
+
 
     return (
         <Box>

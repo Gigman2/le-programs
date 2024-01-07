@@ -14,15 +14,14 @@ import {
 } from "@chakra-ui/react";
 import { IBusGroups } from "@/interface/bus";
 import dayjs from "dayjs";
-import { useSingleBusGroup } from "@/frontend/apis/bus";
+import { useBaseGetQuery } from "@/frontend/apis/base";
 
 export default function ViewBusGroup(
         {isOpen, onClose, type, subgroup, selected}: 
         {isOpen: boolean, onClose: () => void; type: string; subgroup?: string; selected?: IBusGroups}
     )  
     {
-      const {isLoading, data} = useSingleBusGroup(selected?._id as string, !!(selected?._id)
-  )
+    const {isLoading, data} = useBaseGetQuery<IBusGroups>(`bus-groups/${selected?._id as string}`, null, {group: selected?._id as string}, !!(selected?._id))
     return (
        <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

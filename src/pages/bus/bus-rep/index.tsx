@@ -4,7 +4,6 @@ import { Box, Button, Flex, Icon, Skeleton, Text, useDisclosure } from '@chakra-
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import {  TbPlus } from 'react-icons/tb'
-import { useActiveEvent, useBusTrips } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import { IBusRound } from '@/interface/bus'
@@ -13,6 +12,8 @@ import RecordCheckPoint from '@/frontend/components/Modals/recordCheckPoint'
 import EndBusTrip from '@/frontend/components/Modals/endBusTrip'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import dayjs from 'dayjs'
+import { useBaseGetQuery, useBasePostQuery } from '@/frontend/apis/base'
+import { IEvent } from '@/interface/events'
 
 export default function BusRepLogs() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -23,14 +24,19 @@ export default function BusRepLogs() {
   const [selectedRecord, setSelectedRecord]= useState<IBusRound>()
   const [eventTag, setEventTag] = useState('')
 
-  const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
+  // GET ACTIVE EVENTS
+  const {isLoading: eventLoading, data: eventData, error: eventError} = useBasePostQuery<IEvent>(
+    'events/active',
+    null,
+    {group: currentUser?.currentRole?.groupId as string},
     !!currentUser?.currentRole?.groupId
   )
 
-  const {isLoading: busTripLoading, data: busTripData} = useBusTrips(
+  const {isLoading: busTripLoading, data: busTripData} = useBaseGetQuery<IBusRound[]>(
+    `bus-rounds`,
     {
       tag: eventTag,
-      zone: currentUser?.bus['ZONE']?.id as string
+      busZone: currentUser?.bus['ZONE']?.id as string
     },
     {
       tag: eventTag,
@@ -38,8 +44,9 @@ export default function BusRepLogs() {
       isOpen,
       endIsOpen
     },
-    !!(eventTag && currentUser?.bus['ZONE']?.id)
+     !!(eventTag && currentUser?.bus['ZONE']?.id)
   )
+  
 
   useEffect(() => {
     if(eventData && !eventError){

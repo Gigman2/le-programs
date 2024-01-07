@@ -7,9 +7,9 @@ import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/st
 import Menu from '../Menu';
 import { TbAlignRight, TbArrowBackUp, TbHistory, TbHomeDot, TbLayoutBottombarCollapseFilled, TbPower, TbUsersGroup } from 'react-icons/tb';
 import PageWrapper from './pageWrapper';
-import { useBusGroupTree } from '@/frontend/apis';
 import { GroupedUnits } from '../Accounts/busingLogin';
 import { IBusGroups } from '@/interface/bus';
+import { useBaseGetQuery } from '@/frontend/apis/base';
 
 interface MenuItem {
   title: string;
@@ -64,8 +64,11 @@ const AppWrapper = (
     const router = useRouter()
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
     const [showMenu, setShowMenu] = useState<boolean>(false)
-
-    const {isLoading, data: treeData} = useBusGroupTree(currentUser?.currentRole?.groupId as string, 
+    
+    const {isLoading, data: treeData} = useBaseGetQuery<IBusGroups[]>(
+        `bus-groups/tree`,
+        {_id: currentUser?.currentRole?.groupId },
+        {group: currentUser?.currentRole?.groupId },
         !!(['BUS_REP','BUS_HEAD', 'BUS_HEAD', 'SECTOR_HEAD', 'OVERALL_HEAD'].includes(currentUser?.currentRole?.groupType as string))
     )
 

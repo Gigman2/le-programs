@@ -4,14 +4,26 @@ import { Box, Button, Flex, FormLabel, Icon, Input, Text, useToast } from '@chak
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { TbChevronLeft} from 'react-icons/tb'
-import PageWrapper from '@/frontend/components/layouts/pageWrapper'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
-import { handleChange, validate } from '@/utils/form'
-import { CreateBusTrip, CreateBusTripDTO } from '@/frontend/apis/bus'
+import { handleChange } from '@/utils/form'
 import { IEvent } from '@/interface/events'
 import { getActiveEvent } from '@/frontend/store/event'
 import dayjs from 'dayjs'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import { IBusRound } from '@/interface/bus'
+import { baseCreate } from '@/frontend/apis/base'
+
+export interface CreateBusTripDTO {
+    busOffering: number,
+    people: number,
+    busCost: number,
+    vehicle?: string,
+    event?: string
+    recordedBy?: string
+    busZone?: string
+    tag?: string
+    busState?: 'EN_ROUTE' | 'ARRIVED'
+}
 
 export default function AddBusLog() {
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -45,7 +57,7 @@ export default function AddBusLog() {
             payload.busState = "EN_ROUTE"
             payload.vehicle = (fields.vehicle as unknown as any).value
 
-            const res: any = await CreateBusTrip(payload)
+            const res: any = await baseCreate<IBusRound, CreateBusTripDTO>('bus-rounds',payload)
             if(res){
                 toast({
                     status: "success",

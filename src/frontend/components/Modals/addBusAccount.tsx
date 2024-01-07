@@ -14,9 +14,9 @@ import {
     useToast
 } from "@chakra-ui/react";
 import { handleChange } from "@/utils/form";
-import { addUser, assignUserToGroup, updateUser, useBusGroups } from "@/frontend/apis";
-import { IBusAccount } from "@/interface/bus";
+import { IBusAccount, IBusGroups } from "@/interface/bus";
 import Autocomplete from "../Forms/Autocomplete";
+import { baseCreate, useBaseGetQuery } from "@/frontend/apis/base";
 
 export default function AddBusAccount(
     {isOpen, onClose, type, role, parentId, selected}: 
@@ -37,7 +37,9 @@ export default function AddBusAccount(
         query.parent = parentId
     }
 
-    const {isLoading: groupLoading, data: groupData} = useBusGroups(
+    
+  const { data: groupData } = useBaseGetQuery<IBusGroups[]>(
+    'bus-groups',
     query, 
     {
         type:  type,
@@ -45,7 +47,8 @@ export default function AddBusAccount(
         isOpen
     },
     !!(type)
-  )
+  );
+
 
     useEffect(() => {
         if(selected !== null || selected !== undefined){
@@ -75,9 +78,13 @@ export default function AddBusAccount(
     
             let res: any
             if(selected){
-                res = await updateUser(selected?._id as string, payload)
+                res = await baseCreate
+                <
+                    IBusAccount, 
+                    { name: string; type: string; parent: string, stations?: string[] }[]
+                >(`bus-accounts/${selected?._id}`,payload)
             } else {
-                res = await addUser(payload)
+                res = await baseCreate<IBusAccount, {data: { name: string; email: string }}>('bus-accounts',payload)
             }
 
             if(res){
@@ -88,7 +95,7 @@ export default function AddBusAccount(
                     groupId: fields.assignedGroup.value
                 }
 
-                await assignUserToGroup(assignData)
+                await baseCreate<IBusAccount, {data: { userId: string; groupId: string }}>('bus-accounts/assignUser', payload)
 
 
                 toast({

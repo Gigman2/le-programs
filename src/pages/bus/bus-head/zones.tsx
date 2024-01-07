@@ -5,12 +5,12 @@ import { IAccountUser, getUser, } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import {  TbPlus, TbBallpen, TbEye } from 'react-icons/tb'
 import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import {  useBusGroups } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
 import { IBusGroups } from '@/interface/bus'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import ViewBusGroup from '@/frontend/components/Modals/viewBusGroup'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
@@ -21,19 +21,21 @@ export default function BranchHead() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenViewGroup, onOpen: onOpenViewGroup, onClose: onCloseViewGroup } = useDisclosure()
 
-
-  const {isLoading, data: groupData} = useBusGroups(
+  //GET BUS GROUPS AT THE ZONE LEVEL
+  const {isLoading,  data: groupData} = useBaseGetQuery<IBusGroups[]>(
+    'bus-groups',
     {
-        type:  "ZONE",
-        parent: currentUser?.currentRole?.groupId as string
-    }, 
+      type:  "ZONE",
+      parent: currentUser?.currentRole?.groupId as string
+    },
     {
-        type:  "ZONE",
-        parent: currentUser?.currentRole?.groupId as string,
-        isOpen
+      type:  "ZONE",
+      parent: currentUser?.currentRole?.groupId as string,
+      isOpen
     },
     !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
+
 
   useEffect(() => {
     const user = getUser() as IAccountUser

@@ -4,12 +4,12 @@ import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, 
 import { IAccountUser, getUser, removeSession, saveBusUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import {TbPlus, TbBallpen, TbEye } from 'react-icons/tb'
-import {useBusGroups } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
 import { IBusGroups } from '@/interface/bus'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import ViewBusGroup from '@/frontend/components/Modals/viewBusGroup'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
@@ -21,7 +21,8 @@ export default function BranchHead() {
   const { isOpen: isOpenViewGroup, onOpen: onOpenViewGroup, onClose: onCloseViewGroup } = useDisclosure()
 
 
-  const {isLoading, data: groupData} = useBusGroups(
+  const {isLoading, data: groupData} = useBaseGetQuery<IBusGroups[]>(
+    'bus-groups',
     {
         type:  "BRANCH",
         parent: currentUser?.currentRole?.groupId as string
@@ -32,7 +33,7 @@ export default function BranchHead() {
         isOpen
     },
     !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
-  )
+  );
 
   useEffect(() => {
     const user = getUser() as IAccountUser

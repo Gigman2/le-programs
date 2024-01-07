@@ -3,25 +3,31 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { useBusRounds } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { getActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import { TbChevronLeft } from 'react-icons/tb'
 import { IEvent } from '@/interface/events'
 import { getExtraBusRecord } from '@/frontend/store/bus'
+import { IBusRound } from '@/interface/bus'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
 export default function BranchHead() {
-  const [event, setEvent] = useState<IEvent>()
-  const [extraData, setExtraData] = useState<{unMetTarget?: string[]}>()
-  const router = useRouter()
+    const [event, setEvent] = useState<IEvent>()
+    const [extraData, setExtraData] = useState<{unMetTarget?: string[]}>()
+    const router = useRouter()
 
-    const {isLoading, data, error} = useBusRounds({
-        _id: {'$in': extraData?.unMetTarget}
-    },
-        {ids: extraData?.unMetTarget}, !!extraData?.unMetTarget
+
+    //GET BUS ROUND WITH UNMET TARGETS
+    const {isLoading, data} = useBaseGetQuery<IBusRound[]>(
+        'bus-rounds',
+        {
+            _id: {'$in': extraData?.unMetTarget}
+        },
+       {ids: extraData?.unMetTarget},
+        !!extraData?.unMetTarget
     )
 
     useEffect(() => {

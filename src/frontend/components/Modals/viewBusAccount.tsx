@@ -16,15 +16,16 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { IBusAccount } from "@/interface/bus";
-import { useSingleBusAccount } from "@/frontend/apis/bus";
 import dayjs from "dayjs";
+import { useBaseGetQuery } from "@/frontend/apis/base";
 
 export default function ViewBusAccount(
         {isOpen, onClose, type, selected}: 
         {isOpen: boolean, onClose: () => void; type: string, selected?: IBusAccount}
     )  
     {
-    const {isLoading, data} = useSingleBusAccount(selected?._id as string, !!(selected?._id))
+
+    const {isLoading, data} = useBaseGetQuery<IBusAccount>(`bus-accounts/${selected?._id as string}`, null, {account: selected?._id as string}, !!(selected?._id))
     
     return (
        <Modal isOpen={isOpen} onClose={onClose}>

@@ -3,10 +3,11 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { useActiveEvent } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import { useBasePostQuery } from '@/frontend/apis/base'
+import { IEvent } from '@/interface/events'
 
 
 
@@ -14,7 +15,10 @@ export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 
-  const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
+  const {isLoading: eventLoading, data: eventData, error: eventError} = useBasePostQuery<IEvent>(
+    'events/active',
+    null,
+    {group: currentUser?.currentRole?.groupId as string},
     !!currentUser?.currentRole?.groupId
   )
 

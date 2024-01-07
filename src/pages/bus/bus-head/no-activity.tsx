@@ -1,18 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react'
-import { Box, Flex, Icon, Skeleton, Text, useDisclosure } from '@chakra-ui/react'
+import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { useActiveEvent, useBusGroups, useEventZoneSummary } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
-import { getActiveEvent, saveActiveEvent } from '@/frontend/store/event'
+import { getActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
-import ZoneCard from '@/frontend/components/Bus/ZoneCard'
-import { IBusAccount, IBusRound } from '@/interface/bus'
-import DeleteBusRound from '@/frontend/components/Modals/deleteBusRound'
+import { IBusAccount, IBusGroups } from '@/interface/bus'
 import { TbChevronLeft } from 'react-icons/tb'
 import { IEvent } from '@/interface/events'
 import { getExtraBusRecord } from '@/frontend/store/bus'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
@@ -22,10 +20,14 @@ export default function BranchHead() {
   const router = useRouter()
 
 
-    const {isLoading, data, error} = useBusGroups({
+    //GET BUS GROUPS WITH NO ACTIVITY
+    const {isLoading, data} = useBaseGetQuery<IBusGroups[]>(
+      'bus-groups',
+      {
         _id: {'$in': extraData?.notStarted}
-    },
-        {ids: extraData?.notStarted}, !!extraData?.notStarted
+      },
+      {ids: extraData?.notStarted},
+      !!extraData?.notStarted
     )
 
     useEffect(() => {

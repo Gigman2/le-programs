@@ -6,25 +6,27 @@ import { TbChevronLeft } from 'react-icons/tb'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import { getSpecificBusData } from '@/frontend/store/bus'
-import { IBusAccount } from '@/interface/bus'
-import { useBusRounds } from '@/frontend/apis'
+import { IBusRound } from '@/interface/bus'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
 const ZoneListCard = ({records, active}: {records: string[], active: boolean}) => {
 
-    const {isLoading, data, error} = useBusRounds({
-        _id: {'$in': records},
-    },
-        {ids: records}, !!records
+    const {isLoading, data, error} = useBaseGetQuery<IBusRound[]>(
+        'bus-rounds',
+        {
+            _id: {'$in': records},
+        },
+        {ids: records}, 
+        !!records
     )
-
     return (
         <Box>
             {isLoading ? <Box gap={4}>
                 <Skeleton h={24} rounded="md" flex={1} mb={4} />
                 <Skeleton h={24} rounded="md" flex={1} />
-           </Box>: data?.data.map(item => (
+            </Box>: data?.data.map(item => (
                 <Box key={item._id} mb={3} bg="gray.100" p={3} rounded={"md"}>
                     <Flex justifyContent={"space-between"}>
                         <Text color={active ? "blue.500" : "gray.500"} fontWeight={600}>{(item.recordedBy as unknown as {name: string}).name}</Text>
@@ -34,12 +36,12 @@ const ZoneListCard = ({records, active}: {records: string[], active: boolean}) =
                         <Text fontWeight={600} fontSize={20} color={"gray.600"}>{item.people} <Text as="span" fontWeight={500} fontSize={15}>people</Text></Text>
                     </Flex>
 
-                   <Box mt={2}>
+                    <Box mt={2}>
                         <Text fontSize={14} color={"gray.500"}>Last checkpoints</Text>
                         <Flex mt={1} gap={2} wrap={"wrap"}>
                             {item.stopPoints?.map((s, index) => <Box fontSize={14} color={(index === ((item?.stopPoints || [])?.length - 1) && !active) ? 'white' : "blue.500"} bg={(index === ((item?.stopPoints || [])?.length - 1) && !active) ? "blue.600" : "blue.100"} py={1} px={3} rounded={"md"} key={s.location+item._id}>{s.location}</Box>)}
                         </Flex>
-                   </Box>
+                    </Box>
                 </Box>
             ))}
         </Box> 

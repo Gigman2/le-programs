@@ -4,12 +4,12 @@ import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, 
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { TbPlus, TbBallpen, TbEye } from 'react-icons/tb'
-import { useBusAccount } from '@/frontend/apis'
 import { IBusAccount } from '@/interface/bus'
 import AddBusAccount from '@/frontend/components/Modals/addBusAccount'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import ViewBusAccount from '@/frontend/components/Modals/viewBusAccount'
+import { useBasePostQuery } from '@/frontend/apis/base'
 
 
 
@@ -20,8 +20,8 @@ export default function BranchHead() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenAccount, onOpen: onOpenAccount, onClose: onCloseAccount } = useDisclosure()
 
-
-  const {isLoading, data: accountData} = useBusAccount(
+  const {isLoading, data: accountData} = useBasePostQuery<IBusAccount[]>(
+    'bus-accounts/all',
     {
       "$or": [
         {addedGroup:  currentUser?.currentRole?.groupId as string},
@@ -34,8 +34,8 @@ export default function BranchHead() {
       ]
     },
     {
-        addedGroup:  currentUser?.currentRole?.groupId as string,
-        isOpen
+      addedGroup:  currentUser?.currentRole?.groupId as string,
+      isOpen
     },
     !!(currentUser?.currentRole?.groupType === "SECTOR_HEAD")
   )

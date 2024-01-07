@@ -4,13 +4,12 @@ import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, 
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import {  TbPlus, TbBallpen, TbEye } from 'react-icons/tb'
-import PageWrapper from '@/frontend/components/layouts/pageWrapper'
-import { useBusAccount } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import { IBusAccount } from '@/interface/bus'
 import AddBusAccount from '@/frontend/components/Modals/addBusAccount'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
 import ViewBusAccount from '@/frontend/components/Modals/viewBusAccount'
+import { useBasePostQuery } from '@/frontend/apis/base'
 
 
 
@@ -21,15 +20,16 @@ export default function OverallAccounts() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { isOpen: isOpenAccount, onOpen: onOpenAccount, onClose: onCloseAccount } = useDisclosure()
 
-  const {isLoading, data: accountData} = useBusAccount(
+  const {isLoading, data: accountData} = useBasePostQuery<IBusAccount[]>(
+    'bus-accounts/all',
     {
       "$or": [
         {'accountType.groupType':  'SECTOR_HEAD'},
         {addedGroup: null}
       ]
-    }, 
+    },
     {
-        isOpen
+      isOpen
     },
     !!(currentUser?.currentRole?.groupType)
   )

@@ -6,8 +6,9 @@ import { useRouter } from 'next/router'
 import { TbChevronLeft} from 'react-icons/tb'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
-import { useBusGroups } from '@/frontend/apis'
 import { getSpecificBusData } from '@/frontend/store/bus'
+import { IBusGroups } from '@/interface/bus'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 export default function WithoutReps() {
     const [currentUser, setCurrentUser] = useState<IAccountUser>()
@@ -15,7 +16,9 @@ export default function WithoutReps() {
 
     const router = useRouter()
 
-    const {isLoading, data, error} = useBusGroups({
+    const {isLoading, data} = useBaseGetQuery<IBusGroups[]>(
+        'bus-groups',
+        {
         _id: {'$in': extraData}
     },
         {ids: extraData}, 

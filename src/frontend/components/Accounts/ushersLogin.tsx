@@ -1,17 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Flex, FormLabel, Input, Text, useToast } from '@chakra-ui/react'
-import { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import { Box, Button, FormLabel, Input } from '@chakra-ui/react'
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange, validate } from '@/utils/form';
 import { clearUser } from '@/frontend/store/auth';
 import { getUser, saveUser } from '@/frontend/store/temporalUshering';
 
-interface IModifiedBusGroup {
-    label?: string,
-    stations: string[],
-    busReps: string[],
-    value: string
-}
 
 interface ILocalUser {
     name: string

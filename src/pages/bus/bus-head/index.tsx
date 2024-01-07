@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import { Box, Flex, Skeleton, Text, useDisclosure } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
-import { useActiveEvent, useEventZoneSummary } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper'
 import { saveActiveEvent } from '@/frontend/store/event'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
@@ -11,6 +10,8 @@ import ZoneCard from '@/frontend/components/Bus/ZoneCard'
 import { IBusRound } from '@/interface/bus'
 import DeleteBusRound from '@/frontend/components/Modals/deleteBusRound'
 import { saveExtraBusRecord } from '@/frontend/store/bus'
+import { useBasePostQuery } from '@/frontend/apis/base'
+import { IEvent } from '@/interface/events'
 
 
 
@@ -20,11 +21,28 @@ export default function BranchHead() {
   const [currentUser, setCurrentUser] = useState<IAccountUser>()
   const router = useRouter()
 
-  const {isLoading: eventLoading, data: eventData, error: eventError} = useActiveEvent(currentUser?.currentRole?.groupId as string, 
+
+  // GET ACTIVE EVENTS
+  const {isLoading: eventLoading, data: eventData, error: eventError} = useBasePostQuery<IEvent>(
+    'events/active',
+    null,
+    {group: currentUser?.currentRole?.groupId as string},
     !!currentUser?.currentRole?.groupId
   )
 
-  const {isLoading, data, error} = useEventZoneSummary(currentUser?.currentRole?.groupId as string, 
+  
+  // GET EVENT ZONE SUMMARY
+  const {isLoading, data} = useBasePostQuery<{
+          busInfo: { total_buses: number, arrived: number, on_route: number };
+          peopleInfo: { people: number, arrived: number, on_route: number };
+          financeInfo: { offering: number, cost: number };
+          notStarted: string[];
+          unMetTarget: string[];
+          zones: Record<string, IBusRound[]>
+        }>(
+    `bus-rounds/zone-summary/${currentUser?.currentRole?.groupId as string}`,
+    null,
+    {group: currentUser?.currentRole?.groupId as string},
     !!currentUser?.currentRole?.groupId
   )
 
@@ -35,6 +53,7 @@ export default function BranchHead() {
     }
   },[eventData, eventError])
 
+
   useEffect(() => {
     const payload = {
       notStarted: data?.data.notStarted as string[],
@@ -42,6 +61,7 @@ export default function BranchHead() {
     }
     saveExtraBusRecord(payload)
   }, [data?.data.unMetTarget, data?.data.notStarted])
+
 
   useEffect(() => {
     const user = getUser() as IAccountUser

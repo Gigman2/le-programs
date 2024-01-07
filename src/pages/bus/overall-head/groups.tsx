@@ -4,12 +4,12 @@ import { Box, Flex, Icon, Table, Text, Thead, Tbody, Tr, Th, Td, useDisclosure, 
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
 import { TbPlus, TbBallpen, TbEye, TbDots } from 'react-icons/tb'
-import { useBusGroups } from '@/frontend/apis'
 import GuardWrapper from '@/frontend/components/layouts/guardWrapper' 
 import AddBusGroup from '@/frontend/components/Modals/addBusGroup'
 import { IBusGroups } from '@/interface/bus'
 import ViewBusGroup from '@/frontend/components/Modals/viewBusGroup'
 import AppWrapper from '@/frontend/components/layouts/appWrapper'
+import { useBaseGetQuery } from '@/frontend/apis/base'
 
 
 
@@ -21,7 +21,8 @@ export default function OverallGroups() {
   const { isOpen: isOpenViewGroup, onOpen: onOpenViewGroup, onClose: onCloseViewGroup } = useDisclosure()
 
 
-  const {isLoading, data: groupData} = useBusGroups(
+  const {isLoading, data: groupData} = useBaseGetQuery<IBusGroups[]>(
+    'bus-groups',
     {
         type:  "SECTOR",
     }, 
@@ -30,7 +31,8 @@ export default function OverallGroups() {
         isOpen
     },
     !!(currentUser?.currentRole?.groupType === "OVERALL_HEAD")
-  )
+  );
+
 
   useEffect(() => {
     const user = getUser() as IAccountUser

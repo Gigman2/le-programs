@@ -14,10 +14,11 @@ import {
     Text,
     useToast
 } from "@chakra-ui/react";
-import { IBusRound } from "@/interface/bus";
+import { IBusGroups, IBusRound } from "@/interface/bus";
 import { handleChange } from "@/utils/form";
 import Autocomplete from "../Forms/Autocomplete";
-import { updateBusLog, useSingleBusGroup } from "@/frontend/apis/bus";
+import { AddStopPointDTO } from "./endBusTrip";
+import { baseCreate, useBaseGetQuery } from "@/frontend/apis/base";
 
 export default function RecordCheckPoint(
     {isOpen, onClose, selectedRecord}: 
@@ -29,9 +30,10 @@ export default function RecordCheckPoint(
         people: 0,
         location: ""
     })
-
-    const {isLoading, data: recordData} = useSingleBusGroup((
-        selectedRecord?.busZone as unknown as {_id: string})?._id, 
+    const {isLoading, data: recordData} = useBaseGetQuery<IBusGroups>(
+        `bus-groups/${(selectedRecord?.busZone as unknown as {_id: string})?._id}`,
+        null,
+        {group: (selectedRecord?.busZone as unknown as {_id: string})?._id},
         !!(selectedRecord?.busZone as unknown as {_id: string})?._id
     )
     const record = recordData?.data
@@ -46,7 +48,13 @@ export default function RecordCheckPoint(
                 people: (Number(selectedRecord?.people) || 0) + Number(data.people)
             }
 
-            const res: any = await updateBusLog(selectedRecord?._id as string, payload)
+
+            const res = await baseCreate
+                <
+                    any, 
+                    AddStopPointDTO
+                >(`bus-rounds/${selectedRecord?._id as string}`,payload)
+
             if(res){
                 toast({
                     status: "success",

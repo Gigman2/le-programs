@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head'
 import { Box, Flex, Text, Icon } from '@chakra-ui/react'
-import { useState } from 'react';
 import {MdOutlineDirectionsBus} from 'react-icons/md'
 import BacentaRep from '@/frontend/components/Accounts/busingLogin';
 import PageWrapper from '@/frontend/components/layouts/pageWrapper';

@@ -16,7 +16,15 @@ import {
 } from "@chakra-ui/react";
 import { IBusRound } from "@/interface/bus";
 import { handleChange } from "@/utils/form";
-import { updateBusLog } from "@/frontend/apis/bus";
+import { baseCreate } from "@/frontend/apis/base";
+
+export interface AddStopPointDTO {
+    people: number,
+    stopPoints: [{
+        location: string;
+        people: number
+    }],
+}
 
 export default function EndBusTrip(
     {isOpen, onClose, selectedRecord}: 
@@ -47,7 +55,11 @@ export default function EndBusTrip(
                 people: fields.people
             }
     
-            const res: any = await updateBusLog(selectedRecord?._id as string, payload)
+            const res = await baseCreate
+                <
+                    any, 
+                    AddStopPointDTO
+                >(`bus-rounds/${selectedRecord?._id as string}`,payload)
             if(res){
                 toast({
                     status: "success",
