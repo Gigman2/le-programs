@@ -1,7 +1,6 @@
 import { IMessage } from "@/interface/website-data";
 import { Schema, model, models } from "mongoose";
 
-const ObjectId = Schema.Types.ObjectId
 
 const schema = new Schema<IMessage>(
 

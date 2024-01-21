@@ -1,4 +1,4 @@
-import Newsletter from '@/backend/models/newsletter';
+import WebsiteMessage from '@/backend/models/websiteModels/message';
 import { connectMongo } from '@/backend/utils/connectMongo';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
@@ -13,7 +13,7 @@ const handler: NextApiHandler = async function handler(
             await connectMongo("website_data");
             let data = req.body
             if (typeof data === 'string') data = JSON.parse(data)
-            const record = await Newsletter.create(data)
+            const record = await WebsiteMessage.create(data)
             return res.status(200).json({ message: 'created Successfully', data: record })
         }
         return
