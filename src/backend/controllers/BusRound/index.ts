@@ -27,6 +27,7 @@ class BusRoundController extends BaseController<BusRoundService> {
                 this.busGroupService
             ) as IEvent
 
+
             if (!active) return responses.error(res, "No active event")
 
             const eventStart = active?.occurrence === 'FIXED' ? dayjs(active.duration?.start).format('YYYY-MM-DDTHH:mm') : dayjs().startOf('day').format('YYYY-MM-DDTHH:mm')
@@ -81,6 +82,7 @@ class BusRoundController extends BaseController<BusRoundService> {
                 zones: groupedByZoneName,
             })
         } catch (error: any) {
+            console.log(error)
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
     }

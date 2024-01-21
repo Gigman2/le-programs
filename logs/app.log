@@ -849,3 +849,7 @@
 [2023-10-22T13:09:28.277] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-22T13:09:41.639] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
 [2023-10-22T17:02:07.059] [ERROR] default - Cast to ObjectId failed for value "null" (type string) at path "_id" for model "BusGroup"
+[2024-01-21T11:10:24.005] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2024-01-21T11:10:24.012] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2024-01-21T11:10:24.011] [ERROR] default - [ErrorReply: NOAUTH Authentication required]
+[2024-01-21T11:10:24.009] [ERROR] default - [ErrorReply: NOAUTH Authentication required]

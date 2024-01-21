@@ -8,7 +8,7 @@ const handler: NextApiHandler = async function handler(
 ) {
     try {
         switch (req.method) {
-            case 'GET':
+            case 'POST':
                 return BusRound.busBranchSummary(req, res);
 
             default:
