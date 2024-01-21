@@ -1,4 +1,4 @@
-import Newsletter from '@/backend/models/newsletter';
+import Newsletter from '@/backend/models/websiteModels/newsletter';
 import { connectMongo } from '@/backend/utils/connectMongo';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
