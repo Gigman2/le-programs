@@ -1,16 +1,16 @@
-import { INewsletter } from "@/interface/website-data";
+import { IMessage } from "@/interface/website-data";
 import { Schema, model, models } from "mongoose";
 
 const ObjectId = Schema.Types.ObjectId
 
-const schema = new Schema<INewsletter>(
+const schema = new Schema<IMessage>(
 
     {
         name: {
             type: String,
             required: true
         },
-        email: {
+        message: {
             type: String,
         },
         website: {
@@ -36,5 +36,5 @@ const schema = new Schema<INewsletter>(
 })
 
 
-const WebsiteNewsletter = models.Newsletter || model<INewsletter>('Newsletter', schema);
-export default WebsiteNewsletter;
+const WebsiteMessage = models.message || model<IMessage>('Message', schema);
+export default WebsiteMessage;
