@@ -52,7 +52,7 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any> | nul
         token = localStorage.getItem('auth_token') as string
     }
     const parsedQuery = new URLSearchParams()
-    let path = `${baseUrl}/api/${url}}`
+    let path = `${baseUrl}/api/${url}`
 
     if (query !== null) {
         for (const key in query) {

@@ -5,6 +5,8 @@ import { NextApiRequest, NextApiResponse } from "next";
 import responses from "@/backend/lib/response";
 import BusAccountService from "@/backend/services/BusAccount";
 import { IBusAccount, IBusGroups } from "@/interface/bus";
+import { Types } from "mongoose";
+
 
 class BusGroupController extends BaseController<BusGroupService> {
   protected name = "Bus group";
@@ -41,7 +43,13 @@ class BusGroupController extends BaseController<BusGroupService> {
 
   async fullSingleGroup(req: NextApiRequest, res: NextApiResponse) {
     try {
-      const group = this.service.exposeDocument<IBusGroups>(await this.service.getById((req.query as { id: string | string[] }).id))
+      const query = req.query as { id: string }
+      console.log(query.id)
+
+      const group = this.service.exposeDocument<IBusGroups>(await this.service.getById(
+        this.service.objectId(query.id) as any)
+      )
+      if (!group) throw new Error('Bus group not found')
       group.accounts = await this.accountService.get({ 'accountType.groupId': (req.query as { id: string | string[] }).id }) as IBusAccount[]
       group.subGroup = await this.service.get({ parent: (req.query as { id: string | string[] }).id }) as IBusGroups[]
 

@@ -30,6 +30,8 @@ export default function RecordCheckPoint(
         people: 0,
         location: ""
     })
+    console.log(`bus-groups/${(selectedRecord?.busZone as unknown as {_id: string})?._id}`)
+    
     const {isLoading, data: recordData} = useBaseGetQuery<IBusGroups>(
         `bus-groups/${(selectedRecord?.busZone as unknown as {_id: string})?._id}`,
         null,
