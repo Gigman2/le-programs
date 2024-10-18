@@ -11,7 +11,7 @@ import {
 
 import { theme } from '../frontend/theme/theme'
 
-export default function App({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const queryClient = new QueryClient()
 
@@ -43,3 +43,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </ChakraProvider>
   </QueryClientProvider>
 }
+
+export default MyApp

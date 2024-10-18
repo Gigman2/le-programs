@@ -1,5 +1,6 @@
 import BusRound from '@/backend/controllers/BusRound';
 import ChurchEvent from '@/backend/controllers/Event';
+import { routeGuard } from '@/backend/middlewares/routeGuard';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const handler: NextApiHandler = async function handler(
@@ -21,4 +22,4 @@ const handler: NextApiHandler = async function handler(
 
 
 
-export default handler;
+export default routeGuard(true)(handler);
