@@ -25,11 +25,18 @@ class AppRedisClient implements IAppRedisClient {
     private constructor() {
         this.Client = null;
     }
+    
 
     static getInstance(): AppRedisClient {
+
+        console.log(redisHost, redisPort, redisPass)
         if (!this.instance) {
             this.instance = new AppRedisClient();
-            this.instance.initializeAsync({host: redisHost as string, port: redisPort as string, password: redisPass as string})
+            this.instance.initializeAsync({
+                host: redisHost as string,
+                port: redisPort as string,
+                password: redisPass as string
+            })
         }
         return this.instance;
     }
