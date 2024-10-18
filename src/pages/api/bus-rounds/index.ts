@@ -1,5 +1,6 @@
 import BusRound from '@/backend/controllers/BusRound';
 import { authenticateUser } from '@/backend/middlewares/authenticate';
+import { routeGuard } from '@/backend/middlewares/routeGuard';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const handler: NextApiHandler = async function handler(
@@ -25,4 +26,4 @@ const handler: NextApiHandler = async function handler(
 
 
 
-export default authenticateUser(handler);
+export default routeGuard(true)(handler);

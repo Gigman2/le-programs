@@ -8,6 +8,7 @@ import {redisHost, redisPort, redisPass} from '@backend/config/env'
 
 interface IAppRedisClient {
     Client: RedisClientType | null;
+    establishConnection(): Promise<void>;
     initializeAsync({ host, port, password }: { host: string; port: string; password: string }): Promise<void>;
     get(key: string): Promise<string | null>;
     set(key: string, value: string, expiry?: string): Promise<boolean>;
@@ -28,40 +29,56 @@ class AppRedisClient implements IAppRedisClient {
     
 
     static getInstance(): AppRedisClient {
-
-        console.log(redisHost, redisPort, redisPass)
         if (!this.instance) {
             this.instance = new AppRedisClient();
-            this.instance.initializeAsync({
-                host: redisHost as string,
-                port: redisPort as string,
-                password: redisPass as string
-            })
         }
         return this.instance;
     }
 
+    async establishConnection() {
+        await this.initializeAsync({
+            host: redisHost as string,
+            port: redisPort as string,
+            password: redisPass as string
+        })
+    }
+
+    async disconnect() {
+        await this.Client?.disconnect()
+    }
+
     async initializeAsync({ host, port, password }: { host: string; port: string; password: string }): Promise<void> {
-        if (!this.Client) {
-            const url = `redis://${host}:${port}`;
-            console.log(`Redis => `, url);
-            this.Client = redis.createClient({ url: url });
-            await this.Client.connect();
-            await this.Client.auth({ password });
+        try {
+            if (!this.Client) {
+                const url = `redis://${host}:${port}`;
+                console.log(`Redis => `, url);
+                this.Client = redis.createClient({ url: url });
+                await this.Client.connect();
 
-            this.Client.on('connect', () => {
-                console.log('Redis connected');
-                appDebugger(`Connected to redis on ${host}`);
-            });
+                this.Client.setMaxListeners(100);
 
-            this.Client.on('error', (err) => {
-                appDebugger(`Redis server stopped because ${err}`);
-            });
-
-        }
+                if (password) {
+                await this.Client.auth({ password });
+            }
+    
+                this.Client.on('connect', () => {
+                    appDebugger(`Connected to redis on ${host}`);
+                });
+    
+                this.Client.on('error', (err) => {
+                    appDebugger(`Redis server stopped because ${err}`);
+                });
+            }
+            
+        } catch (error) {
+            this.logger.log(`Unable to connect to redis`, LogLevel.Error, "REDIS-CACHE", error);
+        }  
     }
 
     get = async <T>(key: string): Promise<T | null> => {
+        if (!this.Client) {
+            await this.establishConnection();
+        }
         const data = await this.Client?.get(key)
         if (!data) {
             this.logger.log(`No Data found: Key ${key}`, LogLevel.Info, "REDIS-CACHE");
@@ -75,6 +92,9 @@ class AppRedisClient implements IAppRedisClient {
 
     set = async (key: string, value: string, expiry?: string) => {
         try {
+            if (!this.Client) {
+                await this.establishConnection();
+            }
             if (typeof key !== 'string') {
                 key = String(key)
             }
@@ -97,6 +117,9 @@ class AppRedisClient implements IAppRedisClient {
 
     remove = async (...args: string[]) => {
         try {
+            if (!this.Client) {
+                await this.establishConnection();
+            }
             let keys = args
             const newKeys = keys.map(key => {
                 if (typeof key !== 'string') {
@@ -114,6 +137,9 @@ class AppRedisClient implements IAppRedisClient {
 
     setHashMap = async (key: string, payload: Record<string, any>): Promise<boolean> => {
         try {
+            if (!this.Client) {
+                await this.establishConnection();
+            }
             if (typeof key !== 'string') {
                 key = String(key)
             }
@@ -136,18 +162,24 @@ class AppRedisClient implements IAppRedisClient {
 
     getSingleDataFromHashMap = async (key: string, field: string): Promise<any> => {
         try {
+            if (!this.Client) {
+                await this.establishConnection();
+            }
             return await this.Client?.hGet(key, field)
         } catch (error) {
             this.logger.log(`Unable to get data from hash map`, LogLevel.Error, "REDIS-CACHE", error);
-        }
+        } 
     }
 
     getAllDataFromHashMap = async (key: string): Promise<any> => {
         try {
+            if (!this.Client) {
+                await this.establishConnection();
+            }
             return await this.Client?.hGetAll(key)
         } catch (error) {
             this.logger.log(`Unable to get data from hash map`, LogLevel.Error, "REDIS-CACHE", error);
-        }
+        } 
     }
 }
 

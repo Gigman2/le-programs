@@ -5,9 +5,11 @@ import BusGroupService from '../BusGroup';
 import dayjs from 'dayjs';
 import { MeetingTypes } from '@/helpers/misc';
 import isBetween from 'dayjs/plugin/isBetween'
+import Logger, { LogLevel } from '@/backend/config/logger';
 
 export default class EventService extends BaseService<IEvent>  {
     protected readonly name = 'Event';
+    logger = Logger.getInstance()
 
     constructor(protected readonly model: Model<IEvent>) {
         super(model)
@@ -66,7 +68,8 @@ export default class EventService extends BaseService<IEvent>  {
             }
             return maxScoreEvent
         } catch (error) {
-            return {}
+            this.logger.log('Error in activeEvent', LogLevel.Error, 'EVENT-SERVICE', error)
+            return null
         }
     }
 }
