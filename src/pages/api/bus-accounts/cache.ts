@@ -1,5 +1,5 @@
 import BusAccount from '@/backend/controllers/BusAccount';
-import { authenticateUser } from '@/backend/middlewares/authenticate';
+import { routeGuard } from '@/backend/middlewares/routeGuard';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
 const assignUser: NextApiHandler = async function handler(
@@ -21,4 +21,4 @@ const assignUser: NextApiHandler = async function handler(
 
 
 
-export default authenticateUser(assignUser);
+export default routeGuard(true)(assignUser);

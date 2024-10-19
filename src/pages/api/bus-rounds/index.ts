@@ -1,5 +1,4 @@
 import BusRound from '@/backend/controllers/BusRound';
-import { authenticateUser } from '@/backend/middlewares/authenticate';
 import { routeGuard } from '@/backend/middlewares/routeGuard';
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
 
