@@ -15,7 +15,7 @@ class BusGroupController extends BaseController<BusGroupService> {
     this.getTree = this.getTree.bind(this)
   }
 
-  async getTree(req: NextApiRequest, res: NextApiResponse) {
+  async   getTree(req: NextApiRequest, res: NextApiResponse) {
     try {
       const currentLineage = await this.service.getTree(req.query)
       return responses.successWithData(res, currentLineage)

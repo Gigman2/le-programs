@@ -37,7 +37,7 @@ export default function BusingLogin() {
         try {
             const loginData: any = await LoginRequest({email: fields.email as string, password: fields.password as string})
             if(loginData){
-                let  userData: {user: any; authToken: string; account: IBusAccount} = loginData?.data?.data as any
+                let  userData: {user: any; accessToken: string; account: IBusAccount} = loginData?.data?.data as any
                 const user: IAccountUser = {
                     name: userData?.account?.name,
                     bus: {},
@@ -47,7 +47,7 @@ export default function BusingLogin() {
                 }
                 setLoading(false)
                 saveBusUser(user)
-                saveUserToken(userData?.authToken)
+                saveUserToken(userData?.accessToken)
                 gotoBusPage()
             }
         } catch (error: any) {

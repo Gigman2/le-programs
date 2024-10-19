@@ -17,9 +17,10 @@ export default class EventService extends BaseService<IEvent>  {
 
     async activeEvent(payload: { group: string }, busGroupService: BusGroupService) {
         dayjs.extend(isBetween)
+
         try {
             const tree = await busGroupService.getTree({ _id: this.objectId(payload.group) })
-            const parents = tree?.map(item => item?.parent || null) || []
+            const parents = tree?.map(item => item?.parent || null)?.filter(item => Boolean(item)) || []
             const orderedParents = parents
                 .map((item, i) => ({ id: String(item), order: Number(((parents.length - i) / parents.length).toFixed(2)) }))
                 .reduce((acc: Record<string, number>, cValue) => {
@@ -28,19 +29,26 @@ export default class EventService extends BaseService<IEvent>  {
                     return acc
                 }, {})
 
-
+            if(parents.length === 0) {
+                this.logger.log('No parents found for the given group', LogLevel.Info, 'ACTIVE-EVENT | EVENT-SERVICE', payload)
+                return null
+            }
+            
             const allEventsInScope = this.exposeDocument<IEvent[]>(
-                await this.get({ "scope.id": { '$in': parents } })
+                await this.get({ "$or": [{ "scope.id": { '$in': parents } }, { "scope.id": null }] })
             )
 
-            // Create a dictionary from meetingTypes
+            if(allEventsInScope.length === 0) {
+                this.logger.log('No events found for the given group', LogLevel.Info, 'ACTIVE-EVENT | EVENT-SERVICE', payload)
+                return null
+            }
+
             let meetingTypesScore = MeetingTypes.reduce((acc: Record<string, number>, cValue) => {
                 acc[cValue.tag] = cValue.score
                 return acc
             }, {})
 
             const activeEvents = allEventsInScope
-                // get meetings in range
                 .filter(item => {
                     if (item.occurrence === 'FIXED') {
                         const eventDay = dayjs().isBetween((item.duration as { start: Date }).start, (item.duration as { end: Date }).end)
@@ -59,6 +67,8 @@ export default class EventService extends BaseService<IEvent>  {
                     newItem.order = order
                     return newItem
                 })
+            
+            
 
             let maxScoreEvent = null
             if (activeEvents.length) {

@@ -27,7 +27,7 @@ export default function BusRepLogs() {
   // GET ACTIVE EVENTS
   const {isLoading: eventLoading, data: eventData, error: eventError} = useBasePostQuery<IEvent>(
     'events/active',
-    null,
+    {group: currentUser?.currentRole?.groupId as string},
     {group: currentUser?.currentRole?.groupId as string},
     !!currentUser?.currentRole?.groupId
   )
@@ -44,7 +44,7 @@ export default function BusRepLogs() {
       isOpen,
       endIsOpen
     },
-     !!(eventTag && currentUser?.bus['ZONE']?.id)
+    !!(eventTag && currentUser?.bus['ZONE']?.id)
   )
   
 

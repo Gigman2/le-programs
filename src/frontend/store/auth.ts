@@ -17,6 +17,7 @@ export const saveBusUser = (data: IAccountUser) => {
 
 export const saveUserToken = (token: string) => {
     if (typeof window !== "undefined") {
+        console.log('Token is ', token)
         localStorage.setItem('auth_token', token)
     }
 }

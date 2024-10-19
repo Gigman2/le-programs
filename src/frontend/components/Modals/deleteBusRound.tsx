@@ -23,7 +23,7 @@ export default function DeleteBusRound(
     const deleteBusRound = async () => {
         try {
         setLoading(true)
-        await fetch(`${baseUrl}/api/bus-rounds/${bus?._id}`, {
+        await fetch(`${baseUrl}bus-rounds/${bus?._id}`, {
             method: 'DELETE'
         })
         onClose()

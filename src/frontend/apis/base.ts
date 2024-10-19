@@ -30,9 +30,15 @@ export function useBasePostQuery<T>(url: string, query: Record<string, any> | nu
         token = localStorage.getItem('auth_token') as string
     }
 
+    console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    console.log('URL => ', url)
+    console.log('Query => ', query)
+    console.log('Reload Dep => ', reloadDep)
+    console.log('Enabled => ', enabled)
+    console.log(' <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
     const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
         const { data } = await axios.post(
-            `${baseUrl}/api/${url}`, query, { headers: { 'Authorization': "Bearer " + token } }
+            `${baseUrl}${url}`, query, { headers: { 'Authorization': "Bearer " + token } }
         );
         return data;
     }, { enabled });
@@ -50,9 +56,10 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any> | nul
     let token: string
     if (typeof window !== "undefined") {
         token = localStorage.getItem('auth_token') as string
+        console.log('Token is ', token)
     }
     const parsedQuery = new URLSearchParams()
-    let path = `${baseUrl}/api/${url}`
+    let path = `${baseUrl}${url}`
 
     if (query !== null) {
         for (const key in query) {
@@ -62,7 +69,7 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any> | nul
                 parsedQuery.append(key, query[key])
         }
 
-        path = `${baseUrl}/api/${url}?${parsedQuery.toString()}`
+        path = `${baseUrl}${url}?${parsedQuery.toString()}`
     }
 
     const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
@@ -89,6 +96,6 @@ export const baseCreate = async <T, P>(url: string, payload: P) => {
         token = localStorage.getItem('auth_token') as string
     }
 
-    const response = await axios.post(`${baseUrl}/api/${url}`, payload, { headers: { 'Authorization': "Bearer " + token } })
+    const response = await axios.post(`${baseUrl}${url}`, payload, { headers: { 'Authorization': "Bearer " + token } })
     return response as T
 }

@@ -18,7 +18,9 @@ class EventController extends BaseController<EventService> implements IEventCont
 
     async activeEvent(req: NextApiRequest, res: NextApiResponse) {
         try {
+            
             const payload = req.body
+            console.log('Event Payload => ', payload)
             const activeEvent = await this.service.activeEvent(payload, this.busGroupService)
             return responses.successWithData(res, activeEvent)
         } catch (error: any) {

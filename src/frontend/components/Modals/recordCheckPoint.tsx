@@ -89,14 +89,22 @@ export default function RecordCheckPoint(
                 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
                     <FormLabel fontSize={14}>What is your current location?</FormLabel>
-                    <Autocomplete
+                    <Input 
+                        type={"text"}
+                        name="location"
+                        placeholder='Enter here ...' 
+                        value={fields.location} 
+                        onChange={(v) => handleChange(v?.currentTarget?.value, 'location', fields, setFields)} 
+                    />
+
+                    {/* <Autocomplete
                         placeholder="Select location" 
                         name={'location'}
                         options={record?.station || []} 
                         value={fields.location} 
                         fields={fields} 
                         setFields={setFields}
-                    />
+                    /> */}
                 </Box>
 
                 <Box p={2} bg="blue.100" my={2} rounded={"md"} color={"blue.500"}>

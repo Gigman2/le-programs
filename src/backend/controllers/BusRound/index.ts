@@ -9,19 +9,20 @@ import BusGroupService from '@/backend/services/BusGroup';
 import { IEvent } from '@/interface/events';
 import dayjs from 'dayjs';
 import { IBusGroups, IBusRound } from '@/interface/bus';
-import AppCache from '@/backend/helpers/cache';
-import { IUser } from '@/interface/misc';
 import { ObjectId } from 'mongodb';
-
+import Logger, { LogLevel } from '@/backend/config/logger';
+import redisInstance from '@/backend/lib/redis';
+import { IUser } from '@/interface/misc';
 class BusRoundController extends BaseController<BusRoundService> {
     protected name = 'BusGroup';
+    private logger = Logger.getInstance()
+    private redis = redisInstance.getInstance()
     constructor(service: BusRoundService, private busGroupService: BusGroupService, private eventService: EventService,) {
         super(service)
     }
 
     async busBranchSummary(req: NextApiRequest, res: NextApiResponse<any>) {
         try {
-            const cacheSystem = new AppCache()
             const active = await this.eventService.activeEvent(
                 { group: (req.query as { id: string }).id },
                 this.busGroupService
@@ -57,9 +58,9 @@ class BusRoundController extends BaseController<BusRoundService> {
                 records.map(async item => {
                     const addedBy = (item.recordedBy as unknown as { _id: string })?._id || item.recordedBy
                     const key = addedBy + '_cached_user'
-                    const user = await cacheSystem.getCachedData(key)
+                    const user = await this.redis.get(key) as IUser || null
                     if (user) {
-                        item.addedBy = JSON.parse(user)
+                        item.addedBy = user
                     }
                     return item
                 })
@@ -82,7 +83,7 @@ class BusRoundController extends BaseController<BusRoundService> {
                 zones: groupedByZoneName,
             })
         } catch (error: any) {
-            console.log(error)
+            this.logger.log('Unable to get bus round summary', LogLevel.Error, 'BUS_ROUND_SUMMARY', error)
             return responses.error(res, error?.response?.data?.message || error?.message || error)
         }
     }
