@@ -20,8 +20,8 @@ const toastMessage: ToastProps = {
 }
 
 export const LoginRequest = <T>(payload: { email: string; password: string }) => {
-    const response = axios.post(`/api/app-login`, payload)
-    return response as T
+    const response = axios.post(`${baseUrl}app-login`, payload)
+    return response 
 }
 
 export function useBasePostQuery<T>(url: string, query: Record<string, any> | null, reloadDep: Record<string, any>, enabled: boolean) {
@@ -30,12 +30,6 @@ export function useBasePostQuery<T>(url: string, query: Record<string, any> | nu
         token = localStorage.getItem('auth_token') as string
     }
 
-    console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-    console.log('URL => ', url)
-    console.log('Query => ', query)
-    console.log('Reload Dep => ', reloadDep)
-    console.log('Enabled => ', enabled)
-    console.log(' <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
     const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
         const { data } = await axios.post(
             `${baseUrl}${url}`, query, { headers: { 'Authorization': "Bearer " + token } }

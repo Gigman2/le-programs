@@ -51,6 +51,7 @@ export default function BusingLogin() {
                 gotoBusPage()
             }
         } catch (error: any) {
+            console.log(error)
             setLoading(false)
             const _error = error as any
             toast({
@@ -58,7 +59,7 @@ export default function BusingLogin() {
                 duration: 2000,
                 position: 'top-right',
                 isClosable: true, 
-                title: _error?.response?.data?.error || _error.message || 'Error occurred'
+                title: _error?.response?.data?.message || _error.message || 'Error occurred'
             })
         }
     }
