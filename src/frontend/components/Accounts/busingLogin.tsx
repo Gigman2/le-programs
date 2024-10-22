@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { handleChange } from '@/utils/form';
 
 import { IBusAccount } from '@/interface/bus';
-import { IAccountUser, getUser, saveBusUser, saveUserToken } from '@/frontend/store/auth';
+import { IAccountUser, getUser, saveBusUser, saveUserToken, setRefreshToken } from '@/frontend/store/auth';
 import { LoginRequest } from '@/frontend/apis/base';
 
 export type GroupedUnits = Record<string, {name?: string, id?: string}>
@@ -37,7 +37,7 @@ export default function BusingLogin() {
         try {
             const loginData: any = await LoginRequest({email: fields.email as string, password: fields.password as string})
             if(loginData){
-                let  userData: {user: any; accessToken: string; account: IBusAccount} = loginData?.data?.data as any
+                let  userData: {user: any; accessToken: string; account: IBusAccount, refreshToken: string} = loginData?.data?.data as any
                 const user: IAccountUser = {
                     name: userData?.account?.name,
                     bus: {},
@@ -48,6 +48,7 @@ export default function BusingLogin() {
                 setLoading(false)
                 saveBusUser(user)
                 saveUserToken(userData?.accessToken)
+                setRefreshToken(userData?.refreshToken)
                 gotoBusPage()
             }
         } catch (error: any) {

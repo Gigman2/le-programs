@@ -1,7 +1,8 @@
 import { IResponse } from "@/interface/misc";
 import { ToastProps, createStandaloneToast } from "@chakra-ui/react";
-import axios from "axios";
+import axios, { AxiosInstance } from "axios";
 import { useQuery } from "react-query";
+import { removeSession, setTokenExpiry } from "../store/auth";
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL
 
@@ -19,22 +20,56 @@ const toastMessage: ToastProps = {
     isClosable: true,
 }
 
+const logout = () => {
+    removeSession()
+    window.location.href = '/bus/login';
+}
+
+// Create a custom axios instance
+const axiosInstance: AxiosInstance = axios.create({
+    baseURL: baseUrl,
+});
+
+// Add request interceptor
+axiosInstance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('auth_token');
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+// Add response interceptor
+axiosInstance.interceptors.response.use(
+    (response) => {
+        const tokenExpirationTime = response.headers['x-token-expires'];
+        if (tokenExpirationTime) {
+            setTokenExpiry(tokenExpirationTime);
+        }
+        return response;
+    },
+    (error) => {
+        if (error.response && (error.response.status === 401 || (error.response.status === 422 && error.response.data.message === 'TOKEN_EXPIRED'))) {
+            logout();
+        }
+        
+        return Promise.reject(error);
+    }
+);
+
 export const LoginRequest = <T>(payload: { email: string; password: string }) => {
-    const response = axios.post(`${baseUrl}app-login`, payload)
-    return response 
+    return axiosInstance.post(`app-login`, payload);
 }
 
 export function useBasePostQuery<T>(url: string, query: Record<string, any> | null, reloadDep: Record<string, any>, enabled: boolean) {
-    let token: string
-    if (typeof window !== "undefined") {
-        token = localStorage.getItem('auth_token') as string
-    }
-
-    const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
-        const { data } = await axios.post(
-            `${baseUrl}${url}`, query, { headers: { 'Authorization': "Bearer " + token } }
-        );
-        return data;
+    const { error, data, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
+        const res = await axiosInstance.post(url, query);
+        return res.data;
     }, { enabled });
 
     if (error) {
@@ -43,17 +78,12 @@ export function useBasePostQuery<T>(url: string, query: Record<string, any> | nu
         toast(toastMessage)
     }
 
-    return { error, ...rest }
+    return { error, data,...rest }
 }
 
 export function useBaseGetQuery<T>(url: string, query: Record<string, any> | null, reloadDep: Record<string, any>, enabled: boolean) {
-    let token: string
-    if (typeof window !== "undefined") {
-        token = localStorage.getItem('auth_token') as string
-        console.log('Token is ', token)
-    }
     const parsedQuery = new URLSearchParams()
-    let path = `${baseUrl}${url}`
+    let path = url;
 
     if (query !== null) {
         for (const key in query) {
@@ -63,14 +93,12 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any> | nul
                 parsedQuery.append(key, query[key])
         }
 
-        path = `${baseUrl}${url}?${parsedQuery.toString()}`
+        path = `${url}?${parsedQuery.toString()}`
     }
 
-    const { error, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
-        const { data } = await axios.get(
-            `${path}`, { headers: { 'Authorization': "Bearer " + token } }
-        );
-        return data;
+    const { error, data, ...rest } = useQuery<IResponse<T>>([url, { url, ...query, ...reloadDep }], async () => {
+        const res = await axiosInstance.get(path);
+        return res.data;
     }, { enabled });
 
     if (error) {
@@ -79,17 +107,10 @@ export function useBaseGetQuery<T>(url: string, query: Record<string, any> | nul
         toast(toastMessage)
     }
 
-    return { error, ...rest }
+    return { error, data, ...rest }
 }
 
-
-
 export const baseCreate = async <T, P>(url: string, payload: P) => {
-    let token = ''
-    if (typeof window !== "undefined") {
-        token = localStorage.getItem('auth_token') as string
-    }
-
-    const response = await axios.post(`${baseUrl}${url}`, payload, { headers: { 'Authorization': "Bearer " + token } })
-    return response as T
+    const response = await axiosInstance.post(url, payload);
+    return response as T;
 }

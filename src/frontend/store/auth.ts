@@ -22,6 +22,18 @@ export const saveUserToken = (token: string) => {
     }
 }
 
+export const setRefreshToken = (token: string) => {
+    if (typeof window !== "undefined") {
+        localStorage.setItem('refresh_token', token)
+    }
+}
+
+export const setTokenExpiry = (expiry: string) => {
+    if (typeof window !== "undefined") {
+        localStorage.setItem('token_expiry', expiry)
+    }
+}
+
 export const saveUser = (name?: string, group?: string, isRep?: boolean, groupName?: string, groupStations?: string[]) => {
     if (typeof window !== "undefined") {
         localStorage.setItem('le_auth', JSON.stringify({ name, group, isRep, groupName, groupStations }))

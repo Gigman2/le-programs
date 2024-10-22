@@ -120,7 +120,7 @@ export default function AddBusLog() {
                     Bus logs can&apos;t be created without a bus cost
                 </Box> : null}
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>What is the cost of the bus fare?</FormLabel>
+                    <FormLabel fontSize={14}>How much did it cost to hire the bus?</FormLabel>
                     <Input 
                         type={"text"}
                         name="busCost"
@@ -131,7 +131,7 @@ export default function AddBusLog() {
                 </Box>
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
-                    <FormLabel fontSize={14}>How many people do you have in the bus</FormLabel>
+                    <FormLabel fontSize={14}>How many people are on the bus?</FormLabel>
                     <Input 
                         type={"text"}
                         name="people"
@@ -142,7 +142,7 @@ export default function AddBusLog() {
                 </Box>
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={2} mt={6}>
-                    <FormLabel fontSize={14}>How much offering were you able to collect</FormLabel>
+                    <FormLabel fontSize={14}>How much offering have you collected?</FormLabel>
                     <Input 
                         type={"text"}
                         name="busOffering"
