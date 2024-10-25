@@ -91,14 +91,15 @@ export default function BranchHead() {
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
+              <Text fontSize={15} color={"gray.500"}>Bus arrived </Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data.busInfo?.arrived || 0}</Text>
+            </Flex>
+
+            <Flex mt={1} w="100%" justifyContent={"space-between"}>
               <Text fontSize={15} color={"gray.500"}>Incoming buses </Text>
               <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.busInfo?.on_route || 0}</Text>
             </Flex>
 
-            <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>Bus arrived </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data.busInfo?.arrived || 0}</Text>
-            </Flex>
             </Box>
           )}
 
@@ -114,13 +115,13 @@ export default function BranchHead() {
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>People in route </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.on_route || 0}</Text>
+              <Text fontSize={15} color={"gray.500"}>People arrived </Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.arrived}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>People arrived </Text>
-              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.arrived}</Text>
+              <Text fontSize={15} color={"gray.500"}>People en route </Text>
+              <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.peopleInfo?.on_route || 0}</Text>
             </Flex>
             </Box>
             )}
