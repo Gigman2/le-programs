@@ -41,6 +41,10 @@ export default function BranchHead() {
     !!(currentUser?.currentRole?.groupType === "BUS_HEAD")
   )
 
+  const sortedData = accountData?.data?.sort((a, b) => {
+    return (a.accountType?.length || 0) - (b.accountType?.length || 0)
+  })
+
   useEffect(() => {
     const user = getUser() as IAccountUser
     if(!user) router.push('/bus/login')
@@ -100,7 +104,7 @@ export default function BranchHead() {
                           </Tr>
                       </Thead>
                       <Tbody fontSize={14}>
-                      {accountData?.data?.map((item) => (
+                      {sortedData?.map((item) => (
                           <Tr key={item?._id as string}>
                               <Td textTransform={"capitalize"} p={2}>
                                   { item.name}
