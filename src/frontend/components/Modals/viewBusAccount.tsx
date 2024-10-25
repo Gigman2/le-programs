@@ -14,18 +14,38 @@ import {
     ModalOverlay,
     Skeleton,
     Text,
+    useToast,
 } from "@chakra-ui/react";
-import { IBusAccount } from "@/interface/bus";
+import { IBusAccount } from "../../../interface/bus";
 import dayjs from "dayjs";
-import { useBaseGetQuery } from "@/frontend/apis/base";
+import { baseCreate, useBaseGetQuery } from "../../apis/base";
 
 export default function ViewBusAccount(
         {isOpen, onClose, type, selected}: 
         {isOpen: boolean, onClose: () => void; type: string, selected?: IBusAccount}
     )  
     {
-
+    const [sending, setSending] = useState(false)
+    const toast = useToast()
     const {isLoading, data} = useBaseGetQuery<IBusAccount>(`bus-accounts/${selected?._id as string}`, null, {account: selected?._id as string}, !!(selected?._id))
+
+    const resendPassword = async (email: string) => {
+        try {
+            setSending(true)
+            const res = await baseCreate(`bus-accounts/resend-password`, {email})
+            if(res) toast({
+                status: "success",
+                title: "Password Sent"
+            })
+        } catch (error) {
+            toast({
+                status: "error",
+                title: "Error Sending Password"
+            })
+        } finally {
+            setSending(false)
+        }
+    }
     
     return (
        <Modal isOpen={isOpen} onClose={onClose}>
@@ -66,6 +86,11 @@ export default function ViewBusAccount(
                                     <Text fontWeight={500} color={"blue.500"}>{item.group.name}</Text>
                                 </>: null}
                             </Flex>))}
+                    </Box>
+
+                    <Box mb={4}>
+                        <Text fontWeight={600} fontSize={14} color={"gray.600"}>Resend Account Password</Text>
+                        <Button colorScheme="blue" isLoading={sending} onClick={sending ? () => {} : () => resendPassword(data?.data?.account?.email as string)}>Resend</Button>
                     </Box>
 
                 </Box>}
