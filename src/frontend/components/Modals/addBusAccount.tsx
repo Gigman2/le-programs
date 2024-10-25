@@ -82,9 +82,9 @@ export default function AddBusAccount(
                 <
                     IBusAccount, 
                     { name: string; type: string; parent: string, stations?: string[] }[]
-                >(`bus-accounts/${selected?._id}`,payload)
+                >(`bus-accounts/${selected?._id}`, payload)
             } else {
-                res = await baseCreate<IBusAccount, {data: { name: string; email: string }}>('bus-accounts',payload)
+                res = await baseCreate<IBusAccount, {data: { name: string; email: string }}>('bus-accounts', payload)
             }
 
             if(res){
@@ -96,7 +96,6 @@ export default function AddBusAccount(
                 }
 
                 await baseCreate<IBusAccount, {data: { userId: string; groupId: string }}>('bus-accounts/assignUser', payload)
-
 
                 toast({
                     status: "success",
@@ -128,7 +127,7 @@ export default function AddBusAccount(
             <Box mt={4}>
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
                     <FormLabel fontSize={14}>Enter the name of the {role.replace("_", " ").toLowerCase()} here</FormLabel>
-                     <Input 
+                    <Input 
                         type={"text"}
                         name="name"
                         placeholder='Enter here ...' 
@@ -139,14 +138,14 @@ export default function AddBusAccount(
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>
                     <FormLabel fontSize={14}>Enter the email of the {role.replace("_", " ").toLowerCase()} here</FormLabel>
-                     <Input 
-                        type={"text"}
-                        name="email"
-                        placeholder='Enter here ...' 
-                        value={selected ? selected.account?.email : fields.email} 
-                        readOnly={!!selected}
-                        onChange={(v) => handleChange(v?.currentTarget?.value, 'email', fields, setFields)} 
-                    />
+                        <Input 
+                            type={"text"}
+                            name="email"
+                            placeholder='Enter here ...' 
+                            value={selected ? selected.account?.email : fields.email} 
+                            readOnly={!!selected}
+                            onChange={(v) => handleChange(v?.currentTarget?.value, 'email', fields, setFields)} 
+                        />
                 </Box>
 
                 <Box borderWidth={1} borderColor={"gray.200"} rounded="md" p={2} mb={3}>

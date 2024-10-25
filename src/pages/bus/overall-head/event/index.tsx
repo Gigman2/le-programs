@@ -91,6 +91,46 @@ export default function SectorHead() {
           (<Box>
             <Box mt={4}>
               <Flex gap={3}>
+              <Box bg="blue.100" p={4} rounded={"md"} flex={6}>
+                    <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>People</Box>
+                    <Flex align={"baseline"} color={"blue.500"} gap={2}>
+                      <Text fontSize={32} fontWeight={700}>{data?.data?.peopleInfo?.arrived || 0}</Text>
+                      <Text>people arrived</Text>
+                    </Flex>
+                    <Flex align={"baseline"} color={"blue.400"} gap={2}>
+                      <Text fontWeight={600}>{data?.data?.peopleInfo?.on_route || 0}</Text>
+                      <Text>en route</Text>
+                    </Flex>
+                </Box>
+                
+                <Box bg="blue.100" p={4} rounded={"md"} flex={6} cursor={"pointer"}
+                   onClick={() => gotoBusView(data?.data?.arrivedBuses || [] , data?.data?.enRouteBuses || [])}
+                >
+                    <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>Bus</Box>
+                    <Flex align={"baseline"} color={"blue.500"} gap={2}>
+                      <Text fontSize={32} fontWeight={700}>{data?.data?.busInfo?.arrived || 0}</Text>
+                      <Text>buses arrived</Text>
+                    </Flex>
+                    <Flex align={"baseline"} color={"blue.400"} gap={2}>
+                      <Text fontWeight={600}>{data?.data?.busInfo?.on_route || 0}</Text>
+                      <Text>en route</Text>
+                    </Flex>
+                </Box>
+              </Flex>
+              <Flex gap={3} mt={3}>
+                <Box bg="gray.100" p={4} rounded={"md"} flex={7}>
+                  <Text color={"gray.400"}>Financial</Text>
+                  <hr />
+                  <Flex align={"baseline"} color={"gray.500"} gap={2}>
+                    <Text fontWeight={700}>Ghc</Text>
+                    <Text fontSize={28} fontWeight={600}>{data?.data?.financeInfo?.cost || 0}</Text>
+                    <Text>total cost</Text>
+                  </Flex>
+                  <Flex align={"baseline"} color={"gray.400"} gap={2}>
+                    <Text fontWeight={600}>Ghc {data?.data?.financeInfo?.offering || 0}</Text>
+                    <Text>offering</Text>
+                  </Flex>
+                </Box>
                 <Box bg="gray.100" p={4} rounded={"md"} flex={7} cursor={"pointer"}
                   onClick={() => gotoZoneView(data?.data?.allZones || [] , data?.data?.nonActiveZones || [])}
                 >
@@ -103,45 +143,6 @@ export default function SectorHead() {
                   <Flex align={"baseline"} color={"gray.400"} gap={2}>
                     <Text fontWeight={700}>{data?.data?.nonActiveZones.length}</Text>
                     <Text>zones have not bused</Text>
-                  </Flex>
-                </Box>
-                <Box bg="blue.100" p={4} rounded={"md"} flex={6} cursor={"pointer"}
-                   onClick={() => gotoBusView(data?.data?.arrivedBuses || [] , data?.data?.enRouteBuses || [])}
-                >
-                    <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>Bus</Box>
-                    <Flex align={"baseline"} color={"blue.500"} gap={2}>
-                    <Text fontSize={32} fontWeight={600}>{data?.data?.busInfo?.on_route || 0}</Text>
-                      <Text>on route</Text>
-                    </Flex>
-                    <Flex align={"baseline"} color={"blue.400"} gap={2}>
-                    <Text fontWeight={700}>{data?.data?.busInfo?.arrived || 0}</Text>
-                    <Text>buses have arrived</Text>
-                  </Flex>
-                </Box>
-              </Flex>
-              <Flex gap={3} mt={3}>
-                <Box bg="blue.100" p={4} rounded={"md"} flex={6}>
-                    <Box borderColor={"blue.200"} borderBottomWidth={1} color={"blue.400"}>People</Box>
-                    <Flex align={"baseline"} color={"blue.500"} gap={2}>
-                    <Text fontSize={32} fontWeight={600}>{data?.data?.peopleInfo?.on_route || 0}</Text>
-                      <Text>on route</Text>
-                    </Flex>
-                    <Flex align={"baseline"} color={"blue.400"} gap={2}>
-                    <Text fontWeight={700}>{data?.data?.peopleInfo?.arrived || 0}</Text>
-                    <Text>people have arrived</Text>
-                  </Flex>
-                </Box>
-                <Box bg="gray.100" p={4} rounded={"md"} flex={7}>
-                  <Text color={"gray.400"}>Financial</Text>
-                  <hr />
-                  <Flex align={"baseline"} color={"gray.500"} gap={2}>
-                    <Text fontWeight={600}>Ghc </Text>
-                    <Text fontSize={28} fontWeight={600}>{data?.data?.financeInfo?.offering || 0}</Text>
-                    <Text>offering</Text>
-                  </Flex>
-                  <Flex align={"baseline"} color={"gray.400"} gap={2}>
-                    <Text fontWeight={700}>Ghc {data?.data?.financeInfo?.cost || 0}</Text>
-                    <Text>busing cost</Text>
                   </Flex>
                 </Box>
               </Flex>

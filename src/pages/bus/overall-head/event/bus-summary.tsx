@@ -26,7 +26,7 @@ const ZoneListCard = ({records, active}: {records: string[], active: boolean}) =
             {isLoading ? <Box gap={4}>
                 <Skeleton h={24} rounded="md" flex={1} mb={4} />
                 <Skeleton h={24} rounded="md" flex={1} />
-            </Box>: data?.data.map(item => (
+            </Box>: data?.data?.map(item => (
                 <Box key={item._id} mb={3} bg="gray.100" p={3} rounded={"md"}>
                     <Flex justifyContent={"space-between"}>
                         <Text color={active ? "blue.500" : "gray.500"} fontWeight={600}>{(item.recordedBy as unknown as {name: string}).name}</Text>

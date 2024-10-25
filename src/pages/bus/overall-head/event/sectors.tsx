@@ -60,7 +60,7 @@ export default function EventSummarySector() {
           <Box p={3} bg="gray.100" rounded={"md"}>
             <Flex gap={2}>
               <Box bg="blue.100" p={3} rounded={"md"} my={1} flex={1}>
-                <Text color={"blue.400"}>Bus in route<Text as="span" ml={2} fontWeight={600}>{data?.data?.busInfo.on_route}</Text></Text>
+                <Text color={"blue.400"}>Incoming buses<Text as="span" ml={2} fontWeight={600}>{data?.data?.busInfo.on_route}</Text></Text>
                 <Text color={"blue.400"}>Bus arrived <Text as="span" fontWeight={600}>{data?.data?.busInfo.arrived}</Text></Text>
               </Box>
               <Box bg="blue.100" p={3} rounded={"md"} my={1} flex={1}>
@@ -102,7 +102,7 @@ export default function EventSummarySector() {
                       <Text fontWeight={600}>{item?.records?.busArrived}</Text>
                     </Flex>
                     <Flex gap={2}>
-                      <Text>In Route</Text>
+                      <Text>En Route</Text>
                       <Text fontWeight={600}>{item?.records?.busInRoute}</Text>
                     </Flex>
                   </Box>
@@ -115,7 +115,7 @@ export default function EventSummarySector() {
                       <Text fontWeight={600}>{item?.records?.peopleArrived}</Text>
                     </Flex>
                     <Flex gap={2}>
-                      <Text>In Route</Text>
+                      <Text>En Route</Text>
                       <Text fontWeight={600}>{item?.records?.peopleInRoute}</Text>
                     </Flex>
                   </Box>

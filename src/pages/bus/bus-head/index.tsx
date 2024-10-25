@@ -86,12 +86,12 @@ export default function BranchHead() {
                 borderColor={"gray.200"}
           >
             <Flex borderBottomWidth={1} borderColor={"gray.200"} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} fontWeight={600} color={"gray.500"}>Bus Started </Text>
+              <Text fontSize={15} fontWeight={600} color={"gray.500"}>Total buses </Text>
               <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.busInfo?.total_buses || 0}</Text>
             </Flex>
 
             <Flex mt={1} w="100%" justifyContent={"space-between"}>
-              <Text fontSize={15} color={"gray.500"}>Bus in route </Text>
+              <Text fontSize={15} color={"gray.500"}>Incoming buses </Text>
               <Text fontSize={16} fontWeight={600} color={"gray.500"} textAlign={"center"}>{data?.data?.busInfo?.on_route || 0}</Text>
             </Flex>
 
