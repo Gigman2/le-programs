@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Box, Flex, Icon, Skeleton, Text } from '@chakra-ui/react'
 import { IAccountUser, getUser } from '@/frontend/store/auth'
 import { useRouter } from 'next/router'
@@ -64,6 +64,11 @@ export default function SectorHead() {
     const list = getSpecificBusData<IEventData>('selected-event')
     setExtraData(list)
   },[])
+
+  const getPercentage = useMemo(() => {
+    return ((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0)) 
+    / (data?.data?.busInfo?.total_buses || 0) * 100
+  }, [data?.data])
 
   return (
     <GuardWrapper allowed={['OVERALL_HEAD']} redirectTo='/bus/login' app='bus'>
@@ -153,9 +158,7 @@ export default function SectorHead() {
               <Text  color={"yellow.500"}>Data of buses more than half full</Text>
               <Box borderColor={"yellow.200"} borderTopWidth={1} gap={4}>
                 <Flex gap={2} align={"center"}>
-                  <Text fontWeight={600} color={"yellow.600"} fontSize={28}>{
-                    (((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0)) 
-                    / (data?.data?.busInfo?.total_buses || 0) * 100).toFixed(0)}%</Text>
+                  <Text fontWeight={600} color={"yellow.600"} fontSize={28}>{isNaN(getPercentage) ? 0 : getPercentage.toFixed(0)}%</Text>
                   <Text color={"yellow.500"} py={1}>had more than 8 people in bus</Text>
                 </Flex>
                 <Text textAlign="left" color={"yellow.500"}>{((data?.data?.busInfo?.total_buses || 0) - (data?.data?.unMetTarget.length || 0))} out of the {data?.data?.busInfo?.total_buses} buses</Text>
