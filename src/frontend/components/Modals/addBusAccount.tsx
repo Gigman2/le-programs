@@ -95,7 +95,7 @@ export default function AddBusAccount(
                     groupId: fields.assignedGroup.value
                 }
 
-                await baseCreate<IBusAccount, {data: { userId: string; groupId: string }}>('bus-accounts/assign-user', payload)
+                await baseCreate<IBusAccount, {data: { userId: string; groupId: string }}>('bus-accounts/assign-user', assignData as any)
 
                 toast({
                     status: "success",
