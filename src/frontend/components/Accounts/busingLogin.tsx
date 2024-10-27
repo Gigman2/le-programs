@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Flex, FormLabel, Input, useToast } from '@chakra-ui/react'
+import { Box, Button, Flex, FormLabel, Icon, Input, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import { handleChange } from '@/utils/form';
@@ -7,6 +7,7 @@ import { handleChange } from '@/utils/form';
 import { IBusAccount } from '@/interface/bus';
 import { IAccountUser, getUser, saveBusUser, saveUserToken, setRefreshToken } from '@/frontend/store/auth';
 import { LoginRequest } from '@/frontend/apis/base';
+import { TbEye, TbEyeCheck, TbEyeClosed } from 'react-icons/tb';
 
 export type GroupedUnits = Record<string, {name?: string, id?: string}>
 
@@ -18,6 +19,7 @@ export default function BusingLogin() {
       email: '',
       password:  ''
     })
+    const [showPassword, setShowPassword] = useState(false)
 
     const gotoBusPage = () => {
         router.push('/bus')
@@ -88,11 +90,11 @@ export default function BusingLogin() {
 
          <Box mb={6} fontSize={14}>
             <FormLabel color="gray.700">Enter password</FormLabel>
-            <Flex align={"center"}>
-                <Input type='password' fontSize={14} placeholder='Enter password Here ' value={fields.password as string } 
+            <Flex align={"center"} gap={2}>
+                <Input type={showPassword ? 'text' : 'password'} fontSize={14} placeholder='Enter password Here ' value={fields.password as string } 
                     onChange={v =>   handleChange(v.currentTarget?.value, 'password', fields, setFIelds)}
                 />
-                {/* <Icon as={TbEyeCheck} fontSize={24} /> */}
+                <Icon as={showPassword ? TbEye : TbEyeClosed} fontSize={24} onClick={() => setShowPassword(!showPassword)} />
             </Flex>
         </Box>
         
