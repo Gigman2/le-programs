@@ -35,7 +35,7 @@ const ZoneListCard = ({zones, active}: {zones: string[], active: boolean}) => {
                         <Text color={active ? "blue.500" : "gray.500"} fontWeight={600}>{item?.fullParent?.name}</Text>
                     </Flex>
 
-                    <Text mt={2} color={"gray.500"} fontSize={14}>Bus Head(s)</Text>
+                    <Text mt={2} color={"gray.500"} fontSize={14}>Bus Account(s)</Text>
                     <Flex gap={2} wrap={"wrap"}>
                         {item.accounts?.map(a => (
                             <Box key={(a as IBusAccount)?._id} px={4} py={1} fontSize={14} bg={active ? "blue.100" : "gray.300"} color={active ? "blue.500" : "gray.600"} rounded={"md"} textTransform={"capitalize"}>{(a as IBusAccount)?.name as string}</Box>

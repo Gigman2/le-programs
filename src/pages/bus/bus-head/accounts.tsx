@@ -110,7 +110,7 @@ export default function BranchHead() {
                                   { item.name}
                               </Td>
                               <Td p={2}>
-                                <Text>{item.account ? item.account?.email.slice(0, 7)+'...' : " -- "}</Text>
+                                <Text>{item.account ? item.account?.email?.slice(0, 7)+'...' : " -- "}</Text>
                               </Td>
                               <Td p={2}>
                                   <Box 

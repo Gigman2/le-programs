@@ -68,7 +68,7 @@ export default function BranchHead() {
              <Box mb={3} bg="gray.100" p={4} rounded={"md"} key={item._id}>
                 <Text color={"gray.500"} fontWeight={600}>{item.name}</Text>
 
-                <Text mt={2} color={"gray.500"} fontSize={14}>Bus Head(s)</Text>
+                <Text mt={2} color={"gray.500"} fontSize={14}>Bus Account(s)</Text>
                 <Flex gap={2} wrap={"wrap"}>
                     {(item.accounts as IBusAccount[])?.map((l) => (
                         <Box key={l._id} px={4} py={1} fontSize={14} bg="blue.100" color={"gray.700"} rounded={"md"} textTransform={"capitalize"}>{l.name}</Box>
