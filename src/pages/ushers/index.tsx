@@ -13,12 +13,26 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL
   const [headCounts, setHeadCounts] = useState<IHeadcount[]>([])
+  const [grouped, setGrouped] = useState<Record<string, number>>({})
 
-  const defaultSections = [
-    'view 2', 'view 1', 'behind choir', 'choir', 'mc Heads', 'behind mc', 'ext main left 1', 'main left 1', 'main center 1', 'main right 1', 'ext main right 1',
-    'media down', 'media top', 'ext main left 2', 'main left 2', 'main center 2', 'main right 2', 'ext main right 2', 'sick bay','born again room',
-    'mother lounge 1', 'mother lounge 2', 'pastors lounge', 'audio room', 'office hallway'
-  ]
+  const sections: Record<string, string[]> = {
+    'Overflow 1': ['Overflow 1'],
+    'Overflow 2': ['Overflow 2'],
+    'Overflow 3': ['Overflow 3'],
+    'Overflow 4': ['Overflow 4'],
+    'Auditorium': ['A', 'C1', 'C2', 'B', 'D1', 'D2', 'ext main left', 'main left', 'main center', 'main right', 'ext main right', 'media top'],
+    'Annex': ['Annex 1', 'Annex 2', 'Annex 3'],
+    'Back office': ['MCR', "Pastor's Lounge", "Mother's Lounge", "Finance", "Hallway", "Ushers", "kids"],
+  }
+
+  const groupData = (key: string, data: IHeadcount) => {
+    const section = data.section
+    const summary = Object.keys(section).filter(item => sections[key].includes(item)).reduce((acc, cur) => {
+      acc += Number(section[cur])
+      return acc
+    }, 0)
+    return summary
+  }
 
     const fetchData = async (user: {name: string}) => {
       try {
@@ -36,6 +50,7 @@ export default function Home() {
             })
             const response = await res.json()
             let data = (response.data || [])
+
             setHeadCounts(data.reverse())
           }
         } catch (error) {
@@ -88,26 +103,62 @@ export default function Home() {
                     <Text fontWeight={600} textTransform={'capitalize'}>{item.recorder as string}</Text>
                   </Flex>
                   <Box mt={2}>
-                    <Flex bg="orange.100" p={3} rounded={"md"} mb={2} w={"84%"}>
-                      
+                    <Flex gap={2} mb={2}>
+                        {/* Overflow 1 */}
+                        <Box w="15%">
+                          <Flex direction={"column"} w="full" h="full" bg="green.200" rounded="md" overflow={"hidden"} p={2}> 
+                            <Text fontWeight={600} fontSize={14} mb={2} >Ov 3</Text>
+                            <Text fontWeight={600} fontSize={28} >{groupData('Overflow 3', item)}</Text>
+                          </Flex>
+                        </Box>
+
+                        {/* Auditorium and Back office and Overflow 2 */}
+                        <Box w="70%">
+                            <Flex bg="green.200" rounded={"md"} mb={2} w="full" h={10} p={2} justify={"space-between"} alignItems={'center'}>
+                              <Text fontWeight={600} fontSize={14} >Overflow 1</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 1', item)}</Text>
+                            </Flex>
+
+                            {/* Back office */}
+                            <Flex bg="orange.100" rounded={"md"} mb={2} w="full" h={10} p={2} justify={"space-between"} alignItems={'center'}>
+                              <Text fontWeight={600} fontSize={14} >Back office</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Back office', item)}</Text>
+                            </Flex>
+                            
+                            {/* Auditorium */}
+                            <Flex w="full" bg={"purple.200"} mb={2} rounded={"md"} h={20} p={2} justify={"space-between"} alignItems={'center'}>
+                              <Text fontWeight={600} fontSize={14} >Auditorium</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Auditorium', item)}</Text>
+                            </Flex>
+
+                            {/* Overflow 2 */}
+                            <Flex w="full" bg={"green.200"} mb={2} rounded={"md"} h={10} p={2} justify={"space-between"} alignItems={'center'}>
+                              <Text fontWeight={600} fontSize={14} >Overflow 2</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 2', item)}</Text>
+                            </Flex>
+                        </Box>
+
+                        {/* Over  */}
+                        <Box w="15%">
+                          <Flex direction={"column"} w="full" h="full"  bg="pink.200" rounded="md" overflow={"hidden"} p={2}>
+                            <Text fontWeight={600} fontSize={14} mb={2} >Ann</Text>
+                            <Text fontWeight={600} fontSize={28} >{groupData('Annex', item)}</Text>
+                          </Flex>
+                        </Box>
                     </Flex>
-                    <Flex gap={2} rounded={"md"}>
-                      <Flex w="85%" bg={"purple.200"} direction={"column"} p={2} rounded={"md"}>
-                        
-                      </Flex>
-                      <Flex direction={"column"} w="15%" borderWidth={1} borderColor={"gray.300"} bg="pink.200" rounded="md" overflow={"hidden"}>
-                        
-                      </Flex>
+                    <Flex w="full" h={10} bg="green.200" rounded="md"  p={2} justify={"space-between"} alignItems={'center'}>
+                      <Text fontWeight={600} fontSize={14} >Overflow 4</Text>
+                      <Text fontWeight={600} fontSize={28} >{groupData('Overflow 4', item)}</Text>
                     </Flex>
                   </Box>
-                  <Grid mt={1} templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
+                  {/* <Grid mt={1} templateColumns="repeat(2,1fr)" py={2} columnGap={12} rowGap={0} borderTopWidth={1} borderColor={'gray.200'}>
                     {Object.keys(item.section).filter(key => !defaultSections.includes(key)).map((s: string) => (
                       <Flex key={s} mr={3} align="center" justify={"space-between"}>
                         <Text fontSize={13} mr={2} textTransform={'capitalize'}>{s}</Text> 
                         <Text fontWeight={600}>{(item.section as unknown as Record<string, string>)?.[s]}</Text>
                     </Flex>
                     ))}
-                  </Grid>
+                  </Grid> */}
               </Box>))}
           </Box>
           </Box>
