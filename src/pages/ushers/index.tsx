@@ -21,8 +21,8 @@ export default function Home() {
     'Overflow 3': ['Overflow 3'],
     'Overflow 4': ['Overflow 4'],
     'Auditorium': ['A', 'C1', 'C2', 'B', 'D1', 'D2', 'ext main left', 'main left', 'main center', 'main right', 'ext main right', 'media top'],
-    'Annex': ['Annex 1', 'Annex 2', 'Annex 3'],
-    'Back office': ['MCR', "Pastor's Lounge", "Mother's Lounge", "Finance", "Hallway", "Ushers", "kids"],
+    'Annex': ["Mother's Lounge 1", "Children's Room 1", "Children's Room 2", "Infirmary 1", "Infirmary 2"],
+    'Back office': ['MCR', "Pastor's Lounge", "Mother's Lounge 2", "Finance", "Hallway", "Ushers"],
   }
 
   const groupData = (key: string, data: IHeadcount) => {

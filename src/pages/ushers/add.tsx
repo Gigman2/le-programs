@@ -31,11 +31,10 @@ export default function Home() {
   const [backOffice, setBackOffice] = useState<Record<string, number>>({
     'MCR': 0,
     "Pastor's Lounge": 0,
-    "Mother's Lounge": 0,
+    "Mother's Lounge 2": 0,
     "Finance": 0,
     "Hallway": 0,
     "Ushers": 0,
-    "kids": 0,
   })
 
   const [overflow, setOverflow] = useState<Record<string, number>>({
@@ -46,9 +45,11 @@ export default function Home() {
   })
 
   const [annex, setAnnex] = useState<Record<string, number>>({  
-    "Annex 1": 0,
-    "Annex 2": 0,
-    "Annex 3": 0,
+    "Mother's Lounge 1": 0,
+    "Children's Room 1": 0,
+    "Children's Room 2": 0,
+    "Infirmary 1": 0,
+    "Infirmary 2": 0, 
   })
 
 
