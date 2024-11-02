@@ -116,7 +116,7 @@ export default function Home() {
                         <Box w="70%">
                             <Flex bg="green.200" rounded={"md"} mb={2} w="full" h={10} p={2} justify={"space-between"} alignItems={'center'}>
                               <Text fontWeight={600} fontSize={14} >Overflow 1</Text>
-                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 1', item)}</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 2', item)}</Text>
                             </Flex>
 
                             {/* Back office */}
@@ -134,7 +134,7 @@ export default function Home() {
                             {/* Overflow 2 */}
                             <Flex w="full" bg={"green.200"} mb={2} rounded={"md"} h={10} p={2} justify={"space-between"} alignItems={'center'}>
                               <Text fontWeight={600} fontSize={14} >Overflow 2</Text>
-                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 2', item)}</Text>
+                              <Text fontWeight={600} fontSize={28} >{groupData('Overflow 1', item)}</Text>
                             </Flex>
                         </Box>
 
