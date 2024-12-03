@@ -10,9 +10,9 @@ import {
 } from 'react-query'
 
 import { theme } from '../frontend/theme/theme'
-import { NextPageContext } from 'next'
+import { ComponentType } from 'react'
 
-function MyApp({ Component, pageProps }: AppProps<NextPageContext>) {
+function MyApp({ Component, pageProps }: AppProps<{Component: ComponentType}> ) {
   const router = useRouter()
   const queryClient = new QueryClient()
 
