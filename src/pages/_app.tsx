@@ -10,7 +10,6 @@ import {
 } from 'react-query'
 
 import { theme } from '../frontend/theme/theme'
-import { ComponentType } from 'react'
 
 function MyApp({ Component, pageProps }: AppProps ) {
   const router = useRouter()
