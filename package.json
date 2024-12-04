@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=18.18.0"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
