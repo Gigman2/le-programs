@@ -39,3 +39,6 @@ next-env.d.ts
 *.log
 # Sentry Config File
 .sentryclirc
+
+# lock files
+package-lock.json

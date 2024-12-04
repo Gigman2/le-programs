@@ -1,8 +1,8 @@
+import type { AppProps } from 'next/app'
 import Navbar from '@/frontend/components/layouts/navbar'
 import '@/frontend/styles/globals.css'
 import { Box, ChakraProvider } from '@chakra-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
-import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import {
   QueryClient,
@@ -12,7 +12,7 @@ import {
 import { theme } from '../frontend/theme/theme'
 import { ComponentType } from 'react'
 
-function MyApp({ Component, pageProps }: AppProps<{Component: ComponentType}> ) {
+function MyApp({ Component, pageProps }: AppProps ) {
   const router = useRouter()
   const queryClient = new QueryClient()
 
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps<{Component: ComponentType}> ) 
           }}
         >
           <Box bgColor="white" pos="relative" overflow="hidden">
-            {router.pathname!=="/podcast-qrcode"?<Navbar />:<></>}
+            {router.pathname !=="/podcast-qrcode"?<Navbar />:<></>}
 
             <Component {...pageProps} />
 
